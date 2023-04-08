@@ -5,7 +5,6 @@ import com.easyelectroshop.productmanagementservice.Model.Product;
 import com.easyelectroshop.productmanagementservice.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +18,6 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
-
 
     @PostMapping("/addProduct")
     public void saveProduct(@RequestBody Product product){
@@ -35,7 +33,6 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
-
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Product>> getAllProducts(){
