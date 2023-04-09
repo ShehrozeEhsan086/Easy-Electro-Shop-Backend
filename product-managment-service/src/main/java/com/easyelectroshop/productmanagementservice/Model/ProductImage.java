@@ -1,10 +1,17 @@
 package com.easyelectroshop.productmanagementservice.Model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductImage {
 
     @Id
@@ -17,27 +24,10 @@ public class ProductImage {
     private String imageData;
 
 
-    public ProductImage() {
-    }
+//    @ManyToOne
+//    @Column(name = "")
+//    private List<Colors> colors;
 
-    public ProductImage(UUID imageId, String imageData) {
-        this.imageId = imageId;
-        this.imageData = imageData;
-    }
 
-    public UUID getImageId() {
-        return imageId;
-    }
 
-    public void setImageId(UUID imageId) {
-        this.imageId = imageId;
-    }
-
-    public String getImageData() {
-        return imageData;
-    }
-
-    public void setImageData(String imageData) {
-        this.imageData = imageData;
-    }
 }
