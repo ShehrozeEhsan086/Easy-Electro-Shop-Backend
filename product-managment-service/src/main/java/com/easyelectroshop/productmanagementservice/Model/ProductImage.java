@@ -1,15 +1,13 @@
 package com.easyelectroshop.productmanagementservice.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductImage {
@@ -23,11 +21,8 @@ public class ProductImage {
     @Column(name = "imageData", columnDefinition="MEDIUMBLOB")
     private String imageData;
 
-
-//    @ManyToOne
-//    @Column(name = "")
-//    private List<Colors> colors;
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_color_id")
+    private Colors colors;
 
 }
