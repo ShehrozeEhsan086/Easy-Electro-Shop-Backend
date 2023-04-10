@@ -1,12 +1,11 @@
 package com.easyelectroshop.productmanagementservice.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class SubCategory {
@@ -14,6 +13,6 @@ public class SubCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "subCategoryId")
-    private int subCategoryId;
+    private long subCategoryId;
 
 }
