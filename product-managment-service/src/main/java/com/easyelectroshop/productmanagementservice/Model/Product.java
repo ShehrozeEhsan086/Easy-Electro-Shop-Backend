@@ -3,8 +3,6 @@ package com.easyelectroshop.productmanagementservice.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
-
-import java.sql.Timestamp;
 import java.util.UUID;
 import java.util.List;
 
@@ -59,6 +57,6 @@ public class Product {
 
     private boolean available;
 
-    private Timestamp lastUpdated;
+    private String lastUpdated;
 
 }

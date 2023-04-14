@@ -11,7 +11,6 @@ import lombok.*;
 public class SubCategory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "subCategoryId")
     private long subCategoryId;
 

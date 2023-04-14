@@ -13,31 +13,37 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/products")
+@RequestMapping("/api/v1/product-management")
 public class ProductController {
 
     @Autowired
     ProductService productService;
 
-    @PostMapping("/addProduct")
+    @PostMapping("/add-product")
     public void saveProduct(@RequestBody Product product){
         productService.saveProduct(product);
     }
 
-    @GetMapping("/{productId}")
+    @GetMapping("get-product/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable UUID productId){
         Optional<Product> product = productService.getProductById(productId);
-        if (product.isPresent()){
-            return new ResponseEntity<>(product.get(),HttpStatus.OK);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        return(product.isPresent()) ? ResponseEntity.ok(product.get()) : ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     public ResponseEntity<List<Product>> getAllProducts(){
         return new ResponseEntity<>(productService.getAllProducts(),HttpStatus.OK);
     }
 
+    @PutMapping("/update-product")
+    public ResponseEntity<Product> updateProduct(@RequestBody Product product){
+        Optional<Product> tempProduct = productService.getProductById(product.getProductId());
+        if (tempProduct.isPresent()){
+            return new ResponseEntity<>(productService.updateProduct(product).get(),HttpStatus.OK);
+        } else {
+            productService.saveProduct(product);
+            return new ResponseEntity<>(productService.getProductById(product.getProductId()).get(),HttpStatus.CREATED);
+        }
+    }
 
 }
