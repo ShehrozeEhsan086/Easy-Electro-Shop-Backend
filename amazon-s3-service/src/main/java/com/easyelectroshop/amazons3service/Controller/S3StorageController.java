@@ -1,5 +1,6 @@
 package com.easyelectroshop.amazons3service.Controller;
 
+import com.easyelectroshop.amazons3service.DTO.Model3D;
 import com.easyelectroshop.amazons3service.Service.S3StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -16,8 +17,9 @@ public class S3StorageController {
     S3StorageService s3StorageService;
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadModel(@RequestParam(value = "model")MultipartFile file){
-        return new ResponseEntity<>(s3StorageService.uploadModel(file),HttpStatus.OK);
+    public ResponseEntity<Model3D> uploadModel(@RequestParam(value = "model")MultipartFile file){
+        Model3D uploadedContent = s3StorageService.uploadModel(file);
+        return(uploadedContent != null) ? ResponseEntity.ok(uploadedContent) : ResponseEntity.internalServerError().build();
     }
 
     @GetMapping("/download/{fileName}")
@@ -33,9 +35,7 @@ public class S3StorageController {
     }
 
     @DeleteMapping("/delete/{fileName}")
-    public ResponseEntity<String> deleteModel(String fileName){
+    public ResponseEntity<String> deleteModel(@PathVariable String fileName){
         return new ResponseEntity<>(s3StorageService.deleteFile(fileName),HttpStatus.OK);
     }
-
-
 }

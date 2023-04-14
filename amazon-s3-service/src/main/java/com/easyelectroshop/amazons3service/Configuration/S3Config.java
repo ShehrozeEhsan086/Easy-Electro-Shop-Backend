@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.Instant;
+import java.util.Date;
+
 @Configuration
 public class S3Config {
 
@@ -23,7 +26,7 @@ public class S3Config {
 
 
     @Bean
-    protected AmazonS3 amazonS3Client(){
+    AmazonS3 amazonS3Client(){
         AWSCredentials credentials = new BasicAWSCredentials(accessKey,secretKey);
         return AmazonS3ClientBuilder
                 .standard()
