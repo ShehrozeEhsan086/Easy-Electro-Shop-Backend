@@ -1,17 +1,14 @@
 package com.easyelectroshop.productmanagementservice.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-
-import java.sql.Timestamp;
 import java.util.UUID;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
@@ -50,7 +47,7 @@ public class Product {
     @JoinColumn(name = "fk_product_id",referencedColumnName = "productId")
     private List<Colors> colors;
 
-    private int category;
+    private long category;
 
     @OneToMany(targetEntity = SubCategory.class,  cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_product_id",referencedColumnName = "productId")
@@ -60,6 +57,6 @@ public class Product {
 
     private boolean available;
 
-    private Timestamp lastUpdated;
+    private String lastUpdated;
 
 }
