@@ -12,6 +12,9 @@ public class SubCategory {
 
     @Id
     @Column(name = "subCategoryId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long subCategoryId;
+
+    private long subCategoryFkId;
 
 }
