@@ -17,6 +17,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "productId")
     private UUID productId;
+
     private String name;
 
     @OneToMany(targetEntity = ProductImage.class,  cascade = CascadeType.ALL)
