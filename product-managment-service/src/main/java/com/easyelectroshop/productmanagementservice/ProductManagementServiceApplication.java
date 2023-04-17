@@ -22,6 +22,7 @@ public class ProductManagementServiceApplication {
         return new Date();
     }
 
+
     @Bean
     public SimpleDateFormat simpleDateFormat(){
         return new SimpleDateFormat("dd-MM-yyy");

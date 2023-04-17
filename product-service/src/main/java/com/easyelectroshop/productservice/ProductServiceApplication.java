@@ -23,7 +23,6 @@ public class ProductServiceApplication {
         return WebClient.builder();
     }
 
-
     @Bean
     MultipartBodyBuilder multipartBodyBuilder(){
         return new MultipartBodyBuilder();
