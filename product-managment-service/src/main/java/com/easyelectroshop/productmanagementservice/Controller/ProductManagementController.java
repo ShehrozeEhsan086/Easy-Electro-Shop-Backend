@@ -2,7 +2,7 @@ package com.easyelectroshop.productmanagementservice.Controller;
 
 
 import com.easyelectroshop.productmanagementservice.Model.Product;
-import com.easyelectroshop.productmanagementservice.Service.ProductService;
+import com.easyelectroshop.productmanagementservice.Service.ProductManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,38 +14,34 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/product-management")
-@CrossOrigin
-public class ProductController {
+public class ProductManagementController {
 
     @Autowired
-    ProductService productService;
+    ProductManagementService productManagementService;
 
     @PostMapping("/add-product")
     public void saveProduct(@RequestBody Product product){
-        productService.saveProduct(product);
+        productManagementService.saveProduct(product);
     }
 
     @GetMapping("get-product/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable UUID productId){
-        Optional<Product> product = productService.getProductById(productId);
+        Optional<Product> product = productManagementService.getProductById(productId);
         return(product.isPresent()) ? ResponseEntity.ok(product.get()) : ResponseEntity.notFound().build();
     }
 
     @GetMapping("/get-all")
     public ResponseEntity<List<Product>> getAllProducts(){
-        return new ResponseEntity<>(productService.getAllProducts(),HttpStatus.OK);
+        return new ResponseEntity<>(productManagementService.getAllProducts(),HttpStatus.OK);
     }
 
     @PutMapping("/update-product")
-    public ResponseEntity<Product> updateProduct(@RequestBody Product product){
-        Optional<Product> tempProduct = productService.getProductById(product.getProductId());
+    public void updateProduct(@RequestBody Product product){
+        Optional<Product> tempProduct = productManagementService.getProductById(product.getProductId());
         if (tempProduct.isPresent()){
-            return new ResponseEntity<>(productService.updateProduct(product).get(),HttpStatus.OK);
+            productManagementService.updateProduct(product);
         } else {
-            productService.saveProduct(product);
-            return new ResponseEntity<>(productService.getProductById(product.getProductId()).get(),HttpStatus.CREATED);
+            productManagementService.saveProduct(product);
         }
     }
-
-    
 }

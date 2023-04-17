@@ -1,13 +1,11 @@
 package com.easyelectroshop.productmanagementservice.Service;
 
 import com.easyelectroshop.productmanagementservice.Model.Product;
-import com.easyelectroshop.productmanagementservice.Repository.ProductRepository;
+import com.easyelectroshop.productmanagementservice.Repository.ProductManagementRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -16,10 +14,10 @@ import java.util.UUID;
 
 @Service
 @Transactional(rollbackOn = Exception.class)
-public class ProductService {
+public class ProductManagementService {
 
     @Autowired
-    ProductRepository productRepository;
+    ProductManagementRepository productManagementRepository;
     @Autowired
     Date date;
     @Autowired
@@ -28,19 +26,18 @@ public class ProductService {
 
     public void saveProduct(Product product){
         product.setLastUpdated(simpleDateFormat.format(date.getTime()));
-        productRepository.save(product);
+        productManagementRepository.save(product);
     }
 
     public Optional<Product> getProductById(UUID productId){
-        return productRepository.findById(productId);
+        return productManagementRepository.findById(productId);
     }
 
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return productManagementRepository.findAll();
     }
 
-    public Optional<Product> updateProduct(Product product) {
-        productRepository.save(product);
-        return productRepository.findById(product.getProductId());
+    public void updateProduct(Product product) {
+        productManagementRepository.save(product);
     }
 }

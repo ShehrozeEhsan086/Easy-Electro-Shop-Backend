@@ -17,6 +17,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "productId")
     private UUID productId;
+
     private String name;
 
     @OneToMany(targetEntity = ProductImage.class,  cascade = CascadeType.ALL)
@@ -43,9 +44,8 @@ public class Product {
 
     private double size;
 
-    @OneToMany(targetEntity = Colors.class,  cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_product_id",referencedColumnName = "productId")
-    private List<Colors> colors;
+    @ElementCollection
+    private List<Long> colors;
 
     private long category;
 
