@@ -21,8 +21,5 @@ public class ProductImage {
     @Column(name = "imageData", columnDefinition="MEDIUMBLOB")
     private String imageData;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_color_id")
-    private Colors colors;
-
+    private long colors;
 }
