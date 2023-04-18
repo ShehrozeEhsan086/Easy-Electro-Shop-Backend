@@ -1036,3 +1036,4 @@ Caused by: java.net.ConnectException: Connection refused: no further information
 2023-04-18T13:42:24.929+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2023-04-18T13:47:24.931+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2023-04-18T13:52:24.939+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:57:24.955+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

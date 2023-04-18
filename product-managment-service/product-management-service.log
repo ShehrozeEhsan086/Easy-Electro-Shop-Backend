@@ -1391,3 +1391,4 @@ Identify and stop the process that's listening on port 8081 or configure this ap
 2023-04-18T13:49:56.078+05:00  INFO 12176 --- [http-nio-8081-exec-6] c.e.p.Service.ProductManagementService   : GETTING ALL PRODUCTS
 2023-04-18T13:49:56.081+05:00  INFO 12176 --- [http-nio-8081-exec-6] c.e.p.Service.ProductManagementService   : SUCCESSFULLY RETRIEVED PRODUCTS
 2023-04-18T13:54:04.450+05:00  INFO 12176 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:59:04.463+05:00  INFO 12176 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
