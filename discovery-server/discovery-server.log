@@ -1,0 +1,269 @@
+2023-04-18T11:27:15.110+05:00  INFO 12928 --- [main] c.e.d.DiscoveryServerApplication         : Starting DiscoveryServerApplication using Java 19.0.1 with PID 12928 (D:\University Work\FYP\Easy-Electro-Shop-Backend\discovery-server\target\classes started by Talha Rizwan in D:\University Work\FYP\Easy-Electro-Shop-Backend\discovery-server)
+2023-04-18T11:27:15.113+05:00  INFO 12928 --- [main] c.e.d.DiscoveryServerApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-18T11:27:16.210+05:00  INFO 12928 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=490f5b2f-2029-3db9-af70-0427739fa321
+2023-04-18T11:27:16.520+05:00  INFO 12928 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8761 (http)
+2023-04-18T11:27:16.530+05:00  INFO 12928 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-18T11:27:16.530+05:00  INFO 12928 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-18T11:27:16.642+05:00  INFO 12928 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-18T11:27:16.642+05:00  INFO 12928 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1470 ms
+2023-04-18T11:27:17.542+05:00  INFO 12928 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2023-04-18T11:27:17.544+05:00  INFO 12928 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2023-04-18T11:27:17.733+05:00  INFO 12928 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2023-04-18T11:27:17.733+05:00  INFO 12928 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2023-04-18T11:27:18.650+05:00  INFO 12928 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-04-18T11:27:18.699+05:00  WARN 12928 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-04-18T11:27:18.724+05:00  INFO 12928 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-04-18T11:27:18.758+05:00  INFO 12928 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-04-18T11:27:18.758+05:00  INFO 12928 --- [main] com.netflix.discovery.DiscoveryClient    : Client configured to neither register nor query for data.
+2023-04-18T11:27:18.769+05:00  INFO 12928 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1681799238767 with initial instances count: 0
+2023-04-18T11:27:18.815+05:00  INFO 12928 --- [main] c.n.eureka.DefaultEurekaServerContext    : Initializing ...
+2023-04-18T11:27:18.817+05:00  INFO 12928 --- [main] c.n.eureka.cluster.PeerEurekaNodes       : Adding new peer nodes [http://localhost:8761/eureka/]
+2023-04-18T11:27:19.047+05:00  INFO 12928 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2023-04-18T11:27:19.048+05:00  INFO 12928 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2023-04-18T11:27:19.048+05:00  INFO 12928 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2023-04-18T11:27:19.048+05:00  INFO 12928 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2023-04-18T11:27:19.203+05:00  INFO 12928 --- [main] c.n.eureka.cluster.PeerEurekaNodes       : Replica node URL:  http://localhost:8761/eureka/
+2023-04-18T11:27:19.210+05:00  INFO 12928 --- [main] c.n.e.registry.AbstractInstanceRegistry  : Finished initializing remote region registries. All known remote regions: []
+2023-04-18T11:27:19.211+05:00  INFO 12928 --- [main] c.n.eureka.DefaultEurekaServerContext    : Initialized
+2023-04-18T11:27:19.224+05:00  INFO 12928 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-04-18T11:27:19.273+05:00  INFO 12928 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application UNKNOWN with eureka with status UP
+2023-04-18T11:27:19.288+05:00  INFO 12928 --- [Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : isAws returned false
+2023-04-18T11:27:19.289+05:00  INFO 12928 --- [Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : Initialized server context
+2023-04-18T11:27:19.289+05:00  INFO 12928 --- [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Got 1 instances from neighboring DS node
+2023-04-18T11:27:19.289+05:00  INFO 12928 --- [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Renew threshold is: 1
+2023-04-18T11:27:19.289+05:00  INFO 12928 --- [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Changing status to UP
+2023-04-18T11:27:19.298+05:00  INFO 12928 --- [Thread-9] e.s.EurekaServerInitializerConfiguration : Started Eureka Server
+2023-04-18T11:27:19.301+05:00  INFO 12928 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8761 (http) with context path ''
+2023-04-18T11:27:19.302+05:00  INFO 12928 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8761
+2023-04-18T11:27:19.347+05:00  INFO 12928 --- [main] c.e.d.DiscoveryServerApplication         : Started DiscoveryServerApplication in 4.768 seconds (process running for 7.655)
+2023-04-18T11:27:25.172+05:00  INFO 12928 --- [http-nio-8761-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-18T11:27:25.173+05:00  INFO 12928 --- [http-nio-8761-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-04-18T11:27:25.174+05:00  INFO 12928 --- [http-nio-8761-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-04-18T11:27:25.437+05:00  INFO 12928 --- [http-nio-8761-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-SERVICE/DESKTOP-BN5T0OQ:product-service:8083 with status UP (replication=false)
+2023-04-18T11:27:26.070+05:00  INFO 12928 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-SERVICE/DESKTOP-BN5T0OQ:product-service:8083 with status UP (replication=true)
+2023-04-18T11:27:39.858+05:00  INFO 12928 --- [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=false)
+2023-04-18T11:27:40.371+05:00  INFO 12928 --- [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=true)
+2023-04-18T11:28:19.290+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T11:29:01.533+05:00  INFO 12928 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-COLOR-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-color-management-service:8085 with status UP (replication=false)
+2023-04-18T11:29:02.046+05:00  INFO 12928 --- [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-COLOR-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-color-management-service:8085 with status UP (replication=true)
+2023-04-18T11:29:19.291+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T11:30:19.292+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2023-04-18T11:31:19.293+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T11:32:19.298+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2023-04-18T11:33:19.305+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2023-04-18T11:34:19.307+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-04-18T11:35:19.311+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2023-04-18T11:36:19.315+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2023-04-18T11:37:19.319+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2023-04-18T11:38:19.322+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-04-18T11:39:19.336+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2023-04-18T11:40:19.339+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2023-04-18T11:41:19.345+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2023-04-18T11:42:19.210+05:00  INFO 12928 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 6
+2023-04-18T11:42:19.354+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2023-04-18T11:43:19.358+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2023-04-18T11:44:19.370+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 11ms
+2023-04-18T11:45:19.370+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T11:46:19.377+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2023-04-18T11:47:19.383+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2023-04-18T11:48:19.388+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2023-04-18T11:49:19.397+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2023-04-18T11:50:19.411+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2023-04-18T11:51:19.418+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2023-04-18T11:52:19.429+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 11ms
+2023-04-18T11:53:19.437+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2023-04-18T11:54:19.441+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2023-04-18T11:55:19.443+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2023-04-18T11:56:19.445+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-04-18T11:57:19.214+05:00  INFO 12928 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 6
+2023-04-18T11:57:19.450+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2023-04-18T11:58:19.451+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T11:59:19.453+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2023-04-18T12:00:19.468+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 15ms
+2023-04-18T12:01:19.480+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 11ms
+2023-04-18T12:02:19.488+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2023-04-18T12:03:19.503+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2023-04-18T12:04:19.506+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2023-04-18T12:05:19.521+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2023-04-18T12:06:19.529+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2023-04-18T12:07:19.529+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:08:19.542+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 12ms
+2023-04-18T12:09:19.557+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 15ms
+2023-04-18T12:10:19.557+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:11:19.563+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2023-04-18T12:12:19.223+05:00  INFO 12928 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 6
+2023-04-18T12:12:19.565+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-04-18T12:13:19.565+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:14:19.566+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:15:19.567+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:16:19.567+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:17:19.567+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:18:19.567+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:19:19.567+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:20:19.568+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2023-04-18T12:21:19.568+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:22:19.568+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:23:19.568+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:24:19.569+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:25:19.570+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:26:19.570+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:27:19.223+05:00  INFO 12928 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 6
+2023-04-18T12:27:19.571+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:28:19.579+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2023-04-18T12:29:19.592+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 13ms
+2023-04-18T12:30:19.593+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:31:19.602+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2023-04-18T12:32:19.605+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2023-04-18T12:33:19.614+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2023-04-18T12:34:19.614+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:35:19.617+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-04-18T12:36:19.623+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2023-04-18T12:37:19.624+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:37:38.980+05:00  INFO 12928 --- [http-nio-8761-exec-7] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=false)
+2023-04-18T12:37:39.495+05:00  INFO 12928 --- [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=true)
+2023-04-18T12:37:42.003+05:00  INFO 12928 --- [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 (replication=false)
+2023-04-18T12:37:42.158+05:00  WARN 12928 --- [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: lease doesn't exist, registering resource: PRODUCT-MANAGEMENT-SERVICE - DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T12:37:42.158+05:00  WARN 12928 --- [http-nio-8761-exec-6] c.n.eureka.resources.InstanceResource    : Not Found (Renew): PRODUCT-MANAGEMENT-SERVICE - DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T12:37:42.158+05:00  WARN 12928 --- [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T12:37:42.159+05:00  INFO 12928 --- [http-nio-8761-exec-6] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): PRODUCT-MANAGEMENT-SERVICE - DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T12:37:42.159+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-8] c.n.eureka.cluster.ReplicationTask       : The replication of task PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Heartbeat@localhost failed with response code 404
+2023-04-18T12:37:42.159+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-8] c.netflix.eureka.cluster.PeerEurekaNode  : PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Heartbeat@localhost: missing entry.
+2023-04-18T12:37:42.159+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-8] c.netflix.eureka.cluster.PeerEurekaNode  : PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Heartbeat@localhost: cannot find instance id DESKTOP-BN5T0OQ:product-management-service:8081 and hence replicating the instance with status DOWN
+2023-04-18T12:37:42.160+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-8] c.n.eureka.cluster.ReplicationTask       : The replication of task PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost failed with response code 404
+2023-04-18T12:37:42.160+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-8] c.netflix.eureka.cluster.PeerEurekaNode  : PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost: missing entry.
+2023-04-18T12:37:42.674+05:00  INFO 12928 --- [http-nio-8761-exec-8] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=true)
+2023-04-18T12:37:59.296+05:00  INFO 12928 --- [http-nio-8761-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=false)
+2023-04-18T12:37:59.808+05:00  INFO 12928 --- [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=true)
+2023-04-18T12:38:19.626+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-04-18T12:39:19.629+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2023-04-18T12:40:19.641+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 12ms
+2023-04-18T12:41:19.645+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2023-04-18T12:42:19.224+05:00  INFO 12928 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 6
+2023-04-18T12:42:19.646+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:43:19.646+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:44:19.647+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:45:19.647+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:45:48.935+05:00  INFO 12928 --- [http-nio-8761-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=false)
+2023-04-18T12:45:49.441+05:00  INFO 12928 --- [http-nio-8761-exec-1] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=true)
+2023-04-18T12:45:51.964+05:00  INFO 12928 --- [http-nio-8761-exec-10] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 (replication=false)
+2023-04-18T12:45:52.475+05:00  WARN 12928 --- [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T12:45:52.475+05:00  INFO 12928 --- [http-nio-8761-exec-4] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): PRODUCT-MANAGEMENT-SERVICE - DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T12:45:52.476+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-0] c.n.eureka.cluster.ReplicationTask       : The replication of task PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost failed with response code 404
+2023-04-18T12:45:52.476+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-0] c.netflix.eureka.cluster.PeerEurekaNode  : PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost: missing entry.
+2023-04-18T12:46:03.540+05:00  INFO 12928 --- [http-nio-8761-exec-10] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=false)
+2023-04-18T12:46:04.005+05:00  INFO 12928 --- [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=true)
+2023-04-18T12:46:05.091+05:00  INFO 12928 --- [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=false)
+2023-04-18T12:46:05.096+05:00  INFO 12928 --- [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 (replication=false)
+2023-04-18T12:46:05.597+05:00  INFO 12928 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=true)
+2023-04-18T12:46:05.598+05:00  INFO 12928 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 (replication=true)
+2023-04-18T12:46:19.648+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:46:33.526+05:00  WARN 12928 --- [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: lease doesn't exist, registering resource: PRODUCT-MANAGEMENT-SERVICE - DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T12:46:33.526+05:00  WARN 12928 --- [http-nio-8761-exec-5] c.n.eureka.resources.InstanceResource    : Not Found (Renew): PRODUCT-MANAGEMENT-SERVICE - DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T12:46:33.572+05:00  INFO 12928 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=false)
+2023-04-18T12:46:34.028+05:00  INFO 12928 --- [http-nio-8761-exec-7] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=true)
+2023-04-18T12:47:19.650+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-04-18T12:47:33.328+05:00  INFO 12928 --- [http-nio-8761-exec-1] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=false)
+2023-04-18T12:47:33.834+05:00  INFO 12928 --- [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=true)
+2023-04-18T12:47:36.368+05:00  INFO 12928 --- [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 (replication=false)
+2023-04-18T12:47:36.878+05:00  WARN 12928 --- [http-nio-8761-exec-8] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T12:47:36.879+05:00  INFO 12928 --- [http-nio-8761-exec-8] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): PRODUCT-MANAGEMENT-SERVICE - DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T12:47:36.881+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-8] c.n.eureka.cluster.ReplicationTask       : The replication of task PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost failed with response code 404
+2023-04-18T12:47:36.881+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-8] c.netflix.eureka.cluster.PeerEurekaNode  : PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost: missing entry.
+2023-04-18T12:48:00.915+05:00  INFO 12928 --- [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=false)
+2023-04-18T12:48:01.424+05:00  INFO 12928 --- [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=true)
+2023-04-18T12:48:19.651+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:49:19.651+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T12:50:19.660+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2023-04-18T12:51:19.663+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2023-04-18T12:52:19.678+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2023-04-18T12:53:19.681+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2023-04-18T12:54:19.686+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2023-04-18T12:55:19.695+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2023-04-18T12:56:19.697+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-04-18T12:57:19.224+05:00  INFO 12928 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 6
+2023-04-18T12:57:19.710+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 12ms
+2023-04-18T12:58:19.712+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-04-18T12:59:19.724+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 12ms
+2023-04-18T13:00:19.733+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2023-04-18T13:01:19.733+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T13:02:19.736+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-04-18T13:03:19.739+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-04-18T13:04:19.748+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2023-04-18T13:05:19.755+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2023-04-18T13:06:19.770+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2023-04-18T13:07:19.772+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2023-04-18T13:08:19.778+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2023-04-18T13:09:19.780+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-04-18T13:10:19.790+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2023-04-18T13:11:19.801+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 11ms
+2023-04-18T13:12:19.239+05:00  INFO 12928 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 6
+2023-04-18T13:12:19.809+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2023-04-18T13:13:19.817+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2023-04-18T13:14:19.832+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2023-04-18T13:15:19.837+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2023-04-18T13:16:19.843+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2023-04-18T13:17:19.853+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2023-04-18T13:18:19.868+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 15ms
+2023-04-18T13:19:19.877+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2023-04-18T13:20:19.881+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2023-04-18T13:20:59.810+05:00  INFO 12928 --- [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=false)
+2023-04-18T13:21:00.318+05:00  INFO 12928 --- [http-nio-8761-exec-7] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=true)
+2023-04-18T13:21:02.836+05:00  INFO 12928 --- [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 (replication=false)
+2023-04-18T13:21:03.342+05:00  WARN 12928 --- [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T13:21:03.342+05:00  INFO 12928 --- [http-nio-8761-exec-4] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): PRODUCT-MANAGEMENT-SERVICE - DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T13:21:03.343+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-11] c.n.eureka.cluster.ReplicationTask       : The replication of task PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost failed with response code 404
+2023-04-18T13:21:03.343+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-11] c.netflix.eureka.cluster.PeerEurekaNode  : PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost: missing entry.
+2023-04-18T13:21:19.888+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2023-04-18T13:22:03.065+05:00  INFO 12928 --- [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=false)
+2023-04-18T13:22:03.579+05:00  INFO 12928 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=true)
+2023-04-18T13:22:19.902+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2023-04-18T13:23:19.912+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2023-04-18T13:24:19.917+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2023-04-18T13:25:19.932+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2023-04-18T13:26:19.943+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 10ms
+2023-04-18T13:27:19.253+05:00  INFO 12928 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 6
+2023-04-18T13:27:19.950+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2023-04-18T13:28:19.964+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2023-04-18T13:29:19.970+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2023-04-18T13:30:19.975+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2023-04-18T13:31:19.976+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T13:32:19.983+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2023-04-18T13:33:19.992+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2023-04-18T13:34:19.998+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2023-04-18T13:35:20.006+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2023-04-18T13:36:20.013+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2023-04-18T13:37:20.023+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2023-04-18T13:38:20.032+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2023-04-18T13:39:20.042+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 10ms
+2023-04-18T13:40:20.053+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 10ms
+2023-04-18T13:41:01.992+05:00  INFO 12928 --- [http-nio-8761-exec-7] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=false)
+2023-04-18T13:41:02.494+05:00  INFO 12928 --- [http-nio-8761-exec-10] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=true)
+2023-04-18T13:41:05.013+05:00  INFO 12928 --- [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 (replication=false)
+2023-04-18T13:41:05.306+05:00  WARN 12928 --- [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T13:41:05.306+05:00  INFO 12928 --- [http-nio-8761-exec-6] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): PRODUCT-MANAGEMENT-SERVICE - DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T13:41:05.306+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-16] c.n.eureka.cluster.ReplicationTask       : The replication of task PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost failed with response code 404
+2023-04-18T13:41:05.306+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-16] c.netflix.eureka.cluster.PeerEurekaNode  : PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost: missing entry.
+2023-04-18T13:41:20.059+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2023-04-18T13:41:34.835+05:00  INFO 12928 --- [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=false)
+2023-04-18T13:41:35.320+05:00  INFO 12928 --- [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=true)
+2023-04-18T13:42:19.260+05:00  INFO 12928 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 6
+2023-04-18T13:42:20.075+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 15ms
+2023-04-18T13:43:20.080+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2023-04-18T13:43:20.998+05:00  INFO 12928 --- [http-nio-8761-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=false)
+2023-04-18T13:43:21.503+05:00  INFO 12928 --- [http-nio-8761-exec-8] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=true)
+2023-04-18T13:43:24.041+05:00  INFO 12928 --- [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 (replication=false)
+2023-04-18T13:43:24.552+05:00  WARN 12928 --- [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T13:43:24.552+05:00  INFO 12928 --- [http-nio-8761-exec-9] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): PRODUCT-MANAGEMENT-SERVICE - DESKTOP-BN5T0OQ:product-management-service:8081
+2023-04-18T13:43:24.554+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-11] c.n.eureka.cluster.ReplicationTask       : The replication of task PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost failed with response code 404
+2023-04-18T13:43:24.554+05:00  WARN 12928 --- [TaskBatchingWorker-target_localhost-11] c.netflix.eureka.cluster.PeerEurekaNode  : PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost: missing entry.
+2023-04-18T13:44:04.730+05:00  INFO 12928 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=false)
+2023-04-18T13:44:05.244+05:00  INFO 12928 --- [http-nio-8761-exec-1] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=true)
+2023-04-18T13:44:20.084+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2023-04-18T13:45:20.089+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2023-04-18T13:46:20.089+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T13:47:20.100+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 10ms
+2023-04-18T13:48:20.108+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2023-04-18T13:49:20.120+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 11ms
+2023-04-18T13:50:20.120+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-04-18T13:51:20.122+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2023-04-18T13:52:20.130+05:00  INFO 12928 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms

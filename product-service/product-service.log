@@ -1,0 +1,1038 @@
+2023-04-18T06:25:35.946+05:00  INFO 20672 --- [main] c.e.p.ProductServiceApplication          : Starting ProductServiceApplication using Java 17.0.2 with PID 20672 (C:\Users\shehr\OneDrive\Desktop\Easy-Electro-Shop-Backend\product-service\target\classes started by shehr in C:\Users\shehr\OneDrive\Desktop\Easy-Electro-Shop-Backend\product-service)
+2023-04-18T06:25:35.948+05:00  INFO 20672 --- [main] c.e.p.ProductServiceApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-04-18T06:25:36.496+05:00  INFO 20672 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=0c4d7694-c95a-3f4d-a80e-0cf71807bf30
+2023-04-18T06:25:36.549+05:00  INFO 20672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-04-18T06:25:36.551+05:00  INFO 20672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-04-18T06:25:36.553+05:00  INFO 20672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-04-18T06:25:36.697+05:00  INFO 20672 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8083 (http)
+2023-04-18T06:25:36.704+05:00  INFO 20672 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-18T06:25:36.704+05:00  INFO 20672 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-18T06:25:36.801+05:00  INFO 20672 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-18T06:25:36.801+05:00  INFO 20672 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 825 ms
+2023-04-18T06:25:37.204+05:00  INFO 20672 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-04-18T06:25:37.344+05:00  WARN 20672 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-04-18T06:25:37.379+05:00  INFO 20672 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-04-18T06:25:37.412+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-04-18T06:25:37.416+05:00  INFO 20672 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T06:25:37.438+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-04-18T06:25:37.439+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-04-18T06:25:37.439+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-04-18T06:25:37.439+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-04-18T06:25:37.439+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-04-18T06:25:37.439+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-04-18T06:25:37.439+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-04-18T06:25:37.681+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-04-18T06:25:37.686+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-04-18T06:25:37.690+05:00  INFO 20672 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-04-18T06:25:37.701+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1681781137700 with initial instances count: 1
+2023-04-18T06:25:37.702+05:00  INFO 20672 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application PRODUCT-SERVICE with eureka with status UP
+2023-04-18T06:25:37.703+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1681781137703, current=UP, previous=STARTING]
+2023-04-18T06:25:37.704+05:00  INFO 20672 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083: registering service...
+2023-04-18T06:25:37.721+05:00  INFO 20672 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8083 (http) with context path ''
+2023-04-18T06:25:37.721+05:00  INFO 20672 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8083
+2023-04-18T06:25:37.732+05:00  INFO 20672 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083 - registration status: 204
+2023-04-18T06:25:37.829+05:00  INFO 20672 --- [main] c.e.p.ProductServiceApplication          : Started ProductServiceApplication in 2.242 seconds (process running for 2.769)
+2023-04-18T06:26:07.857+05:00  INFO 20672 --- [DiscoveryClient-HeartbeatExecutor-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083 - Re-registering apps/PRODUCT-SERVICE
+2023-04-18T06:26:07.857+05:00  INFO 20672 --- [DiscoveryClient-HeartbeatExecutor-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083: registering service...
+2023-04-18T06:26:07.909+05:00  INFO 20672 --- [DiscoveryClient-HeartbeatExecutor-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083 - registration status: 204
+2023-04-18T06:26:11.274+05:00  INFO 20672 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application PRODUCT-SERVICE with eureka with status DOWN
+2023-04-18T06:26:11.274+05:00  INFO 20672 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1681781171274, current=DOWN, previous=UP]
+2023-04-18T06:26:11.274+05:00  INFO 20672 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083: registering service...
+2023-04-18T06:26:11.280+05:00  INFO 20672 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083 - registration status: 204
+2023-04-18T06:26:11.301+05:00  INFO 20672 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-04-18T06:26:14.326+05:00  INFO 20672 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-04-18T06:26:14.335+05:00  INFO 20672 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083 - deregister  status: 200
+2023-04-18T06:26:14.370+05:00  INFO 20672 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2023-04-18T11:27:22.697+05:00  INFO 3996 --- [main] c.e.p.ProductServiceApplication          : Starting ProductServiceApplication using Java 17.0.6 with PID 3996 (D:\University Work\FYP\Easy-Electro-Shop-Backend\product-service\target\classes started by Talha Rizwan in D:\University Work\FYP\Easy-Electro-Shop-Backend\product-service)
+2023-04-18T11:27:22.700+05:00  INFO 3996 --- [main] c.e.p.ProductServiceApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-04-18T11:27:23.510+05:00  INFO 3996 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=20b1e8f1-0645-3798-a239-b4fa3296da71
+2023-04-18T11:27:23.586+05:00  INFO 3996 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-04-18T11:27:23.589+05:00  INFO 3996 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-04-18T11:27:23.591+05:00  INFO 3996 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-04-18T11:27:23.820+05:00  INFO 3996 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8083 (http)
+2023-04-18T11:27:23.829+05:00  INFO 3996 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-18T11:27:23.830+05:00  INFO 3996 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-18T11:27:23.937+05:00  INFO 3996 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-18T11:27:23.938+05:00  INFO 3996 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1196 ms
+2023-04-18T11:27:24.517+05:00  INFO 3996 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-04-18T11:27:24.616+05:00  WARN 3996 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-04-18T11:27:24.636+05:00  INFO 3996 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-04-18T11:27:24.715+05:00  INFO 3996 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-04-18T11:27:24.721+05:00  INFO 3996 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T11:27:24.743+05:00  INFO 3996 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-04-18T11:27:24.743+05:00  INFO 3996 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-04-18T11:27:24.743+05:00  INFO 3996 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-04-18T11:27:24.743+05:00  INFO 3996 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-04-18T11:27:24.743+05:00  INFO 3996 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-04-18T11:27:24.743+05:00  INFO 3996 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-04-18T11:27:24.743+05:00  INFO 3996 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-04-18T11:27:25.296+05:00  INFO 3996 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-04-18T11:27:25.299+05:00  INFO 3996 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-04-18T11:27:25.305+05:00  INFO 3996 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-04-18T11:27:25.310+05:00  INFO 3996 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1681799245309 with initial instances count: 0
+2023-04-18T11:27:25.312+05:00  INFO 3996 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application PRODUCT-SERVICE with eureka with status UP
+2023-04-18T11:27:25.312+05:00  INFO 3996 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1681799245312, current=UP, previous=STARTING]
+2023-04-18T11:27:25.314+05:00  INFO 3996 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/DESKTOP-BN5T0OQ:product-service:8083: registering service...
+2023-04-18T11:27:25.338+05:00  INFO 3996 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8083 (http) with context path ''
+2023-04-18T11:27:25.339+05:00  INFO 3996 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8083
+2023-04-18T11:27:25.398+05:00  INFO 3996 --- [main] c.e.p.ProductServiceApplication          : Started ProductServiceApplication in 3.426 seconds (process running for 3.935)
+2023-04-18T11:27:25.441+05:00  INFO 3996 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/DESKTOP-BN5T0OQ:product-service:8083 - registration status: 204
+2023-04-18T11:27:55.308+05:00  INFO 3996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-04-18T11:27:55.309+05:00  INFO 3996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-04-18T11:27:55.309+05:00  INFO 3996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-04-18T11:27:55.309+05:00  INFO 3996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-04-18T11:27:55.309+05:00  INFO 3996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-04-18T11:27:55.309+05:00  INFO 3996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application version is -1: false
+2023-04-18T11:27:55.309+05:00  INFO 3996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-04-18T11:27:55.326+05:00  INFO 3996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-04-18T11:32:24.751+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T11:35:06.990+05:00  INFO 3996 --- [http-nio-8083-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-18T11:35:06.991+05:00  INFO 3996 --- [http-nio-8083-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-04-18T11:35:06.991+05:00  INFO 3996 --- [http-nio-8083-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-04-18T11:35:07.027+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:35:07.702+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:35:16.954+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:35:16.970+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:35:21.301+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:35:21.317+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:35:24.691+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:35:24.709+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:35:29.771+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:35:29.785+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:35:57.624+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:35:57.643+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:36:50.754+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:36:50.789+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:36:53.171+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:36:53.210+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:37:08.414+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:37:08.446+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:37:24.761+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T11:38:06.026+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:38:06.059+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:38:14.333+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:38:14.361+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:38:21.690+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:38:21.723+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:38:35.043+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:38:35.072+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:39:59.480+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:39:59.512+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:40:12.655+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:40:12.687+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:40:26.687+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:40:26.714+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:40:42.302+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:40:42.332+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:40:48.833+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:40:48.869+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:40:52.267+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:40:52.293+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:40:56.099+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:40:56.124+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:40:59.088+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:40:59.112+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:41:05.224+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:41:05.261+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:41:07.962+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:41:07.989+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:41:22.060+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:41:22.088+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:41:29.587+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:41:29.611+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:41:41.999+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:41:42.026+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:41:44.707+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:41:44.730+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:42:18.492+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:42:18.515+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:42:24.771+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T11:43:08.369+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:43:08.410+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:43:19.315+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:43:19.338+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:44:24.407+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:44:24.441+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:44:26.868+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:44:26.893+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:44:31.756+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:44:31.779+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:44:45.796+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:44:45.826+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:44:48.326+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:44:48.351+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:44:54.341+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:44:54.375+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:45:11.625+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:45:11.647+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:45:13.154+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:45:13.181+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:47:24.779+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T11:48:13.839+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:48:13.872+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:48:17.677+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:48:17.705+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:48:25.735+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:48:25.757+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:48:28.883+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:48:28.912+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:50:12.016+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:50:12.048+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:50:32.411+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:50:32.430+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:51:07.784+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:51:07.806+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:51:10.640+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:51:10.666+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:51:13.243+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:51:13.267+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:52:08.153+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:52:08.179+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:52:24.788+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T11:53:37.292+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:53:37.318+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:53:39.558+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:53:39.577+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:57:24.797+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T11:58:36.538+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:58:36.577+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:58:39.321+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:58:39.351+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:58:47.470+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:58:47.497+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T11:58:56.357+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T11:58:56.382+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:00:38.658+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:00:38.677+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:00:40.096+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:00:40.117+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:00:42.376+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:00:42.399+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:00:48.942+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:00:48.972+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:00:53.287+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:00:53.320+05:00 ERROR 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : COULD NOT RETRIEVE ALL PRODUCTS
+
+org.springframework.web.reactive.function.client.WebClientResponseException$UnprocessableEntity: 422 Unprocessable Entity from GET http://DESKTOP-BN5T0OQ:8081/api/v1/product-management/get-all?pageNumber=0&pageSize=-1&sort=name
+	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:329) ~[spring-webflux-6.0.7.jar:6.0.7]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ 422 UNPROCESSABLE_ENTITY from GET http://product-management-service/api/v1/product-management/get-all [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:329) ~[spring-webflux-6.0.7.jar:6.0.7]
+		at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:213) ~[spring-webflux-6.0.7.jar:6.0.7]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:106) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onNext(FluxOnErrorReturn.java:162) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2071) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onComplete(FluxDefaultIfEmpty.java:134) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onComplete(FluxContextWrite.java:126) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onComplete(FluxMapFuseable.java:350) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onComplete(FluxFilterFuseable.java:391) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2072) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:145) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:415) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:431) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:485) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:712) ~[reactor-netty-http-1.1.5.jar:1.1.5]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:113) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103) ~[netty-codec-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:99) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Mono.block(Mono.java:1710) ~[reactor-core-3.5.4.jar:3.5.4]
+		at com.easyelectroshop.productservice.Service.ProductService.getAllProducts(ProductService.java:69) ~[classes/:na]
+		at com.easyelectroshop.productservice.Controller.ProductController.getAllProducts(ProductController.java:40) ~[classes/:na]
+		at jdk.internal.reflect.GeneratedMethodAccessor31.invoke(Unknown Source) ~[na:na]
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+		at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:537) ~[tomcat-embed-core-10.1.7.jar:6.0]
+		at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631) ~[tomcat-embed-core-10.1.7.jar:6.0]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-04-18T12:01:02.199+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:01:02.229+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:01:07.360+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:01:07.379+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:01:10.659+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:01:10.675+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:01:13.687+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:01:13.703+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:01:15.217+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:01:15.234+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:01:16.367+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:01:16.381+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:01:17.781+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:01:17.788+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:01:20.934+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:01:20.946+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:01:24.030+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:01:24.046+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:01:25.163+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:01:25.172+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:01:28.607+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:01:28.623+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:02:03.662+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:02:03.684+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:02:20.866+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:02:20.890+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:02:24.802+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T12:02:35.524+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:02:35.548+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:02:38.846+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:02:38.865+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:02:42.050+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:02:42.069+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:02:44.190+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:02:44.210+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:03:06.658+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:03:06.692+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:03:08.195+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:03:08.214+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:03:10.503+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:03:10.522+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:03:14.873+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:03:14.899+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:07:24.805+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T12:07:40.593+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:07:40.620+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:07:42.694+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:07:42.711+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:07:44.993+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:07:45.014+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:07:47.753+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:07:47.778+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:07:50.406+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:07:50.420+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:07:52.053+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:07:52.062+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:07:54.063+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:07:54.076+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:07:55.043+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:07:55.057+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:07:56.680+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:07:56.695+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:08:11.381+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:08:11.403+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:08:16.987+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:08:17.016+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:08:37.312+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:08:37.331+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:08:47.733+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:08:47.746+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:08:54.145+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:08:54.182+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:08:58.710+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:08:58.726+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:12:24.808+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T12:17:24.815+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T12:17:29.173+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:17:29.198+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:17:32.674+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:17:32.691+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:18:14.586+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:18:14.612+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:18:54.323+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:18:54.354+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:19:00.961+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:19:00.977+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:19:02.517+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:19:02.538+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:19:09.497+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:19:09.526+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:19:37.777+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:19:37.795+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:21:09.385+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:21:09.406+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:21:12.397+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:21:12.417+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:21:40.593+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:21:40.611+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:22:24.818+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T12:25:05.367+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:25:05.399+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:26:40.347+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:26:40.373+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:26:43.680+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:26:43.701+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:26:55.311+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:26:55.332+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:26:59.140+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:26:59.147+05:00 ERROR 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : COULD NOT RETRIEVE ALL PRODUCTS
+
+org.springframework.web.reactive.function.client.WebClientResponseException$UnprocessableEntity: 422 Unprocessable Entity from GET http://DESKTOP-BN5T0OQ:8081/api/v1/product-management/get-all?pageNumber=0&pageSize=-1&sort=name
+	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:329) ~[spring-webflux-6.0.7.jar:6.0.7]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ 422 UNPROCESSABLE_ENTITY from GET http://product-management-service/api/v1/product-management/get-all [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:329) ~[spring-webflux-6.0.7.jar:6.0.7]
+		at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:213) ~[spring-webflux-6.0.7.jar:6.0.7]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:106) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onNext(FluxOnErrorReturn.java:162) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2071) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onComplete(FluxDefaultIfEmpty.java:134) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onComplete(FluxContextWrite.java:126) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onComplete(FluxMapFuseable.java:350) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onComplete(FluxFilterFuseable.java:391) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2072) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:145) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:415) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:431) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:485) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:712) ~[reactor-netty-http-1.1.5.jar:1.1.5]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:113) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103) ~[netty-codec-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:99) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Mono.block(Mono.java:1710) ~[reactor-core-3.5.4.jar:3.5.4]
+		at com.easyelectroshop.productservice.Service.ProductService.getAllProducts(ProductService.java:69) ~[classes/:na]
+		at com.easyelectroshop.productservice.Controller.ProductController.getAllProducts(ProductController.java:40) ~[classes/:na]
+		at jdk.internal.reflect.GeneratedMethodAccessor31.invoke(Unknown Source) ~[na:na]
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+		at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:537) ~[tomcat-embed-core-10.1.7.jar:6.0]
+		at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631) ~[tomcat-embed-core-10.1.7.jar:6.0]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-04-18T12:27:01.140+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:27:01.160+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:27:24.819+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T12:27:43.910+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:27:43.949+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:27:45.859+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:27:45.878+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:27:53.649+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:27:53.665+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:27:54.643+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:27:54.665+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:28:02.187+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:28:02.193+05:00 ERROR 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : COULD NOT RETRIEVE ALL PRODUCTS
+
+org.springframework.web.reactive.function.client.WebClientResponseException$UnprocessableEntity: 422 Unprocessable Entity from GET http://DESKTOP-BN5T0OQ:8081/api/v1/product-management/get-all?pageNumber=0&pageSize=-1&sort=name
+	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:329) ~[spring-webflux-6.0.7.jar:6.0.7]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ 422 UNPROCESSABLE_ENTITY from GET http://product-management-service/api/v1/product-management/get-all [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:329) ~[spring-webflux-6.0.7.jar:6.0.7]
+		at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:213) ~[spring-webflux-6.0.7.jar:6.0.7]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:106) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onNext(FluxOnErrorReturn.java:162) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2071) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onComplete(FluxDefaultIfEmpty.java:134) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onComplete(FluxContextWrite.java:126) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onComplete(FluxMapFuseable.java:350) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onComplete(FluxFilterFuseable.java:391) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2072) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:145) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:415) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:431) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:485) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:712) ~[reactor-netty-http-1.1.5.jar:1.1.5]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:113) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103) ~[netty-codec-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:99) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Mono.block(Mono.java:1710) ~[reactor-core-3.5.4.jar:3.5.4]
+		at com.easyelectroshop.productservice.Service.ProductService.getAllProducts(ProductService.java:69) ~[classes/:na]
+		at com.easyelectroshop.productservice.Controller.ProductController.getAllProducts(ProductController.java:40) ~[classes/:na]
+		at jdk.internal.reflect.GeneratedMethodAccessor31.invoke(Unknown Source) ~[na:na]
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+		at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:537) ~[tomcat-embed-core-10.1.7.jar:6.0]
+		at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631) ~[tomcat-embed-core-10.1.7.jar:6.0]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-04-18T12:28:03.951+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:28:03.958+05:00 ERROR 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : COULD NOT RETRIEVE ALL PRODUCTS
+
+org.springframework.web.reactive.function.client.WebClientResponseException$UnprocessableEntity: 422 Unprocessable Entity from GET http://DESKTOP-BN5T0OQ:8081/api/v1/product-management/get-all?pageNumber=0&pageSize=-1&sort=name
+	at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:329) ~[spring-webflux-6.0.7.jar:6.0.7]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ 422 UNPROCESSABLE_ENTITY from GET http://product-management-service/api/v1/product-management/get-all [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.WebClientResponseException.create(WebClientResponseException.java:329) ~[spring-webflux-6.0.7.jar:6.0.7]
+		at org.springframework.web.reactive.function.client.DefaultClientResponse.lambda$createException$1(DefaultClientResponse.java:213) ~[spring-webflux-6.0.7.jar:6.0.7]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:106) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxOnErrorReturn$ReturnSubscriber.onNext(FluxOnErrorReturn.java:162) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2071) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onComplete(FluxDefaultIfEmpty.java:134) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onComplete(FluxMapFuseable.java:152) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onComplete(FluxContextWrite.java:126) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onComplete(FluxMapFuseable.java:350) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onComplete(FluxFilterFuseable.java:391) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2072) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.MonoCollect$CollectSubscriber.onComplete(MonoCollect.java:145) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:415) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:431) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:485) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:712) ~[reactor-netty-http-1.1.5.jar:1.1.5]
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:113) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103) ~[netty-codec-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346) ~[netty-codec-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318) ~[netty-codec-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:99) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Mono.block(Mono.java:1710) ~[reactor-core-3.5.4.jar:3.5.4]
+		at com.easyelectroshop.productservice.Service.ProductService.getAllProducts(ProductService.java:69) ~[classes/:na]
+		at com.easyelectroshop.productservice.Controller.ProductController.getAllProducts(ProductController.java:40) ~[classes/:na]
+		at jdk.internal.reflect.GeneratedMethodAccessor31.invoke(Unknown Source) ~[na:na]
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+		at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:537) ~[tomcat-embed-core-10.1.7.jar:6.0]
+		at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631) ~[tomcat-embed-core-10.1.7.jar:6.0]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-04-18T12:28:06.660+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:28:06.676+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:30:48.292+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:30:48.317+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:30:54.944+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:30:54.960+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:32:24.830+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T12:37:24.840+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T12:37:58.902+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:37:58.909+05:00 ERROR 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : COULD NOT RETRIEVE ALL PRODUCTS
+
+org.springframework.web.reactive.function.client.WebClientRequestException: Connection refused: no further information: localhost/127.0.0.1:8081
+	at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:136) ~[spring-webflux-6.0.7.jar:6.0.7]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ Request to GET http://product-management-service/api/v1/product-management/get-all?pageNumber=0&pageSize=5&sort=name [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:136) ~[spring-webflux-6.0.7.jar:6.0.7]
+		at reactor.core.publisher.MonoErrorSupplied.subscribe(MonoErrorSupplied.java:55) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4485) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onError(MonoNext.java:93) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.MonoFlatMapMany$FlatMapManyMain.onError(MonoFlatMapMany.java:204) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.SerializedSubscriber.onError(SerializedSubscriber.java:124) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.whenError(FluxRetryWhen.java:225) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenOtherSubscriber.onError(FluxRetryWhen.java:274) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onError(FluxContextWrite.java:121) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.maybeOnError(FluxConcatMapNoPrefetch.java:326) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onNext(FluxConcatMapNoPrefetch.java:211) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.SinkManyEmitterProcessor.drain(SinkManyEmitterProcessor.java:471) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.SinkManyEmitterProcessor$EmitterInner.drainParent(SinkManyEmitterProcessor.java:615) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxPublish$PubSubInner.request(FluxPublish.java:602) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:336) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Operators$DeferredSubscription.request(Operators.java:1717) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.onError(FluxRetryWhen.java:192) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:201) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.netty.http.client.HttpClientConnect$MonoHttpConnect$ClientTransportSubscriber.onError(HttpClientConnect.java:311) ~[reactor-netty-http-1.1.5.jar:1.1.5]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:201) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.netty.resources.DefaultPooledConnectionProvider$DisposableAcquire.onError(DefaultPooledConnectionProvider.java:162) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.internal.shaded.reactor.pool.AbstractPool$Borrower.fail(AbstractPool.java:475) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.internal.shaded.reactor.pool.SimpleDequePool.lambda$drainLoop$9(SimpleDequePool.java:429) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.core.publisher.FluxDoOnEach$DoOnEachSubscriber.onError(FluxDoOnEach.java:186) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:201) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.netty.resources.DefaultPooledConnectionProvider$PooledConnectionAllocator$PooledConnectionInitializer.onError(DefaultPooledConnectionProvider.java:560) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondError(MonoFlatMap.java:241) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onError(MonoFlatMap.java:315) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:106) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Operators.error(Operators.java:198) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.MonoError.subscribe(MonoError.java:53) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4485) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.tryFailure(TransportConnector.java:587) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.setFailure(TransportConnector.java:541) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at reactor.netty.transport.TransportConnector.lambda$doConnect$7(TransportConnector.java:265) ~[reactor-netty-core-1.1.5.jar:1.1.5]
+		at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:583) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:559) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:629) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:118) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.fulfillConnectPromise(AbstractNioChannel.java:321) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:337) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+		at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:99) ~[reactor-core-3.5.4.jar:3.5.4]
+		at reactor.core.publisher.Mono.block(Mono.java:1710) ~[reactor-core-3.5.4.jar:3.5.4]
+		at com.easyelectroshop.productservice.Service.ProductService.getAllProducts(ProductService.java:69) ~[classes/:na]
+		at com.easyelectroshop.productservice.Controller.ProductController.getAllProducts(ProductController.java:40) ~[classes/:na]
+		at jdk.internal.reflect.GeneratedMethodAccessor31.invoke(Unknown Source) ~[na:na]
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+		at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+		at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:537) ~[tomcat-embed-core-10.1.7.jar:6.0]
+		at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.7.jar:6.0.7]
+		at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631) ~[tomcat-embed-core-10.1.7.jar:6.0]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
+		at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/127.0.0.1:8081
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.90.Final.jar:4.1.90.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.90.Final.jar:4.1.90.Final]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-04-18T12:38:00.155+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:38:00.424+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:38:06.545+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:38:06.605+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:38:16.252+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:38:16.284+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:39:41.515+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:39:41.581+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:39:52.622+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:39:52.624+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:39:52.657+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:39:52.683+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:42:24.845+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T12:46:10.823+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:46:11.081+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:47:24.853+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T12:48:52.971+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:48:52.972+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:48:53.055+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:48:53.084+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:52:24.162+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:52:24.197+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:52:24.863+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T12:52:27.349+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:52:27.388+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:53:26.346+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:53:26.383+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:53:31.744+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:53:31.772+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:53:33.261+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:53:33.300+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:54:15.654+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:54:15.693+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:55:41.980+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:55:42.013+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:55:45.499+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:55:45.540+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:56:00.747+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:56:00.782+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:56:05.948+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:56:05.985+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:56:28.662+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:56:28.694+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:56:31.438+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:56:31.476+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:57:24.870+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T12:57:26.487+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:57:26.517+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:57:28.900+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:57:28.936+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:57:42.407+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:57:42.438+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:59:13.446+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:59:13.479+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:59:16.401+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:59:16.439+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:59:22.427+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:59:22.449+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:59:23.497+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:59:23.513+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:59:24.203+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:59:24.213+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:59:25.315+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:59:25.329+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:59:26.123+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:59:26.138+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:59:57.094+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:59:57.125+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T12:59:59.574+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T12:59:59.604+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:00:24.820+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:00:24.855+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:00:27.141+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:00:27.174+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:02:24.874+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:05:17.132+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:05:17.157+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:05:49.963+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:05:49.993+05:00  INFO 3996 --- [http-nio-8083-exec-6] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:05:53.554+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:05:53.584+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:06:12.894+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:06:12.924+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:06:15.640+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:06:15.669+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:06:24.884+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:06:24.918+05:00  INFO 3996 --- [http-nio-8083-exec-1] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:06:27.326+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:06:27.356+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:06:44.137+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:06:44.168+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:06:46.896+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:06:46.924+05:00  INFO 3996 --- [http-nio-8083-exec-4] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:07:10.151+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:07:10.180+05:00  INFO 3996 --- [http-nio-8083-exec-7] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:07:12.522+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:07:12.551+05:00  INFO 3996 --- [http-nio-8083-exec-5] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:07:24.875+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:08:31.382+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:08:31.404+05:00  INFO 3996 --- [http-nio-8083-exec-8] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:08:42.817+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:08:42.844+05:00  INFO 3996 --- [http-nio-8083-exec-9] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:08:44.368+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:08:44.398+05:00  INFO 3996 --- [http-nio-8083-exec-10] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:10:10.041+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:10:10.067+05:00  INFO 3996 --- [http-nio-8083-exec-2] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:10:13.172+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS
+2023-04-18T13:10:13.198+05:00  INFO 3996 --- [http-nio-8083-exec-3] c.e.p.Service.ProductService             : CALL SUCCESSFUL
+2023-04-18T13:12:24.878+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:17:24.890+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:22:24.890+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:27:24.906+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:32:24.921+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:37:24.922+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:42:24.929+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:47:24.931+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:52:24.939+05:00  INFO 3996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
