@@ -1,0 +1,45 @@
+2023-04-18T06:25:35.946+05:00  INFO 20672 --- [main] c.e.p.ProductServiceApplication          : Starting ProductServiceApplication using Java 17.0.2 with PID 20672 (C:\Users\shehr\OneDrive\Desktop\Easy-Electro-Shop-Backend\product-service\target\classes started by shehr in C:\Users\shehr\OneDrive\Desktop\Easy-Electro-Shop-Backend\product-service)
+2023-04-18T06:25:35.948+05:00  INFO 20672 --- [main] c.e.p.ProductServiceApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-04-18T06:25:36.496+05:00  INFO 20672 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=0c4d7694-c95a-3f4d-a80e-0cf71807bf30
+2023-04-18T06:25:36.549+05:00  INFO 20672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-04-18T06:25:36.551+05:00  INFO 20672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-04-18T06:25:36.553+05:00  INFO 20672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-04-18T06:25:36.697+05:00  INFO 20672 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8083 (http)
+2023-04-18T06:25:36.704+05:00  INFO 20672 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-18T06:25:36.704+05:00  INFO 20672 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-18T06:25:36.801+05:00  INFO 20672 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-18T06:25:36.801+05:00  INFO 20672 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 825 ms
+2023-04-18T06:25:37.204+05:00  INFO 20672 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-04-18T06:25:37.344+05:00  WARN 20672 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-04-18T06:25:37.379+05:00  INFO 20672 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-04-18T06:25:37.412+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-04-18T06:25:37.416+05:00  INFO 20672 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T06:25:37.438+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-04-18T06:25:37.439+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-04-18T06:25:37.439+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-04-18T06:25:37.439+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-04-18T06:25:37.439+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-04-18T06:25:37.439+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-04-18T06:25:37.439+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-04-18T06:25:37.681+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-04-18T06:25:37.686+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-04-18T06:25:37.690+05:00  INFO 20672 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-04-18T06:25:37.701+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1681781137700 with initial instances count: 1
+2023-04-18T06:25:37.702+05:00  INFO 20672 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application PRODUCT-SERVICE with eureka with status UP
+2023-04-18T06:25:37.703+05:00  INFO 20672 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1681781137703, current=UP, previous=STARTING]
+2023-04-18T06:25:37.704+05:00  INFO 20672 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083: registering service...
+2023-04-18T06:25:37.721+05:00  INFO 20672 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8083 (http) with context path ''
+2023-04-18T06:25:37.721+05:00  INFO 20672 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8083
+2023-04-18T06:25:37.732+05:00  INFO 20672 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083 - registration status: 204
+2023-04-18T06:25:37.829+05:00  INFO 20672 --- [main] c.e.p.ProductServiceApplication          : Started ProductServiceApplication in 2.242 seconds (process running for 2.769)
+2023-04-18T06:26:07.857+05:00  INFO 20672 --- [DiscoveryClient-HeartbeatExecutor-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083 - Re-registering apps/PRODUCT-SERVICE
+2023-04-18T06:26:07.857+05:00  INFO 20672 --- [DiscoveryClient-HeartbeatExecutor-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083: registering service...
+2023-04-18T06:26:07.909+05:00  INFO 20672 --- [DiscoveryClient-HeartbeatExecutor-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083 - registration status: 204
+2023-04-18T06:26:11.274+05:00  INFO 20672 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application PRODUCT-SERVICE with eureka with status DOWN
+2023-04-18T06:26:11.274+05:00  INFO 20672 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1681781171274, current=DOWN, previous=UP]
+2023-04-18T06:26:11.274+05:00  INFO 20672 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083: registering service...
+2023-04-18T06:26:11.280+05:00  INFO 20672 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083 - registration status: 204
+2023-04-18T06:26:11.301+05:00  INFO 20672 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-04-18T06:26:14.326+05:00  INFO 20672 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-04-18T06:26:14.335+05:00  INFO 20672 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-SERVICE/Lenovo-Legion-5-PRO:product-service:8083 - deregister  status: 200
+2023-04-18T06:26:14.370+05:00  INFO 20672 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient

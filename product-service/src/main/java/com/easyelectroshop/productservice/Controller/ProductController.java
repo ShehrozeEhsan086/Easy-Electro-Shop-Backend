@@ -4,6 +4,7 @@ import com.easyelectroshop.productservice.DTO.Model3D;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import com.easyelectroshop.productservice.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,14 +28,17 @@ public class ProductController {
     }
 
     @PostMapping("/add-product")
-    public void saveProduct(@RequestBody Product product){
-        productService.saveProduct(product);
+    public ResponseEntity saveProduct(@RequestBody Product product){
+        HttpStatusCode statusCode = productService.saveProduct(product);
+        return ResponseEntity.status(statusCode).build();
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<Product>> getAllProducts(){
-        List<Product> products = productService.getAllProducts();
-        return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.notFound().build() ;
+    public ResponseEntity<List<Product>> getAllProducts(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+                                                        @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
+                                                        @RequestParam(value="sort",defaultValue = "name",required = false) String sortBy){
+        List<Product> products = productService.getAllProducts(pageNumber,pageSize,sortBy);
+        return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
     }
 
     @GetMapping("get-product/{productId}")
@@ -44,13 +48,16 @@ public class ProductController {
     }
 
     @PutMapping("/update-product")
-    public void updateProduct(@RequestBody Product product){
-        Product tempProduct = productService.getProductById(product.productId());
-        if (tempProduct != null){
-            productService.updateProduct(product);
-        } else {
-            productService.saveProduct(product);
-        }
+    public ResponseEntity<Object> updateProduct(@RequestBody Product product){
+        HttpStatusCode statusCode = productService.updateProduct(product);
+        return ResponseEntity.status(statusCode).build();
     }
+
+    @DeleteMapping("/delete-product/{productId}")
+    public ResponseEntity deleteProduct(@PathVariable UUID productId){
+        HttpStatusCode statusCode = productService.deleteProduct(productId);
+        return ResponseEntity.status(statusCode).build();
+    }
+
 
 }
