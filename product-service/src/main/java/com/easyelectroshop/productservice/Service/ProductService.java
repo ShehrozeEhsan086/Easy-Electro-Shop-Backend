@@ -4,6 +4,8 @@ import com.easyelectroshop.productservice.DTO.Model3D;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.MultipartBodyBuilder;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.UUID;
@@ -41,28 +44,30 @@ public class ProductService {
               .block();
     }
 
-    public void saveProduct(Product product) {
+    public HttpStatusCode saveProduct(Product product) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO ADD PRODUCT"+product.toString());
-        webClientBuilder.build()
+        return webClientBuilder.build()
                 .post()
                 .uri("http://product-management-service/api/v1/product-management/add-product")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(product))
                 .retrieve()
-                .bodyToMono(Product.class)
+                .toBodilessEntity()
+                .flatMap(response -> Mono.just(response.getStatusCode()))
                 .block();
     }
 
-    public List<Product> getAllProducts() {
+    public List<Product> getAllProducts(int pageNumber,int pageSize,String sortBy) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS");
         try{
             ResponseEntity<List<Product>> products = webClientBuilder.build()
                     .get()
-                    .uri("http://product-management-service/api/v1/product-management/get-all")
+                    .uri("http://product-management-service/api/v1/product-management/get-all?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
                     .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
                     .toEntityList(Product.class)
                     .block();
+            log.info("CALL SUCCESSFUL");
             return products.getBody();
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE ALL PRODUCTS",ex);
@@ -86,15 +91,38 @@ public class ProductService {
         }
     }
 
-    public void updateProduct(Product product) {
+    public HttpStatusCode updateProduct(Product product) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO UPDATE PRODUCT WITH PRODUCT_ID "+product.productId());
-        webClientBuilder.build()
-                .post()
-                .uri("http://product-management-service/api/v1/product-management/add-product")
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(product))
-                .retrieve()
-                .bodyToMono(Product.class)
-                .block();
+        Product tempProduct = getProductById(product.productId());
+        if (tempProduct != null){
+            return webClientBuilder.build()
+                    .put()
+                    .uri("http://product-management-service/api/v1/product-management/update-product")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(product))
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } else {
+            return saveProduct(product);
+        }
+    }
+
+
+    public HttpStatusCode deleteProduct(UUID productId) {
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO DELETE PRODUCT WITH PRODUCT_ID "+productId);
+        Product tempProduct = getProductById(productId);
+        if (tempProduct != null){
+            return webClientBuilder.build()
+                    .delete()
+                    .uri("http://product-management-service/api/v1/product-management/delete-product/"+productId)
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } else {
+            return HttpStatusCode.valueOf(404);
+        }
     }
 }

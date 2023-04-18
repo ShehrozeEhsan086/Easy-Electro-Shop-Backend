@@ -4,7 +4,8 @@ package com.easyelectroshop.productmanagementservice.Controller;
 import com.easyelectroshop.productmanagementservice.Model.Product;
 import com.easyelectroshop.productmanagementservice.Service.ProductManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +22,8 @@ public class ProductManagementController {
     ProductManagementService productManagementService;
 
     @PostMapping("/add-product")
-    public void saveProduct(@RequestBody Product product){
-        productManagementService.saveProduct(product);
+    public ResponseEntity saveProduct(@RequestBody Product product){
+        return (productManagementService.saveProduct(product)) ? ResponseEntity.ok().build() : ResponseEntity.unprocessableEntity().build();
     }
 
     @GetMapping("get-product/{productId}")
@@ -32,17 +33,23 @@ public class ProductManagementController {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<Product>> getAllProducts(){
-        return new ResponseEntity<>(productManagementService.getAllProducts(),HttpStatus.OK);
+    public ResponseEntity<List<Product>> getAllProducts(
+            @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+            @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
+            @RequestParam(value="sort",defaultValue = "productId",required = false) String sortBy)
+    {
+        List<Product> products = productManagementService.getAllProducts(pageNumber,pageSize,sortBy);
+        return (products != null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build();
     }
 
     @PutMapping("/update-product")
-    public void updateProduct(@RequestBody Product product){
-        Optional<Product> tempProduct = productManagementService.getProductById(product.getProductId());
-        if (tempProduct.isPresent()){
-            productManagementService.updateProduct(product);
-        } else {
-            productManagementService.saveProduct(product);
-        }
+    public ResponseEntity updateProduct(@RequestBody Product product){
+        return (productManagementService.updateProduct(product)) ? ResponseEntity.ok().build() : ResponseEntity.unprocessableEntity().build();
     }
+
+    @DeleteMapping("/delete-product/{productId}")
+    public ResponseEntity deleteProduct(@PathVariable UUID productId){
+        return (productManagementService.deleteProduct(productId)) ? ResponseEntity.ok().build() : ResponseEntity.unprocessableEntity().build();
+    }
+
 }
