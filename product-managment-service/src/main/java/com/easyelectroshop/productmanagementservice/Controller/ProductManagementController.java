@@ -42,6 +42,13 @@ public class ProductManagementController {
         return (products != null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build();
     }
 
+    @GetMapping("/get-all-length")
+    public ResponseEntity<Integer> getProductCount()
+    {
+        int length = productManagementService.getProductCount();
+        return (length != 0) ? ResponseEntity.ok(length) : ResponseEntity.unprocessableEntity().build();
+    }
+
     @PutMapping("/update-product")
     public ResponseEntity updateProduct(@RequestBody Product product){
         return (productManagementService.updateProduct(product)) ? ResponseEntity.ok().build() : ResponseEntity.unprocessableEntity().build();

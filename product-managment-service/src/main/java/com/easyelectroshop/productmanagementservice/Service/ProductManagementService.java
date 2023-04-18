@@ -58,6 +58,9 @@ public class ProductManagementService {
     public List<Product> getAllProducts(int pageNumber, int pageSize, String sortBy) {
         log.info("GETTING ALL PRODUCTS");
         try{
+            if(pageSize == -1){
+                pageSize = Integer.MAX_VALUE;
+            }
             Page<Product> productPage = productManagementRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy)));
             List<Product> products = productPage.toList();
             log.info("SUCCESSFULLY RETRIEVED PRODUCTS");
@@ -65,6 +68,18 @@ public class ProductManagementService {
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE PRODUCTS",ex);
             return null;
+        }
+    }
+
+    public int getProductCount() {
+        log.info("GETTING PRODUCTS COUNT");
+        try{
+            int length = productManagementRepository.findAll().size();
+            log.info("SUCCESSFULLY RETRIEVED PRODUCTS COUNT");
+            return length;
+        } catch (Exception ex){
+            log.error("COULD NOT RETRIEVE PRODUCTS",ex);
+            return 0;
         }
     }
 
