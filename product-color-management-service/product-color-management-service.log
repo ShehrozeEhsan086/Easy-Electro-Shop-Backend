@@ -242,3 +242,4 @@ Caused by: org.hibernate.HibernateException: Unable to determine Dialect without
 2023-04-18T13:39:01.452+05:00  INFO 2732 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2023-04-18T13:44:01.460+05:00  INFO 2732 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
 2023-04-18T13:49:01.464+05:00  INFO 2732 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-04-18T13:54:01.478+05:00  INFO 2732 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
