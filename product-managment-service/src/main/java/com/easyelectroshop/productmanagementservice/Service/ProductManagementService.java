@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -24,22 +24,24 @@ public class ProductManagementService {
 
     @Autowired
     ProductManagementRepository productManagementRepository;
+
     @Autowired
     Date date;
+
     @Autowired
     SimpleDateFormat simpleDateFormat;
 
 
-    public boolean saveProduct(Product product){
+    public HttpStatusCode saveProduct(Product product){
         log.info("ADDING NEW PRODUCT WITH NAME "+product.getName());
         try{
             product.setLastUpdated(simpleDateFormat.format(date.getTime()));
             productManagementRepository.save(product);
             log.info("SUCCESSFULLY ADDED PRODUCT WITH NAME "+product.getName());
-            return true;
+            return HttpStatusCode.valueOf(201);
         } catch (Exception ex){
             log.error("ERROR WHILE ADDING PRODUCT WITH NAME "+product.getName(),ex);
-            return false;
+            return HttpStatusCode.valueOf(500);
         }
     }
 
@@ -71,7 +73,7 @@ public class ProductManagementService {
         }
     }
 
-    public int getProductCount() {
+    public int getProductsCount() {
         log.info("GETTING PRODUCTS COUNT");
         try{
             int length = productManagementRepository.findAll().size();
@@ -83,42 +85,42 @@ public class ProductManagementService {
         }
     }
 
-    public boolean updateProduct(Product product) {
+    public HttpStatusCode updateProduct(Product product) {
         log.info("UPDATING PRODUCT WITH NAME "+product.getName());
         try{
             Optional<Product> tempProduct = productManagementRepository.findById(product.getProductId());
             if(tempProduct.isPresent()){
                 productManagementRepository.save(product);
                 log.info("SUCCESSFULLY EDITED PRODUCT WITH NAME "+product.getName());
-                return true;
+                return HttpStatusCode.valueOf(202);
             } else {
                 log.info("COULD NOT FIND GIVEN PRODUCT, ADDING NEW PRODUCT");
                 productManagementRepository.save(product);
                 log.info("SUCCESSFULLY ADDED NEW PRODUCT");
-                return true;
+                return HttpStatusCode.valueOf(201);
             }
         } catch (Exception ex){
             log.error("ERROR EDITING PRODUCT WITH NAME "+product.getName(),ex);
-            return false;
+            return HttpStatusCode.valueOf(500);
         }
     }
 
 
-    public boolean deleteProduct(UUID productId){
+    public HttpStatusCode deleteProduct(UUID productId){
         log.info("DELETING PRODUCT WITH PRODUCT_ID "+productId);
         try{
             Optional<Product> product = productManagementRepository.findById(productId);
             if(product.isPresent()){
                 productManagementRepository.deleteById(productId);
                 log.info("SUCCESSFULLY DELETED PRODUCT WITH PRODUCT_ID "+productId);
-                return true;
+                return HttpStatusCode.valueOf(200);
             } else {
                 log.error("COULD NOT DELETE PRODUCT WITH PRODUCT_ID "+productId+", PRODUCT NOT FOUND!");
-                return false;
+                return HttpStatusCode.valueOf(404);
             }
         } catch (Exception ex){
             log.error("COULD NOT DELETE PRODUCT WITH PRODUCT_ID "+productId,ex);
-            return false;
+            return HttpStatusCode.valueOf(500);
         }
     }
 }

@@ -11,9 +11,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SeleniumConfiguration {
 
+    //    Background Task No Chrome opening
+    //    @Bean
+    //    public WebDriver getChromeDriver(){
+    //        return WebDriverManager.chromedriver().capabilities(new ChromeOptions().addArguments("--headless","--remote-allow-origins=*")).create();
+    //    }
+
     @Bean
     public WebDriver getChromeDriver(){
-        return WebDriverManager.chromedriver().capabilities(new ChromeOptions().addArguments("--headless","--remote-allow-origins=*")).create();
+        return WebDriverManager.chromedriver().capabilities(new ChromeOptions().addArguments("--remote-allow-origins=*")).create();
     }
 
 

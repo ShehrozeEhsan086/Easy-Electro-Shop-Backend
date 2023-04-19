@@ -4,7 +4,6 @@ import com.easyelectroshop.amazons3service.DTO.Model3D;
 import com.easyelectroshop.amazons3service.Service.S3StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,6 +35,6 @@ public class S3StorageController {
 
     @DeleteMapping("/delete/{fileName}")
     public ResponseEntity<String> deleteModel(@PathVariable String fileName){
-        return new ResponseEntity<>(s3StorageService.deleteFile(fileName),HttpStatus.OK);
+        return ResponseEntity.status(s3StorageService.deleteFile(fileName)).build();
     }
 }
