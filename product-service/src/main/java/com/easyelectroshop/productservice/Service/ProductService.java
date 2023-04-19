@@ -1,16 +1,15 @@
 package com.easyelectroshop.productservice.Service;
 
 import com.easyelectroshop.productservice.DTO.Model3D;
+import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -29,46 +28,61 @@ public class ProductService {
     @Autowired
     MultipartBodyBuilder multipartBodyBuilder;
 
+    // ----------------  SERVICE FOR AMAZON SERVICE [[START]] --------------------
 
     public Model3D uploadModel(MultipartFile file) {
-      log.info("Calling Amazon S3 Service to upload "+file.getOriginalFilename());
-      multipartBodyBuilder.part("model",file.getResource());
-      var payLoad = multipartBodyBuilder.build();
-      return webClientBuilder.build()
-              .post()
-              .uri("http://amazon-s3-service/api/v1/model/upload")
-              .contentType(MediaType.MULTIPART_FORM_DATA)
-              .body(BodyInserters.fromMultipartData(payLoad))
-              .retrieve()
-              .bodyToMono(Model3D.class)
-              .block();
+      log.info("CALLING AMAZON S3 SERVICE TO UPLOAD MODEL FILE FOR FILE_NAME  "+file.getOriginalFilename());
+      try{
+          multipartBodyBuilder.part("model",file.getResource());
+          var payLoad = multipartBodyBuilder.build();
+          return webClientBuilder.build()
+                  .post()
+                  .uri("http://amazon-s3-service/api/v1/model/upload")
+                  .contentType(MediaType.MULTIPART_FORM_DATA)
+                  .body(BodyInserters.fromMultipartData(payLoad))
+                  .retrieve()
+                  .bodyToMono(Model3D.class)
+                  .block();
+      } catch (Exception ex){
+          log.error("ERROR WHILE CALLING AMAZON S3 SERVICE FOR UPLOADING MODEL FILE WITH FILE_NAME "+file.getOriginalFilename());
+          return null;
+      }
     }
 
+    // -----------------  SERVICE FOR AMAZON SERVICE [[END]] ---------------------
+
+
+    // -----------  SERVICE FOR PRODUCT MANAGEMENT SERVICE [[START]] -------------
+
     public HttpStatusCode saveProduct(Product product) {
-        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO ADD PRODUCT"+product.toString());
-        return webClientBuilder.build()
-                .post()
-                .uri("http://product-management-service/api/v1/product-management/add-product")
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(product))
-                .retrieve()
-                .toBodilessEntity()
-                .flatMap(response -> Mono.just(response.getStatusCode()))
-                .block();
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO ADD WITH PRODUCT_NAME "+product.name());
+        try{
+            return webClientBuilder.build()
+                    .post()
+                    .uri("http://product-management-service/api/v1/product-management/add-product")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(product))
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING PRODUCT MANAGEMENT SERVICE TO ADD PRODUCT WITH PRODUCT_NAME "+product.name());
+            return HttpStatusCode.valueOf(500);
+        }
     }
 
     public List<Product> getAllProducts(int pageNumber,int pageSize,String sortBy) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS");
         try{
-            ResponseEntity<List<Product>> products = webClientBuilder.build()
+             return webClientBuilder.build()
                     .get()
                     .uri("http://product-management-service/api/v1/product-management/get-all?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
                     .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
                     .toEntityList(Product.class)
-                    .block();
-            log.info("CALL SUCCESSFUL");
-            return products.getBody();
+                    .block()
+                     .getBody();
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE ALL PRODUCTS",ex);
             return null;
@@ -105,10 +119,10 @@ public class ProductService {
                     .flatMap(response -> Mono.just(response.getStatusCode()))
                     .block();
         } else {
+            log.info("COULD NOT FIND PRODUCT WITH PRODUCT_ID "+product.productId()+", ADDING NEW PRODUCT");
             return saveProduct(product);
         }
     }
-
 
     public HttpStatusCode deleteProduct(UUID productId) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO DELETE PRODUCT WITH PRODUCT_ID "+productId);
@@ -122,7 +136,82 @@ public class ProductService {
                     .flatMap(response -> Mono.just(response.getStatusCode()))
                     .block();
         } else {
+            log.error("COULD NOT FIND THE PRODUCT WITH PRODUCT_ID "+productId);
             return HttpStatusCode.valueOf(404);
         }
     }
+
+    public Integer getProductsCount(){
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET NUMBERS OF PRODUCTS");
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://product-management-service/api/v1/product-management/get-all-count")
+                    .retrieve()
+                    .bodyToMono(Integer.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING PRODUCT MANAGEMENT SERVICE TO GET NUMBERS OF PRODUCTS",ex);
+            return 0;
+        }
+    }
+
+    // -------------  SERVICE FOR PRODUCT MANAGEMENT SERVICE [[END]] ---------------
+
+    // -------------  SERVICE FOR PRODUCT CATEGORY SERVICE [[START]] ---------------
+
+    public HttpStatusCode saveCategory(Category category) {
+        log.info("CALLING CATEGORY SERVICE TO ADD NEW CATEGORY WITH CATEGORY_NAME "+category.categoryName());
+        try{
+            return webClientBuilder.build()
+                    .post()
+                    .uri("http://product-category-management-service/api/v1/category/add-category")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(category))
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING CATEGORY MANAGEMENT SERVICE TO ADD NEW CATEGORY WITH CATEGORY_NAME "+category.categoryName(),ex);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+
+    public List<Category> getAllCategories() {
+        log.info("CALLING CATEGORY SERVICE TO GET ALL CATEGORIES");
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://product-category-management-service/api/v1/category/get-all")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(Category.class)
+                    .block()
+                    .getBody();
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING CATEGORY SERVICE TO GET ALL CATEGORIES");
+            return null;
+        }
+    }
+
+    public Category getCategory(long categoryId){
+        log.info("CALLING CATEGORY SERVICE TO GET CATEGORY WITH CATEGORY_ID "+categoryId);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://product-category-management-service/api/v1/category/get-category/"+categoryId)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(Category.class)
+                    .block()
+                    .getBody();
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING CATEGORY SERVICE TO GET CATEGORY WITH CATEGORY_ID "+categoryId+" POSSIBLY NOT FOUND!");
+            return null;
+        }
+    }
+
+    // --------------  SERVICE FOR PRODUCT CATEGORY SERVICE [[END]] ----------------
+
 }

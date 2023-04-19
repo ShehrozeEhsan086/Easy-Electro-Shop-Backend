@@ -1,6 +1,7 @@
 package com.easyelectroshop.productservice.Controller;
 
 import com.easyelectroshop.productservice.DTO.Model3D;
+import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import com.easyelectroshop.productservice.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.UUID;
 
-@CrossOrigin
+@CrossOrigin //REMEMBER TO FIX LATER
 @RestController
 @RequestMapping("api/v1/product")
 public class ProductController {
@@ -20,6 +21,7 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+    // ----------------  APIS FOR AMAZON SERVICE [[START]] --------------------
 
     @PostMapping("/upload-model")
     public ResponseEntity<Model3D> uploadModel(@RequestParam(value = "model") MultipartFile file){
@@ -27,18 +29,28 @@ public class ProductController {
         return(uploadedContent != null) ? ResponseEntity.ok(uploadedContent) : ResponseEntity.internalServerError().build();
     }
 
+    // -----------------  APIS FOR AMAZON SERVICE [[END]] ---------------------
+
+
+    // -----------  APIS FOR PRODUCT MANAGEMENT SERVICE [[START]] -------------
+
     @PostMapping("/add-product")
-    public ResponseEntity saveProduct(@RequestBody Product product){
-        HttpStatusCode statusCode = productService.saveProduct(product);
-        return ResponseEntity.status(statusCode).build();
+    public ResponseEntity<HttpStatusCode> saveProduct(@RequestBody Product product){
+        return ResponseEntity.status(productService.saveProduct(product)).build();
     }
 
-    @GetMapping("/get-all")
+    @GetMapping("/get-all-products")
     public ResponseEntity<List<Product>> getAllProducts(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
                                                         @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
-                                                        @RequestParam(value="sort",defaultValue = "name",required = false) String sortBy){
+                                                        @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy){
         List<Product> products = productService.getAllProducts(pageNumber,pageSize,sortBy);
         return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
+    }
+
+    @GetMapping("get-all-products-count")
+    public ResponseEntity<Integer> getProductsCount(){
+        int productCount = productService.getProductsCount();
+        return (productCount!=0) ? ResponseEntity.ok(productCount) : ResponseEntity.unprocessableEntity().build();
     }
 
     @GetMapping("get-product/{productId}")
@@ -48,16 +60,40 @@ public class ProductController {
     }
 
     @PutMapping("/update-product")
-    public ResponseEntity<Object> updateProduct(@RequestBody Product product){
+    public ResponseEntity<HttpStatusCode> updateProduct(@RequestBody Product product){
         HttpStatusCode statusCode = productService.updateProduct(product);
         return ResponseEntity.status(statusCode).build();
     }
 
     @DeleteMapping("/delete-product/{productId}")
-    public ResponseEntity deleteProduct(@PathVariable UUID productId){
+    public ResponseEntity<HttpStatusCode> deleteProduct(@PathVariable UUID productId){
         HttpStatusCode statusCode = productService.deleteProduct(productId);
         return ResponseEntity.status(statusCode).build();
     }
+
+    // -------------  APIS FOR PRODUCT MANAGEMENT SERVICE [[END]] ---------------
+
+    // -------------  APIS FOR PRODUCT CATEGORY SERVICE [[START]] ---------------
+
+    @PostMapping("/add-category")
+    public ResponseEntity<HttpStatusCode> saveCategory(@RequestBody Category category){
+        return ResponseEntity.status(productService.saveCategory(category)).build();
+    }
+
+    @GetMapping("/get-all-categories")
+    public ResponseEntity<List<Category>> getAllCategories(){
+        List<Category> categories = productService.getAllCategories();
+        return (categories != null) ? ResponseEntity.ok(categories) : ResponseEntity.unprocessableEntity().build();
+    }
+
+    @GetMapping("/get-category/{categoryId}")
+    public ResponseEntity<Category> getCategory(@PathVariable long categoryId){
+        Category category = productService.getCategory(categoryId);
+        return(category!=null) ? ResponseEntity.ok(category) : ResponseEntity.notFound().build();
+    }
+
+
+    // --------------  APIS FOR PRODUCT CATEGORY SERVICE [[END]] ----------------
 
 
 }
