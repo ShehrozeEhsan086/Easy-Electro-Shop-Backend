@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/color-management")
+@RequestMapping("/api/v1/color")
 public class ColorManagementController {
 
     @Autowired
@@ -22,19 +22,18 @@ public class ColorManagementController {
     }
 
 
-    @GetMapping("/get-all/paginated")
-    public ResponseEntity getAllPaginated(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
-                                 @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize){
-        List<Color> colors = colorManagementService.getAllColorsPaginated(pageNumber,pageSize);
-        return (colors!= null) ? ResponseEntity.ok(colors) : ResponseEntity.unprocessableEntity().build();
-    }
+//    @GetMapping("/get-all/paginated")
+//    public ResponseEntity getAllPaginated(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+//                                 @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize){
+//        List<Color> colors = colorManagementService.getAllColorsPaginated(pageNumber,pageSize);
+//        return (colors!= null) ? ResponseEntity.ok(colors) : ResponseEntity.unprocessableEntity().build();
+//    }
 
     @GetMapping("/get-all")
     public ResponseEntity getAll(){
         List<Color> colors = colorManagementService.getAllColors();
         return (colors!= null) ? ResponseEntity.ok(colors) : ResponseEntity.unprocessableEntity().build();
     }
-
 
     @GetMapping("/get-color/{colorId}")
     public ResponseEntity getColor(@PathVariable long colorId){

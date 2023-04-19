@@ -52,18 +52,18 @@ public class ColorManagementService {
         }
     }
 
-    public List<Color> getAllColorsPaginated(int pageNumber, int pageSize){
-        log.info("GETTING ALL COLORS (PAGINATED)");
-        try{
-            Page<Color> colorPage = colorManagementRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by("colorName")));
-            List<Color> colors = colorPage.toList();
-            log.info("SUCCESSFULLY RETRIEVED ALL COLORS (PAGINATED)");
-            return colors;
-        } catch (Exception ex){
-            log.error("COULD NOT RETRIEVE ALL COLORS (PAGINATED) ",ex);
-            return null;
-        }
-    }
+//    public List<Color> getAllColorsPaginated(int pageNumber, int pageSize){
+//        log.info("GETTING ALL COLORS (PAGINATED)");
+//        try{
+//            Page<Color> colorPage = colorManagementRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by("colorName")));
+//            List<Color> colors = colorPage.toList();
+//            log.info("SUCCESSFULLY RETRIEVED ALL COLORS (PAGINATED)");
+//            return colors;
+//        } catch (Exception ex){
+//            log.error("COULD NOT RETRIEVE ALL COLORS (PAGINATED) ",ex);
+//            return null;
+//        }
+//    }
 
     public List<Color> getAllColors(){
         log.info("GETTING ALL COLORS");
