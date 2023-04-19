@@ -1,4 +1,4 @@
-package com.easyelectroshop.productservice.DTO;
+package com.easyelectroshop.productservice.DTO.AmazonS3DTO;
 
 import java.net.URL;
 

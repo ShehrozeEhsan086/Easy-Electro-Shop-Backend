@@ -1,7 +1,8 @@
 package com.easyelectroshop.productservice.Controller;
 
-import com.easyelectroshop.productservice.DTO.Model3D;
+import com.easyelectroshop.productservice.DTO.AmazonS3DTO.Model3D;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
+import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import com.easyelectroshop.productservice.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,8 +93,47 @@ public class ProductController {
         return(category!=null) ? ResponseEntity.ok(category) : ResponseEntity.notFound().build();
     }
 
+    @PutMapping("/update-category")
+    public ResponseEntity<HttpStatusCode> updateCategory(@RequestBody Category category){
+        return ResponseEntity.status(productService.updateCategory(category)).build();
+    }
+
+    @DeleteMapping("/delete-category/{categoryId}")
+    public ResponseEntity<HttpStatusCode> deleteCategory(@PathVariable long categoryId){
+        return ResponseEntity.status(productService.deleteCategory(categoryId)).build();
+    }
 
     // --------------  APIS FOR PRODUCT CATEGORY SERVICE [[END]] ----------------
 
+    // --------------  APIS FOR PRODUCT COLOR SERVICE [[START]] -----------------
+
+    @PostMapping("/add-color")
+    public ResponseEntity saveColor(@RequestBody Color color){
+        return ResponseEntity.status(productService.saveColor(color)).build();
+    }
+
+    @GetMapping("/get-all-colors")
+    public ResponseEntity<List<Color>> getAllColors(){
+        List<Color> colors = productService.getAllColors();
+        return (colors != null) ? ResponseEntity.ok(colors) : ResponseEntity.unprocessableEntity().build();
+    }
+
+    @GetMapping("/get-color/{colorId}")
+    public ResponseEntity<Color> getColor(@PathVariable long colorId){
+        Color color = productService.getColor(colorId);
+        return (color != null) ? ResponseEntity.ok(color) : ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/update-color")
+    public ResponseEntity<HttpStatusCode> updateColor(@RequestBody Color color){
+        return ResponseEntity.status(productService.updateColor(color)).build();
+    }
+
+    @DeleteMapping("/delete-color/{colorId}")
+    public ResponseEntity<HttpStatusCode> deleteColor(@PathVariable long colorId){
+        return ResponseEntity.status(productService.deleteColor(colorId)).build();
+    }
+
+    // ---------------  APIS FOR PRODUCT COLOR SERVICE [[END]] -----------------
 
 }
