@@ -1,13 +1,13 @@
 package com.easyelectroshop.productservice.Service;
 
-import com.easyelectroshop.productservice.DTO.Model3D;
+import com.easyelectroshop.productservice.DTO.AmazonS3DTO.Model3D;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
+import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,7 +44,7 @@ public class ProductService {
                   .bodyToMono(Model3D.class)
                   .block();
       } catch (Exception ex){
-          log.error("ERROR WHILE CALLING AMAZON S3 SERVICE FOR UPLOADING MODEL FILE WITH FILE_NAME "+file.getOriginalFilename());
+          log.error("ERROR WHILE CALLING AMAZON S3 SERVICE FOR UPLOADING MODEL FILE WITH FILE_NAME "+file.getOriginalFilename(),ex);
           return null;
       }
     }
@@ -67,7 +67,7 @@ public class ProductService {
                     .flatMap(response -> Mono.just(response.getStatusCode()))
                     .block();
         } catch (Exception ex){
-            log.error("ERROR WHILE CALLING PRODUCT MANAGEMENT SERVICE TO ADD PRODUCT WITH PRODUCT_NAME "+product.name());
+            log.error("ERROR WHILE CALLING PRODUCT MANAGEMENT SERVICE TO ADD PRODUCT WITH PRODUCT_NAME "+product.name(),ex);
             return HttpStatusCode.valueOf(500);
         }
     }
@@ -106,38 +106,48 @@ public class ProductService {
     }
 
     public HttpStatusCode updateProduct(Product product) {
-        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO UPDATE PRODUCT WITH PRODUCT_ID "+product.productId());
-        Product tempProduct = getProductById(product.productId());
-        if (tempProduct != null){
-            return webClientBuilder.build()
-                    .put()
-                    .uri("http://product-management-service/api/v1/product-management/update-product")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(BodyInserters.fromValue(product))
-                    .retrieve()
-                    .toBodilessEntity()
-                    .flatMap(response -> Mono.just(response.getStatusCode()))
-                    .block();
-        } else {
-            log.info("COULD NOT FIND PRODUCT WITH PRODUCT_ID "+product.productId()+", ADDING NEW PRODUCT");
-            return saveProduct(product);
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO UPDATE PRODUCT WITH PRODUCT_NAME "+product.name());
+        try{
+            Product tempProduct = getProductById(product.productId());
+            if (tempProduct != null){
+                return webClientBuilder.build()
+                        .put()
+                        .uri("http://product-management-service/api/v1/product-management/update-product")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromValue(product))
+                        .retrieve()
+                        .toBodilessEntity()
+                        .flatMap(response -> Mono.just(response.getStatusCode()))
+                        .block();
+            } else {
+                log.info("COULD NOT FIND PRODUCT WITH PRODUCT_NAME "+product.name()+", ADDING NEW PRODUCT");
+                return saveProduct(product);
+            }
+        } catch (Exception ex){
+            log.error("COULD NOT UPDATE PRODUCT WITH PRODUCT_NAME "+product.name(),ex);
+            return HttpStatusCode.valueOf(500);
         }
     }
 
     public HttpStatusCode deleteProduct(UUID productId) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO DELETE PRODUCT WITH PRODUCT_ID "+productId);
-        Product tempProduct = getProductById(productId);
-        if (tempProduct != null){
-            return webClientBuilder.build()
-                    .delete()
-                    .uri("http://product-management-service/api/v1/product-management/delete-product/"+productId)
-                    .retrieve()
-                    .toBodilessEntity()
-                    .flatMap(response -> Mono.just(response.getStatusCode()))
-                    .block();
-        } else {
-            log.error("COULD NOT FIND THE PRODUCT WITH PRODUCT_ID "+productId);
-            return HttpStatusCode.valueOf(404);
+        try{
+            Product tempProduct = getProductById(productId);
+            if (tempProduct != null){
+                return webClientBuilder.build()
+                        .delete()
+                        .uri("http://product-management-service/api/v1/product-management/delete-product/"+productId)
+                        .retrieve()
+                        .toBodilessEntity()
+                        .flatMap(response -> Mono.just(response.getStatusCode()))
+                        .block();
+            } else {
+                log.error("COULD NOT FIND THE PRODUCT WITH PRODUCT_ID "+productId);
+                return HttpStatusCode.valueOf(404);
+            }
+        } catch (Exception ex){
+            log.error("COULD NOT DELETE PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return HttpStatusCode.valueOf(500);
         }
     }
 
@@ -190,7 +200,7 @@ public class ProductService {
                     .block()
                     .getBody();
         } catch (Exception ex){
-            log.error("ERROR WHILE CALLING CATEGORY SERVICE TO GET ALL CATEGORIES");
+            log.error("ERROR WHILE CALLING CATEGORY SERVICE TO GET ALL CATEGORIES",ex);
             return null;
         }
     }
@@ -207,11 +217,160 @@ public class ProductService {
                     .block()
                     .getBody();
         } catch (Exception ex){
-            log.error("ERROR WHILE CALLING CATEGORY SERVICE TO GET CATEGORY WITH CATEGORY_ID "+categoryId+" POSSIBLY NOT FOUND!");
+            log.error("ERROR WHILE CALLING CATEGORY SERVICE TO GET CATEGORY WITH CATEGORY_ID "+categoryId+" POSSIBLY NOT FOUND!",ex);
             return null;
+        }
+    }
+
+    public HttpStatusCode updateCategory(Category category) {
+        log.info("CALLING CATEGORY SERVICE TO EDIT CATEGORY WITH CATEGORY_NAME "+category.categoryName());
+        try{
+            Category tempCategory = getCategory(category.categoryId());
+            if( tempCategory != null){
+                return webClientBuilder.build()
+                        .put()
+                        .uri("http://product-category-management-service/api/v1/category/edit-category")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromValue(category))
+                        .retrieve()
+                        .toBodilessEntity()
+                        .flatMap(response -> Mono.just(response.getStatusCode()))
+                        .block();
+            } else {
+                log.error("COULD NOT FIND CATEGORY WITH CATEGORY_NAME "+category.categoryName()+ " ADDING NEW CATEGORY");
+                return saveCategory(category);
+            }
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING CATEGORY SERVICE TO UPDATE CATEGORY WITH CATEGORY_NAME "+category.categoryName(),ex);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+
+    public HttpStatusCode deleteCategory(long categoryId) {
+        log.info("CALLING CATEGORY SERVICE TO DELETE CATEGORY WITH CATEGORY_ID "+categoryId);
+        try{
+            Category tempCategory = getCategory(categoryId);
+            if (tempCategory != null){
+                return webClientBuilder.build()
+                        .delete()
+                        .uri("http://product-category-management-service/api/v1/category/delete-category/"+categoryId)
+                        .retrieve()
+                        .toBodilessEntity()
+                        .flatMap(response -> Mono.just(response.getStatusCode()))
+                        .block();
+            } else {
+                log.error("COULD NOT FIND THE CATEGORY WITH CATEGORY_ID "+categoryId);
+                return HttpStatusCode.valueOf(404);
+            }
+        } catch (Exception ex){
+            log.error("COULD NOT DELETE CATEGORY WITH CATEGORY_ID "+categoryId,ex);
+            return HttpStatusCode.valueOf(500);
         }
     }
 
     // --------------  SERVICE FOR PRODUCT CATEGORY SERVICE [[END]] ----------------
 
+    // --------------  SERVICE FOR PRODUCT COLOR SERVICE [[START]] -----------------
+
+
+    public HttpStatusCode saveColor(Color color){
+        log.info("CALLING COLOR SERVICE TO ADD NEW COLOR WITH COLOR_NAME "+color.colorName());
+        try{
+            return webClientBuilder.build()
+                    .post()
+                    .uri("http://product-color-management-service/api/v1/color/add-color")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(color))
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING COLOR MANAGEMENT SERVICE TO ADD NEW COLOR WITH COLOR_NAME "+color.colorName(),ex);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+
+    public List<Color> getAllColors() {
+        log.info("CALLING COLOR SERVICE TO GET ALL COLORS");
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://product-color-management-service/api/v1/color/get-all")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(Color.class)
+                    .block()
+                    .getBody();
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING COLOR SERVICE TO GET ALL COLORS",ex);
+            return null;
+        }
+    }
+
+    public Color getColor(long colorId) {
+        log.info("CALLING COLOR SERVICE TO GET COLOR WITH COLOR_ID "+colorId);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://product-color-management-service/api/v1/color/get-color/"+colorId)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(Color.class)
+                    .block()
+                    .getBody();
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING COLOR SERVICE TO GET COLOR WITH COLOR_ID "+colorId+" POSSIBLY NOT FOUND!",ex);
+            return null;
+        }
+    }
+
+    public HttpStatusCode updateColor(Color color) {
+        log.info("CALLING COLOR SERVICE TO EDIT COLOR WITH COLOR_NAME "+color.colorName());
+        try{
+            Color tempColor = getColor(color.colorId());
+            if( tempColor != null){
+                return webClientBuilder.build()
+                        .put()
+                        .uri("http://product-color-management-service/api/v1/color/update-color")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromValue(color))
+                        .retrieve()
+                        .toBodilessEntity()
+                        .flatMap(response -> Mono.just(response.getStatusCode()))
+                        .block();
+            } else {
+                log.error("COULD NOT FIND COLOR WITH COLOR_NAME "+color.colorName()+ " ADDING NEW COLOR");
+                return saveColor(color);
+            }
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING COLOR SERVICE TO UPDATE COLOR WITH COLOR_NAME "+color.colorName(),ex);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+
+
+    public HttpStatusCode deleteColor(long colorId) {
+        log.info("CALLING COLOR SERVICE TO DELETE COLOR WITH COLOR_ID "+colorId);
+        try{
+            Color tempColor = getColor(colorId);
+            if (tempColor != null){
+                return webClientBuilder.build()
+                        .delete()
+                        .uri("http://product-color-management-service/api/v1/color/delete-color/"+colorId)
+                        .retrieve()
+                        .toBodilessEntity()
+                        .flatMap(response -> Mono.just(response.getStatusCode()))
+                        .block();
+            } else {
+                log.error("COULD NOT FIND THE COLOR WITH COLOR_ID "+colorId);
+                return HttpStatusCode.valueOf(404);
+            }
+        } catch (Exception ex){
+            log.error("COULD NOT DELETE COLOR WITH COLOR_ID "+colorId,ex);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+
+    // ---------------  SERVICE FOR PRODUCT COLOR SERVICE [[END]] ------------------
 }
