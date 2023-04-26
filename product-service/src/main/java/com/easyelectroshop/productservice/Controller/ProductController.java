@@ -2,8 +2,10 @@ package com.easyelectroshop.productservice.Controller;
 
 import com.easyelectroshop.productservice.DTO.AmazonS3DTO.Model3D;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
+import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
+import com.easyelectroshop.productservice.DTO.ProductDTO.SubCategoryProduct;
 import com.easyelectroshop.productservice.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -101,6 +103,12 @@ public class ProductController {
     @DeleteMapping("/delete-category/{categoryId}")
     public ResponseEntity<HttpStatusCode> deleteCategory(@PathVariable long categoryId){
         return ResponseEntity.status(productService.deleteCategory(categoryId)).build();
+    }
+
+    @GetMapping("/get-subcategories/{categoryId}")
+    public ResponseEntity<List<SubCategory>> getSubCategories(@PathVariable long categoryId){
+        List<SubCategory> subCategories = productService.getSubCategories(categoryId);
+        return (subCategories != null) ? ResponseEntity.ok(subCategories) : ResponseEntity.notFound().build();
     }
 
     // --------------  APIS FOR PRODUCT CATEGORY SERVICE [[END]] ----------------

@@ -1,6 +1,7 @@
 package com.easyelectroshop.productcategorymanagementservice.Controller;
 
 import com.easyelectroshop.productcategorymanagementservice.Model.Category;
+import com.easyelectroshop.productcategorymanagementservice.Model.SubCategory;
 import com.easyelectroshop.productcategorymanagementservice.Service.CategoryManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -45,4 +46,10 @@ public class CategoryManagementController {
         return ResponseEntity.status(categoryManagementService.deleteCategory(categoryId)).build();
     }
 
+
+    @GetMapping("/get-subcategories/{categoryId}")
+    public ResponseEntity<List<SubCategory>> getSubCategories(@PathVariable long categoryId){
+        List<SubCategory> subCategories = categoryManagementService.getSubCategories(categoryId);
+        return (subCategories != null) ? ResponseEntity.ok(subCategories) : ResponseEntity.notFound().build();
+    }
 }

@@ -18,7 +18,7 @@ public record Product(UUID productId,
                       double size,
                       List<Long> colors,
                       long category,
-                      List<SubCategory> subCategories,
+                      List<SubCategoryProduct> subCategories,
                       String _3DModel,
                       boolean available,
                       String lastUpdated
