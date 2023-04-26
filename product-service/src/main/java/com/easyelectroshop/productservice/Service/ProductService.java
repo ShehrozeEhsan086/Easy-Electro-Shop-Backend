@@ -2,8 +2,10 @@ package com.easyelectroshop.productservice.Service;
 
 import com.easyelectroshop.productservice.DTO.AmazonS3DTO.Model3D;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
+import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
+import com.easyelectroshop.productservice.DTO.ProductDTO.SubCategoryProduct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -265,6 +267,23 @@ public class ProductService {
         } catch (Exception ex){
             log.error("COULD NOT DELETE CATEGORY WITH CATEGORY_ID "+categoryId,ex);
             return HttpStatusCode.valueOf(500);
+        }
+    }
+
+    public List<SubCategory> getSubCategories(long categoryId) {
+        log.info("CALLING CATEGORY SERVICE TO GET SUB-CATEGORIES FOR CATEGORY WITH CATEGORY_ID "+categoryId);
+        try {
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://product-category-management-service/api/v1/category/get-subcategories/"+categoryId)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(SubCategory.class)
+                    .block()
+                    .getBody();
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING CATEGORY SERVICE TO GET SUB-CATEGORIES FOR CATEGORY WITH CATEGORY_ID "+categoryId,ex);
+            return null;
         }
     }
 

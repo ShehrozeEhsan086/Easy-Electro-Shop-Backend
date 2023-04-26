@@ -1,7 +1,9 @@
 package com.easyelectroshop.productcategorymanagementservice.Service;
 
 import com.easyelectroshop.productcategorymanagementservice.Model.Category;
+import com.easyelectroshop.productcategorymanagementservice.Model.SubCategory;
 import com.easyelectroshop.productcategorymanagementservice.Repository.CategoryManagementRepository;
+import com.easyelectroshop.productcategorymanagementservice.Repository.SubCategoryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -16,6 +19,9 @@ public class CategoryManagementService {
 
     @Autowired
     CategoryManagementRepository categoryManagementRepository;
+
+    @Autowired
+    SubCategoryRepository subCategoryRepository;
 
     public HttpStatusCode saveCategory(Category category){
         log.info("ADDING CATEGORY WITH NAME "+category.getCategoryName());
@@ -99,4 +105,21 @@ public class CategoryManagementService {
         }
     }
 
+
+    public List<SubCategory> getSubCategories(long categoryId){
+        log.info("GETTING SUB-CATEGORIES FOR CATEGORY WITH CATEGORY_ID "+categoryId);
+        try{
+            List<SubCategory> subCategories = subCategoryRepository.getSubCategoriesByCategoryId(categoryId);
+            if (subCategories.isEmpty()){
+                log.info("NO SUB-CATEGORIES FOR CATEGORY WITH CATEGORY_ID "+categoryId+" FOUND!");
+                return null;
+            } else {
+                log.info("SUCCESSFULLY RETRIEVED SUB-CATEGORIES FOR CATEGORY WITH CATEGORY_ID "+categoryId);
+                return subCategories;
+            }
+        } catch (Exception ex){
+            log.error("COULD NOT RETRIEVE SUB-CATEGORIES FOR CATEGORY WITH CATEGORY_ID "+categoryId,ex);
+            return null;
+        }
+    }
 }
