@@ -63,7 +63,8 @@ public class ProductManagementService {
             if(pageSize == -1){
                 pageSize = Integer.MAX_VALUE;
             }
-            Page<Product> productPage = productManagementRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy)));
+//            Page<Product> productPage = productManagementRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy)));
+            Page<Product> productPage = productManagementRepository.findAllWithOneImage(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy)));
             List<Product> products = productPage.toList();
             log.info("SUCCESSFULLY RETRIEVED PRODUCTS");
             return products;
