@@ -1,10 +1,7 @@
 package com.easyelectroshop.amazons3service.Service;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.services.s3.model.*;
 import com.amazonaws.util.IOUtils;
 import com.easyelectroshop.amazons3service.DTO.Model3D;
 import lombok.extern.slf4j.Slf4j;
@@ -64,6 +61,12 @@ public class S3StorageService {
     public HttpStatusCode deleteFile(String fileName){
         log.info("DELETING MODEL FILE WITH FILE_NAME "+fileName);
         try{
+            try{
+                S3Object s3Object = amazonS3.getObject(bucketName,fileName);
+            } catch (AmazonS3Exception s3Exception){
+                log.error("FILE WITH FILE_NAME "+fileName+ " NOT FOUND!");
+                return HttpStatusCode.valueOf(404);
+            }
             amazonS3.deleteObject(bucketName,fileName);
             log.info("SUCCESSFULLY DELETED MODEL FILE WITH FILE_NAME "+fileName);
             return HttpStatusCode.valueOf(200);

@@ -5,7 +5,6 @@ import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
-import com.easyelectroshop.productservice.DTO.ProductDTO.SubCategoryProduct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -33,7 +32,7 @@ public class ProductService {
     // ----------------  SERVICE FOR AMAZON SERVICE [[START]] --------------------
 
     public Model3D uploadModel(MultipartFile file) {
-      log.info("CALLING AMAZON S3 SERVICE TO UPLOAD MODEL FILE FOR FILE_NAME  "+file.getOriginalFilename());
+      log.info("CALLING AMAZON S3 SERVICE TO UPLOAD MODEL FILE WITH FILE_NAME  "+file.getOriginalFilename());
       try{
           multipartBodyBuilder.part("model",file.getResource());
           var payLoad = multipartBodyBuilder.build();
@@ -49,6 +48,22 @@ public class ProductService {
           log.error("ERROR WHILE CALLING AMAZON S3 SERVICE FOR UPLOADING MODEL FILE WITH FILE_NAME "+file.getOriginalFilename(),ex);
           return null;
       }
+    }
+
+    public HttpStatusCode deleteModel(String fileName){
+        log.info("CALLING AMAZON S3 SERVICE TO DELETE MODEL FILE WITH FILE_NAME "+fileName);
+        try{
+            return webClientBuilder.build()
+                    .delete()
+                    .uri("http://amazon-s3-service/api/v1/model//delete/"+fileName)
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } catch (Exception ex){
+            log.error("COULD NOT FIND MODEL FILE WITH FILE_NAME "+fileName,ex);
+            return HttpStatusCode.valueOf(404);
+        }
     }
 
     // -----------------  SERVICE FOR AMAZON SERVICE [[END]] ---------------------
