@@ -32,6 +32,13 @@ public class ProductController {
         return(uploadedContent != null) ? ResponseEntity.ok(uploadedContent) : ResponseEntity.internalServerError().build();
     }
 
+    @DeleteMapping("/delete-model/{fileName}")
+    public ResponseEntity<HttpStatusCode> deleteModel(@PathVariable String fileName){
+        return ResponseEntity.status(productService.deleteModel(fileName)).build();
+    }
+
+    //DOWNLOAD FILE NOT IMPLEMENTED
+
     // -----------------  APIS FOR AMAZON SERVICE [[END]] ---------------------
 
 
