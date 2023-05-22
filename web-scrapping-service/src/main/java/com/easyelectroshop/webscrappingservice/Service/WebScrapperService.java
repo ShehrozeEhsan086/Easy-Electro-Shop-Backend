@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -47,23 +49,39 @@ public class WebScrapperService {
     private String apiKey;
 
 
-    public List<WebScrapper> scrapePrices(String productName, UUID productId) {
-        webScrapperList.clear();
+    public WebScrapper scrapePriceAmazon(String productName, UUID productId) {
         try{
-            log.info("SCRAPPING AMAZON FOR PRODUCT WITH PRODUCT_NAME "+productName);
-            WebScrapper tempScrapper = webScrapperRepository.findByProductIdAndSite(productId,"Amazon");
+            log.info("SCRAPPING AMAZON.COM FOR PRODUCT WITH PRODUCT_NAME "+productName);
+            WebScrapper tempScrapper = webScrapperRepository.findAllByProductIdAndSite(productId,"Amazon");
             WebScrapper amazonScrapper = getPriceFromAmazon(productName,productId);
             if(tempScrapper == null){
-               webScrapperRepository.save(amazonScrapper);
+                webScrapperRepository.save(amazonScrapper);
             } else {
                 tempScrapper.setScrappedPrice(amazonScrapper.getScrappedPrice());
                 webScrapperRepository.save(tempScrapper);
             }
             webScrapperList.add(amazonScrapper);
-            log.info("SUCCESSFULLY SCRAPPED AMAZON FOR PRODUCT WITH PRODUCT_NAME "+productName);
+            log.info("SUCCESSFULLY SCRAPPED AMAZON.COM FOR PRODUCT WITH PRODUCT_NAME "+productName);
+            return amazonScrapper;
+        } catch (Exception ex){
+            log.error("ERROR WHILE SCRAPPING PRICES ",ex);
+            return null;
+        }
+    }
 
-
-            return  webScrapperList;
+    public WebScrapper scrapePriceDaraz(String productName, UUID productId) {
+        try{
+            log.info("SCRAPPING DARAZ.PK FOR PRODUCT WITH PRODUCT_NAME "+productName);
+            WebScrapper tempDarazScrapper = webScrapperRepository.findAllByProductIdAndSite(productId,"Daraz");
+            WebScrapper daraszScrapper = getPriceFromDaraz(productName,productId);
+            if(tempDarazScrapper == null){
+                webScrapperRepository.save(daraszScrapper);
+            } else {
+                tempDarazScrapper.setScrappedPrice(daraszScrapper.getScrappedPrice());
+                webScrapperRepository.save(tempDarazScrapper);
+            }
+            log.info("SUCCESSFULLY SCRAPPED DARAZ.PK FOR PRODUCT WITH PRODUCT_NAME "+productName);
+            return daraszScrapper;
         } catch (Exception ex){
             log.error("ERROR WHILE SCRAPPING PRICES ",ex);
             return null;
@@ -89,19 +107,17 @@ public class WebScrapperService {
                     firstProduct = chromeDriver.findElement(By.cssSelector("[cel_widget_id='MAIN-SEARCH_RESULTS-"+counter+"']"));
                 } catch (Exception ex){
                     checkFlag = false;
-                    counter ++;
                 }
-                counter++;
                 if(!checkFlag){
                     breakLoop = true;
                 } else {
                     if(!firstProduct.getText().contains("Sponsored") && firstProduct.getText().contains("$")){
+                        System.out.println(firstProduct.getText());
                         breakLoop = false;
                     }
                 }
+                counter++;
             } while(breakLoop);
-
-            System.out.println(firstProduct.getText());
 
             Pattern pattern = Pattern.compile("\\$([0-9,]+(\\.[0-9]*)?)");
 
@@ -130,15 +146,50 @@ public class WebScrapperService {
     }
 
 
-//    public WebScrapper getPriceFromDaraz(String productName, UUID productId){
-//        chromeDriver.get(darazUrl);
-//        WebElement searchFiled = chromeDriver.findElement(By.id("a2a0e.home.search.i0.35e34937FNzIxh"));
-//        return null;
-//    }
+    public WebScrapper getPriceFromDaraz(String productName, UUID productId){
+        try{
+            chromeDriver.get(darazUrl);
+            WebElement searchFiled = chromeDriver.findElement(By.id("q"));
+            searchFiled.sendKeys(productName);
 
+            WebElement searchButton = chromeDriver.findElement(By.className("search-box__button--1oH7"));
+            searchButton.click();
 
+            WebElement products = chromeDriver.findElement(By.className("box--ujueT"));
+
+            String regex = "Rs\\.\\s*(.*?)\\s*\n";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(products.getText());
+
+            if (matcher.find()) {
+                String extractedValue = matcher.group(1);
+                webScrapper.setProductId(productId);
+                webScrapper.setScrappedPrice("PKR "+extractedValue);
+                webScrapper.setProductId(productId);
+                webScrapper.setSite("Daraz");
+                return webScrapper;
+            } else {
+                log.error("ERROR WHILE SCRAPPING PRICE FROM DARAZ!");
+                return null;
+            }
+        } catch (Exception ex){
+            log.error("ERROR WHILE SCRAPPING PRICE FROM DARAZ!");
+            return null;
+        }
+    }
+
+    public List<WebScrapper> getScrappedPrices(UUID productId){
+        log.info("GETTING ALL SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            return webScrapperRepository.findAllByProductId(productId);
+        } catch (Exception ex){
+            log.error("ERROR GETTING SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
+            return null;
+        }
+    }
 
     private String convert_USD_to_PKR(String price) throws Exception{
+        log.info("CONVERTING SCRAPPED PRICE " + price+ " TO PKR");
         try{
             String response = WebClient.builder()
                     .baseUrl("https://api.apilayer.com/exchangerates_data/convert?to=PKR&from=USD&amount="+price)
@@ -167,9 +218,34 @@ public class WebScrapperService {
     }
 
     private String convert_USD_to_PKR_Stub(String price){
-        Double pkrPrice = Double.parseDouble(price) * 280;
+        Double pkrPrice = Double.parseDouble(price) * 300;
         return Double.toString(pkrPrice);
     }
-
-
+    
+    public ResponseEntity<HttpStatusCode> changeScrappedPriceVisibility(UUID productId) {
+        log.info("CHANGING VISIBILITY VALUE OF SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            List<WebScrapper> scrappedPrices = webScrapperRepository.findAllByProductId(productId);
+            if(scrappedPrices == null){
+                log.error("NO SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId+" FOUND!");
+                return ResponseEntity.status(404).build();
+            } else {
+                boolean currentValue = scrappedPrices.get(0).isVisible();
+                boolean newValue;
+                if (currentValue){
+                    newValue = false;
+                } else {
+                    newValue = true;
+                }
+                for (int i=0; i<scrappedPrices.size();i++){
+                    scrappedPrices.get(i).setVisible(newValue);
+                }
+                webScrapperRepository.saveAll(scrappedPrices);
+                return ResponseEntity.status(200).build();
+            }
+        } catch (Exception ex){
+            log.error("COULD NOT CHANGE VISIBILITY OF SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
+            return ResponseEntity.status(500).build();
+        }
+    }
 }

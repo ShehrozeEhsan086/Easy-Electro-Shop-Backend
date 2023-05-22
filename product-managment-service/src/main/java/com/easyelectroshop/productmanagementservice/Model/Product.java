@@ -28,6 +28,10 @@ public class Product {
 
     private String completeDescription;
 
+    @Lob
+    @Column(name = "coverImage", columnDefinition="MEDIUMBLOB")
+    private String coverImage;
+
     private String brandName;
 
     private String model;
@@ -53,7 +57,9 @@ public class Product {
     @JoinColumn(name = "fk_product_id",referencedColumnName = "productId")
     private List<SubCategory> subCategories;
 
-    private String _3DModel;
+    private String _3DModelFilename;
+
+    private String _3DModelURL;
 
     private boolean available;
 

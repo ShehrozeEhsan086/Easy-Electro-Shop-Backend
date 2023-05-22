@@ -1,5 +1,7 @@
 package com.easyelectroshop.productservice.DTO.ProductDTO;
 
+import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -8,8 +10,10 @@ public record Product(UUID productId,
                       List<ProductImage> images,
                       String shortDescription,
                       String completeDescription,
+                      String coverImage,
                       String brandName,
-                      String model,
+                      String modelFilename,
+                      String modelURL,
                       double price,
                       boolean isDiscounted,
                       double discountPercentage,
@@ -21,6 +25,8 @@ public record Product(UUID productId,
                       List<SubCategoryProduct> subCategories,
                       String _3DModel,
                       boolean available,
-                      String lastUpdated
+                      String lastUpdated,
+
+                      List<WebScrapper> scrappedPrices
                       ) {
 }

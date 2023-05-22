@@ -5,7 +5,7 @@ import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
-import com.easyelectroshop.productservice.DTO.ProductDTO.SubCategoryProduct;
+import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
 import com.easyelectroshop.productservice.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.UUID;
 
-@CrossOrigin //REMEMBER TO FIX LATER
+@CrossOrigin //HMM
 @RestController
 @RequestMapping("api/v1/product")
 public class ProductController {
@@ -32,8 +32,41 @@ public class ProductController {
         return(uploadedContent != null) ? ResponseEntity.ok(uploadedContent) : ResponseEntity.internalServerError().build();
     }
 
-    // -----------------  APIS FOR AMAZON SERVICE [[END]] ---------------------
+    @DeleteMapping("/delete-model/{fileName}")
+    public ResponseEntity<HttpStatusCode> deleteModel(@PathVariable String fileName){
+        return ResponseEntity.status(productService.deleteModel(fileName)).build();
+    }
 
+    //DOWNLOAD FILE NOT IMPLEMENTED
+
+    // -----------------  APIS FOR AMAZON SERVICE [[END]] ----------------------
+
+    // --------------  APIS FOR WEB-SCRAPPING SERVICE [[START]] ----------------
+
+    @PostMapping("/scrape-product-prices-amazon/{productId}/{productName}")
+    public ResponseEntity<WebScrapper> scrapeProductPricesAmazon(@PathVariable UUID productId , @PathVariable String productName){
+        WebScrapper response = productService.scrapeProductPricesAmazon(productId,productName);
+        return ( response != null) ? ResponseEntity.ok(response) : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/scrape-product-prices-daraz/{productId}/{productName}")
+    public ResponseEntity<WebScrapper> scrapeProductPricesDaraz(@PathVariable UUID productId , @PathVariable String productName){
+        WebScrapper response = productService.scrapeProductPricesDaraz(productId,productName);
+        return ( response != null) ? ResponseEntity.ok(response) : ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/get-scrapped-prices/{productId}")
+    public ResponseEntity<List<WebScrapper>> getScrappedPrices(@PathVariable UUID productId){
+        return productService.getScrappedPrices(productId);
+    }
+
+    @PutMapping("/change-scrapped-price-visibility/{productId}")
+    public ResponseEntity<HttpStatusCode> changeScrappedPricesVisibility(@PathVariable UUID productId){
+        HttpStatusCode statusCode = productService.changeScrappedPriceVisibility(productId);
+        return ResponseEntity.status(statusCode).build();
+    }
+
+    // ---------------  APIS FOR WEB-SCRAPPING SERVICE [[END]] -----------------
 
     // -----------  APIS FOR PRODUCT MANAGEMENT SERVICE [[START]] -------------
 

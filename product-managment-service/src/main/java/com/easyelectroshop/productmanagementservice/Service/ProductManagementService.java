@@ -2,12 +2,10 @@ package com.easyelectroshop.productmanagementservice.Service;
 
 import com.easyelectroshop.productmanagementservice.Model.Product;
 import com.easyelectroshop.productmanagementservice.Repository.ProductManagementRepository;
-import jakarta.transaction.Transactional;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +16,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-@Transactional(rollbackOn = Exception.class)
 @Slf4j
 public class ProductManagementService {
 
@@ -30,7 +27,6 @@ public class ProductManagementService {
 
     @Autowired
     SimpleDateFormat simpleDateFormat;
-
 
     public HttpStatusCode saveProduct(Product product){
         log.info("ADDING NEW PRODUCT WITH NAME "+product.getName());
@@ -63,9 +59,7 @@ public class ProductManagementService {
             if(pageSize == -1){
                 pageSize = Integer.MAX_VALUE;
             }
-//            Page<Product> productPage = productManagementRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy)));
-            Page<Product> productPage = productManagementRepository.findAllWithOneImage(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy)));
-            List<Product> products = productPage.toList();
+            List<Product> products = productManagementRepository.findAllWithOnlyCoverImage(sortBy,pageSize,pageNumber);
             log.info("SUCCESSFULLY RETRIEVED PRODUCTS");
             return products;
         } catch (Exception ex){
