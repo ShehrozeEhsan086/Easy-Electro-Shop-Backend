@@ -5,10 +5,12 @@ import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
+import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -68,6 +70,76 @@ public class ProductService {
 
     // -----------------  SERVICE FOR AMAZON SERVICE [[END]] ---------------------
 
+    // -----------  SERVICE FOR WEB SCRAPPER SERVICE [[START]] -------------
+
+    public WebScrapper scrapeProductPricesAmazon(UUID productId, String productName){
+        log.info("CALLING WEB SCRAPPING SERVICE TO SCRAPE PRICE FOR PRODUCT "+productName+ " ON AMAZON.COM");
+        try{
+            return webClientBuilder.build()
+                    .post()
+                    .uri("http://web-scrapping-service/api/v1/web-scrapper/scrape-product-price-amazon/"+productId+"/"+productName)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(WebScrapper.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("COULD NOT SCRAPE PRODUCT PRICE FOR PRODUCT "+productName+" [AMAZON.COM]",ex);
+            return null;
+        }
+    }
+
+    public WebScrapper scrapeProductPricesDaraz(UUID productId, String productName){
+        log.info("CALLING WEB SCRAPPING SERVICE TO SCRAPE PRICE FOR PRODUCT "+productName+ " ON DARAZ.PK");
+        try{
+            return webClientBuilder.build()
+                    .post()
+                    .uri("http://web-scrapping-service/api/v1/web-scrapper/scrape-product-price-daraz/"+productId+"/"+productName)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(WebScrapper.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("COULD NOT SCRAPE PRODUCT PRICE FOR PRODUCT "+productName+" [DARAZ.PK]",ex);
+            return null;
+        }
+    }
+
+    public ResponseEntity<List<WebScrapper>>  getScrappedPrices(UUID productId){
+        log.info("CALLING WEB SCRAPPING SERVICE TO GET SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://web-scrapping-service/api/v1/web-scrapper/get-scrapped-prices/"+productId)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(WebScrapper.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("COULD NOT GET SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return null;
+        }
+    }
+
+    public HttpStatusCode changeScrappedPriceVisibility(UUID productId){
+        log.info("CALLING WEB SCRAPPING SERVICE TO CHANGE VISIBILITY OF SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            return webClientBuilder.build()
+                    .put()
+                    .uri("http://web-scrapping-service/api/v1/web-scrapper/change-scrapped-price-visibility/"+productId)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept()
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } catch (Exception ex){
+            log.error("COULD NOT CHANGE VISIBILITY OF SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+
+
+    // ------------  SERVICE FOR WEB SCRAPPER SERVICE [[END]] --------------
 
     // -----------  SERVICE FOR PRODUCT MANAGEMENT SERVICE [[START]] -------------
 
@@ -109,13 +181,20 @@ public class ProductService {
     public Product getProductById(UUID productId) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET PRODUCT WITH PRODUCT_ID "+productId);
         try{
-            return webClientBuilder.build()
+            Product product = webClientBuilder.build()
                     .get()
                     .uri("http://product-management-service/api/v1/product-management/get-product/"+productId)
                     .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
                     .bodyToMono(Product.class)
                     .block();
+            System.out.println(product);
+            List<WebScrapper> webScrapper = getScrappedPrices(productId).getBody();
+            System.out.println(webScrapper);
+            Product completeProduct = new Product(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
+                    product.brandName(),product.modelFilename(),product.modelURL(),product.price(),product.isDiscounted(),product.discountPercentage(),product.discountedPrice(),product.quantity(),product.size(),product.colors(),
+                    product.category(),product.subCategories(),product._3DModel(),product.available(),product.lastUpdated(),webScrapper);
+            return completeProduct;
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE PRODUCT WITH PRODUCT_ID "+productId,ex);
             return null;
