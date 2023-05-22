@@ -1,373 +1,537 @@
-2023-05-10T16:35:36.083+05:00  INFO 19996 --- [main] ProductColorManagementServiceApplication : Starting ProductColorManagementServiceApplication using Java 19.0.1 with PID 19996 (D:\University Work\FYP\Easy-Electro-Shop-Backend\product-color-management-service\target\classes started by Talha Rizwan in D:\University Work\FYP\Easy-Electro-Shop-Backend)
-2023-05-10T16:35:36.087+05:00  INFO 19996 --- [main] ProductColorManagementServiceApplication : No active profile set, falling back to 1 default profile: "default"
-2023-05-10T16:35:36.770+05:00  INFO 19996 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-05-10T16:35:36.908+05:00  INFO 19996 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 127 ms. Found 1 JPA repository interfaces.
-2023-05-10T16:35:37.129+05:00  INFO 19996 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=a5ad90ed-f4c3-31d4-bcc6-d5b72dcdcc93
-2023-05-10T16:35:37.536+05:00  INFO 19996 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8085 (http)
-2023-05-10T16:35:37.544+05:00  INFO 19996 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-05-10T16:35:37.545+05:00  INFO 19996 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
-2023-05-10T16:35:37.634+05:00  INFO 19996 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-05-10T16:35:37.634+05:00  INFO 19996 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1487 ms
-2023-05-10T16:35:37.784+05:00  INFO 19996 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-05-10T16:35:37.840+05:00  INFO 19996 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2023-05-10T16:35:38.101+05:00  INFO 19996 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-05-10T16:35:38.364+05:00  INFO 19996 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1aed6f0b
-2023-05-10T16:35:38.365+05:00  INFO 19996 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-05-10T16:35:38.413+05:00  INFO 19996 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
-2023-05-10T16:35:39.014+05:00  INFO 19996 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-05-10T16:35:39.021+05:00  INFO 19996 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-05-10T16:35:39.268+05:00  WARN 19996 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-05-10T16:35:39.731+05:00  INFO 19996 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2023-05-10T16:35:39.862+05:00  WARN 19996 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2023-05-10T16:35:39.884+05:00  INFO 19996 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2023-05-10T16:35:39.992+05:00  INFO 19996 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2023-05-10T16:35:40.000+05:00  INFO 19996 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T16:35:40.027+05:00  INFO 19996 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2023-05-10T16:35:40.027+05:00  INFO 19996 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2023-05-10T16:35:40.027+05:00  INFO 19996 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2023-05-10T16:35:40.027+05:00  INFO 19996 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2023-05-10T16:35:40.028+05:00  INFO 19996 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2023-05-10T16:35:40.028+05:00  INFO 19996 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2023-05-10T16:35:40.028+05:00  INFO 19996 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2023-05-10T16:35:40.328+05:00  INFO 19996 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2023-05-10T16:35:40.331+05:00  INFO 19996 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2023-05-10T16:35:40.333+05:00  INFO 19996 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2023-05-10T16:35:40.340+05:00  INFO 19996 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1683718540339 with initial instances count: 0
-2023-05-10T16:35:40.344+05:00  INFO 19996 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application PRODUCT-COLOR-MANAGEMENT-SERVICE with eureka with status UP
-2023-05-10T16:35:40.345+05:00  INFO 19996 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1683718540345, current=UP, previous=STARTING]
-2023-05-10T16:35:40.347+05:00  INFO 19996 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-COLOR-MANAGEMENT-SERVICE/host.docker.internal:product-color-management-service:8085: registering service...
-2023-05-10T16:35:40.377+05:00  INFO 19996 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8085 (http) with context path ''
-2023-05-10T16:35:40.382+05:00  INFO 19996 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8085
-2023-05-10T16:35:40.404+05:00  INFO 19996 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-COLOR-MANAGEMENT-SERVICE/host.docker.internal:product-color-management-service:8085 - registration status: 204
-2023-05-10T16:35:40.434+05:00  INFO 19996 --- [main] ProductColorManagementServiceApplication : Started ProductColorManagementServiceApplication in 4.893 seconds (process running for 5.306)
-2023-05-10T16:36:10.345+05:00  INFO 19996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2023-05-10T16:36:10.345+05:00  INFO 19996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2023-05-10T16:36:10.345+05:00  INFO 19996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2023-05-10T16:36:10.346+05:00  INFO 19996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2023-05-10T16:36:10.346+05:00  INFO 19996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2023-05-10T16:36:10.346+05:00  INFO 19996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application version is -1: false
-2023-05-10T16:36:10.346+05:00  INFO 19996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2023-05-10T16:36:10.364+05:00  INFO 19996 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2023-05-10T16:40:40.044+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T16:45:40.048+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T16:50:40.053+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T16:55:40.059+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T17:00:40.074+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T17:05:40.090+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T17:10:40.095+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T17:15:40.111+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T17:20:18.126+05:00  INFO 19996 --- [http-nio-8085-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-05-10T17:20:18.127+05:00  INFO 19996 --- [http-nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-05-10T17:20:18.136+05:00  INFO 19996 --- [http-nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
-2023-05-10T17:20:18.176+05:00  INFO 19996 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
-2023-05-10T17:20:18.308+05:00  INFO 19996 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
-2023-05-10T17:20:40.116+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T17:21:14.256+05:00  INFO 19996 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
-2023-05-10T17:21:14.261+05:00  INFO 19996 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
-2023-05-10T17:21:28.152+05:00  INFO 19996 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
-2023-05-10T17:21:28.159+05:00  INFO 19996 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
-2023-05-10T17:25:40.125+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T17:30:40.137+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T17:35:40.144+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T17:40:40.149+05:00  INFO 19996 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2023-05-10T17:41:01.229+05:00  INFO 19996 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application PRODUCT-COLOR-MANAGEMENT-SERVICE with eureka with status DOWN
-2023-05-10T17:41:01.230+05:00  INFO 19996 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1683722461230, current=DOWN, previous=UP]
-2023-05-10T17:41:01.230+05:00  INFO 19996 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-COLOR-MANAGEMENT-SERVICE/host.docker.internal:product-color-management-service:8085: registering service...
-2023-05-10T17:41:01.251+05:00  INFO 19996 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-05-10T17:41:01.255+05:00  INFO 19996 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-05-10T17:41:01.260+05:00  INFO 19996 --- [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=I/O error on POST request for "http://localhost:8761/eureka/apps/PRODUCT-COLOR-MANAGEMENT-SERVICE": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8761/eureka/apps/PRODUCT-COLOR-MANAGEMENT-SERVICE": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:888)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:868)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:764)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:646)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.register(RestTemplateEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:820)
-	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
-	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1589)
-Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:535)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:585)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:666)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory$1.run(PlainConnectionSocketFactory.java:87)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:84)
-	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:148)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:396)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:158)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:168)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:136)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:190)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:133)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:75)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:54)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:93)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:101)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$0(RestTemplateTransportClientFactory.java:143)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:87)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:71)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:862)
-	... 21 more
-
-2023-05-10T17:41:01.261+05:00  WARN 19996 --- [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on POST request for "http://localhost:8761/eureka/apps/PRODUCT-COLOR-MANAGEMENT-SERVICE": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
-2023-05-10T17:41:01.261+05:00  INFO 19996 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-05-10T17:41:01.262+05:00  INFO 19996 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
-2023-05-10T17:41:01.286+05:00  INFO 19996 --- [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on POST request for "http://localhost:8761/eureka/apps/PRODUCT-COLOR-MANAGEMENT-SERVICE": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8761/eureka/apps/PRODUCT-COLOR-MANAGEMENT-SERVICE": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:888)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:868)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:764)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:646)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.register(RestTemplateEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:820)
-	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
-	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1589)
-Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:535)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:585)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:666)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory$1.run(PlainConnectionSocketFactory.java:87)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:84)
-	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:148)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:396)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:158)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:168)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:136)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:190)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:133)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:75)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:54)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:93)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:101)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$0(RestTemplateTransportClientFactory.java:143)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:87)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:71)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:862)
-	... 22 more
-
-2023-05-10T17:41:01.287+05:00  WARN 19996 --- [DiscoveryClient-InstanceInfoReplicator-0] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on POST request for "http://localhost:8761/eureka/apps/PRODUCT-COLOR-MANAGEMENT-SERVICE": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
-2023-05-10T17:41:01.287+05:00  WARN 19996 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-COLOR-MANAGEMENT-SERVICE/host.docker.internal:product-color-management-service:8085 - registration failed Cannot execute request on any known server
-
-com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:820) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101) ~[eureka-client-2.0.0.jar:2.0.0]
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577) ~[na:na]
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
-	at java.base/java.lang.Thread.run(Thread.java:1589) ~[na:na]
-
-2023-05-10T17:41:01.290+05:00  WARN 19996 --- [DiscoveryClient-InstanceInfoReplicator-0] c.n.discovery.InstanceInfoReplicator     : There was a problem with the instance info replicator
-
-com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:820) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101) ~[eureka-client-2.0.0.jar:2.0.0]
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577) ~[na:na]
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
-	at java.base/java.lang.Thread.run(Thread.java:1589) ~[na:na]
-
-2023-05-10T17:41:01.292+05:00  INFO 19996 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
-2023-05-10T17:41:01.333+05:00  INFO 19996 --- [SpringApplicationShutdownHook] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on DELETE request for "http://localhost:8761/eureka/apps/PRODUCT-COLOR-MANAGEMENT-SERVICE/host.docker.internal:product-color-management-service:8085": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8761/eureka/apps/PRODUCT-COLOR-MANAGEMENT-SERVICE/host.docker.internal:product-color-management-service:8085": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:888)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:868)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:764)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:646)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:87)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:916)
-	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:892)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:425)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:383)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:213)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:191)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:184)
-	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:389)
-	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:200)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1189)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1182)
-	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1084)
-	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1053)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:173)
-	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1003)
-	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:139)
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:108)
-	at java.base/java.lang.Thread.run(Thread.java:1589)
-Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:535)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:585)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:666)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory$1.run(PlainConnectionSocketFactory.java:87)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:84)
-	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:148)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:396)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:158)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:168)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:136)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:190)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:96)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:133)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement$1.proceed(ExecChainElement.java:57)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:115)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:75)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:54)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:93)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:101)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$0(RestTemplateTransportClientFactory.java:143)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:87)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:71)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:862)
-	... 38 more
-
-2023-05-10T17:41:01.334+05:00  WARN 19996 --- [SpringApplicationShutdownHook] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on DELETE request for "http://localhost:8761/eureka/apps/PRODUCT-COLOR-MANAGEMENT-SERVICE/host.docker.internal:product-color-management-service:8085": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: no further information
-2023-05-10T17:41:01.334+05:00 ERROR 19996 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-COLOR-MANAGEMENT-SERVICE/host.docker.internal:product-color-management-service:8085 - de-registration failedCannot execute request on any known server
-
-com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:916) ~[eureka-client-2.0.0.jar:2.0.0]
-	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:892) ~[eureka-client-2.0.0.jar:2.0.0]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:578) ~[na:na]
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:425) ~[spring-beans-6.0.7.jar:6.0.7]
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:383) ~[spring-beans-6.0.7.jar:6.0.7]
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:213) ~[spring-beans-6.0.7.jar:6.0.7]
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:191) ~[spring-beans-6.0.7.jar:6.0.7]
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:184) ~[spring-beans-6.0.7.jar:6.0.7]
-	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:389) ~[spring-cloud-context-4.0.2.jar:4.0.2]
-	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136) ~[spring-cloud-context-4.0.2.jar:4.0.2]
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:200) ~[spring-beans-6.0.7.jar:6.0.7]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-6.0.7.jar:6.0.7]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-6.0.7.jar:6.0.7]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1189) ~[spring-beans-6.0.7.jar:6.0.7]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-6.0.7.jar:6.0.7]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1182) ~[spring-beans-6.0.7.jar:6.0.7]
-	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1084) ~[spring-context-6.0.7.jar:6.0.7]
-	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1053) ~[spring-context-6.0.7.jar:6.0.7]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:173) ~[spring-boot-3.0.5.jar:3.0.5]
-	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1003) ~[spring-context-6.0.7.jar:6.0.7]
-	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:139) ~[spring-boot-3.0.5.jar:3.0.5]
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
-	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:108) ~[spring-boot-3.0.5.jar:3.0.5]
-	at java.base/java.lang.Thread.run(Thread.java:1589) ~[na:na]
-
-2023-05-10T17:41:01.338+05:00  INFO 19996 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2023-05-22T18:07:46.570+05:00  INFO 18724 --- [main] ProductColorManagementServiceApplication : Starting ProductColorManagementServiceApplication using Java 19.0.1 with PID 18724 (D:\University Work\FYP\Easy-Electro-Shop-Backend\product-color-management-service\target\classes started by Talha Rizwan in D:\University Work\FYP\Easy-Electro-Shop-Backend)
+2023-05-22T18:07:46.580+05:00  INFO 18724 --- [main] ProductColorManagementServiceApplication : No active profile set, falling back to 1 default profile: "default"
+2023-05-22T18:07:47.270+05:00  INFO 18724 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-22T18:07:47.402+05:00  INFO 18724 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 124 ms. Found 1 JPA repository interfaces.
+2023-05-22T18:07:47.666+05:00  INFO 18724 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=a5ad90ed-f4c3-31d4-bcc6-d5b72dcdcc93
+2023-05-22T18:07:48.076+05:00  INFO 18724 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8085 (http)
+2023-05-22T18:07:48.083+05:00  INFO 18724 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-22T18:07:48.083+05:00  INFO 18724 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-05-22T18:07:48.173+05:00  INFO 18724 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-05-22T18:07:48.173+05:00  INFO 18724 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1507 ms
+2023-05-22T18:07:48.322+05:00  INFO 18724 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-22T18:07:48.362+05:00  INFO 18724 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-22T18:07:48.597+05:00  INFO 18724 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-22T18:07:48.835+05:00  INFO 18724 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75d97e18
+2023-05-22T18:07:48.836+05:00  INFO 18724 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-22T18:07:48.883+05:00  INFO 18724 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-05-22T18:07:49.507+05:00  INFO 18724 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-22T18:07:49.514+05:00  INFO 18724 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-22T18:07:49.782+05:00  WARN 18724 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-22T18:07:50.197+05:00  INFO 18724 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-05-22T18:07:50.296+05:00  WARN 18724 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-05-22T18:07:50.316+05:00  INFO 18724 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-05-22T18:07:50.416+05:00  INFO 18724 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-05-22T18:07:50.420+05:00  INFO 18724 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T18:07:50.440+05:00  INFO 18724 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-05-22T18:07:50.440+05:00  INFO 18724 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-05-22T18:07:50.440+05:00  INFO 18724 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-05-22T18:07:50.440+05:00  INFO 18724 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-05-22T18:07:50.440+05:00  INFO 18724 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-05-22T18:07:50.441+05:00  INFO 18724 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-05-22T18:07:50.441+05:00  INFO 18724 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-05-22T18:07:50.697+05:00  INFO 18724 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-05-22T18:07:50.699+05:00  INFO 18724 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-05-22T18:07:50.702+05:00  INFO 18724 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-05-22T18:07:50.707+05:00  INFO 18724 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1684760870706 with initial instances count: 0
+2023-05-22T18:07:50.710+05:00  INFO 18724 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application PRODUCT-COLOR-MANAGEMENT-SERVICE with eureka with status UP
+2023-05-22T18:07:50.711+05:00  INFO 18724 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1684760870711, current=UP, previous=STARTING]
+2023-05-22T18:07:50.712+05:00  INFO 18724 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-COLOR-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-color-management-service:8085: registering service...
+2023-05-22T18:07:50.735+05:00  INFO 18724 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8085 (http) with context path ''
+2023-05-22T18:07:50.736+05:00  INFO 18724 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8085
+2023-05-22T18:07:50.752+05:00  INFO 18724 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_PRODUCT-COLOR-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-color-management-service:8085 - registration status: 204
+2023-05-22T18:07:50.791+05:00  INFO 18724 --- [main] ProductColorManagementServiceApplication : Started ProductColorManagementServiceApplication in 4.777 seconds (process running for 5.16)
+2023-05-22T18:08:20.706+05:00  INFO 18724 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-05-22T18:08:20.707+05:00  INFO 18724 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-05-22T18:08:20.708+05:00  INFO 18724 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-05-22T18:08:20.708+05:00  INFO 18724 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-05-22T18:08:20.708+05:00  INFO 18724 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-05-22T18:08:20.709+05:00  INFO 18724 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application version is -1: false
+2023-05-22T18:08:20.709+05:00  INFO 18724 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-05-22T18:08:20.735+05:00  INFO 18724 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-05-22T18:08:27.612+05:00  INFO 18724 --- [http-nio-8085-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-22T18:08:27.613+05:00  INFO 18724 --- [http-nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-22T18:08:27.614+05:00  INFO 18724 --- [http-nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-05-22T18:08:27.638+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:08:27.733+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:09:34.693+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:09:34.697+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:10:24.122+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:10:24.126+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:12:11.280+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:12:11.287+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:12:41.582+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:12:41.586+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:12:50.457+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T18:13:19.852+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:13:19.858+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:17:20.462+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:17:20.470+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:17:50.463+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T18:19:34.365+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:19:34.372+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:19:53.122+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:19:53.128+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:20:32.831+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:20:32.836+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:20:54.208+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:20:54.214+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:21:04.888+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:21:04.893+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:21:15.803+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:21:15.810+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:22:50.476+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T18:24:53.044+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:24:53.049+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:25:06.749+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:25:06.756+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:25:33.440+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:25:33.447+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:26:59.822+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:26:59.827+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:27:14.215+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:27:14.221+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:27:33.268+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:27:33.276+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:27:50.483+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T18:28:37.599+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:28:37.604+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:29:03.274+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:29:03.280+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:29:39.955+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:29:39.962+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:29:45.764+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:29:45.768+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:30:03.321+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:30:03.327+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:32:46.939+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:32:46.949+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:32:50.499+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T18:33:20.681+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:33:20.688+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:33:26.884+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:33:26.889+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:37:50.501+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T18:42:18.170+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:42:18.176+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:42:34.312+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:42:34.318+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:42:41.238+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:42:41.241+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:42:50.506+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T18:42:54.102+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:42:54.106+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:43:16.858+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:43:16.864+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:46:06.243+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:46:06.248+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:46:08.388+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:46:08.392+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:46:20.337+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:46:20.342+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:46:27.936+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:46:27.940+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:47:50.512+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T18:49:30.479+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:49:30.485+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:49:36.046+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:49:36.052+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:50:12.010+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:50:12.019+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:50:19.507+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:50:19.511+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:51:35.898+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:51:35.904+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:52:06.803+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:52:06.808+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:52:25.564+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:52:25.569+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:52:38.084+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:52:38.090+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:52:50.515+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T18:53:21.648+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:53:21.656+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:53:51.909+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:53:51.914+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:53:58.568+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T18:53:58.572+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T18:57:50.529+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:01:03.280+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:01:03.286+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:01:06.294+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:01:06.298+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:01:27.800+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:01:27.807+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:02:10.993+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:02:11.000+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:02:22.525+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:02:22.530+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:02:50.538+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:03:32.678+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:03:32.684+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:03:48.661+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:03:48.666+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:04:17.162+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:04:17.167+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:04:22.276+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:04:22.281+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:05:02.863+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:05:02.867+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:05:33.683+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:05:33.689+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:05:38.533+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:05:38.537+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:06:10.195+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:06:10.199+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:07:50.554+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:08:46.727+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:08:46.732+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:09:00.073+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:09:00.080+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:09:05.852+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:09:05.857+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:12:07.523+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:12:07.532+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:12:10.151+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:12:10.155+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:12:50.555+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:13:01.817+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:13:01.823+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:13:28.646+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:13:28.649+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:13:48.745+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:13:48.750+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:14:22.331+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:14:22.336+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:14:37.965+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:14:37.970+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:14:45.063+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:14:45.069+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:15:09.965+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:15:09.969+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:15:23.077+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:15:23.083+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:15:58.567+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:15:58.571+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:16:21.247+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:16:21.253+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:16:25.486+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:16:25.489+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:16:33.477+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:16:33.480+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:17:06.855+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:17:06.862+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:17:50.569+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:19:02.338+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:19:02.344+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:19:04.916+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:19:04.919+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:19:07.997+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:19:08.003+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:19:14.544+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:19:14.550+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:20:17.591+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:20:17.596+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:20:19.906+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:20:19.909+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:20:49.163+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:20:49.169+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:22:18.234+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:22:18.241+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:22:50.582+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:23:28.427+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:23:28.432+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:24:00.732+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:24:00.737+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:25:17.262+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:25:17.267+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:26:18.444+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:26:18.448+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:26:21.875+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:26:21.879+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:26:45.696+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:26:45.700+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:26:53.762+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:26:53.765+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:27:50.595+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:29:09.476+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:29:09.480+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:29:13.440+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:29:13.443+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:29:27.377+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:29:27.381+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:30:50.187+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:30:50.193+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:31:45.792+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:31:45.796+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:31:50.053+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:31:50.056+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:32:02.611+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:32:02.615+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:32:13.704+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:32:13.709+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:32:31.195+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:32:31.200+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:32:42.499+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:32:42.506+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:32:50.598+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:33:22.534+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:33:22.540+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:36:56.784+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:36:56.788+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:36:58.845+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:36:58.849+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:37:07.494+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:37:07.497+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:37:43.123+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:37:43.127+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:37:46.563+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:37:46.568+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:37:50.613+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:39:29.890+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:39:29.895+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:39:49.904+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:39:49.910+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:40:01.776+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:40:01.780+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:40:06.804+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:40:06.808+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:40:31.315+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:40:31.320+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:41:28.203+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:41:28.208+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:41:32.046+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:41:32.049+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:41:46.784+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:41:46.792+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:42:36.976+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:42:36.981+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:42:50.625+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:44:05.179+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:44:05.184+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:45:15.989+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:45:15.994+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:45:27.407+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:45:27.414+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:45:38.894+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:45:38.898+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:45:54.852+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:45:54.857+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:46:50.094+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:46:50.099+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:46:54.481+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:46:54.486+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:46:58.720+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:46:58.723+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:47:16.501+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:47:16.506+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:47:50.631+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:48:04.313+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:48:04.321+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:48:11.899+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:48:11.902+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:48:21.547+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:48:21.551+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:48:24.181+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:48:24.184+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:48:49.817+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:48:49.821+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:49:38.941+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:49:38.947+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:52:44.247+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:52:44.253+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:52:50.060+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:52:50.065+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:52:50.640+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:53:04.086+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:53:04.093+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:53:13.412+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:53:13.416+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:53:20.142+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:53:20.145+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:53:45.449+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:53:45.452+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:56:04.041+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:56:04.046+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:56:06.513+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:56:06.516+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:56:10.505+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:56:10.509+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:56:39.657+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:56:39.662+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:56:46.303+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:56:46.306+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:56:49.511+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:56:49.514+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:57:48.654+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:57:48.659+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:57:50.656+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T19:57:56.792+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:57:56.795+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:57:58.441+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:57:58.444+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:58:02.450+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:58:02.453+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:58:07.150+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:58:07.153+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:58:10.786+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:58:10.790+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T19:58:46.194+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T19:58:46.199+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:00:34.802+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:00:34.806+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:00:54.300+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:00:54.305+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:01:03.960+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:01:03.963+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:01:06.490+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:01:06.493+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:01:11.758+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:01:11.762+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:01:20.353+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:01:20.356+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:02:50.661+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T20:05:56.212+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:05:56.217+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:05:58.662+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:05:58.666+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:06:04.443+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:06:04.448+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:07:50.663+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T20:11:27.412+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:11:27.417+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:12:50.666+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T20:13:11.191+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:13:11.196+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:13:14.545+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:13:14.550+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:13:17.076+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:13:17.081+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:13:35.245+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:13:35.252+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:13:38.957+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:13:38.960+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:13:43.692+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:13:43.697+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:14:01.658+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:14:01.663+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:14:19.152+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:14:19.158+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:14:24.443+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:14:24.447+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:14:32.931+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:14:32.935+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:14:46.285+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:14:46.290+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:14:48.843+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:14:48.846+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:14:56.620+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:14:56.626+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:17:06.747+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:17:06.752+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:17:09.688+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:17:09.692+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:17:14.713+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:17:14.716+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:17:32.881+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:17:32.884+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:17:50.672+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T20:17:51.553+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:17:51.556+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:18:08.722+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:18:08.726+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:18:15.901+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:18:15.904+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:18:21.283+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:18:21.286+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:22:32.514+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:22:32.520+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:22:45.233+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:22:45.238+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:22:50.681+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T20:22:51.615+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:22:51.621+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:23:07.333+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:23:07.337+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:23:18.341+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:23:18.347+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:23:41.707+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:23:41.712+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:23:57.081+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:23:57.085+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:24:05.492+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:24:05.496+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:24:59.489+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:24:59.495+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:25:02.082+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:25:02.086+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:25:05.499+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:25:05.502+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:25:36.374+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:25:36.381+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:25:38.807+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:25:38.810+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:26:28.064+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:26:28.068+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:26:31.291+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:26:31.294+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:26:37.446+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:26:37.449+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:26:45.331+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:26:45.335+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:27:19.352+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:27:19.356+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:27:50.693+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T20:28:24.487+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:28:24.490+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:28:47.897+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:28:47.901+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:28:56.686+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:28:56.689+05:00  INFO 18724 --- [http-nio-8085-exec-1] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:29:05.664+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:29:05.669+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:29:12.459+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:29:12.465+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:29:37.253+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:29:37.260+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:29:39.319+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:29:39.322+05:00  INFO 18724 --- [http-nio-8085-exec-5] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:29:42.669+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:29:42.671+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:29:58.681+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:29:58.685+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:30:07.146+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:30:07.150+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:32:50.699+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T20:37:50.711+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T20:42:50.718+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T20:47:50.734+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T20:52:50.738+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T20:55:30.041+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:55:30.058+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:56:43.649+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:56:43.655+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:56:51.349+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:56:51.354+05:00  INFO 18724 --- [http-nio-8085-exec-3] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:57:10.576+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T20:57:10.580+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T20:57:50.743+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T21:02:02.577+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T21:02:02.581+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T21:02:08.135+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T21:02:08.140+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T21:02:20.897+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T21:02:20.901+05:00  INFO 18724 --- [http-nio-8085-exec-8] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T21:02:23.778+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T21:02:23.782+05:00  INFO 18724 --- [http-nio-8085-exec-9] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T21:02:28.132+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T21:02:28.135+05:00  INFO 18724 --- [http-nio-8085-exec-10] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T21:02:50.757+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T21:03:28.846+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T21:03:28.852+05:00  INFO 18724 --- [http-nio-8085-exec-2] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T21:05:15.074+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T21:05:15.078+05:00  INFO 18724 --- [http-nio-8085-exec-4] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T21:07:50.770+05:00  INFO 18724 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-22T21:09:13.201+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T21:09:13.206+05:00  INFO 18724 --- [http-nio-8085-exec-6] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
+2023-05-22T21:09:23.292+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : GETTING ALL COLORS
+2023-05-22T21:09:23.296+05:00  INFO 18724 --- [http-nio-8085-exec-7] c.e.p.Service.ColorManagementService     : SUCCESSFULLY RETRIEVED ALL COLORS
