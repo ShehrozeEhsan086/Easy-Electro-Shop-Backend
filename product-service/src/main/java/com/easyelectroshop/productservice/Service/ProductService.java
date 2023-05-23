@@ -197,7 +197,7 @@ public class ProductService {
             System.out.println(webScrapper);
             Product completeProduct = new Product(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
                     product.brandName(),product.modelFilename(),product.modelURL(),product.price(),product.isDiscounted(),product.discountPercentage(),product.discountedPrice(),product.quantity(),product.size(),product.colors(),
-                    product.category(),product.subCategories(),product._3DModel(),product.available(),product.lastUpdated(),webScrapper);
+                    product.category(),product.subCategories(),product._3DModelFilenamedel(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
             return completeProduct;
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE PRODUCT WITH PRODUCT_ID "+productId,ex);
