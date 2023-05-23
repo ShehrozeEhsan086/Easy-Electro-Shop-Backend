@@ -28,6 +28,7 @@ public class ProductController {
 
     @PostMapping("/upload-model")
     public ResponseEntity<Model3D> uploadModel(@RequestParam(value = "model") MultipartFile file){
+        System.out.println("Hit");
         Model3D uploadedContent = productService.uploadModel(file);
         return(uploadedContent != null) ? ResponseEntity.ok(uploadedContent) : ResponseEntity.internalServerError().build();
     }
