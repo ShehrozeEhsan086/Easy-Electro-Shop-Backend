@@ -260,3 +260,136 @@ java.lang.IllegalStateException: Client instance has been closed.
 2023-05-23T09:56:09.150+05:00  INFO 9968 --- [SpringApplicationShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shut down
 2023-05-23T09:56:09.157+05:00  INFO 9968 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
 2023-05-23T09:56:09.158+05:00  INFO 9968 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2023-05-23T10:01:26.342+05:00  INFO 16320 --- [main] c.e.d.DiscoveryServerApplication         : Starting DiscoveryServerApplication using Java 19.0.1 with PID 16320 (D:\University Work\FYP\Easy-Electro-Shop-Backend\discovery-server\target\classes started by Talha Rizwan in D:\University Work\FYP\Easy-Electro-Shop-Backend)
+2023-05-23T10:01:26.344+05:00  INFO 16320 --- [main] c.e.d.DiscoveryServerApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-05-23T10:01:27.420+05:00  INFO 16320 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=490f5b2f-2029-3db9-af70-0427739fa321
+2023-05-23T10:01:27.823+05:00  INFO 16320 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8761 (http)
+2023-05-23T10:01:27.838+05:00  INFO 16320 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-23T10:01:27.839+05:00  INFO 16320 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-05-23T10:01:27.993+05:00  INFO 16320 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-05-23T10:01:27.994+05:00  INFO 16320 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1604 ms
+2023-05-23T10:01:29.072+05:00  INFO 16320 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2023-05-23T10:01:29.073+05:00  INFO 16320 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2023-05-23T10:01:29.334+05:00  INFO 16320 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2023-05-23T10:01:29.335+05:00  INFO 16320 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2023-05-23T10:01:30.358+05:00  INFO 16320 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-05-23T10:01:30.429+05:00  WARN 16320 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-05-23T10:01:30.466+05:00  INFO 16320 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-05-23T10:01:30.507+05:00  INFO 16320 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-05-23T10:01:30.507+05:00  INFO 16320 --- [main] com.netflix.discovery.DiscoveryClient    : Client configured to neither register nor query for data.
+2023-05-23T10:01:30.520+05:00  INFO 16320 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1684818090518 with initial instances count: 0
+2023-05-23T10:01:30.576+05:00  INFO 16320 --- [main] c.n.eureka.DefaultEurekaServerContext    : Initializing ...
+2023-05-23T10:01:30.579+05:00  INFO 16320 --- [main] c.n.eureka.cluster.PeerEurekaNodes       : Adding new peer nodes [http://localhost:8761/eureka/]
+2023-05-23T10:01:30.707+05:00  INFO 16320 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2023-05-23T10:01:30.707+05:00  INFO 16320 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2023-05-23T10:01:30.707+05:00  INFO 16320 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2023-05-23T10:01:30.707+05:00  INFO 16320 --- [main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2023-05-23T10:01:30.833+05:00  INFO 16320 --- [main] c.n.eureka.cluster.PeerEurekaNodes       : Replica node URL:  http://localhost:8761/eureka/
+2023-05-23T10:01:30.842+05:00  INFO 16320 --- [main] c.n.e.registry.AbstractInstanceRegistry  : Finished initializing remote region registries. All known remote regions: []
+2023-05-23T10:01:30.843+05:00  INFO 16320 --- [main] c.n.eureka.DefaultEurekaServerContext    : Initialized
+2023-05-23T10:01:30.863+05:00  INFO 16320 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-05-23T10:01:30.940+05:00  INFO 16320 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application UNKNOWN with eureka with status UP
+2023-05-23T10:01:30.952+05:00  INFO 16320 --- [Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : isAws returned false
+2023-05-23T10:01:30.953+05:00  INFO 16320 --- [Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : Initialized server context
+2023-05-23T10:01:30.953+05:00  INFO 16320 --- [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Got 1 instances from neighboring DS node
+2023-05-23T10:01:30.954+05:00  INFO 16320 --- [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Renew threshold is: 1
+2023-05-23T10:01:30.954+05:00  INFO 16320 --- [Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Changing status to UP
+2023-05-23T10:01:30.963+05:00  INFO 16320 --- [Thread-9] e.s.EurekaServerInitializerConfiguration : Started Eureka Server
+2023-05-23T10:01:30.967+05:00  INFO 16320 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8761 (http) with context path ''
+2023-05-23T10:01:30.968+05:00  INFO 16320 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8761
+2023-05-23T10:01:31.031+05:00  INFO 16320 --- [main] c.e.d.DiscoveryServerApplication         : Started DiscoveryServerApplication in 5.217 seconds (process running for 5.642)
+2023-05-23T10:01:34.309+05:00  INFO 16320 --- [http-nio-8761-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-23T10:01:34.309+05:00  INFO 16320 --- [http-nio-8761-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-23T10:01:34.311+05:00  INFO 16320 --- [http-nio-8761-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-05-23T10:01:34.706+05:00  INFO 16320 --- [http-nio-8761-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-COLOR-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-color-management-service:8085 with status UP (replication=false)
+2023-05-23T10:01:35.395+05:00  INFO 16320 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-COLOR-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-color-management-service:8085 with status UP (replication=true)
+2023-05-23T10:01:38.647+05:00  INFO 16320 --- [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-CATEGORY-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-category-management-service:8086 with status UP (replication=false)
+2023-05-23T10:01:39.158+05:00  INFO 16320 --- [http-nio-8761-exec-7] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-CATEGORY-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-category-management-service:8086 with status UP (replication=true)
+2023-05-23T10:01:42.279+05:00  INFO 16320 --- [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=false)
+2023-05-23T10:01:42.790+05:00  INFO 16320 --- [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status UP (replication=true)
+2023-05-23T10:02:06.367+05:00  INFO 16320 --- [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AMAZON-S3-SERVICE/DESKTOP-BN5T0OQ:amazon-s3-service:8082 with status UP (replication=false)
+2023-05-23T10:02:06.879+05:00  INFO 16320 --- [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AMAZON-S3-SERVICE/DESKTOP-BN5T0OQ:amazon-s3-service:8082 with status UP (replication=true)
+2023-05-23T10:02:30.956+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-05-23T10:03:30.957+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-05-23T10:04:30.961+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2023-05-23T10:04:47.641+05:00  INFO 16320 --- [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-SERVICE/DESKTOP-BN5T0OQ:product-service:8083 with status UP (replication=false)
+2023-05-23T10:04:48.151+05:00  INFO 16320 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-SERVICE/DESKTOP-BN5T0OQ:product-service:8083 with status UP (replication=true)
+2023-05-23T10:05:30.975+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 14ms
+2023-05-23T10:06:30.985+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2023-05-23T10:07:30.994+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 8ms
+2023-05-23T10:08:31.002+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2023-05-23T10:09:31.011+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 9ms
+2023-05-23T10:10:31.019+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2023-05-23T10:11:31.021+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2023-05-23T10:12:31.021+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-05-23T10:13:31.032+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 10ms
+2023-05-23T10:14:31.046+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 13ms
+2023-05-23T10:15:31.047+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2023-05-23T10:16:30.843+05:00  INFO 16320 --- [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 10
+2023-05-23T10:16:31.061+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 13ms
+2023-05-23T10:17:31.067+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2023-05-23T10:18:31.071+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2023-05-23T10:19:31.073+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 2ms
+2023-05-23T10:20:31.080+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 6ms
+2023-05-23T10:21:31.080+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-05-23T10:22:31.087+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2023-05-23T10:23:31.101+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 13ms
+2023-05-23T10:24:31.113+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 12ms
+2023-05-23T10:25:31.117+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2023-05-23T10:26:31.118+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2023-05-23T10:27:31.130+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 11ms
+2023-05-23T10:28:31.133+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2023-05-23T10:29:31.141+05:00  INFO 16320 --- [Eureka-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 7ms
+2023-05-23T10:29:33.324+05:00  INFO 16320 --- [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-SERVICE/DESKTOP-BN5T0OQ:product-service:8083 with status DOWN (replication=false)
+2023-05-23T10:29:33.829+05:00  INFO 16320 --- [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-SERVICE/DESKTOP-BN5T0OQ:product-service:8083 with status DOWN (replication=true)
+2023-05-23T10:29:35.035+05:00  INFO 16320 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AMAZON-S3-SERVICE/DESKTOP-BN5T0OQ:amazon-s3-service:8082 with status DOWN (replication=false)
+2023-05-23T10:29:35.550+05:00  INFO 16320 --- [http-nio-8761-exec-8] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AMAZON-S3-SERVICE/DESKTOP-BN5T0OQ:amazon-s3-service:8082 with status DOWN (replication=true)
+2023-05-23T10:29:37.498+05:00  INFO 16320 --- [http-nio-8761-exec-7] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=false)
+2023-05-23T10:29:37.595+05:00  INFO 16320 --- [http-nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 with status DOWN (replication=true)
+2023-05-23T10:29:38.065+05:00  INFO 16320 --- [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance AMAZON-S3-SERVICE/DESKTOP-BN5T0OQ:amazon-s3-service:8082 (replication=false)
+2023-05-23T10:29:38.437+05:00  INFO 16320 --- [http-nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance PRODUCT-SERVICE/DESKTOP-BN5T0OQ:product-service:8083 (replication=false)
+2023-05-23T10:29:38.573+05:00  WARN 16320 --- [http-nio-8761-exec-2] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: AMAZON-S3-SERVICE/DESKTOP-BN5T0OQ:amazon-s3-service:8082
+2023-05-23T10:29:38.573+05:00  INFO 16320 --- [http-nio-8761-exec-2] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): AMAZON-S3-SERVICE - DESKTOP-BN5T0OQ:amazon-s3-service:8082
+2023-05-23T10:29:38.573+05:00  WARN 16320 --- [http-nio-8761-exec-2] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: PRODUCT-SERVICE/DESKTOP-BN5T0OQ:product-service:8083
+2023-05-23T10:29:38.573+05:00  INFO 16320 --- [http-nio-8761-exec-2] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): PRODUCT-SERVICE - DESKTOP-BN5T0OQ:product-service:8083
+2023-05-23T10:29:38.574+05:00  WARN 16320 --- [TaskBatchingWorker-target_localhost-8] c.n.eureka.cluster.ReplicationTask       : The replication of task AMAZON-S3-SERVICE/DESKTOP-BN5T0OQ:amazon-s3-service:8082:Cancel@localhost failed with response code 404
+2023-05-23T10:29:38.574+05:00  WARN 16320 --- [TaskBatchingWorker-target_localhost-8] c.netflix.eureka.cluster.PeerEurekaNode  : AMAZON-S3-SERVICE/DESKTOP-BN5T0OQ:amazon-s3-service:8082:Cancel@localhost: missing entry.
+2023-05-23T10:29:38.574+05:00  WARN 16320 --- [TaskBatchingWorker-target_localhost-8] c.n.eureka.cluster.ReplicationTask       : The replication of task PRODUCT-SERVICE/DESKTOP-BN5T0OQ:product-service:8083:Cancel@localhost failed with response code 404
+2023-05-23T10:29:38.574+05:00  WARN 16320 --- [TaskBatchingWorker-target_localhost-8] c.netflix.eureka.cluster.PeerEurekaNode  : PRODUCT-SERVICE/DESKTOP-BN5T0OQ:product-service:8083:Cancel@localhost: missing entry.
+2023-05-23T10:29:39.134+05:00  INFO 16320 --- [http-nio-8761-exec-1] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-CATEGORY-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-category-management-service:8086 with status DOWN (replication=false)
+2023-05-23T10:29:39.636+05:00  INFO 16320 --- [http-nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-CATEGORY-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-category-management-service:8086 with status DOWN (replication=true)
+2023-05-23T10:29:40.365+05:00  INFO 16320 --- [http-nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-COLOR-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-color-management-service:8085 with status DOWN (replication=false)
+2023-05-23T10:29:40.528+05:00  INFO 16320 --- [http-nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Cancelled instance PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081 (replication=false)
+2023-05-23T10:29:40.866+05:00  INFO 16320 --- [http-nio-8761-exec-8] c.n.e.registry.AbstractInstanceRegistry  : Registered instance PRODUCT-COLOR-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-color-management-service:8085 with status DOWN (replication=true)
+2023-05-23T10:29:40.867+05:00  WARN 16320 --- [http-nio-8761-exec-8] c.n.e.registry.AbstractInstanceRegistry  : DS: Registry: cancel failed because Lease is not registered for: PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081
+2023-05-23T10:29:40.867+05:00  INFO 16320 --- [http-nio-8761-exec-8] c.n.eureka.resources.InstanceResource    : Not Found (Cancel): PRODUCT-MANAGEMENT-SERVICE - DESKTOP-BN5T0OQ:product-management-service:8081
+2023-05-23T10:29:40.867+05:00  WARN 16320 --- [TaskBatchingWorker-target_localhost-2] c.n.eureka.cluster.ReplicationTask       : The replication of task PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost failed with response code 404
+2023-05-23T10:29:40.867+05:00  WARN 16320 --- [TaskBatchingWorker-target_localhost-2] c.netflix.eureka.cluster.PeerEurekaNode  : PRODUCT-MANAGEMENT-SERVICE/DESKTOP-BN5T0OQ:product-management-service:8081:Cancel@localhost: missing entry.
+2023-05-23T10:29:41.812+05:00  INFO 16320 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application UNKNOWN with eureka with status DOWN
+2023-05-23T10:29:41.832+05:00  INFO 16320 --- [SpringApplicationShutdownHook] o.s.c.n.e.server.EurekaServerBootstrap   : Shutting down Eureka Server..
+2023-05-23T10:29:41.837+05:00  INFO 16320 --- [SpringApplicationShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shutting down ...
+2023-05-23T10:29:41.838+05:00  INFO 16320 --- [SpringApplicationShutdownHook] com.netflix.servo.monitor.StatsMonitor   : Attempting to get the value for an expired monitor: eurekaServer.replication.batchSize.Will start computing stats again.
+2023-05-23T10:29:41.842+05:00  INFO 16320 --- [SpringApplicationShutdownHook] com.netflix.servo.monitor.StatsMonitor   : Attempting to get the value for an expired monitor: eurekaServer.replication.executionTime.Will start computing stats again.
+2023-05-23T10:29:41.842+05:00  INFO 16320 --- [SpringApplicationShutdownHook] com.netflix.servo.monitor.StatsMonitor   : Attempting to get the value for an expired monitor: eurekaServer.replication.executionTime.Will start computing stats again.
+2023-05-23T10:29:41.843+05:00  INFO 16320 --- [SpringApplicationShutdownHook] com.netflix.servo.monitor.StatsMonitor   : Attempting to get the value for an expired monitor: eurekaServer.replication.batchSize.Will start computing stats again.
+2023-05-23T10:29:41.853+05:00 ERROR 16320 --- [Eureka-Jersey3Client-Conn-Cleaner2] c.n.d.s.t.j.EurekaJersey3ClientImpl      : Cannot clean connections
+
+java.lang.IllegalStateException: Client instance has been closed.
+	at org.glassfish.jersey.internal.guava.Preconditions.checkState(Preconditions.java:169) ~[jersey-common-3.1.1.jar:na]
+	at org.glassfish.jersey.client.JerseyClient.checkNotClosed(JerseyClient.java:257) ~[jersey-client-3.1.1.jar:na]
+	at org.glassfish.jersey.client.JerseyClient.getConfiguration(JerseyClient.java:372) ~[jersey-client-3.1.1.jar:na]
+	at org.glassfish.jersey.client.JerseyClient.getConfiguration(JerseyClient.java:56) ~[jersey-client-3.1.1.jar:na]
+	at com.netflix.discovery.shared.transport.jersey3.EurekaJersey3ClientImpl$ConnectionCleanerTask.run(EurekaJersey3ClientImpl.java:348) ~[eureka-client-jersey3-2.0.0.jar:2.0.0]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1589) ~[na:na]
+
+2023-05-23T10:29:41.863+05:00  INFO 16320 --- [SpringApplicationShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shut down
+2023-05-23T10:29:41.863+05:00  INFO 16320 --- [SpringApplicationShutdownHook] o.s.c.n.e.server.EurekaServerBootstrap   : Eureka Service is now shutdown...
+2023-05-23T10:29:41.863+05:00  INFO 16320 --- [SpringApplicationShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shutting down ...
+2023-05-23T10:29:41.867+05:00  INFO 16320 --- [SpringApplicationShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shut down
+2023-05-23T10:29:41.871+05:00  INFO 16320 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-05-23T10:29:41.872+05:00  INFO 16320 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
