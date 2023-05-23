@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.easyelectroshop</groupId>
-    <artifactId>admin-managment-service</artifactId>
+    <artifactId>admin-management-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>admin-managment-service</name>
     <description>admin-managment-service</description>
