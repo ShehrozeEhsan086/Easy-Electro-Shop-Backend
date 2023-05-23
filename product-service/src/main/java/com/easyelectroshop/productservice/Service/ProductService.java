@@ -35,26 +35,23 @@ public class ProductService {
 
     // ----------------  SERVICE FOR AMAZON SERVICE [[START]] --------------------
 
-//    public Model3D uploadModel(MultipartFile file) {
-//      log.info("CALLING AMAZON S3 SERVICE TO UPLOAD MODEL FILE WITH FILE_NAME  "+file.getOriginalFilename());
-//      try{
-////          multipartBodyBuilder.part("model",file.getResource());
-////          var payLoad = ;
-//          Model3D model3D = webClientBuilder.build()
-//                  .post()
-//                  .uri("http://amazon-s3-service/api/v1/model/upload")
-//                  .contentType(MediaType.MULTIPART_FORM_DATA)
-//                  .body(BodyInserters.fromMultipartData(file.getResource()))
-//                  .retrieve()
-//                  .bodyToMono(Model3D.class)
-//                  .block();
-////          payLoad.clear();
-//          return model3D;
-//      } catch (Exception ex){
-//          log.error("ERROR WHILE CALLING AMAZON S3 SERVICE FOR UPLOADING MODEL FILE WITH FILE_NAME "+file.getOriginalFilename(),ex);
-//          return null;
-//      }
-//    }
+    public Model3D uploadModel(MultipartFile file) {
+      log.info("CALLING AMAZON S3 SERVICE TO UPLOAD MODEL FILE WITH FILE_NAME  "+file.getOriginalFilename());
+      try{
+          Model3D model3D = webClientBuilder.build()
+                  .post()
+                  .uri("http://amazon-s3-service/api/v1/model/upload")
+                  .contentType(MediaType.MULTIPART_FORM_DATA)
+                  .body(BodyInserters.fromMultipartData("model",file.getResource()))
+                  .retrieve()
+                  .bodyToMono(Model3D.class)
+                  .block();
+          return model3D;
+      } catch (Exception ex){
+          log.error("ERROR WHILE CALLING AMAZON S3 SERVICE FOR UPLOADING MODEL FILE WITH FILE_NAME "+file.getOriginalFilename(),ex);
+          return null;
+      }
+    }
 
     public HttpStatusCode deleteModel(String fileName){
         log.info("CALLING AMAZON S3 SERVICE TO DELETE MODEL FILE WITH FILE_NAME "+fileName);
@@ -197,7 +194,7 @@ public class ProductService {
             System.out.println(webScrapper);
             Product completeProduct = new Product(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
                     product.brandName(),product.modelFilename(),product.modelURL(),product.price(),product.isDiscounted(),product.discountPercentage(),product.discountedPrice(),product.quantity(),product.size(),product.colors(),
-                    product.category(),product.subCategories(),product._3DModelFilenamedel(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
+                    product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
             return completeProduct;
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE PRODUCT WITH PRODUCT_ID "+productId,ex);

@@ -23,7 +23,7 @@ public record Product(UUID productId,
                       List<Long> colors,
                       long category,
                       List<SubCategoryProduct> subCategories,
-                      String _3DModelFilenamedel,
+                      String _3DModelFilename,
 
                       String _3DModelURL,
                       boolean available,
