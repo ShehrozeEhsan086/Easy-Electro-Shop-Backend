@@ -8,6 +8,8 @@ import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,24 +35,26 @@ public class ProductService {
 
     // ----------------  SERVICE FOR AMAZON SERVICE [[START]] --------------------
 
-    public Model3D uploadModel(MultipartFile file) {
-      log.info("CALLING AMAZON S3 SERVICE TO UPLOAD MODEL FILE WITH FILE_NAME  "+file.getOriginalFilename());
-      try{
-          multipartBodyBuilder.part("model",file.getResource());
-          var payLoad = multipartBodyBuilder.build();
-          return webClientBuilder.build()
-                  .post()
-                  .uri("http://amazon-s3-service/api/v1/model/upload")
-                  .contentType(MediaType.MULTIPART_FORM_DATA)
-                  .body(BodyInserters.fromMultipartData(payLoad))
-                  .retrieve()
-                  .bodyToMono(Model3D.class)
-                  .block();
-      } catch (Exception ex){
-          log.error("ERROR WHILE CALLING AMAZON S3 SERVICE FOR UPLOADING MODEL FILE WITH FILE_NAME "+file.getOriginalFilename(),ex);
-          return null;
-      }
-    }
+//    public Model3D uploadModel(MultipartFile file) {
+//      log.info("CALLING AMAZON S3 SERVICE TO UPLOAD MODEL FILE WITH FILE_NAME  "+file.getOriginalFilename());
+//      try{
+////          multipartBodyBuilder.part("model",file.getResource());
+////          var payLoad = ;
+//          Model3D model3D = webClientBuilder.build()
+//                  .post()
+//                  .uri("http://amazon-s3-service/api/v1/model/upload")
+//                  .contentType(MediaType.MULTIPART_FORM_DATA)
+//                  .body(BodyInserters.fromMultipartData(file.getResource()))
+//                  .retrieve()
+//                  .bodyToMono(Model3D.class)
+//                  .block();
+////          payLoad.clear();
+//          return model3D;
+//      } catch (Exception ex){
+//          log.error("ERROR WHILE CALLING AMAZON S3 SERVICE FOR UPLOADING MODEL FILE WITH FILE_NAME "+file.getOriginalFilename(),ex);
+//          return null;
+//      }
+//    }
 
     public HttpStatusCode deleteModel(String fileName){
         log.info("CALLING AMAZON S3 SERVICE TO DELETE MODEL FILE WITH FILE_NAME "+fileName);
