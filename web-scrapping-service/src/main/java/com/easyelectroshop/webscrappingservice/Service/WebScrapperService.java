@@ -60,7 +60,6 @@ public class WebScrapperService {
                 tempScrapper.setScrappedPrice(amazonScrapper.getScrappedPrice());
                 webScrapperRepository.save(tempScrapper);
             }
-            webScrapperList.add(amazonScrapper);
             log.info("SUCCESSFULLY SCRAPPED AMAZON.COM FOR PRODUCT WITH PRODUCT_NAME "+productName);
             return amazonScrapper;
         } catch (Exception ex){
@@ -112,7 +111,6 @@ public class WebScrapperService {
                     breakLoop = true;
                 } else {
                     if(!firstProduct.getText().contains("Sponsored") && firstProduct.getText().contains("$")){
-                        System.out.println(firstProduct.getText());
                         breakLoop = false;
                     }
                 }

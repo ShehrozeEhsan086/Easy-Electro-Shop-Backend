@@ -8,8 +8,6 @@ import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.buffer.DataBuffer;
-import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -189,13 +187,15 @@ public class ProductService {
                     .retrieve()
                     .bodyToMono(Product.class)
                     .block();
-            System.out.println(product);
             List<WebScrapper> webScrapper = getScrappedPrices(productId).getBody();
-            System.out.println(webScrapper);
-            Product completeProduct = new Product(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
-                    product.brandName(),product.modelFilename(),product.modelURL(),product.price(),product.isDiscounted(),product.discountPercentage(),product.discountedPrice(),product.quantity(),product.size(),product.colors(),
-                    product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
-            return completeProduct;
+            if(!webScrapper.isEmpty()){
+                Product completeProduct = new Product(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
+                        product.brandName(),product.price(),product.isDiscounted(),product.discountPercentage(),product.discountedPrice(),product.quantity(),product.size(),product.colors(),
+                        product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
+                return completeProduct;
+            } else {
+                return product;
+            }
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE PRODUCT WITH PRODUCT_ID "+productId,ex);
             return null;
