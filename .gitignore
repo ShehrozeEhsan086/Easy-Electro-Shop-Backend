@@ -1,2 +1,10 @@
 /Miscellaneous(NON-SPRING)
+<<<<<<< HEAD
 *.log
+=======
+<<<<<<< HEAD
+/amazon-s3-service
+=======
+/amazon-s3-service
+>>>>>>> shehroze
+>>>>>>> master
