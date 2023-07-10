@@ -7,10 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
         <module name="web-scrapping-service" />
         <module name="discovery-server" />
         <module name="product-category-management-service" />
         <module name="product-management-service" />
+        <module name="api-gateway" />
         <module name="product-service" />
         <module name="product-color-management-service" />
         <module name="amazon-s3-service" />
@@ -20,6 +22,8 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="amazon-s3-service" options="-parameters" />
+      <module name="api-gateway" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="product-category-management-service" options="-parameters" />
       <module name="product-color-management-service" options="-parameters" />
