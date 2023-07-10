@@ -34,8 +34,6 @@ public class Product {
 
     private String brandName;
 
-    private String model;
-
     private double price;
 
     private boolean isDiscounted;

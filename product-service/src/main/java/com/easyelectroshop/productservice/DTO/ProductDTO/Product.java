@@ -12,8 +12,6 @@ public record Product(UUID productId,
                       String completeDescription,
                       String coverImage,
                       String brandName,
-                      String modelFilename,
-                      String modelURL,
                       double price,
                       boolean isDiscounted,
                       double discountPercentage,
@@ -24,11 +22,9 @@ public record Product(UUID productId,
                       long category,
                       List<SubCategoryProduct> subCategories,
                       String _3DModelFilename,
-
                       String _3DModelURL,
                       boolean available,
                       String lastUpdated,
-
                       List<WebScrapper> scrappedPrices
                       ) {
 }
