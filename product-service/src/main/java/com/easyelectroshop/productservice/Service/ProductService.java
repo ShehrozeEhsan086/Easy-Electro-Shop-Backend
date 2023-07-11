@@ -5,21 +5,16 @@ import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
-import com.easyelectroshop.productservice.DTO.ProductDTO.ProductImage;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
-import com.thoughtworks.xstream.converters.basic.UUIDConverter;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
-import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.el.parser.AstListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -40,7 +35,10 @@ public class ProductService {
     MultipartBodyBuilder multipartBodyBuilder;
 
     @Autowired
-    Product productFallback;
+    Product productFallbackObj;
+
+    @Autowired
+    WebScrapper webScrapperFallbackObj;
 
     // ----------------  SERVICE FOR AMAZON SERVICE [[START]] --------------------
 
@@ -115,8 +113,8 @@ public class ProductService {
     }
 
     public ResponseEntity<List<WebScrapper>> getScrappedPrices(UUID productId){
-        log.info("CALLING WEB SCRAPPING SERVICE TO GET SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
         try{
+            log.info("CALLING WEB SCRAPPING SERVICE TO GET SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
             return webClientBuilder.build()
                     .get()
                     .uri("http://web-scrapping-service/api/v1/web-scrapper/get-scrapped-prices/"+productId)
@@ -125,13 +123,14 @@ public class ProductService {
                     .toEntityList(WebScrapper.class)
                     .block();
         } catch (WebClientException ex){
-            log.error("SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND",ex);
-            return null;
+            log.warn("WEB SCRAPPED PRICE FOR PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND");
+            return ResponseEntity.status(404).body(List.of());
         } catch (Exception ex){
-            log.error("COULD NOT GET SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
-            return null;
+            log.error("ERROR WHILE CALLING WEB SCRAPPING SERVICE FOR PRODUCT WITH PRODUCT_ID "+productId);
+            return ResponseEntity.status(500).body(List.of());
         }
     }
+
 
     public HttpStatusCode changeScrappedPriceVisibility(UUID productId){
         log.info("CALLING WEB SCRAPPING SERVICE TO CHANGE VISIBILITY OF SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
@@ -191,11 +190,10 @@ public class ProductService {
     //-------------------  FALL BACK METHODS FOR CIRCUIT BREAKER -------------------
     public List<Product> getAllProductsFallback(int pageNumber,int pageSize,String sortBy,Exception ex){
         log.info("EXECUTING FALLBACK FOR GET-ALL-PRODUCTS, DUE TO PRODUCT MANAGEMENT SERVICE BEING DOWN");
-        return List.of(productFallback);
+        return List.of(productFallbackObj);
     }
 
 
-    //CHANGE THIS LATER!!!!!
     public Product getProductById(UUID productId) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET PRODUCT WITH PRODUCT_ID "+productId);
         try{
@@ -206,17 +204,11 @@ public class ProductService {
                     .retrieve()
                     .bodyToMono(Product.class)
                     .block();
-//            List<WebScrapper> webScrapper = getScrappedPrices(productId).getBody();
-//            if(!webScrapper.isEmpty()){
-//                Product completeProduct = new Product(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
-//                        product.brandName(),product.price(),product.isDiscounted(),product.discountPercentage(),product.discountedPrice(),product.quantity(),product.size(),product.colors(),
-//                        product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
-//                return completeProduct;
-
-//            } else {
-//                return product;
-//            }
-            return product;
+            List<WebScrapper> webScrapper = getScrappedPrices(productId).getBody();
+            Product completeProduct = new Product(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
+                    product.brandName(),product.price(),product.isDiscounted(),product.discountPercentage(),product.discountedPrice(),product.quantity(),product.size(),product.colors(),
+                    product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
+            return completeProduct;
         } catch (WebClientException ex){
             log.error("PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND",ex.getMessage());
             return null;
