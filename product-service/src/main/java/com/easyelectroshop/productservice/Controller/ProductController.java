@@ -7,7 +7,6 @@ import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
 import com.easyelectroshop.productservice.Service.ProductService;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -86,7 +85,6 @@ public class ProductController {
         List<Product> products = productService.getAllProducts(pageNumber,pageSize,sortBy);
         return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
     }
-
 
     @GetMapping("get-all-products-count")
 
