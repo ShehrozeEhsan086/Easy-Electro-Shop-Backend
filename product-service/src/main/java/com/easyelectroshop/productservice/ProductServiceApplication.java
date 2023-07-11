@@ -1,6 +1,7 @@
 package com.easyelectroshop.productservice;
 
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
+import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -39,10 +40,15 @@ public class ProductServiceApplication {
 
     // Object send as a fallback for failed API call to Product Management Service
     @Bean
-    Product productFallback(){
+    Product productFallbackObj(){
         return new Product(UUID.fromString("00000000-0000-0000-0000-000000000000"),"Default Product", null,"Short Description","Complete Description",
                 " ","Default",0,false,0,0,1,0,null,0,null," ",
                 " ",true,null,null);
+    }
+
+    @Bean
+    WebScrapper webScrapperFallbackObj(){
+        return new WebScrapper(0,UUID.fromString("00000000-0000-0000-0000-000000000000"),"Daraz.pk","0",false);
     }
 
 }
