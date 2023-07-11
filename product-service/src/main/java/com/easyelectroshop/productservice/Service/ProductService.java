@@ -9,6 +9,7 @@ import com.easyelectroshop.productservice.DTO.ProductDTO.ProductImage;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
 import com.thoughtworks.xstream.converters.basic.UUIDConverter;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.el.parser.AstListData;
@@ -37,6 +38,9 @@ public class ProductService {
 
     @Autowired
     MultipartBodyBuilder multipartBodyBuilder;
+
+    @Autowired
+    Product productFallback;
 
     // ----------------  SERVICE FOR AMAZON SERVICE [[START]] --------------------
 
@@ -170,7 +174,8 @@ public class ProductService {
         }
     }
 
-    @CircuitBreaker(name="productManagementServiceBreaker", fallbackMethod = "getAllProductsFallback")
+//    @CircuitBreaker(name="productManagementServiceBreaker", fallbackMethod = "getAllProductsFallback")
+    @Retry(name="productManagementServiceBreaker",fallbackMethod = "getAllProductsFallback")
     public List<Product> getAllProducts(int pageNumber,int pageSize,String sortBy) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS");
         return webClientBuilder.build()
@@ -185,13 +190,12 @@ public class ProductService {
 
     //-------------------  FALL BACK METHODS FOR CIRCUIT BREAKER -------------------
     public List<Product> getAllProductsFallback(int pageNumber,int pageSize,String sortBy,Exception ex){
-        log.info("EXECUTING FALLBACK FOR GET-ALL-PRODUCTS DUE TO ",ex.getMessage());
-        Product product = new Product(UUID.fromString("00000000-0000-0000-0000-000000000000"),"Default Product", null,"Short Description","Complete Description",
-                " ","Default",0,false,0,0,1,0,null,0,null," ",
-                " ",true,null,null);
-        return List.of(product);
+        log.info("EXECUTING FALLBACK FOR GET-ALL-PRODUCTS, DUE TO PRODUCT MANAGEMENT SERVICE BEING DOWN");
+        return List.of(productFallback);
     }
 
+
+    //CHANGE THIS LATER!!!!!
     public Product getProductById(UUID productId) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET PRODUCT WITH PRODUCT_ID "+productId);
         try{
