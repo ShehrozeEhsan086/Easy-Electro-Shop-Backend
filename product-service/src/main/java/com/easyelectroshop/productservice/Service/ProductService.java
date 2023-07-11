@@ -206,15 +206,17 @@ public class ProductService {
                     .retrieve()
                     .bodyToMono(Product.class)
                     .block();
-            List<WebScrapper> webScrapper = getScrappedPrices(productId).getBody();
-            if(!webScrapper.isEmpty()){
-                Product completeProduct = new Product(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
-                        product.brandName(),product.price(),product.isDiscounted(),product.discountPercentage(),product.discountedPrice(),product.quantity(),product.size(),product.colors(),
-                        product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
-                return completeProduct;
-            } else {
-                return product;
-            }
+//            List<WebScrapper> webScrapper = getScrappedPrices(productId).getBody();
+//            if(!webScrapper.isEmpty()){
+//                Product completeProduct = new Product(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
+//                        product.brandName(),product.price(),product.isDiscounted(),product.discountPercentage(),product.discountedPrice(),product.quantity(),product.size(),product.colors(),
+//                        product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
+//                return completeProduct;
+
+//            } else {
+//                return product;
+//            }
+            return product;
         } catch (WebClientException ex){
             log.error("PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND",ex.getMessage());
             return null;
