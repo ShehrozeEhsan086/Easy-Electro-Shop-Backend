@@ -5,17 +5,25 @@ import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
+import com.easyelectroshop.productservice.DTO.ProductDTO.ProductImage;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
+import com.thoughtworks.xstream.converters.basic.UUIDConverter;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.el.parser.AstListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientException;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -30,6 +38,9 @@ public class ProductService {
 
     @Autowired
     MultipartBodyBuilder multipartBodyBuilder;
+
+    @Autowired
+    Product productFallback;
 
     // ----------------  SERVICE FOR AMAZON SERVICE [[START]] --------------------
 
@@ -103,7 +114,7 @@ public class ProductService {
         }
     }
 
-    public ResponseEntity<List<WebScrapper>>  getScrappedPrices(UUID productId){
+    public ResponseEntity<List<WebScrapper>> getScrappedPrices(UUID productId){
         log.info("CALLING WEB SCRAPPING SERVICE TO GET SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
         try{
             return webClientBuilder.build()
@@ -113,6 +124,9 @@ public class ProductService {
                     .retrieve()
                     .toEntityList(WebScrapper.class)
                     .block();
+        } catch (WebClientException ex){
+            log.error("SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND",ex);
+            return null;
         } catch (Exception ex){
             log.error("COULD NOT GET SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
             return null;
@@ -160,23 +174,28 @@ public class ProductService {
         }
     }
 
+//    @CircuitBreaker(name="productManagementServiceBreaker", fallbackMethod = "getAllProductsFallback")
+    @Retry(name="productManagementServiceBreaker",fallbackMethod = "getAllProductsFallback")
     public List<Product> getAllProducts(int pageNumber,int pageSize,String sortBy) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS");
-        try{
-             return webClientBuilder.build()
-                    .get()
-                    .uri("http://product-management-service/api/v1/product-management/get-all?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
-                    .accept(MediaType.APPLICATION_JSON)
-                    .retrieve()
-                    .toEntityList(Product.class)
-                    .block()
-                     .getBody();
-        } catch (Exception ex){
-            log.error("COULD NOT RETRIEVE ALL PRODUCTS",ex);
-            return null;
-        }
+        return webClientBuilder.build()
+                .get()
+                .uri("http://product-management-service/api/v1/product-management/get-all?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .toEntityList(Product.class)
+                .block()
+                .getBody();
     }
 
+    //-------------------  FALL BACK METHODS FOR CIRCUIT BREAKER -------------------
+    public List<Product> getAllProductsFallback(int pageNumber,int pageSize,String sortBy,Exception ex){
+        log.info("EXECUTING FALLBACK FOR GET-ALL-PRODUCTS, DUE TO PRODUCT MANAGEMENT SERVICE BEING DOWN");
+        return List.of(productFallback);
+    }
+
+
+    //CHANGE THIS LATER!!!!!
     public Product getProductById(UUID productId) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET PRODUCT WITH PRODUCT_ID "+productId);
         try{
@@ -196,6 +215,9 @@ public class ProductService {
             } else {
                 return product;
             }
+        } catch (WebClientException ex){
+            log.error("PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND",ex.getMessage());
+            return null;
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE PRODUCT WITH PRODUCT_ID "+productId,ex);
             return null;
@@ -313,8 +335,11 @@ public class ProductService {
                     .toEntity(Category.class)
                     .block()
                     .getBody();
+        } catch (WebClientException ex){
+            log.error("CATEGORY WITH CATEGORY_ID "+categoryId+" NOT FOUND",ex);
+            return null;
         } catch (Exception ex){
-            log.error("ERROR WHILE CALLING CATEGORY SERVICE TO GET CATEGORY WITH CATEGORY_ID "+categoryId+" POSSIBLY NOT FOUND!",ex);
+            log.error("ERROR WHILE CALLING CATEGORY SERVICE TO GET CATEGORY WITH CATEGORY_ID "+categoryId,ex);
             return null;
         }
     }
@@ -376,6 +401,9 @@ public class ProductService {
                     .toEntityList(SubCategory.class)
                     .block()
                     .getBody();
+        } catch (WebClientException ex){
+            log.error("SUB-CATEGORIES FOR CATEGORY_ID "+categoryId+" NOT FOUND",ex);
+            return null;
         } catch (Exception ex){
             log.error("ERROR WHILE CALLING CATEGORY SERVICE TO GET SUB-CATEGORIES FOR CATEGORY WITH CATEGORY_ID "+categoryId,ex);
             return null;
@@ -433,6 +461,9 @@ public class ProductService {
                     .toEntity(Color.class)
                     .block()
                     .getBody();
+        } catch (WebClientException ex){
+            log.error("COLOR WITH COLOR_ID "+colorId+" NOT FOUND",ex);
+            return null;
         } catch (Exception ex){
             log.error("ERROR WHILE CALLING COLOR SERVICE TO GET COLOR WITH COLOR_ID "+colorId+" POSSIBLY NOT FOUND!",ex);
             return null;
@@ -487,4 +518,6 @@ public class ProductService {
     }
 
     // ---------------  SERVICE FOR PRODUCT COLOR SERVICE [[END]] ------------------
+
+
 }

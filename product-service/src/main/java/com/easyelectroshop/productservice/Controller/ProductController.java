@@ -61,6 +61,9 @@ public class ProductController {
         return productService.getScrappedPrices(productId);
     }
 
+
+
+
     @PutMapping("/change-scrapped-price-visibility/{productId}")
     public ResponseEntity<HttpStatusCode> changeScrappedPricesVisibility(@PathVariable UUID productId){
         HttpStatusCode statusCode = productService.changeScrappedPriceVisibility(productId);
@@ -85,6 +88,7 @@ public class ProductController {
     }
 
     @GetMapping("get-all-products-count")
+
     public ResponseEntity<Integer> getProductsCount(){
         int productCount = productService.getProductsCount();
         return (productCount!=0) ? ResponseEntity.ok(productCount) : ResponseEntity.unprocessableEntity().build();
