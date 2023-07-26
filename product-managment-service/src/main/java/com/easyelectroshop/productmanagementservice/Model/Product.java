@@ -44,7 +44,7 @@ public class Product {
 
     private int quantity;
 
-    private double size;
+    private String size;
 
     @ElementCollection
     private List<Long> colors;
@@ -62,5 +62,6 @@ public class Product {
     private boolean available;
 
     private String lastUpdated;
+
 
 }

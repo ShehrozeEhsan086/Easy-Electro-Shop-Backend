@@ -6,7 +6,6 @@ import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,6 @@ public class ProductService {
     @Autowired
     Product productFallbackObj;
 
-    @Autowired
-    WebScrapper webScrapperFallbackObj;
 
     // ----------------  SERVICE FOR AMAZON SERVICE [[START]] --------------------
 
@@ -174,22 +171,36 @@ public class ProductService {
     }
 
 //    @CircuitBreaker(name="productManagementServiceBreaker", fallbackMethod = "getAllProductsFallback")
-    @Retry(name="productManagementServiceBreaker",fallbackMethod = "getAllProductsFallback")
+//    @Retry(name="productManagementServiceBreaker",fallbackMethod = "getAllProductsFallback")
     public List<Product> getAllProducts(int pageNumber,int pageSize,String sortBy) {
-        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS");
-        return webClientBuilder.build()
-                .get()
-                .uri("http://product-management-service/api/v1/product-management/get-all?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
-                .accept(MediaType.APPLICATION_JSON)
-                .retrieve()
-                .toEntityList(Product.class)
-                .block()
-                .getBody();
+        try{
+            log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS");
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://product-management-service/api/v1/product-management/get-all?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(Product.class)
+                    .block()
+                    .getBody();
+        } catch (Exception ex){
+            System.out.println(ex);
+            return null;
+        }
+//        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS");
+//        return webClientBuilder.build()
+//                .get()
+//                .uri("http://product-management-service/api/v1/product-management/get-all?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
+//                .accept(MediaType.APPLICATION_JSON)
+//                .retrieve()
+//                .toEntityList(Product.class)
+//                .block()
+//                .getBody();
     }
 
     //-------------------  FALL BACK METHODS FOR CIRCUIT BREAKER -------------------
     public List<Product> getAllProductsFallback(int pageNumber,int pageSize,String sortBy,Exception ex){
-        log.info("EXECUTING FALLBACK FOR GET-ALL-PRODUCTS, DUE TO PRODUCT MANAGEMENT SERVICE BEING DOWN");
+        log.info("EXECUTING FALLBACK FOR GET-ALL-PRODUCTS, DUE TO PRODUCT MANAGEMENT SERVICE BEING DOWN",ex);
         return List.of(productFallbackObj);
     }
 

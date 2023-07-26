@@ -16,7 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.UUID;
 
-@CrossOrigin //change later
+//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/product")
 public class ProductController {
@@ -61,8 +62,6 @@ public class ProductController {
     }
 
 
-
-
     @PutMapping("/change-scrapped-price-visibility/{productId}")
     public ResponseEntity<HttpStatusCode> changeScrappedPricesVisibility(@PathVariable UUID productId){
         HttpStatusCode statusCode = productService.changeScrappedPriceVisibility(productId);
@@ -73,7 +72,7 @@ public class ProductController {
 
     // -----------  APIS FOR PRODUCT MANAGEMENT SERVICE [[START]] -------------
 
-    @PostMapping("/add-product")
+    @PostMapping("/management/add-product")
     public ResponseEntity<HttpStatusCode> saveProduct(@RequestBody Product product){
         return ResponseEntity.status(productService.saveProduct(product)).build();
     }
@@ -85,6 +84,16 @@ public class ProductController {
         List<Product> products = productService.getAllProducts(pageNumber,pageSize,sortBy);
         return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
     }
+
+    @GetMapping("/management/get-all-products")
+    public ResponseEntity<List<Product>> getAllProductsTest(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+                                                        @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
+                                                        @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy){
+        List<Product> products = productService.getAllProducts(pageNumber,pageSize,sortBy);
+        return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
+    }
+
+
 
     @GetMapping("get-all-products-count")
 
