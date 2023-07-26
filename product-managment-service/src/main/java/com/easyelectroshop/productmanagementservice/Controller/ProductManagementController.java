@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PreFilter;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +32,7 @@ public class ProductManagementController {
         return(product.isPresent()) ? ResponseEntity.ok(product.get()) : ResponseEntity.notFound().build();
     }
 
+//    @PreAuthorize("hasAuthority('SCOPE_internal')")
     @GetMapping("/get-all")
     public ResponseEntity<List<Product>> getAllProducts(
             @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
