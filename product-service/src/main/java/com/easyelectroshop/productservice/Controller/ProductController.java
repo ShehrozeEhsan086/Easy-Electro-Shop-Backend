@@ -27,13 +27,13 @@ public class ProductController {
 
     // ----------------  APIS FOR AMAZON SERVICE [[START]] --------------------
 
-    @PostMapping("/upload-model")
+    @PostMapping("management/upload-model")
     public ResponseEntity<Model3D> uploadModel(@RequestParam(value = "model") MultipartFile file){
         Model3D uploadedContent = productService.uploadModel(file);
         return(uploadedContent != null) ? ResponseEntity.ok(uploadedContent) : ResponseEntity.internalServerError().build();
     }
 
-    @DeleteMapping("/delete-model/{fileName}")
+    @DeleteMapping("management/delete-model/{fileName}")
     public ResponseEntity<HttpStatusCode> deleteModel(@PathVariable String fileName){
         return ResponseEntity.status(productService.deleteModel(fileName)).build();
     }
@@ -44,13 +44,13 @@ public class ProductController {
 
     // --------------  APIS FOR WEB-SCRAPPING SERVICE [[START]] ----------------
 
-    @PostMapping("/scrape-product-prices-amazon/{productId}/{productName}")
+    @PostMapping("management/scrape-product-prices-amazon/{productId}/{productName}")
     public ResponseEntity<WebScrapper> scrapeProductPricesAmazon(@PathVariable UUID productId , @PathVariable String productName){
         WebScrapper response = productService.scrapeProductPricesAmazon(productId,productName);
         return ( response != null) ? ResponseEntity.ok(response) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/scrape-product-prices-daraz/{productId}/{productName}")
+    @PostMapping("management/scrape-product-prices-daraz/{productId}/{productName}")
     public ResponseEntity<WebScrapper> scrapeProductPricesDaraz(@PathVariable UUID productId , @PathVariable String productName){
         WebScrapper response = productService.scrapeProductPricesDaraz(productId,productName);
         return ( response != null) ? ResponseEntity.ok(response) : ResponseEntity.notFound().build();
@@ -62,7 +62,7 @@ public class ProductController {
     }
 
 
-    @PutMapping("/change-scrapped-price-visibility/{productId}")
+    @PutMapping("management/change-scrapped-price-visibility/{productId}")
     public ResponseEntity<HttpStatusCode> changeScrappedPricesVisibility(@PathVariable UUID productId){
         HttpStatusCode statusCode = productService.changeScrappedPriceVisibility(productId);
         return ResponseEntity.status(statusCode).build();
@@ -94,9 +94,7 @@ public class ProductController {
     }
 
 
-
     @GetMapping("get-all-products-count")
-
     public ResponseEntity<Integer> getProductsCount(){
         int productCount = productService.getProductsCount();
         return (productCount!=0) ? ResponseEntity.ok(productCount) : ResponseEntity.unprocessableEntity().build();
@@ -108,13 +106,13 @@ public class ProductController {
         return(product!=null) ? ResponseEntity.ok(product) : ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/update-product")
+    @PutMapping("management/update-product")
     public ResponseEntity<HttpStatusCode> updateProduct(@RequestBody Product product){
         HttpStatusCode statusCode = productService.updateProduct(product);
         return ResponseEntity.status(statusCode).build();
     }
 
-    @DeleteMapping("/delete-product/{productId}")
+    @DeleteMapping("management/delete-product/{productId}")
     public ResponseEntity<HttpStatusCode> deleteProduct(@PathVariable UUID productId){
         HttpStatusCode statusCode = productService.deleteProduct(productId);
         return ResponseEntity.status(statusCode).build();
@@ -124,7 +122,7 @@ public class ProductController {
 
     // -------------  APIS FOR PRODUCT CATEGORY SERVICE [[START]] ---------------
 
-    @PostMapping("/add-category")
+    @PostMapping("management/add-category")
     public ResponseEntity<HttpStatusCode> saveCategory(@RequestBody Category category){
         return ResponseEntity.status(productService.saveCategory(category)).build();
     }
@@ -141,12 +139,12 @@ public class ProductController {
         return(category!=null) ? ResponseEntity.ok(category) : ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/update-category")
+    @PutMapping("management/update-category")
     public ResponseEntity<HttpStatusCode> updateCategory(@RequestBody Category category){
         return ResponseEntity.status(productService.updateCategory(category)).build();
     }
 
-    @DeleteMapping("/delete-category/{categoryId}")
+    @DeleteMapping("management/delete-category/{categoryId}")
     public ResponseEntity<HttpStatusCode> deleteCategory(@PathVariable long categoryId){
         return ResponseEntity.status(productService.deleteCategory(categoryId)).build();
     }
@@ -161,8 +159,8 @@ public class ProductController {
 
     // --------------  APIS FOR PRODUCT COLOR SERVICE [[START]] -----------------
 
-    @PostMapping("/add-color")
-    public ResponseEntity saveColor(@RequestBody Color color){
+    @PostMapping("management/add-color")
+    public ResponseEntity<HttpStatusCode> saveColor(@RequestBody Color color){
         return ResponseEntity.status(productService.saveColor(color)).build();
     }
 
@@ -178,12 +176,12 @@ public class ProductController {
         return (color != null) ? ResponseEntity.ok(color) : ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/update-color")
+    @PutMapping("management/update-color")
     public ResponseEntity<HttpStatusCode> updateColor(@RequestBody Color color){
         return ResponseEntity.status(productService.updateColor(color)).build();
     }
 
-    @DeleteMapping("/delete-color/{colorId}")
+    @DeleteMapping("management/delete-color/{colorId}")
     public ResponseEntity<HttpStatusCode> deleteColor(@PathVariable long colorId){
         return ResponseEntity.status(productService.deleteColor(colorId)).build();
     }
