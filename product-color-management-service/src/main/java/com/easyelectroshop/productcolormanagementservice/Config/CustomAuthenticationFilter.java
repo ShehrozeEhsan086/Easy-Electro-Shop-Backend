@@ -1,4 +1,4 @@
-package com.easyelectroshop.productmanagementservice.Config;
+package com.easyelectroshop.productcolormanagementservice.Config;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
