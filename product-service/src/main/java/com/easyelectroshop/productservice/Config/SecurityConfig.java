@@ -14,15 +14,16 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.authorizeHttpRequests()
-                .requestMatchers("/api/v1/product/management/**")
-                .authenticated()
-                .requestMatchers("/actuator/**").permitAll()
-                .requestMatchers("/api/v1/product/**")
-                .permitAll()
-                .and()
-                .oauth2ResourceServer()
-                .jwt();
+        httpSecurity.authorizeHttpRequests().anyRequest().permitAll();
+//        httpSecurity.authorizeHttpRequests()
+//                .requestMatchers("/api/v1/product/management/**")
+//                .authenticated()
+//                .requestMatchers("/actuator/**").permitAll()
+//                .requestMatchers("/api/v1/product/**")
+//                .permitAll()
+//                .and()
+//                .oauth2ResourceServer()
+//                .jwt();
         return httpSecurity.build();
     }
 }
