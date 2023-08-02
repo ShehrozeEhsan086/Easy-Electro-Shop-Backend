@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity.CorsSpec;
@@ -13,10 +15,11 @@ import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2ErrorCodes;
 import org.springframework.security.oauth2.core.OAuth2TokenValidatorResult;
 import org.springframework.security.oauth2.jwt.*;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @Configuration
-@EnableWebFluxSecurity
+@EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -27,23 +30,19 @@ public class SecurityConfig {
   private String audience;
 
   @Bean
-  public SecurityWebFilterChain securityWebFilterChain(final ServerHttpSecurity httpSecurity) {
-    return httpSecurity
-            .authorizeExchange()
-            .pathMatchers("/api/v1/product/management/**")
+  public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
+    httpSecurity
+            .csrf().disable()
+            .authorizeHttpRequests()
+            .requestMatchers("/api/v1/product/management/**")
             .authenticated()
-            .pathMatchers("/actuator/**").permitAll()
-            .pathMatchers("/api/v1/product/**")
+            .requestMatchers("/api/v1/product/**")
             .permitAll()
-            .and()
-      .cors(CorsSpec::and)
-      .oauth2ResourceServer(oauth2ResourceServer ->
-        oauth2ResourceServer
-//          .authenticationEntryPoint(errorHandler::handleAuthenticationError)
-          .jwt(jwt -> jwt.jwtDecoder(this.makeJwtDecoder()))
-      )
-      .build();
+            .requestMatchers("/actuator/**")
+            .permitAll();
+    return httpSecurity.build();
   }
+
 
   private ReactiveJwtDecoder makeJwtDecoder() {
     final var issuer = resourceServerProps.getJwt().getIssuerUri();
