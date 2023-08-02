@@ -1,4 +1,4 @@
-package com.easyelectroshop.productservice.Config;
+package com.easyelectroshop.apigateway.Config.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

@@ -46,24 +46,25 @@ public class ProductServiceApplication {
                 .codecs(codecs -> codecs.defaultCodecs().maxInMemorySize(size))
                 .build();
         return WebClient.builder()
-                .exchangeStrategies(strategies)
-                .filter((clientRequest, next) -> {
-                    String authorizationHeader = clientRequest.headers().getFirst(HttpHeaders.AUTHORIZATION);
-                    if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-                        ClientRequest authorizedRequest = ClientRequest.from(clientRequest)
-                                .headers(headers -> {
-                                    headers.set(HttpHeaders.AUTHORIZATION, authorizationHeader);
-                                    headers.set(headerName, headerValue);
-                                })
-                                .build();
-                        return next.exchange(authorizedRequest);
-                    } else {
-                        ClientRequest authorizedRequest = ClientRequest.from(clientRequest)
-                                .headers(headers -> headers.set(headerName, headerValue))
-                                .build();
-                        return next.exchange(authorizedRequest);
-                    }
-                });
+                .exchangeStrategies(strategies);
+//                .filter((clientRequest, next) -> {
+//                    String authorizationHeader = clientRequest.headers().getFirst(HttpHeaders.AUTHORIZATION);
+//
+//                    if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+//                        ClientRequest authorizedRequest = ClientRequest.from(clientRequest)
+//                                .headers(headers -> {
+//                                    headers.set(HttpHeaders.AUTHORIZATION, authorizationHeader);
+//                                    headers.set(headerName, headerValue);
+//                                })
+//                                .build();
+//                        return next.exchange(authorizedRequest);
+//                    } else {
+//                        ClientRequest internallyAuthorizedRequest = ClientRequest.from(clientRequest)
+//                                .headers(headers -> headers.set(headerName, headerValue))
+//                                .build();
+//                        return next.exchange(internallyAuthorizedRequest);
+//                    }
+//                });
     }
     @Bean
     MultipartBodyBuilder multipartBodyBuilder(){
