@@ -26,12 +26,12 @@ public class ApplicationConfig {
     final var source = new UrlBasedCorsConfigurationSource();
     final var config = new CorsConfiguration();
     final var origins = List.of(clientOriginUrl);
-    final var headers = List.of(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE);
+//    final var headers = List.of(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE);
     final var methods = List.of(HttpMethod.GET.name(),HttpMethod.POST.name(),HttpMethod.PUT.name(),HttpMethod.DELETE.name());
     final var maxAge = Duration.ofSeconds(86400);
 
     config.setAllowedOrigins(origins);
-    config.setAllowedHeaders(headers);
+//    config.setAllowedHeaders(headers);
     config.setAllowedMethods(methods);
     config.setMaxAge(maxAge);
 
