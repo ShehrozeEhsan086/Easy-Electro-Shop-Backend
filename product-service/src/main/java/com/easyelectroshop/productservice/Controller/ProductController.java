@@ -85,14 +85,6 @@ public class ProductController {
         return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
     }
 
-    @GetMapping("/management/get-all-products")
-    public ResponseEntity<List<Product>> getAllProductsTest(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
-                                                        @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
-                                                        @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy){
-        List<Product> products = productService.getAllProducts(pageNumber,pageSize,sortBy);
-        return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
-    }
-
 
     @GetMapping("get-all-products-count")
     public ResponseEntity<Integer> getProductsCount(){

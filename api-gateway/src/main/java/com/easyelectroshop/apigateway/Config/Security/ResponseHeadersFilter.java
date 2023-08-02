@@ -1,4 +1,4 @@
-package com.easyelectroshop.productservice.Config;
+package com.easyelectroshop.apigateway.Config.Security;
 
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;

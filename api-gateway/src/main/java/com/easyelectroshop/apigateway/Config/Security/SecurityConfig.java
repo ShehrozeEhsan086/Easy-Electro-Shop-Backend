@@ -1,4 +1,4 @@
-package com.easyelectroshop.apigateway.Config.security;
+package com.easyelectroshop.apigateway.Config.Security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,8 +32,9 @@ public class SecurityConfig {
             .authorizeExchange()
             .pathMatchers("/api/v1/product/management/**")
             .authenticated()
-            .pathMatchers("/actuator/**").permitAll()
             .pathMatchers("/api/v1/product/**")
+            .permitAll()
+            .pathMatchers("/actuator/**")
             .permitAll()
             .and()
       .cors(CorsSpec::and)
