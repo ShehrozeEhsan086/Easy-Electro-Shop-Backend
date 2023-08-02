@@ -49,6 +49,7 @@ public class ProductServiceApplication {
                 .exchangeStrategies(strategies);
 //                .filter((clientRequest, next) -> {
 //                    String authorizationHeader = clientRequest.headers().getFirst(HttpHeaders.AUTHORIZATION);
+//
 //                    if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
 //                        ClientRequest authorizedRequest = ClientRequest.from(clientRequest)
 //                                .headers(headers -> {
@@ -58,10 +59,10 @@ public class ProductServiceApplication {
 //                                .build();
 //                        return next.exchange(authorizedRequest);
 //                    } else {
-//                        ClientRequest authorizedRequest = ClientRequest.from(clientRequest)
+//                        ClientRequest internallyAuthorizedRequest = ClientRequest.from(clientRequest)
 //                                .headers(headers -> headers.set(headerName, headerValue))
 //                                .build();
-//                        return next.exchange(authorizedRequest);
+//                        return next.exchange(internallyAuthorizedRequest);
 //                    }
 //                });
     }
