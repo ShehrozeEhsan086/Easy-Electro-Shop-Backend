@@ -29,16 +29,16 @@ public class SecurityConfig {
   @Bean
   public SecurityWebFilterChain securityWebFilterChain(final ServerHttpSecurity httpSecurity) {
     return httpSecurity
-            .csrf().disable()
+            //.csrf().disable()
             .authorizeExchange()
-            .pathMatchers("/api/v1/product/management/**")
-            .authenticated()
+//            .pathMatchers("/api/v1/product/management/**")
+//            .authenticated()
             .pathMatchers("/api/v1/product/**")
             .permitAll()
             .pathMatchers("/actuator/**")
             .permitAll()
             .and()
-      .cors(CorsSpec::and)
+            //.cors().disable()
       .oauth2ResourceServer(oauth2ResourceServer ->
         oauth2ResourceServer
 //          .authenticationEntryPoint(errorHandler::handleAuthenticationError)

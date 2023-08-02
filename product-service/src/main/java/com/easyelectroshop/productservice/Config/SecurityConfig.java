@@ -15,7 +15,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
+        httpSecurity.cors().disable()
                 .csrf().disable()
                 .authorizeHttpRequests()
                 .anyRequest()
