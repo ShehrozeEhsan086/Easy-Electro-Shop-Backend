@@ -25,14 +25,14 @@ public class ApplicationConfig {
   public CorsConfigurationSource corsConfigurationSource() {
     final var source = new UrlBasedCorsConfigurationSource();
     final var config = new CorsConfiguration();
-//    final var origins = List.of(clientOriginUrl);
-//    final var headers = List.of(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE);
-//    final var methods = List.of(HttpMethod.GET.name(),HttpMethod.POST.name(),HttpMethod.PUT.name(),HttpMethod.DELETE.name());
+    final var origins = List.of(clientOriginUrl);
+    final var headers = List.of(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE);
+    final var methods = List.of(HttpMethod.GET.name(),HttpMethod.POST.name(),HttpMethod.PUT.name(),HttpMethod.DELETE.name());
     final var maxAge = Duration.ofSeconds(86400);
 
-//    config.setAllowedOrigins(origins);
-//    config.setAllowedHeaders(headers);
-//    config.setAllowedMethods(methods);
+    config.setAllowedOrigins(origins);
+    config.setAllowedHeaders(headers);
+    config.setAllowedMethods(methods);
     config.setMaxAge(maxAge);
 
     source.registerCorsConfiguration("/**", config);
@@ -42,7 +42,6 @@ public class ApplicationConfig {
   @Bean
   public CorsWebFilter corsWebFilter() {
     final var configSource = this.corsConfigurationSource();
-
     return new CorsWebFilter(configSource);
   }
 }
