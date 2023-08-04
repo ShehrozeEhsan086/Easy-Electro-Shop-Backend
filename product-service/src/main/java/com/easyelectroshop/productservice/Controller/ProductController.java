@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.UUID;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/product")
 public class ProductController {
@@ -28,7 +27,6 @@ public class ProductController {
 
     @PostMapping("management/upload-model")
     public ResponseEntity<Model3D> uploadModel(@RequestParam(value = "model") MultipartFile file){
-        System.out.println("Hit");
         Model3D uploadedContent = productService.uploadModel(file);
         return(uploadedContent != null) ? ResponseEntity.ok(uploadedContent) : ResponseEntity.internalServerError().build();
     }
