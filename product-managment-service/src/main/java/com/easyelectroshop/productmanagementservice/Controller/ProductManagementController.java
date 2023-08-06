@@ -32,7 +32,6 @@ public class ProductManagementController {
         return(product.isPresent()) ? ResponseEntity.ok(product.get()) : ResponseEntity.notFound().build();
     }
 
-//    @PreAuthorize("hasAuthority('SCOPE_internal')")
     @GetMapping("/get-all")
     public ResponseEntity<List<Product>> getAllProducts(
             @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
@@ -40,13 +39,18 @@ public class ProductManagementController {
             @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy)
     {
         List<Product> products = productManagementService.getAllProducts(pageNumber,pageSize,sortBy);
-        return (products != null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build();
+        int length = productManagementService.getProductsCount();
+        if(length == 0){
+            return ResponseEntity.ok(null);
+        } else {
+            return (products != null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build();
+        }
     }
 
     @GetMapping("/get-all-count")
     public ResponseEntity<Integer> getProductsCount(){
         int length = productManagementService.getProductsCount();
-        return (length != 0) ? ResponseEntity.ok(length) : ResponseEntity.unprocessableEntity().build();
+        return ResponseEntity.ok(length);
     }
 
     @PutMapping("/update-product")
