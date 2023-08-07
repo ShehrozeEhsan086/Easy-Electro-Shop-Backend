@@ -26,6 +26,8 @@ public class Product {
 
     private String shortDescription;
 
+    @Lob
+    @Column(name = "completeDescription", columnDefinition="MEDIUMBLOB")
     private String completeDescription;
 
     @Lob
