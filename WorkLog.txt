@@ -1,0 +1,10 @@
+UPDATE FILE
+
+---------------------------------------------------------------
+8th AUGUST 2023
+
+1. Created customer_management-service 
+2. Make add-customer api
+2.1 Need to fix payment option encryption in save product
+
+---------------------------------------------------------------
