@@ -11,7 +11,6 @@ import java.util.UUID;
 @Repository
 public interface ProductManagementRepository extends JpaRepository<Product, UUID> {
 
-
     // FIX Later not working correctly!
     @Query(value = "SELECT * FROM product ORDER BY ?1 ASC LIMIT ?2 OFFSET ?3 ",nativeQuery = true)
     List<Product> findAllWithOnlyCoverImage(String sortBy,int pageSize, int pageNumber);
