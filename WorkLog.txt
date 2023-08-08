@@ -11,7 +11,7 @@ UPDATE FILE
 
 9th AUGUST 2023
 
-1. Completed API for customer
+1. Completed API (Methods) for customer
   1. Get All Customer Count
   2. Get Customer By Id
   3. Get All Customers
