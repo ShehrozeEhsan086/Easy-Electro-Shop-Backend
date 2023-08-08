@@ -59,10 +59,10 @@ public class ProductManagementService {
                 pageSize = Integer.MAX_VALUE;
             }
             List<Product> products = productManagementRepository.findAllWithOnlyCoverImage(sortBy,pageSize,pageNumber);
-            log.info("SUCCESSFULLY RETRIEVED PRODUCTS");
+            log.info("SUCCESSFULLY RETRIEVED ALL PRODUCTS");
             return products;
         } catch (Exception ex){
-            log.error("COULD NOT RETRIEVE PRODUCTS",ex);
+            log.error("COULD NOT RETRIEVE ALL PRODUCTS",ex);
             return null;
         }
     }
@@ -74,7 +74,7 @@ public class ProductManagementService {
             log.info("SUCCESSFULLY RETRIEVED PRODUCTS COUNT");
             return length;
         } catch (Exception ex){
-            log.error("COULD NOT RETRIEVE PRODUCTS",ex);
+            log.error("COULD NOT RETRIEVE PRODUCTS COUNT",ex);
             return 0;
         }
     }
@@ -86,7 +86,7 @@ public class ProductManagementService {
             if(tempProduct.isPresent()){
                 productManagementRepository.save(product);
                 log.info("SUCCESSFULLY EDITED PRODUCT WITH NAME "+product.getName());
-                return HttpStatusCode.valueOf(202);
+                return HttpStatusCode.valueOf(200);
             } else {
                 log.info("COULD NOT FIND GIVEN PRODUCT, ADDING NEW PRODUCT");
                 productManagementRepository.save(product);

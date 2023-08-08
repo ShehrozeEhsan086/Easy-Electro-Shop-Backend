@@ -8,22 +8,33 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
 
 @Component
 public class EncryptionUtil {
 
-    @Value("${key}")
-    private String key;
+//    @Value("${key}")
+//    private String key;
 
-    @Value("${initVector}")
-    private String initVector;
+//    @Value("${initVector}")
+//    private String initVector;
 
     @Value("${algo}")
     private String algo;
+
+
+    public static IvParameterSpec generateIv() {
+        byte[] iv = new byte[16];
+        new SecureRandom().nextBytes(iv);
+        return new IvParameterSpec(iv);
+    }
+
     public String encrypt(String value) {
         try {
-            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes(StandardCharsets.UTF_8));
-            SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
+            IvParameterSpec iv = generateIv();
+            String key = "kURq9TNOqFPjcyxr";
+            byte[] byteKey = key.getBytes(StandardCharsets.UTF_8);
+            SecretKeySpec skeySpec = new SecretKeySpec(byteKey, "AES");
 
             Cipher cipher = Cipher.getInstance(algo);
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
@@ -38,7 +49,9 @@ public class EncryptionUtil {
 
     public String decrypt(String encrypted) {
         try {
-            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes(StandardCharsets.UTF_8));
+//            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes(StandardCharsets.UTF_8));
+            IvParameterSpec iv = generateIv();
+            String key = "kURq9TNOqFPjcyxr";
             SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
 
             Cipher cipher = Cipher.getInstance(algo);
