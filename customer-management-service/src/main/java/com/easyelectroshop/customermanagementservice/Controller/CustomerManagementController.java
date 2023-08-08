@@ -5,10 +5,10 @@ import com.easyelectroshop.customermanagementservice.Service.CustomerManagementS
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/customer-management")
@@ -22,4 +22,11 @@ public class CustomerManagementController {
         return ResponseEntity.status(customerManagementService.saveCustomer(customer)).build();
     }
 
+    @GetMapping("/get-customer/{customerId}")
+    public ResponseEntity<Customer> getCustomerById(@PathVariable UUID customerId){
+        Optional<Customer> customer = customerManagementService.getCustomerById(customerId);
+        return(customer.isPresent()) ? ResponseEntity.ok(customer.get()) : ResponseEntity.notFound().build();
+    }
+
+    // Unfinished
 }
