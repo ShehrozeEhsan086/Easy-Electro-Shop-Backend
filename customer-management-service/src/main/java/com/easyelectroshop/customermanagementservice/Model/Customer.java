@@ -35,9 +35,9 @@ public class Customer {
     @JoinColumn(name = "address_id",referencedColumnName = "addressId")
     private Address address;
 
-    @OneToOne(targetEntity = PaymentOption.class,  cascade = CascadeType.ALL)
-    @JoinColumn(name = "payment_option_id",referencedColumnName = "paymentOptionId")
-    private PaymentOption paymentOption;
+    @OneToOne(targetEntity = PaymentMethod.class,  cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_option_i    d",referencedColumnName = "paymentOptionId")
+    private PaymentMethod paymentOption;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
     private boolean isProfileComplete;
