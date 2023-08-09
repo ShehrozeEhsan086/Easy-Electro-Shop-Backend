@@ -2,6 +2,7 @@ package com.easyelectroshop.productmanagementservice.Controller;
 
 import com.easyelectroshop.productmanagementservice.Model.Product;
 import com.easyelectroshop.productmanagementservice.Service.ProductManagementService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatusCode;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/product-management")
 public class ProductManagementController {
@@ -38,19 +40,20 @@ public class ProductManagementController {
             @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
             @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy)
     {
-        List<Product> products = productManagementService.getAllProducts(pageNumber,pageSize,sortBy);
         int length = productManagementService.getProductsCount();
         if(length == 0){
+            log.info("NO PRODUCTS FOUND IN DATABASE");
             return ResponseEntity.ok(null);
         } else {
-            return (products != null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build();
+            List<Product> products = productManagementService.getAllProducts(pageNumber,pageSize,sortBy);
+            return (products != null) ? ResponseEntity.ok(products) : ResponseEntity.internalServerError().build();
         }
     }
 
     @GetMapping("/get-all-count")
     public ResponseEntity<Integer> getProductsCount(){
         int length = productManagementService.getProductsCount();
-        return ResponseEntity.ok(length);
+        return (length >= 0) ? ResponseEntity.ok(length) : ResponseEntity.internalServerError().build() ;
     }
 
     @PutMapping("/update-product")

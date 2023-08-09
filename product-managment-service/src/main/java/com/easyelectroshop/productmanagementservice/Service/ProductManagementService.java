@@ -75,7 +75,7 @@ public class ProductManagementService {
             return length;
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE PRODUCTS COUNT",ex);
-            return 0;
+            return -1;
         }
     }
 
