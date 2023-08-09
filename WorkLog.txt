@@ -23,3 +23,11 @@ UPDATE FILE
 2. Payment Option encryption still not fixed.
 
 ---------------------------------------------------------------
+
+10th AUGUEST 2023
+
+1. Tested All Customer Management APIs
+2. Payment Option encryption still not fixed.
+3. S3 Service does not accept anything except .glb file.
+
+---------------------------------------------------------------
