@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@PreAuthorize("hasAuthority('SCOPE_internal')")
 @RequestMapping("/api/v1/web-scrapper")
 public class WebScrapperController {
 
