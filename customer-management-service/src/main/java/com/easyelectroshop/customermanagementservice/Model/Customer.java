@@ -1,5 +1,6 @@
 package com.easyelectroshop.customermanagementservice.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,8 +36,9 @@ public class Customer {
     @JoinColumn(name = "address_id",referencedColumnName = "addressId")
     private Address address;
 
+    @JsonIgnore
     @OneToOne(targetEntity = PaymentMethod.class,  cascade = CascadeType.ALL)
-    @JoinColumn(name = "payment_option_i    d",referencedColumnName = "paymentOptionId")
+    @JoinColumn(name = "payment_option_id",referencedColumnName = "paymentOptionId")
     private PaymentMethod paymentOption;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")

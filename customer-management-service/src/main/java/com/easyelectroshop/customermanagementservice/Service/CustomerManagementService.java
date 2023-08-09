@@ -80,21 +80,26 @@ public class CustomerManagementService {
         try{
             Optional<Customer> tempCustomer = customerManagementRepository.findById(customer.getCustomerId());
             if (tempCustomer.isPresent()){
-                if (validateCustomerProfileCompleteness(customer)){
-                    customer.setProfileComplete(true);
-                    customerManagementRepository.save(customer);
-                    log.info("SUCCESSFULLY COMPLETED CUSTOMER PROFILE WITH CUSTOMER_USERNAME "+customer.getUserName());
-                    return HttpStatusCode.valueOf(200);
+                if (customer.getUserName().equals(tempCustomer.get().getUserName())){
+                    if (validateCustomerProfileCompleteness(customer)){
+                        customer.setProfileComplete(true);
+                        customerManagementRepository.save(customer);
+                        log.info("SUCCESSFULLY COMPLETED CUSTOMER PROFILE WITH CUSTOMER_USERNAME "+customer.getUserName());
+                        return HttpStatusCode.valueOf(200);
+                    } else {
+                        log.error("ERROR COMPLETING CUSTOMER PROFILE AS ATTRIBUTE REQUIREMENTS WERE NOT MET FOR CUSTOMER_USERNAME "+customer.getUserName());
+                        return HttpStatusCode.valueOf(422);
+                    }
                 } else {
-                    log.error("ERROR COMPLETING CUSTOMER PROFILE AS ATTRIBUTE REQUIREMENTS WERE NOT MET FOR CUSTOMER_USERNAME "+customer.getUserName());
-                    return HttpStatusCode.valueOf(422);
+                    log.error("ERROR COMPLETING PROFILE FOR CUSTOMER WITH CUSTOMER_ID "+ customer.getCustomerId() +", USERNAME CANNOT BE CHANGED");
+                    return HttpStatusCode.valueOf(400);
                 }
             } else {
                 log.error("ERROR COMPLETING CUSTOMER PROFILE AS CUSTOMER WAS NOT FOUND");
                 return HttpStatusCode.valueOf(404);
             }
         } catch (Exception ex){
-            log.error("ERROR COMPLETING CUSTOMER PROFILE WITH CUSTOMER_USERNAME "+customer.getUserName());
+            log.error("ERROR COMPLETING CUSTOMER PROFILE WITH CUSTOMER_USERNAME "+customer.getUserName(),ex);
             return HttpStatusCode.valueOf(500);
         }
     }
@@ -104,13 +109,18 @@ public class CustomerManagementService {
         try{
             Optional<Customer> tempCustomer = customerManagementRepository.findById(customer.getCustomerId());
             if(tempCustomer.isPresent()){
-                if( validateCustomerProfileCompleteness(customer) ){
-                    customerManagementRepository.save(customer);
-                    log.info("SUCCESSFULLY EDITED CUSTOMER WITH CUSTOMER_ID "+customer.getCustomerId());
-                    return HttpStatusCode.valueOf(202);
+                if (customer.getUserName().equals(tempCustomer.get().getUserName())) {
+                    if (validateCustomerProfileCompleteness(customer)) {
+                        customerManagementRepository.save(customer);
+                        log.info("SUCCESSFULLY EDITED CUSTOMER WITH CUSTOMER_ID " + customer.getCustomerId());
+                        return HttpStatusCode.valueOf(200);
+                    } else {
+                        log.error("ERROR EDITING CUSTOMER AS PROFILE ATTRIBUTE REQUIREMENTS WERE NOT MET FOR CUSTOMER_USERNAME " + customer.getUserName());
+                        return HttpStatusCode.valueOf(422);
+                    }
                 } else {
-                    log.error("ERROR EDITING CUSTOMER AS PROFILE ATTRIBUTE REQUIREMENTS WERE NOT MET FOR CUSTOMER_USERNAME "+customer.getUserName());
-                    return HttpStatusCode.valueOf(422);
+                    log.error("ERROR COMPLETING PROFILE FOR CUSTOMER WITH CUSTOMER_ID "+ customer.getCustomerId() +", USERNAME CANNOT BE CHANGED");
+                    return HttpStatusCode.valueOf(400);
                 }
             } else {
                 log.error("ERROR EDITING CUSTOMER WITH CUSTOMER_ID "+customer.getCustomerId()+"COULD NOT FIND GIVEN CUSTOMER");
