@@ -3,14 +3,12 @@ package com.easyelectroshop.amazons3service.Service;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
-import com.amazonaws.util.IOUtils;
 import com.easyelectroshop.amazons3service.DTO.Model3D;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,34 +28,25 @@ public class S3StorageService {
     @Autowired
     AmazonS3 amazonS3;
 
-    public Model3D uploadModel(MultipartFile file){
+    public ResponseEntity<Model3D> uploadModel(MultipartFile file){
         log.info("CALLING AMAZON API TO UPLOAD MODEL FOR FILE WITH FILE_NAME "+file.getOriginalFilename());
         try{
-            File convertedFile = convertMultiPartFileToFile(file);
-            long instant = Instant.now().toEpochMilli();
-            String fileName = instant+"_"+file.getOriginalFilename();
-            amazonS3.putObject(new PutObjectRequest(bucketName,fileName,convertedFile).withCannedAcl(CannedAccessControlList.PublicRead));
-            convertedFile.delete();
-            log.info("SUCCESSFULLY UPLOADED FILE WITH FILE_NAME "+file.getOriginalFilename()+" TO AMAZON S3 BUCKET WITH BUCKET_NAME "+bucketName);
-            URL url = amazonS3.getUrl(bucketName,fileName);
-            return(new Model3D(fileName,url));
+            if (file.getOriginalFilename().endsWith(".glb")){
+                File convertedFile = convertMultiPartFileToFile(file);
+                long instant = Instant.now().toEpochMilli();
+                String fileName = instant+"_"+file.getOriginalFilename();
+                amazonS3.putObject(new PutObjectRequest(bucketName,fileName,convertedFile).withCannedAcl(CannedAccessControlList.PublicRead));
+                convertedFile.delete();
+                log.info("SUCCESSFULLY UPLOADED FILE WITH FILE_NAME "+file.getOriginalFilename()+" TO AMAZON S3 BUCKET WITH BUCKET_NAME "+bucketName);
+                URL url = amazonS3.getUrl(bucketName,fileName);
+                return ResponseEntity.ok(new Model3D(fileName,url));
+            } else {
+                log.error("ERROR WHILE UPLOADING FILE WITH FILE_NAME "+file.getOriginalFilename()+" FORMAT NOT SUPPORTED");
+                return ResponseEntity.status(HttpStatusCode.valueOf(415)).body(null);
+            }
         } catch (Exception ex){
             log.error("ERROR WHILE UPLOADING FILE WITH FILE_NAME "+file.getOriginalFilename(),ex);
-            return null;
-        }
-    }
-
-    public byte[] downloadModel(String fileName){
-        log.info("DOWNLOADING FILE WITH FILE_NAME "+fileName);
-        S3Object s3Object = amazonS3.getObject(bucketName,fileName);
-        S3ObjectInputStream inputStream = s3Object.getObjectContent();
-        try{
-            byte[] content = IOUtils.toByteArray(inputStream);
-            log.info("SUCCESSFUL DOWNLOAD REQUEST FOR FILE WITH FILE_NAME "+fileName);
-            return content;
-        } catch (IOException ex){
-            log.error("ERROR DOWNLOADING FILE WITH FILE_NAME "+fileName,ex);
-            return null;
+            return ResponseEntity.status(HttpStatusCode.valueOf(500)).body(null);
         }
     }
 
@@ -72,7 +61,6 @@ public class S3StorageService {
             return HttpStatusCode.valueOf(500);
         }
     }
-
 
     private File convertMultiPartFileToFile(MultipartFile file){
         log.info("CONVERTING MULTI-PART FILE TO SINGLE FILE WITH FILE_NAME "+file.getOriginalFilename());
