@@ -31,3 +31,10 @@ UPDATE FILE
 3. S3 Service does not accept anything except .glb file.
 
 ---------------------------------------------------------------
+
+11th Augst 2023 
+
+NO WORK DONE
+
+---------------------------------------------------------------
+
