@@ -10,10 +10,12 @@
         <module name="config-server" />
         <module name="web-scrapping-service" />
         <module name="discovery-server" />
+        <module name="customer-service" />
         <module name="product-category-management-service" />
         <module name="product-management-service" />
         <module name="api-gateway" />
         <module name="product-service" />
+        <module name="customer-management-service" />
         <module name="product-color-management-service" />
         <module name="amazon-s3-service" />
       </profile>
@@ -24,6 +26,8 @@
       <module name="amazon-s3-service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="config-server" options="-parameters" />
+      <module name="customer-management-service" options="-parameters" />
+      <module name="customer-service" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="product-category-management-service" options="-parameters" />
       <module name="product-color-management-service" options="-parameters" />
