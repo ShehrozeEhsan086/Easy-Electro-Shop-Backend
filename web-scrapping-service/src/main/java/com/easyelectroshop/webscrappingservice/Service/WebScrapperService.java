@@ -31,9 +31,6 @@ public class WebScrapperService {
     WebDriver chromeDriver;
 
     @Autowired
-    WebScrapper webScrapper;
-
-    @Autowired
     WebClient.Builder webClientBuilder;
 
     @Autowired
@@ -52,14 +49,16 @@ public class WebScrapperService {
     public WebScrapper scrapePriceAmazon(String productName, UUID productId) {
         try{
             log.info("SCRAPPING AMAZON.COM FOR PRODUCT WITH PRODUCT_NAME "+productName);
-            WebScrapper tempScrapper = webScrapperRepository.findAllByProductIdAndSite(productId,"Amazon");
+//            WebScrapper tempScrapper = webScrapperRepository.findAllByProductIdAndSite(productId,"Amazon");
+//            WebScrapper amazonScrapper = getPriceFromAmazon(productName,productId);
+//            if(tempScrapper == null){
+//                webScrapperRepository.save(amazonScrapper);
+//            } else {
+//                tempScrapper.setScrappedPrice(amazonScrapper.getScrappedPrice());
+//                webScrapperRepository.save(tempScrapper);
+//            }
             WebScrapper amazonScrapper = getPriceFromAmazon(productName,productId);
-            if(tempScrapper == null){
-                webScrapperRepository.save(amazonScrapper);
-            } else {
-                tempScrapper.setScrappedPrice(amazonScrapper.getScrappedPrice());
-                webScrapperRepository.save(tempScrapper);
-            }
+            webScrapperRepository.save(amazonScrapper);
             log.info("SUCCESSFULLY SCRAPPED AMAZON.COM FOR PRODUCT WITH PRODUCT_NAME "+productName);
             return amazonScrapper;
         } catch (Exception ex){
@@ -71,14 +70,16 @@ public class WebScrapperService {
     public WebScrapper scrapePriceDaraz(String productName, UUID productId) {
         try{
             log.info("SCRAPPING DARAZ.PK FOR PRODUCT WITH PRODUCT_NAME "+productName);
-            WebScrapper tempDarazScrapper = webScrapperRepository.findAllByProductIdAndSite(productId,"Daraz");
+//            WebScrapper tempDarazScrapper = webScrapperRepository.findAllByProductIdAndSite(productId,"Daraz");
+//            WebScrapper daraszScrapper = getPriceFromDaraz(productName,productId);
+//            if(tempDarazScrapper == null){
+//                webScrapperRepository.save(daraszScrapper);
+//            } else {
+//                tempDarazScrapper.setScrappedPrice(daraszScrapper.getScrappedPrice());
+//                webScrapperRepository.save(tempDarazScrapper);
+//            }
             WebScrapper daraszScrapper = getPriceFromDaraz(productName,productId);
-            if(tempDarazScrapper == null){
-                webScrapperRepository.save(daraszScrapper);
-            } else {
-                tempDarazScrapper.setScrappedPrice(daraszScrapper.getScrappedPrice());
-                webScrapperRepository.save(tempDarazScrapper);
-            }
+            webScrapperRepository.save(daraszScrapper);
             log.info("SUCCESSFULLY SCRAPPED DARAZ.PK FOR PRODUCT WITH PRODUCT_NAME "+productName);
             return daraszScrapper;
         } catch (Exception ex){
@@ -88,6 +89,7 @@ public class WebScrapperService {
     }
 
     public WebScrapper getPriceFromAmazon(String productName, UUID productId){
+        WebScrapper webScrapper = new WebScrapper();
         try{
             chromeDriver.get(amazonUrl);
             WebElement searchField = chromeDriver.findElement(By.id("twotabsearchtextbox"));
@@ -145,6 +147,7 @@ public class WebScrapperService {
 
 
     public WebScrapper getPriceFromDaraz(String productName, UUID productId){
+        WebScrapper webScrapper = new WebScrapper();
         try{
             chromeDriver.get(darazUrl);
             WebElement searchFiled = chromeDriver.findElement(By.id("q"));
@@ -245,5 +248,9 @@ public class WebScrapperService {
             log.error("COULD NOT CHANGE VISIBILITY OF SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
             return ResponseEntity.status(500).build();
         }
+    }
+
+    public List<WebScrapper> getAll(){
+        return webScrapperRepository.findAll();
     }
 }
