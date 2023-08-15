@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 import java.util.List;
 import java.util.UUID;
@@ -42,5 +43,9 @@ public class WebScrapperController {
         return webScrapperService.changeScrappedPriceVisibility(productId);
     }
 
-
+    @GetMapping("/get-all")
+    public ResponseEntity<List<WebScrapper>> getAll(){
+        List<WebScrapper> allData = webScrapperService.getAll();
+        return allData != null ? ResponseEntity.ok(allData) : ResponseEntity.notFound().build();
+    }
 }
