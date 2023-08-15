@@ -43,6 +43,16 @@ public class WebScrapperController {
         return webScrapperService.changeScrappedPriceVisibility(productId);
     }
 
+    @PutMapping("/change-scrapped-price-visibility-amazon/{productId}")
+    public ResponseEntity<HttpStatusCode> changeScrappedPriceVisibilityAmazon(@PathVariable UUID productId){
+        return webScrapperService.changeScrappedPriceVisibilityAmazon(productId);
+    }
+
+    @PutMapping("/change-scrapped-price-visibility-daraz/{productId}")
+    public ResponseEntity<HttpStatusCode> changeScrappedPriceVisibilityDaraz(@PathVariable UUID productId){
+        return webScrapperService.changeScrappedPriceVisibilityDaraz(productId);
+    }
+
     @GetMapping("/get-all")
     public ResponseEntity<List<WebScrapper>> getAll(){
         List<WebScrapper> allData = webScrapperService.getAll();
