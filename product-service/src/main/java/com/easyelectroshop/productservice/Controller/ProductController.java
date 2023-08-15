@@ -66,6 +66,18 @@ public class ProductController {
         return ResponseEntity.status(statusCode).build();
     }
 
+    @PutMapping("management/change-scrapped-price-visibility-amazon/{productId}")
+    public ResponseEntity<HttpStatusCode> changeScrappedPricesVisibilityAmazon(@PathVariable UUID productId){
+        HttpStatusCode statusCode = productService.changeScrappedPriceVisibilityAmazon(productId);
+        return ResponseEntity.status(statusCode).build();
+    }
+
+    @PutMapping("management/change-scrapped-price-visibility-daraz/{productId}")
+    public ResponseEntity<HttpStatusCode> changeScrappedPricesVisibilityDaraz(@PathVariable UUID productId){
+        HttpStatusCode statusCode = productService.changeScrappedPriceVisibilityDaraz(productId);
+        return ResponseEntity.status(statusCode).build();
+    }
+
     // ---------------  APIS FOR WEB-SCRAPPING SERVICE [[END]] -----------------
 
     // -----------  APIS FOR PRODUCT MANAGEMENT SERVICE [[START]] -------------

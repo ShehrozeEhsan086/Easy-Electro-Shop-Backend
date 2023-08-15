@@ -49,18 +49,17 @@ public class WebScrapperService {
     public WebScrapper scrapePriceAmazon(String productName, UUID productId) {
         try{
             log.info("SCRAPPING AMAZON.COM FOR PRODUCT WITH PRODUCT_NAME "+productName);
-//            WebScrapper tempScrapper = webScrapperRepository.findAllByProductIdAndSite(productId,"Amazon");
-//            WebScrapper amazonScrapper = getPriceFromAmazon(productName,productId);
-//            if(tempScrapper == null){
-//                webScrapperRepository.save(amazonScrapper);
-//            } else {
-//                tempScrapper.setScrappedPrice(amazonScrapper.getScrappedPrice());
-//                webScrapperRepository.save(tempScrapper);
-//            }
+            WebScrapper tempScrapper = webScrapperRepository.findAllByProductIdAndSite(productId,"Amazon");
             WebScrapper amazonScrapper = getPriceFromAmazon(productName,productId);
-            webScrapperRepository.save(amazonScrapper);
+            if(tempScrapper == null){
+                amazonScrapper.setIsVisible(false);
+                webScrapperRepository.save(amazonScrapper);
+            } else {
+                tempScrapper.setScrappedPrice(amazonScrapper.getScrappedPrice());
+                webScrapperRepository.save(tempScrapper);
+            }
             log.info("SUCCESSFULLY SCRAPPED AMAZON.COM FOR PRODUCT WITH PRODUCT_NAME "+productName);
-            return amazonScrapper;
+            return webScrapperRepository.findAllByProductIdAndSite(productId,"Amazon");
         } catch (Exception ex){
             log.error("ERROR WHILE SCRAPPING PRICES ",ex);
             return null;
@@ -70,18 +69,17 @@ public class WebScrapperService {
     public WebScrapper scrapePriceDaraz(String productName, UUID productId) {
         try{
             log.info("SCRAPPING DARAZ.PK FOR PRODUCT WITH PRODUCT_NAME "+productName);
-//            WebScrapper tempDarazScrapper = webScrapperRepository.findAllByProductIdAndSite(productId,"Daraz");
-//            WebScrapper daraszScrapper = getPriceFromDaraz(productName,productId);
-//            if(tempDarazScrapper == null){
-//                webScrapperRepository.save(daraszScrapper);
-//            } else {
-//                tempDarazScrapper.setScrappedPrice(daraszScrapper.getScrappedPrice());
-//                webScrapperRepository.save(tempDarazScrapper);
-//            }
-            WebScrapper daraszScrapper = getPriceFromDaraz(productName,productId);
-            webScrapperRepository.save(daraszScrapper);
+            WebScrapper tempDarazScrapper = webScrapperRepository.findAllByProductIdAndSite(productId,"Daraz");
+            WebScrapper darazScrapper = getPriceFromDaraz(productName,productId);
+            if(tempDarazScrapper == null){
+                darazScrapper.setIsVisible(false);
+                webScrapperRepository.save(darazScrapper);
+            } else {
+                tempDarazScrapper.setScrappedPrice(darazScrapper.getScrappedPrice());
+                webScrapperRepository.save(tempDarazScrapper);
+            }
             log.info("SUCCESSFULLY SCRAPPED DARAZ.PK FOR PRODUCT WITH PRODUCT_NAME "+productName);
-            return daraszScrapper;
+            return webScrapperRepository.findAllByProductIdAndSite(productId,"Daraz");
         } catch (Exception ex){
             log.error("ERROR WHILE SCRAPPING PRICES ",ex);
             return null;
@@ -166,7 +164,6 @@ public class WebScrapperService {
                 String extractedValue = matcher.group(1);
                 webScrapper.setProductId(productId);
                 webScrapper.setScrappedPrice("PKR "+extractedValue);
-                webScrapper.setProductId(productId);
                 webScrapper.setSite("Daraz");
                 return webScrapper;
             } else {
@@ -222,6 +219,58 @@ public class WebScrapperService {
         Double pkrPrice = Double.parseDouble(price) * 300;
         return Double.toString(pkrPrice);
     }
+
+
+    public ResponseEntity<HttpStatusCode> changeScrappedPriceVisibilityAmazon(UUID productId) {
+        log.info("CHANGING VISIBILITY AMAZON VALUE OF SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            WebScrapper scrappedPrices = webScrapperRepository.findAllByProductIdAndSite(productId,"Amazon");
+            if(scrappedPrices == null){
+                log.error("NO SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId+" FOUND!");
+                return ResponseEntity.status(404).build();
+            } else {
+                boolean currentValue = scrappedPrices.isVisible();
+                boolean newValue;
+                if (currentValue){
+                    newValue = false;
+                } else {
+                    newValue = true;
+                }
+                scrappedPrices.setIsVisible(newValue);
+                webScrapperRepository.save(scrappedPrices);
+                return ResponseEntity.status(200).build();
+            }
+        } catch (Exception ex){
+            log.error("COULD NOT CHANGE VISIBILITY OF AMAZON VALUE SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    public ResponseEntity<HttpStatusCode> changeScrappedPriceVisibilityDaraz(UUID productId) {
+        log.info("CHANGING VISIBILITY DARAZ VALUE OF SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            WebScrapper scrappedPrices = webScrapperRepository.findAllByProductIdAndSite(productId,"Daraz");
+            if(scrappedPrices == null){
+                log.error("NO SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId+" FOUND!");
+                return ResponseEntity.status(404).build();
+            } else {
+                boolean currentValue = scrappedPrices.isVisible();
+                boolean newValue;
+                if (currentValue){
+                    newValue = false;
+                } else {
+                    newValue = true;
+                }
+                scrappedPrices.setIsVisible(newValue);
+                webScrapperRepository.save(scrappedPrices);
+                return ResponseEntity.status(200).build();
+            }
+        } catch (Exception ex){
+            log.error("COULD NOT CHANGE VISIBILITY OF DARAZ VALUE SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
+            return ResponseEntity.status(500).build();
+        }
+    }
+
     
     public ResponseEntity<HttpStatusCode> changeScrappedPriceVisibility(UUID productId) {
         log.info("CHANGING VISIBILITY VALUE OF SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
@@ -239,7 +288,7 @@ public class WebScrapperService {
                     newValue = true;
                 }
                 for (int i=0; i<scrappedPrices.size();i++){
-                    scrappedPrices.get(i).setVisible(newValue);
+                    scrappedPrices.get(i).setIsVisible(newValue);
                 }
                 webScrapperRepository.saveAll(scrappedPrices);
                 return ResponseEntity.status(200).build();
