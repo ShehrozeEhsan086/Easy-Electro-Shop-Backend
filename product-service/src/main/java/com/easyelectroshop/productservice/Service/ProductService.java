@@ -147,6 +147,42 @@ public class ProductService {
         }
     }
 
+    public HttpStatusCode changeScrappedPriceVisibilityAmazon(UUID productId){
+        log.info("CALLING WEB SCRAPPING SERVICE TO CHANGE VISIBILITY OF AMAZON SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            return webClientBuilder.build()
+                    .put()
+                    .uri("http://web-scrapping-service/api/v1/web-scrapper/change-scrapped-price-visibility-amazon/"+productId)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept()
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } catch (Exception ex){
+            log.error("COULD NOT CHANGE VISIBILITY OF AMAZON SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+
+    public HttpStatusCode changeScrappedPriceVisibilityDaraz(UUID productId){
+        log.info("CALLING WEB SCRAPPING SERVICE TO CHANGE VISIBILITY OF DARAZ SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            return webClientBuilder.build()
+                    .put()
+                    .uri("http://web-scrapping-service/api/v1/web-scrapper/change-scrapped-price-visibility-daraz/"+productId)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept()
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } catch (Exception ex){
+            log.error("COULD NOT CHANGE VISIBILITY OF DARAZ SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+
 
     // ------------  SERVICE FOR WEB SCRAPPER SERVICE [[END]] --------------
 

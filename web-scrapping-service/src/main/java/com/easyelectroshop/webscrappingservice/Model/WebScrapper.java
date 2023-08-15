@@ -1,9 +1,6 @@
 package com.easyelectroshop.webscrappingservice.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -26,5 +23,10 @@ public class WebScrapper {
     private String scrappedPrice;
 
     private boolean isVisible;
+
+    public void setIsVisible(boolean value){
+        this.isVisible = value;
+    }
+
 
 }
