@@ -31,9 +31,6 @@ public class WebScrapperService {
     WebDriver chromeDriver;
 
     @Autowired
-    WebScrapper webScrapper;
-
-    @Autowired
     WebClient.Builder webClientBuilder;
 
     @Autowired
@@ -92,6 +89,7 @@ public class WebScrapperService {
     }
 
     public WebScrapper getPriceFromAmazon(String productName, UUID productId){
+        WebScrapper webScrapper = new WebScrapper();
         try{
             chromeDriver.get(amazonUrl);
             WebElement searchField = chromeDriver.findElement(By.id("twotabsearchtextbox"));
@@ -149,6 +147,7 @@ public class WebScrapperService {
 
 
     public WebScrapper getPriceFromDaraz(String productName, UUID productId){
+        WebScrapper webScrapper = new WebScrapper();
         try{
             chromeDriver.get(darazUrl);
             WebElement searchFiled = chromeDriver.findElement(By.id("q"));
@@ -249,5 +248,9 @@ public class WebScrapperService {
             log.error("COULD NOT CHANGE VISIBILITY OF SCRAPPED PRICES FOR PRODUCT WITH PRODUCT_ID "+productId);
             return ResponseEntity.status(500).build();
         }
+    }
+
+    public List<WebScrapper> getAll(){
+        return webScrapperRepository.findAll();
     }
 }
