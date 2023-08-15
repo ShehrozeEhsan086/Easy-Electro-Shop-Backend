@@ -7,6 +7,6 @@ public record WebScrapper(
     UUID productId,
     String site,
     String scrappedPrice,
-    boolean isVisible
+    boolean visible
 ) {
 }
