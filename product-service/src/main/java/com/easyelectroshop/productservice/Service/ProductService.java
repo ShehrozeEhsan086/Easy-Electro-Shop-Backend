@@ -223,7 +223,7 @@ public class ProductService {
     }
 
     public HttpStatusCode saveProduct(Product product) {
-        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO ADD WITH PRODUCT_NAME "+product.name());
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO ADD PRODUCT WITH PRODUCT_NAME "+product.name());
         try{
             return webClientBuilder.build()
                     .post()
