@@ -188,6 +188,40 @@ public class ProductService {
 
     // -----------  SERVICE FOR PRODUCT MANAGEMENT SERVICE [[START]] -------------
 
+    public List<Product> findTopFiveByName(String productName){
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO RETRIEVE TOP SEARCH RESULT WITH PRODUCT_NAME "+productName);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://product-management-service/api/v1/product-management/get-top-search-results/"+productName)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(Product.class)
+                    .block()
+                    .getBody();
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING PRODUCT MANAGEMENT SERVICE TO RETRIEVE TOP SEARCH RESULT WITH PRODUCT_NAME "+productName,ex);
+            return null;
+        }
+    }
+
+    public List<Product> findByName(String productName){
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO RETRIEVE SEARCH RESULT WITH PRODUCT_NAME "+productName);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://product-management-service/api/v1/product-management/get-search-results/"+productName)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(Product.class)
+                    .block()
+                    .getBody();
+        } catch (Exception ex){
+            log.error("ERROR WHILE CALLING PRODUCT MANAGEMENT SERVICE TO RETRIEVE SEARCH RESULT WITH PRODUCT_NAME "+productName,ex);
+            return null;
+        }
+    }
+
     public HttpStatusCode saveProduct(Product product) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO ADD WITH PRODUCT_NAME "+product.name());
         try{
