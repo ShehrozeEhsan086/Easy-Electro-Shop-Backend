@@ -131,10 +131,10 @@ public class ProductManagementService {
         }
     }
 
-    public ResponseEntity<List<Product>> findByName(String name){
+    public ResponseEntity<List<Product>> findByName(String name,int pageNumber,int pageSize,String sortBy){
         log.info("GETTING PRODUCTS SEARCHED BY NAME");
         try{
-            List<Product> products = productManagementRepository.findByName(name);
+            List<Product> products = productManagementRepository.findByName(name,sortBy,pageSize,pageNumber);
             log.info("SUCCESSFULLY RETRIEVED PRODUCTS SEARCHED BY NAME");
             return ResponseEntity.ok(products);
         } catch (Exception ex){

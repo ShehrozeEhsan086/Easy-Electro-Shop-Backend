@@ -205,12 +205,12 @@ public class ProductService {
         }
     }
 
-    public List<Product> findByName(String productName){
+    public List<Product> findByName(String productName,int pageNumber,int pageSize,String sortBy){
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO RETRIEVE SEARCH RESULT WITH PRODUCT_NAME "+productName);
         try{
             return webClientBuilder.build()
                     .get()
-                    .uri("http://product-management-service/api/v1/product-management/get-search-results/"+productName)
+                    .uri("http://product-management-service/api/v1/product-management/get-search-results/"+productName+"?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
                     .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
                     .toEntityList(Product.class)
