@@ -82,6 +82,19 @@ public class ProductController {
 
     // -----------  APIS FOR PRODUCT MANAGEMENT SERVICE [[START]] -------------
 
+    @GetMapping("/get-top-search-results/{productName}")
+    public ResponseEntity<List<Product>> searchTopFiveByName(@PathVariable String productName){
+        List<Product> products = productService.findTopFiveByName(productName);
+        return products != null ? ResponseEntity.ok(products) : ResponseEntity.status(HttpStatusCode.valueOf(500)).build();
+    }
+
+    @GetMapping("/get-search-results/{productName}")
+    public ResponseEntity<List<Product>> searchByName(@PathVariable String productName){
+        List<Product> products = productService.findByName(productName);
+        return products != null ? ResponseEntity.ok(products) : ResponseEntity.status(HttpStatusCode.valueOf(500)).build();
+    }
+
+
     @PostMapping("/management/add-product")
     public ResponseEntity<HttpStatusCode> saveProduct(@RequestBody Product product){
         return ResponseEntity.status(productService.saveProduct(product)).build();
