@@ -34,6 +34,9 @@ public class CustomerService {
                     .toBodilessEntity()
                     .flatMap(response -> Mono.just(response.getStatusCode()))
                     .block();
+        } catch (WebClientResponseException.Conflict conflict){
+            log.error("CANNOT ADD CUSTOMER WITH EMAIL "+customer.email()+" CUSTOMER ALREADY EXISTS WITH GIVEN EMAIL!");
+            return HttpStatusCode.valueOf(409);
         } catch (Exception ex){
             log.error("ERROR WHILE CALLING CUSTOMER MANAGEMENT SERVICE TO ADD CUSTOMER WITH CUSTOMER_USERNAME "+customer.userName(), ex);
             return HttpStatusCode.valueOf(500);
