@@ -86,9 +86,14 @@ public class CustomerManagementService {
     public HttpStatusCode saveCustomer(Customer customer){
         log.info("ADDING NEW CUSTOMER WITH DATA "+customer.toString());
         try{
-            customerManagementRepository.save(customer);
-            log.info("SUCCESSFULLY ADDED CUSTOMER WITH CUSTOMER EMAIL "+customer.getEmail());
-            return HttpStatusCode.valueOf(201);
+            Optional<Customer> tempCustomer = customerManagementRepository.findByEmail(customer.getEmail());
+            if( tempCustomer.isPresent()){
+                return HttpStatusCode.valueOf(409);
+            } else{
+                customerManagementRepository.save(customer);
+                log.info("SUCCESSFULLY ADDED CUSTOMER WITH CUSTOMER EMAIL "+customer.getEmail());
+                return HttpStatusCode.valueOf(201);
+            }
         } catch (Exception ex){
             log.error("ERROR WHILE ADDING CUSTOMER WITH EMAIL "+customer.getEmail(),ex);
             return HttpStatusCode.valueOf(500);
