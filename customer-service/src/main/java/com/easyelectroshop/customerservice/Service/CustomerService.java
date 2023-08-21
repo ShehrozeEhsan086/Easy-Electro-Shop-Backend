@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
@@ -85,7 +86,7 @@ public class CustomerService {
                     .block()
                     .getBody();
         } catch (Exception ex){
-            log.error("ERROR CALLING CUSTOMER MANAGEMENT SERVICE TO GET ALL CUSTOMERS");
+            log.error("ERROR CALLING CUSTOMER MANAGEMENT SERVICE TO GET ALL CUSTOMERS",ex);
             return null;
         }
     }
@@ -151,8 +152,11 @@ public class CustomerService {
                     .toBodilessEntity()
                     .flatMap(response -> Mono.just(response.getStatusCode()))
                     .block();
+        }  catch (WebClientResponseException.NotFound notFound){
+            log.error("COULD NOT DELETE CUSTOMER WITH CUSTOMER_ID "+customerId+" CUSTOMER NOT FOUND!");
+            return HttpStatusCode.valueOf(404);
         } catch (Exception ex){
-            log.error("ERROR CALLING CUSTOMER MANAGEMENT SERVICE TO DELETE CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            log.error("ERROR DELETING CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
             return HttpStatusCode.valueOf(500);
         }
     }
