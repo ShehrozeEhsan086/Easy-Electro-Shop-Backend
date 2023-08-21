@@ -2,10 +2,7 @@ package com.easyelectroshop.customermanagementservice.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -21,12 +18,10 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID customerId;
 
-    @Column(unique = true)
-    private String userName;
+    @Column(unique = true, nullable = false)
+    private String email;
 
     private String fullName;
-
-    private String email;
 
     private String phoneNumber;
 
