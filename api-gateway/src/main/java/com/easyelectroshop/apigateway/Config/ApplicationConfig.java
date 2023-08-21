@@ -18,14 +18,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-  @Value("${application.client-origin-url}")
-  private String clientOriginUrl;
+  @Value("${admin-application-url}")
+  private String adminOriginUrl;
+
+  @Value("${customer-application-url}")
+  private String customerOriginUrl;
+
 
   @Bean
   public CorsConfigurationSource corsConfigurationSource() {
     final var source = new UrlBasedCorsConfigurationSource();
     final var config = new CorsConfiguration();
-    final var origins = List.of(clientOriginUrl);
+    final var origins = List.of(adminOriginUrl,customerOriginUrl);
     final var headers = List.of(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE);
     final var methods = List.of(HttpMethod.GET.name(),HttpMethod.POST.name(),HttpMethod.PUT.name(),HttpMethod.DELETE.name());
     final var maxAge = Duration.ofSeconds(86400);
