@@ -21,7 +21,6 @@ public class CustomerService {
     @Autowired
     WebClient.Builder webClientBuilder;
 
-
     public HttpStatusCode saveCustomer(Customer customer){
         log.info("CALLING CUSTOMER MANAGEMENT SERVICE TO ADD CUSTOMER WITH CUSTOMER_USERNAME "+ customer.userName());
         try{
@@ -139,6 +138,15 @@ public class CustomerService {
                     .toBodilessEntity()
                     .flatMap(response -> Mono.just(response.getStatusCode()))
                     .block();
+        } catch (WebClientResponseException.NotAcceptable notAcceptable) {
+            log.error("CANNOT COMPLETE PROFILE AS REQUIREMENTS WERE NOT MET!");
+            return HttpStatusCode.valueOf(406);
+        } catch (WebClientResponseException.Conflict conflict) {
+            log.error("CANNOT COMPLETE PROFILE AS EMAIL WAS CANNOT BE CHANGES!");
+            return HttpStatusCode.valueOf(409);
+        } catch (WebClientResponseException.NotFound notFound) {
+            log.error("CANNOT COMPLETE PROFILE AS NO PROFILE WAS FOUND!");
+            return HttpStatusCode.valueOf(404);
         } catch (Exception ex){
             log.error("ERROR CALLING CUSTOMER MANAGEMENT SERVICE TO COMPLETE CUSTOMER PROFILE WITH CUSTOMER_ID "+customer.customerId(), ex);
             return HttpStatusCode.valueOf(500);
