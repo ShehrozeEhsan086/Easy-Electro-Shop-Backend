@@ -6,6 +6,7 @@ import com.easyelectroshop.productmanagementservice.Repository.ProductManagement
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -115,6 +116,30 @@ public class ProductManagementService {
         } catch (Exception ex){
             log.error("COULD NOT DELETE PRODUCT WITH PRODUCT_ID "+productId,ex);
             return HttpStatusCode.valueOf(500);
+        }
+    }
+
+    public ResponseEntity<List<Product>> findTopFiveByName(String name){
+        log.info("GETTING TOP FIVES PRODUCTS SEARCHED BY NAME");
+        try{
+            List<Product> products = productManagementRepository.findTopFiveByName(name);
+            log.info("SUCCESSFULLY RETRIEVED TOP FIVES PRODUCTS SEARCHED BY NAME");
+            return ResponseEntity.ok(products);
+        } catch (Exception ex){
+            log.error("ERROR RETRIEVING TOP FIVES PRODUCTS SEARCHED BY NAME ", ex);
+            return ResponseEntity.status(HttpStatusCode.valueOf(500)).build();
+        }
+    }
+
+    public ResponseEntity<List<Product>> findByName(String name,int pageNumber,int pageSize,String sortBy){
+        log.info("GETTING PRODUCTS SEARCHED BY NAME");
+        try{
+            List<Product> products = productManagementRepository.findByName(name,sortBy,pageSize,pageNumber);
+            log.info("SUCCESSFULLY RETRIEVED PRODUCTS SEARCHED BY NAME");
+            return ResponseEntity.ok(products);
+        } catch (Exception ex){
+            log.error("ERROR RETRIEVING PRODUCTS SEARCHED BY NAME ", ex);
+            return ResponseEntity.status(HttpStatusCode.valueOf(500)).build();
         }
     }
 }

@@ -5,6 +5,7 @@ import com.easyelectroshop.customermanagementservice.Repository.CustomerManageme
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +20,9 @@ public class CustomerManagementService {
     CustomerManagementRepository customerManagementRepository;
 
     private boolean validateCustomerProfileCompleteness(Customer customer){
-        return customer.getUserName() != null && customer.getFullName() != null
-                && customer.getEmail() != null && customer.getPhoneNumber() != null
+        return customer.getFullName() != null
+                && customer.getEmail() != null
+                && customer.getPhoneNumber() != null
                 && customer.getGender() != null;
     }
 
@@ -51,6 +53,24 @@ public class CustomerManagementService {
         }
     }
 
+    public ResponseEntity<Optional<Customer>> getCustomerByEmail(String customerEmail){
+        log.info("GETTING CUSTOMER WITH CUSTOMER_EMAIL "+customerEmail);
+        try{
+            Optional<Customer> customer = customerManagementRepository.findByEmail(customerEmail);
+            if(customer.isPresent()){
+                log.info("SUCCESSFULLY RETRIEVED CUSTOMER WITH CUSTOMER_EMAIL "+customerEmail);
+                return ResponseEntity.ok(customer);
+            } else {
+                log.error("COULD NOT FIND CUSTOMER WITH CUSTOMER_EMAIL "+customerEmail);
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception ex){
+            log.error("ERROR WHILE GETTING CUSTOMER WITH CUSTOMER_EMAIL "+customerEmail, ex);
+            return ResponseEntity.internalServerError().build();
+        }
+
+    }
+
     public int getCustomersCount() {
         log.info("GETTING CUSTOMERS COUNT");
         try{
@@ -64,34 +84,34 @@ public class CustomerManagementService {
     }
 
     public HttpStatusCode saveCustomer(Customer customer){
-        log.info("ADDING NEW CUSTOMER WITH NAME "+customer.getUserName());
+        log.info("ADDING NEW CUSTOMER WITH DATA "+customer.toString());
         try{
             customerManagementRepository.save(customer);
-            log.info("SUCCESSFULLY ADDED CUSTOMER WITH CUSTOMER USERNAME "+customer.getUserName());
+            log.info("SUCCESSFULLY ADDED CUSTOMER WITH CUSTOMER EMAIL "+customer.getEmail());
             return HttpStatusCode.valueOf(201);
         } catch (Exception ex){
-            log.error("ERROR WHILE ADDING CUSTOMER WITH USERNAME "+customer.getFullName(),ex);
+            log.error("ERROR WHILE ADDING CUSTOMER WITH EMAIL "+customer.getEmail(),ex);
             return HttpStatusCode.valueOf(500);
         }
     }
 
     public HttpStatusCode completeCustomerProfile(Customer customer){
-        log.info("COMPLETING CUSTOMER PROFILE WITH CUSTOMER_USERNAME "+customer.getUserName());
+        log.info("COMPLETING CUSTOMER PROFILE WITH CUSTOMER_ID "+customer.getCustomerId());
         try{
             Optional<Customer> tempCustomer = customerManagementRepository.findById(customer.getCustomerId());
             if (tempCustomer.isPresent()){
-                if (customer.getUserName().equals(tempCustomer.get().getUserName())){
+                if (customer.getEmail().equals(tempCustomer.get().getEmail())){
                     if (validateCustomerProfileCompleteness(customer)){
                         customer.setProfileComplete(true);
                         customerManagementRepository.save(customer);
-                        log.info("SUCCESSFULLY COMPLETED CUSTOMER PROFILE WITH CUSTOMER_USERNAME "+customer.getUserName());
+                        log.info("SUCCESSFULLY COMPLETED CUSTOMER PROFILE WITH CUSTOMER_ID "+customer.getCustomerId());
                         return HttpStatusCode.valueOf(200);
                     } else {
-                        log.error("ERROR COMPLETING CUSTOMER PROFILE AS ATTRIBUTE REQUIREMENTS WERE NOT MET FOR CUSTOMER_USERNAME "+customer.getUserName());
+                        log.error("ERROR COMPLETING CUSTOMER PROFILE AS ATTRIBUTE REQUIREMENTS WERE NOT MET FOR CUSTOMER_ID "+customer.getCustomerId());
                         return HttpStatusCode.valueOf(422);
                     }
                 } else {
-                    log.error("ERROR COMPLETING PROFILE FOR CUSTOMER WITH CUSTOMER_ID "+ customer.getCustomerId() +", USERNAME CANNOT BE CHANGED");
+                    log.error("ERROR COMPLETING PROFILE FOR CUSTOMER WITH CUSTOMER_ID "+ customer.getCustomerId() +", EMAIL CANNOT BE CHANGED");
                     return HttpStatusCode.valueOf(400);
                 }
             } else {
@@ -99,7 +119,7 @@ public class CustomerManagementService {
                 return HttpStatusCode.valueOf(404);
             }
         } catch (Exception ex){
-            log.error("ERROR COMPLETING CUSTOMER PROFILE WITH CUSTOMER_USERNAME "+customer.getUserName(),ex);
+            log.error("ERROR COMPLETING CUSTOMER PROFILE WITH CUSTOMER_ID "+customer.getCustomerId(),ex);
             return HttpStatusCode.valueOf(500);
         }
     }
@@ -109,17 +129,17 @@ public class CustomerManagementService {
         try{
             Optional<Customer> tempCustomer = customerManagementRepository.findById(customer.getCustomerId());
             if(tempCustomer.isPresent()){
-                if (customer.getUserName().equals(tempCustomer.get().getUserName())) {
+                if (customer.getEmail().equals(tempCustomer.get().getEmail())) {
                     if (validateCustomerProfileCompleteness(customer)) {
                         customerManagementRepository.save(customer);
                         log.info("SUCCESSFULLY EDITED CUSTOMER WITH CUSTOMER_ID " + customer.getCustomerId());
                         return HttpStatusCode.valueOf(200);
                     } else {
-                        log.error("ERROR EDITING CUSTOMER AS PROFILE ATTRIBUTE REQUIREMENTS WERE NOT MET FOR CUSTOMER_USERNAME " + customer.getUserName());
+                        log.error("ERROR EDITING CUSTOMER AS PROFILE ATTRIBUTE REQUIREMENTS WERE NOT MET FOR CUSTOMER_ID " + customer.getCustomerId());
                         return HttpStatusCode.valueOf(422);
                     }
                 } else {
-                    log.error("ERROR COMPLETING PROFILE FOR CUSTOMER WITH CUSTOMER_ID "+ customer.getCustomerId() +", USERNAME CANNOT BE CHANGED");
+                    log.error("ERROR COMPLETING PROFILE FOR CUSTOMER WITH CUSTOMER_ID "+ customer.getCustomerId() +", EMAIL CANNOT BE CHANGED");
                     return HttpStatusCode.valueOf(400);
                 }
             } else {

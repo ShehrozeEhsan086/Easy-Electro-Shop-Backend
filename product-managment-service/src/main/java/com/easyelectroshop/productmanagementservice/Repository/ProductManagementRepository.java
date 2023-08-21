@@ -16,5 +16,12 @@ public interface ProductManagementRepository extends JpaRepository<Product, UUID
     List<Product> findAllWithOnlyCoverImage(String sortBy,int pageSize, int pageNumber);
 
 
+    @Query(value = "SELECT * FROM product WHERE name LIKE '%' ?1 '%' LIMIT 5", nativeQuery = true)
+    List<Product> findTopFiveByName(String productName);
+
+
+    @Query(value = "SELECT * FROM product WHERE name LIKE '%' ?1 '%' ORDER BY ?2 ASC LIMIT ?3 OFFSET ?4 ", nativeQuery = true)
+    List<Product> findByName(String productName,String sortBy,int pageSize, int pageNumber);
+
 
 }

@@ -25,8 +25,6 @@ public class ProductServiceApplication {
     @Value("${internal.communication.header.value}")
     private String headerValue;
 
-//    @Autowired
-//    OAuth2AuthorizedClientManager oAuth2AuthorizedClientManager;
 
     public static void main(String[] args) {
         SpringApplication.run(ProductServiceApplication.class, args);

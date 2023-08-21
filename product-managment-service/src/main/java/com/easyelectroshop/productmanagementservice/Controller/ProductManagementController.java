@@ -66,4 +66,17 @@ public class ProductManagementController {
         return ResponseEntity.status(productManagementService.deleteProduct(productId)).build();
     }
 
+    @GetMapping("/get-top-search-results/{productName}")
+    public ResponseEntity<List<Product>> searchTopFiveByName(@PathVariable String productName){
+        return productManagementService.findTopFiveByName(productName);
+    }
+
+    @GetMapping("/get-search-results/{productName}")
+    public ResponseEntity<List<Product>> searchByName(@PathVariable String productName,
+                                                      @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+                                                      @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
+                                                      @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy){
+        return productManagementService.findByName(productName,pageNumber,pageSize,sortBy);
+    }
+
 }
