@@ -113,11 +113,11 @@ public class CustomerManagementService {
                         return HttpStatusCode.valueOf(200);
                     } else {
                         log.error("ERROR COMPLETING CUSTOMER PROFILE AS ATTRIBUTE REQUIREMENTS WERE NOT MET FOR CUSTOMER_ID "+customer.getCustomerId());
-                        return HttpStatusCode.valueOf(422);
+                        return HttpStatusCode.valueOf(406);
                     }
                 } else {
                     log.error("ERROR COMPLETING PROFILE FOR CUSTOMER WITH CUSTOMER_ID "+ customer.getCustomerId() +", EMAIL CANNOT BE CHANGED");
-                    return HttpStatusCode.valueOf(400);
+                    return HttpStatusCode.valueOf(409);
                 }
             } else {
                 log.error("ERROR COMPLETING CUSTOMER PROFILE AS CUSTOMER WAS NOT FOUND");
