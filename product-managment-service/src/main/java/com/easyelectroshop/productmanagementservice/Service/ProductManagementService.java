@@ -142,4 +142,15 @@ public class ProductManagementService {
             return ResponseEntity.status(HttpStatusCode.valueOf(500)).build();
         }
     }
+
+    public ResponseEntity<Double> getProductPrice(UUID productId){
+        log.info("GETTING PRODUCT PRICE FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            double price = productManagementRepository.findPriceByProductId(productId);
+            return ResponseEntity.ok(price);
+        } catch (Exception ex){
+            log.error("ERROR GETTING PRICE FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
