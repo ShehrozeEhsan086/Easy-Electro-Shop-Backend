@@ -274,6 +274,22 @@ public class ProductService {
         return List.of(productFallbackObj);
     }
 
+    public Double getPriceByProductId(UUID productId){
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET PRICE OF PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+           return webClientBuilder.build()
+                    .get()
+                    .uri("http://product-management-service/api/v1/product-management/get-price-by-id/"+productId)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Double.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR CALLING PRODUCT MANAGEMENT SERVICE TO GET PRICE OF PRODUCT WITH PRODUCT_ID "+productId ,ex);
+            return -1.0;
+        }
+    }
+
 
     public Product getProductById(UUID productId) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET PRODUCT WITH PRODUCT_ID "+productId);

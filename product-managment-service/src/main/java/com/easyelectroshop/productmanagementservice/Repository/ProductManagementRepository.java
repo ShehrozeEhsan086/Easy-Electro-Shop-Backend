@@ -23,5 +23,7 @@ public interface ProductManagementRepository extends JpaRepository<Product, UUID
     @Query(value = "SELECT * FROM product WHERE name LIKE '%' ?1 '%' ORDER BY ?2 ASC LIMIT ?3 OFFSET ?4 ", nativeQuery = true)
     List<Product> findByName(String productName,String sortBy,int pageSize, int pageNumber);
 
+    @Query(value = "SELECT price FROM product WHERE product_id = ?1",nativeQuery = true)
+    Double findPriceByProductId(UUID productId);
 
 }

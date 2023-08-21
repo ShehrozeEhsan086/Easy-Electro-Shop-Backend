@@ -110,6 +110,12 @@ public class ProductController {
         return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
     }
 
+    @GetMapping("/get-price-by-id/{productId}")
+    public ResponseEntity<Double> getPriceById(@PathVariable UUID productId){
+        double price = productService.getPriceByProductId(productId);
+        return price != -1.0 ? ResponseEntity.ok(price) : ResponseEntity.internalServerError().build();
+    }
+
     @GetMapping("/management/get-all-products")
     public ResponseEntity<List<Product>> getAllProductsTest(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
                                                         @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
