@@ -26,11 +26,17 @@ public class CustomerManagementController {
         return ResponseEntity.status(customerManagementService.saveCustomer(customer)).build();
     }
 
-    @GetMapping("/get-customer/{customerId}")
+    @GetMapping("/get-customer-by-id/{customerId}")
     public ResponseEntity<Customer> getCustomerById(@PathVariable UUID customerId){
         Optional<Customer> customer = customerManagementService.getCustomerById(customerId);
         return(customer.isPresent()) ? ResponseEntity.ok(customer.get()) : ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/get-customer-by-email/{customerEmail}")
+    public ResponseEntity<Optional<Customer>> getCustomerById(@PathVariable String customerEmail){
+        return customerManagementService.getCustomerByEmail(customerEmail);
+    }
+
 
     @GetMapping("/get-all")
     public ResponseEntity<List<Customer>> getAllCustomers(
