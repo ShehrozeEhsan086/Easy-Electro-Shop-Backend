@@ -24,8 +24,6 @@ public class CartController {
     public ResponseEntity<HttpStatusCode> addProductToCart(@PathVariable UUID customerId,
                                                            @PathVariable UUID productId,
                                                            @PathVariable int quantity){
-        return ResponseEntity.status(HttpStatusCode.valueOf(cartService.addToCart(customerId,productId,quantity))).build();
+        return ResponseEntity.status(cartService.addToCart(customerId,productId,quantity)).build();
     }
-
-
 }
