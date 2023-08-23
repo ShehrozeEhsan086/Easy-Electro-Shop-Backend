@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientException;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -287,6 +288,62 @@ public class ProductService {
         } catch (Exception ex){
             log.error("ERROR CALLING PRODUCT MANAGEMENT SERVICE TO GET PRICE OF PRODUCT WITH PRODUCT_ID "+productId ,ex);
             return -1.0;
+        }
+    }
+
+    public Integer getProductStock(UUID productId){
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET STOCK OF PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://product-management-service/api/v1/product-management/get-stock-by-id/"+productId)
+                    .retrieve()
+                    .bodyToMono(Integer.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR PRODUCT MANAGEMENT SERVICE TO GET STOCK OF PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return -1;
+        }
+    }
+
+    public HttpStatusCode reduceStock(UUID productId, int quantity){
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO REDUCE STOCK BY QUANTITY "+quantity+" FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            return webClientBuilder.build()
+                    .put()
+                    .uri("http://product-management-service/api/v1/product-management/reduce-product-stock/"+productId+"/"+quantity)
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } catch (WebClientResponseException.NotAcceptable notAcceptable){
+            log.error("CANNOT REDUCE STOCK FOR PRODUCT WITH PRODUCT_ID "+productId+" NOT ENOUGH STOCK TO FULL FILL REQUEST");
+            return HttpStatusCode.valueOf(406);
+        } catch (WebClientResponseException.NotFound notFound){
+            log.error("CANNOT REDUCE STOCK FOR PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND");
+            return HttpStatusCode.valueOf(404);
+        } catch (Exception ex){
+            log.error("ERROR CALLING MANAGEMENT SERVICE TO REDUCE STOCK BY QUANTITY "+quantity+" FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+
+    public HttpStatusCode increaseStock(UUID productId, int quantity){
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO INCREASE STOCK BY QUANTITY "+quantity+" FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            return webClientBuilder.build()
+                    .put()
+                    .uri("http://product-management-service/api/v1/product-management/increase-product-stock/"+productId+"/"+quantity)
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } catch (WebClientResponseException.NotFound notFound){
+            log.error("CANNOT INCREASE STOCK FOR PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND");
+            return HttpStatusCode.valueOf(404);
+        } catch (Exception ex){
+            log.error("ERROR CALLING MANAGEMENT SERVICE TO INCREASE STOCK BY QUANTITY "+quantity+" FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return HttpStatusCode.valueOf(500);
         }
     }
 

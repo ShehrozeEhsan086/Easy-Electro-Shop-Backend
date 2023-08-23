@@ -1,4 +1,4 @@
-package com.easyelectroshop.customerservice.DTO;
+package com.easyelectroshop.customerservice.DTO.Customer;
 
 import java.util.UUID;
 

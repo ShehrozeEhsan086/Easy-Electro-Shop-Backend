@@ -1,6 +1,6 @@
 package com.easyelectroshop.customerservice.Service;
 
-import com.easyelectroshop.customerservice.DTO.Customer;
+import com.easyelectroshop.customerservice.DTO.Customer.Customer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
