@@ -82,6 +82,8 @@ public class ProductController {
 
     // -----------  APIS FOR PRODUCT MANAGEMENT SERVICE [[START]] -------------
 
+
+
     @GetMapping("/get-top-search-results/{productName}")
     public ResponseEntity<List<Product>> searchTopFiveByName(@PathVariable String productName){
         List<Product> products = productService.findTopFiveByName(productName);
@@ -116,14 +118,31 @@ public class ProductController {
         return price != -1.0 ? ResponseEntity.ok(price) : ResponseEntity.internalServerError().build();
     }
 
-    @GetMapping("/management/get-all-products")
+    @GetMapping("/get-stock-by-id/{productId}")
+    public ResponseEntity<Integer> getStockById(@PathVariable UUID productId){
+        int stock = productService.getProductStock(productId);
+        return stock != -1 ? ResponseEntity.ok(stock) : ResponseEntity.internalServerError().build();
+    }
+
+    @PutMapping("/reduce-product-stock/{productId}/{quantity}")
+    public ResponseEntity<HttpStatusCode> reduceStock(@PathVariable UUID productId,
+                                                      @PathVariable int quantity){
+        return ResponseEntity.status(productService.reduceStock(productId,quantity)).build();
+    }
+
+    @PutMapping("/increase-product-stock/{productId}/{quantity}")
+    public ResponseEntity<HttpStatusCode> increaseStock(@PathVariable UUID productId,
+                                                        @PathVariable int quantity){
+        return ResponseEntity.status(productService.increaseStock(productId,quantity)).build();
+    }
+
+    @GetMapping("management/get-all-products")
     public ResponseEntity<List<Product>> getAllProductsTest(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
                                                         @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
                                                         @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy){
         List<Product> products = productService.getAllProducts(pageNumber,pageSize,sortBy);
         return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
     }
-
 
     @GetMapping("get-all-products-count")
     public ResponseEntity<Integer> getProductsCount(){

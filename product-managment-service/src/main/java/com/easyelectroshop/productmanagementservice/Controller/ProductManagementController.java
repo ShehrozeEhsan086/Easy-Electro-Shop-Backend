@@ -83,4 +83,21 @@ public class ProductManagementController {
     public ResponseEntity<Double> getPriceById(@PathVariable UUID productId){
         return productManagementService.getProductPrice(productId);
     }
+
+    @GetMapping("/get-stock-by-id/{productId}")
+    public ResponseEntity<Integer> getStockById(@PathVariable UUID productId){
+        return productManagementService.getProductStock(productId);
+    }
+
+    @PutMapping("/reduce-product-stock/{productId}/{quantity}")
+    public ResponseEntity<HttpStatusCode> reduceStock(@PathVariable UUID productId,
+                                                      @PathVariable int quantity){
+        return productManagementService.reduceStock(productId,quantity);
+    }
+
+    @PutMapping("/increase-product-stock/{productId}/{quantity}")
+    public ResponseEntity<HttpStatusCode> increaseStock(@PathVariable UUID productId,
+                                                      @PathVariable int quantity){
+        return productManagementService.increaseStock(productId,quantity);
+    }
 }

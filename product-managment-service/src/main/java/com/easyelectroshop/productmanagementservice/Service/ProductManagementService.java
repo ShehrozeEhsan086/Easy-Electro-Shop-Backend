@@ -153,4 +153,60 @@ public class ProductManagementService {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    public ResponseEntity<Integer> getProductStock(UUID productId){
+        log.info("GETTING PRODUCT STOCK REMAINING FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            int stock = productManagementRepository.findStockByProductId(productId);
+            return ResponseEntity.ok(stock);
+        }catch (Exception ex){
+            log.error("ERROR GETTING PRODUCT STOCK REMAINING FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<HttpStatusCode> reduceStock(UUID productId,int quantity){
+        log.info("REDUCING STOCK BY QUANTITY OF "+quantity+" FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            Optional<Product> product = productManagementRepository.findById(productId);
+            if(product.isPresent()){
+                int currentStock = product.get().getQuantity();
+                if(currentStock - quantity < 0 ){
+                    log.error("CANNOT REDUCE PRODUCT QUANTITY FOR PRODUCT WITH PRODUCT_ID "+product+" NOT ENOUGH STOCK TO FULL FILL REQUEST.");
+                    return ResponseEntity.status(HttpStatusCode.valueOf(406)).build();
+                } else {
+                    currentStock = currentStock - quantity;
+                    product.get().setQuantity(currentStock);
+                    productManagementRepository.save(product.get());
+                    return ResponseEntity.ok().build();
+                }
+            } else {
+                log.error("CANNOT REDUCE PRODUCT QUANTITY FOR PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND.");
+                return ResponseEntity.notFound().build();
+            }
+        } catch  (Exception ex){
+            log.error("ERROR REDUCING STOCK BY QUANTITY OF "+quantity+" FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<HttpStatusCode> increaseStock(UUID productId,int quantity){
+        log.info("INCREASING STOCK BY QUANTITY OF "+quantity+" FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            Optional<Product> product = productManagementRepository.findById(productId);
+            if(product.isPresent()){
+                int currentStock = product.get().getQuantity();
+                currentStock = currentStock + quantity;
+                product.get().setQuantity(currentStock);
+                productManagementRepository.save(product.get());
+                return ResponseEntity.ok().build();
+            } else {
+                log.error("CANNOT INCREASE PRODUCT QUANTITY FOR PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND.");
+                return ResponseEntity.notFound().build();
+            }
+        } catch  (Exception ex){
+            log.error("ERROR INCREASING STOCK BY QUANTITY OF "+quantity+" FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }

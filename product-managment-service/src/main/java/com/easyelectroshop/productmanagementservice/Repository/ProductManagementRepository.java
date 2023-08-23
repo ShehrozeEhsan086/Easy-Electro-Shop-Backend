@@ -26,4 +26,6 @@ public interface ProductManagementRepository extends JpaRepository<Product, UUID
     @Query(value = "SELECT price FROM product WHERE product_id = ?1",nativeQuery = true)
     Double findPriceByProductId(UUID productId);
 
+    @Query(value = "SELECT quantity FROM product WHERE product_id = ?1",nativeQuery = true)
+    int findStockByProductId(UUID productId);
 }
