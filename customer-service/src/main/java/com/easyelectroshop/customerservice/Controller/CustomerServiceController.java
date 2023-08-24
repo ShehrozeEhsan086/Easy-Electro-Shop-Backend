@@ -3,6 +3,7 @@ package com.easyelectroshop.customerservice.Controller;
 
 import com.easyelectroshop.customerservice.DTO.Cart.Cart;
 import com.easyelectroshop.customerservice.DTO.Customer.Customer;
+import com.easyelectroshop.customerservice.DTO.Customer.PaymentMethod;
 import com.easyelectroshop.customerservice.Service.CartService;
 import com.easyelectroshop.customerservice.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,12 @@ public class CustomerServiceController {
     @DeleteMapping("/management/delete-customer/{customerId}")
     public ResponseEntity<HttpStatusCode> deleteCustomer(@PathVariable UUID customerId){
         return ResponseEntity.status(customerService.deleteCustomer(customerId)).build();
+    }
+
+    @GetMapping("/management/get-customer-payment-method/{customerId}")
+    public ResponseEntity<PaymentMethod> getCustomerPaymentMethod(@PathVariable UUID customerId){
+        PaymentMethod paymentMethod = customerService.getCustomerPaymentMethod(customerId);
+        return paymentMethod != null ? ResponseEntity.ok(paymentMethod) : ResponseEntity.internalServerError().build();
     }
 
     // ----------------  APIS FOR CUSTOMER MANAGEMENT SERVICE [[END]] --------------------

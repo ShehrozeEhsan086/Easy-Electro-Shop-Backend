@@ -14,14 +14,11 @@ import java.security.Key;
 import java.util.Base64;
 
 @Configuration
-public class Encrypt implements AttributeConverter<String,String> {
+public class Encrypt implements AttributeConverter<Object,String> {
 
 
-    @Value("${encryptionKey}")
-    private String encryptionKey;
-
-    @Value("${encryptionCipher}")
-    private String encryptionCipher;
+    private final String encryptionKey = "this-is-test-key";
+    private final String encryptionCipher = "AES";
 
     private Key key;
     private Cipher cipher;
@@ -46,23 +43,23 @@ public class Encrypt implements AttributeConverter<String,String> {
 
     @SneakyThrows
     @Override
-    public String convertToDatabaseColumn(String value) {
-        if (value == null){
+    public String convertToDatabaseColumn(Object attribute) {
+        if (attribute == null){
             return null;
         }
         initCipher(Cipher.ENCRYPT_MODE);
-        byte[] bytes = value.getBytes();
+        byte[] bytes = SerializationUtils.serialize(attribute);
         return Base64.getEncoder().encodeToString(getCipher().doFinal(bytes));
     }
 
     @SneakyThrows
     @Override
-    public String convertToEntityAttribute(String value) {
+    public Object convertToEntityAttribute(String value) {
         if (value == null){
             return null;
         }
         initCipher(Cipher.DECRYPT_MODE);
         byte[] bytes = getCipher().doFinal(Base64.getDecoder().decode(value));
-        return SerializationUtils.deserialize(bytes).toString();
+        return SerializationUtils.deserialize(bytes);
     }
 }

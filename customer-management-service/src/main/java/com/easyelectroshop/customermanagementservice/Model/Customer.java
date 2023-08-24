@@ -31,7 +31,7 @@ public class Customer {
     @JoinColumn(name = "address_id",referencedColumnName = "addressId")
     private Address address;
 
-    @JsonIgnore
+//    @JsonIgnore
     @OneToOne(targetEntity = PaymentMethod.class,  cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_option_id",referencedColumnName = "paymentOptionId")
     private PaymentMethod paymentOption;
