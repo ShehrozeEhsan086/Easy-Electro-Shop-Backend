@@ -1,5 +1,6 @@
 package com.easyelectroshop.productmanagementservice.Controller;
 
+import com.easyelectroshop.productmanagementservice.DTO.ProductDTO.ProductDTO;
 import com.easyelectroshop.productmanagementservice.Model.Product;
 import com.easyelectroshop.productmanagementservice.Service.ProductManagementService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,7 @@ public class ProductManagementController {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<Product>> getAllProducts(
+    public ResponseEntity<List<ProductDTO>> getAllProducts(
             @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
             @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
             @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy)
@@ -45,7 +46,7 @@ public class ProductManagementController {
             log.info("NO PRODUCTS FOUND IN DATABASE");
             return ResponseEntity.ok(null);
         } else {
-            List<Product> products = productManagementService.getAllProducts(pageNumber,pageSize,sortBy);
+            List<ProductDTO> products = productManagementService.getAllProducts(pageNumber,pageSize,sortBy);
             return (products != null) ? ResponseEntity.ok(products) : ResponseEntity.internalServerError().build();
         }
     }

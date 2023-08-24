@@ -1,5 +1,6 @@
 package com.easyelectroshop.productmanagementservice.Service;
 
+import com.easyelectroshop.productmanagementservice.DTO.ProductDTO.ProductDTO;
 import com.easyelectroshop.productmanagementservice.Model.Product;
 import com.easyelectroshop.productmanagementservice.Repository.ProductManagementRepository;
 
@@ -10,10 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -53,15 +51,23 @@ public class ProductManagementService {
         }
     }
 
-    public List<Product> getAllProducts(int pageNumber, int pageSize, String sortBy) {
+    public List<ProductDTO> getAllProducts(int pageNumber, int pageSize, String sortBy) {
         log.info("GETTING ALL PRODUCTS");
         try{
             if(pageSize == -1){
                 pageSize = Integer.MAX_VALUE;
             }
-            List<Product> products = productManagementRepository.findAllWithOnlyCoverImage(sortBy,pageSize,pageNumber);
+            List<Product> products = productManagementRepository.findAllPaginated(sortBy,pageSize,pageNumber);
+            List<ProductDTO> productDTOS = new ArrayList<>();
+            for(Product product : products){
+                ProductDTO productDTO = new ProductDTO(product.getProductId(),product.getName(),product.getShortDescription(),product.getCompleteDescription(),product.getCoverImage(),
+                        product.getBrandName(),product.getPrice(),product.isDiscounted(),product.getDiscountPercentage(),product.getDiscountedPrice(),product.getQuantity(),
+                        product.getSize(),product.getColors(), product.getCategory(),product.getSubCategories(),product.get_3DModelFilename(),product.get_3DModelURL(),product.isAvailable(),
+                        product.getLastUpdated());
+                productDTOS.add(productDTO);
+            }
             log.info("SUCCESSFULLY RETRIEVED ALL PRODUCTS");
-            return products;
+            return productDTOS;
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE ALL PRODUCTS",ex);
             return null;
