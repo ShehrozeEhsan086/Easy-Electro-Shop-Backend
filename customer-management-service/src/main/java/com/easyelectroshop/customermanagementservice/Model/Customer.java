@@ -1,9 +1,11 @@
 package com.easyelectroshop.customermanagementservice.Model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -27,11 +29,13 @@ public class Customer {
 
     private String gender;
 
+    @JsonFormat(pattern = "MM/dd/yyyy")
+    private LocalDate dateOfBirth;
+
     @OneToOne(targetEntity = Address.class,  cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id",referencedColumnName = "addressId")
     private Address address;
 
-//    @JsonIgnore
     @OneToOne(targetEntity = PaymentMethod.class,  cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_option_id",referencedColumnName = "paymentOptionId")
     private PaymentMethod paymentOption;

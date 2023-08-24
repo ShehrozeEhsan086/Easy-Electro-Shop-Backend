@@ -43,7 +43,7 @@ public class CustomerManagementService {
             List<CustomerDTO> customerDTOS = new ArrayList<>();
             for(Customer customer : customers){
                 CustomerDTO customerDTO = new CustomerDTO(customer.getCustomerId(),customer.getFullName(),
-                        customer.getEmail(),customer.getPhoneNumber(),customer.getGender(),customer.getAddress(),
+                        customer.getEmail(),customer.getPhoneNumber(),customer.getGender(),customer.getDateOfBirth(),customer.getAddress(),
                         customer.isProfileComplete(),customer.isBlocked(),customer.isActive(),customer.getTotalOrders(),
                         customer.getTotalOrdersAmount());
                 customerDTOS.add(customerDTO);
@@ -62,7 +62,7 @@ public class CustomerManagementService {
         if(customerOpt.isPresent()){
             Customer customer = customerOpt.get();
             CustomerDTO customerDTO = new CustomerDTO(customer.getCustomerId(),customer.getFullName(),
-                    customer.getEmail(),customer.getPhoneNumber(),customer.getGender(),customer.getAddress(),
+                    customer.getEmail(),customer.getPhoneNumber(),customer.getGender(),customer.getDateOfBirth(),customer.getAddress(),
                     customer.isProfileComplete(),customer.isBlocked(),customer.isActive(),customer.getTotalOrders(),
                     customer.getTotalOrdersAmount());
             log.info("SUCCESSFULLY RETRIEVED CUSTOMER WITH CUSTOMER_ID "+customerId);
@@ -80,7 +80,7 @@ public class CustomerManagementService {
             if(customerOpt.isPresent()){
                 Customer customer = customerOpt.get();
                 CustomerDTO customerDTO = new CustomerDTO(customer.getCustomerId(),customer.getFullName(),
-                        customer.getEmail(),customer.getPhoneNumber(),customer.getGender(),customer.getAddress(),
+                        customer.getEmail(),customer.getPhoneNumber(),customer.getGender(),customer.getDateOfBirth(),customer.getAddress(),
                         customer.isProfileComplete(),customer.isBlocked(),customer.isActive(),customer.getTotalOrders(),
                         customer.getTotalOrdersAmount());
                 log.info("SUCCESSFULLY RETRIEVED CUSTOMER WITH CUSTOMER_EMAIL "+customerEmail);
