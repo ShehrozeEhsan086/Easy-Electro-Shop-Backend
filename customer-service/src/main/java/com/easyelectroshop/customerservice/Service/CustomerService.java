@@ -1,6 +1,7 @@
 package com.easyelectroshop.customerservice.Service;
 
 import com.easyelectroshop.customerservice.DTO.Customer.Customer;
+import com.easyelectroshop.customerservice.DTO.Customer.PaymentMethod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -169,6 +170,24 @@ public class CustomerService {
         } catch (Exception ex){
             log.error("ERROR DELETING CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
             return HttpStatusCode.valueOf(500);
+        }
+    }
+
+    public PaymentMethod getCustomerPaymentMethod(UUID customerId){
+        log.info("CALLING CUSTOMER MANAGEMENT SERVICE TO GET PAYMENT METHOD OF CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://customer-management-service/api/v1/customer-management/get-customer-payment-method/"+customerId)
+                    .retrieve()
+                    .bodyToMono(PaymentMethod.class)
+                    .block();
+        } catch (WebClientResponseException.NotFound notFound){
+            log.error("EITHER CUSTOMER NOT FOUND OR PAYMENT METHOD NOT FOUND FOR CUSTOMER WITH CUSTOMER_ID "+customerId);
+            return null;
+        } catch (Exception ex){
+            log.error("ERROR CALLING CUSTOMER MANAGEMENT SERVICE TO GET PAYMENT METHOD OF CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return null;
         }
     }
 
