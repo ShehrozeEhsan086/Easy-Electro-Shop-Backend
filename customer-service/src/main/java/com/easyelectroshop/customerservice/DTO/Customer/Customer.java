@@ -1,5 +1,6 @@
-package com.easyelectroshop.customerservice.DTO;
+package com.easyelectroshop.customerservice.DTO.Customer;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public record Customer(
@@ -8,6 +9,7 @@ public record Customer(
         String email,
         String phoneNumber,
         String gender,
+        LocalDate dateOfBirth,
         Address address,
         PaymentMethod paymentMethod,
         boolean profileComplete,

@@ -1,6 +1,8 @@
 package com.easyelectroshop.customermanagementservice.Controller;
 
+import com.easyelectroshop.customermanagementservice.DTO.CustomerDTO;
 import com.easyelectroshop.customermanagementservice.Model.Customer;
+import com.easyelectroshop.customermanagementservice.Model.PaymentMethod;
 import com.easyelectroshop.customermanagementservice.Service.CustomerManagementService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +29,23 @@ public class CustomerManagementController {
     }
 
     @GetMapping("/get-customer-by-id/{customerId}")
-    public ResponseEntity<Customer> getCustomerById(@PathVariable UUID customerId){
-        Optional<Customer> customer = customerManagementService.getCustomerById(customerId);
-        return(customer.isPresent()) ? ResponseEntity.ok(customer.get()) : ResponseEntity.notFound().build();
+    public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable UUID customerId){
+        CustomerDTO customer = customerManagementService.getCustomerById(customerId);
+        return(customer != null) ? ResponseEntity.ok(customer) : ResponseEntity.notFound().build();
     }
 
     @GetMapping("/get-customer-by-email/{customerEmail}")
-    public ResponseEntity<Optional<Customer>> getCustomerById(@PathVariable String customerEmail){
+    public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable String customerEmail){
         return customerManagementService.getCustomerByEmail(customerEmail);
     }
 
+    @GetMapping("/get-customer-payment-method/{customerId}")
+    public ResponseEntity<PaymentMethod> getCustomerPaymentMethod(@PathVariable UUID customerId){
+        return customerManagementService.getCustomerPaymentMethod(customerId);
+    }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<Customer>> getAllCustomers(
+    public ResponseEntity<List<CustomerDTO>> getAllCustomers(
             @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
             @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
             @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy)
@@ -49,7 +55,7 @@ public class CustomerManagementController {
             log.info("NO CUSTOMERS IN DATABASE");
             return ResponseEntity.ok(null);
         } else {
-            List<Customer> customers = customerManagementService.getAllCustomers(pageNumber,pageSize,sortBy);
+            List<CustomerDTO> customers = customerManagementService.getAllCustomers(pageNumber,pageSize,sortBy);
             return (customers != null) ? ResponseEntity.ok(customers) : ResponseEntity.internalServerError().build();
         }
     }

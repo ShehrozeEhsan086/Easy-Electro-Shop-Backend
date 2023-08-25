@@ -24,7 +24,6 @@ public class Cart {
     @Column(name = "customerId", nullable = false)
     private UUID customerId;
 
-
     @OneToMany(targetEntity = CartContent.class,  cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_cart_id",referencedColumnName = "cartId")
     private List<CartContent> cartContent;

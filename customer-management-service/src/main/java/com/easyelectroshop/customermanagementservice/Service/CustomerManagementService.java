@@ -1,13 +1,17 @@
 package com.easyelectroshop.customermanagementservice.Service;
 
+import com.easyelectroshop.customermanagementservice.DTO.CustomerDTO;
 import com.easyelectroshop.customermanagementservice.Model.Customer;
+import com.easyelectroshop.customermanagementservice.Model.PaymentMethod;
 import com.easyelectroshop.customermanagementservice.Repository.CustomerManagementRepository;
+import com.easyelectroshop.customermanagementservice.Repository.PaymentMethodRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,6 +23,9 @@ public class CustomerManagementService {
     @Autowired
     CustomerManagementRepository customerManagementRepository;
 
+    @Autowired
+    PaymentMethodRepository paymentMethodRepository;
+
     private boolean validateCustomerProfileCompleteness(Customer customer){
         return customer.getFullName() != null
                 && customer.getEmail() != null
@@ -26,40 +33,58 @@ public class CustomerManagementService {
                 && customer.getGender() != null;
     }
 
-    public List<Customer> getAllCustomers(int pageNumber, int pageSize, String sortBy){
+    public List<CustomerDTO> getAllCustomers(int pageNumber, int pageSize, String sortBy){
         log.info("GETTING ALL CUSTOMERS");
         try{
             if(pageSize == -1){
                 pageSize = Integer.MAX_VALUE;
             }
             List<Customer> customers = customerManagementRepository.findAllPaginated(sortBy,pageSize,pageNumber);
+            List<CustomerDTO> customerDTOS = new ArrayList<>();
+            for(Customer customer : customers){
+                CustomerDTO customerDTO = new CustomerDTO(customer.getCustomerId(),customer.getFullName(),
+                        customer.getEmail(),customer.getPhoneNumber(),customer.getGender(),customer.getDateOfBirth(),customer.getAddress(),
+                        customer.isProfileComplete(),customer.isBlocked(),customer.isActive(),customer.getTotalOrders(),
+                        customer.getTotalOrdersAmount());
+                customerDTOS.add(customerDTO);
+            }
             log.info("SUCCESSFULLY RETRIEVED ALL CUSTOMERS");
-            return customers;
+            return customerDTOS;
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE ALL CUSTOMERS",ex);
             return null;
         }
     }
 
-    public Optional<Customer> getCustomerById(UUID customerId){
+    public CustomerDTO getCustomerById(UUID customerId){
         log.info("GETTING CUSTOMER WITH CUSTOMER_ID "+customerId);
-        Optional<Customer> customer = customerManagementRepository.findById(customerId);
-        if(customer.isPresent()){
+        Optional<Customer> customerOpt = customerManagementRepository.findById(customerId);
+        if(customerOpt.isPresent()){
+            Customer customer = customerOpt.get();
+            CustomerDTO customerDTO = new CustomerDTO(customer.getCustomerId(),customer.getFullName(),
+                    customer.getEmail(),customer.getPhoneNumber(),customer.getGender(),customer.getDateOfBirth(),customer.getAddress(),
+                    customer.isProfileComplete(),customer.isBlocked(),customer.isActive(),customer.getTotalOrders(),
+                    customer.getTotalOrdersAmount());
             log.info("SUCCESSFULLY RETRIEVED CUSTOMER WITH CUSTOMER_ID "+customerId);
-            return customer;
+            return customerDTO;
         } else {
             log.error("COULD NOT FIND CUSTOMER WITH CUSTOMER_ID "+customerId);
-            return Optional.empty();
+            return null;
         }
     }
 
-    public ResponseEntity<Optional<Customer>> getCustomerByEmail(String customerEmail){
+    public ResponseEntity<CustomerDTO> getCustomerByEmail(String customerEmail){
         log.info("GETTING CUSTOMER WITH CUSTOMER_EMAIL "+customerEmail);
         try{
-            Optional<Customer> customer = customerManagementRepository.findByEmail(customerEmail);
-            if(customer.isPresent()){
+            Optional<Customer> customerOpt = customerManagementRepository.findByEmail(customerEmail);
+            if(customerOpt.isPresent()){
+                Customer customer = customerOpt.get();
+                CustomerDTO customerDTO = new CustomerDTO(customer.getCustomerId(),customer.getFullName(),
+                        customer.getEmail(),customer.getPhoneNumber(),customer.getGender(),customer.getDateOfBirth(),customer.getAddress(),
+                        customer.isProfileComplete(),customer.isBlocked(),customer.isActive(),customer.getTotalOrders(),
+                        customer.getTotalOrdersAmount());
                 log.info("SUCCESSFULLY RETRIEVED CUSTOMER WITH CUSTOMER_EMAIL "+customerEmail);
-                return ResponseEntity.ok(customer);
+                return ResponseEntity.ok(customerDTO);
             } else {
                 log.error("COULD NOT FIND CUSTOMER WITH CUSTOMER_EMAIL "+customerEmail);
                 return ResponseEntity.notFound().build();
@@ -84,7 +109,7 @@ public class CustomerManagementService {
     }
 
     public HttpStatusCode saveCustomer(Customer customer){
-        log.info("ADDING NEW CUSTOMER WITH DATA "+customer.toString());
+        log.info("ADDING NEW CUSTOMER WITH EMAIL "+customer.getEmail());
         try{
             Optional<Customer> tempCustomer = customerManagementRepository.findByEmail(customer.getEmail());
             if( tempCustomer.isPresent()){
@@ -172,6 +197,28 @@ public class CustomerManagementService {
         } catch (Exception ex){
             log.error("COULD NOT DELETE CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
             return HttpStatusCode.valueOf(500);
+        }
+    }
+
+    public ResponseEntity<PaymentMethod> getCustomerPaymentMethod(UUID customerId){
+        log.info("GETTING PAYMENT METHOD OF CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            Optional<Customer> customer = customerManagementRepository.findById(customerId);
+            if(customer.isPresent()){
+                Optional<PaymentMethod> paymentMethod = paymentMethodRepository.findById(customer.get().getPaymentOption().getPaymentOptionId());
+                if(paymentMethod.isPresent()){
+                    return ResponseEntity.ok(paymentMethod.get());
+                }else {
+                    log.error("CUSTOMER WITH CUSTOMER_ID "+customerId+", HAS NO PAYMENT METHOD LINKED TO THEIR ACCOUNT!");
+                    return ResponseEntity.notFound().build();
+                }
+            } else {
+                log.error("CUSTOMER WITH CUSTOMER_ID "+customerId+", NOT FOUND!");
+                return ResponseEntity.notFound().build();
+            }
+        }catch (Exception ex){
+            log.error("ERROR GETTING PAYMENT METHOD OF CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return ResponseEntity.internalServerError().build();
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.easyelectroshop.productmanagementservice.Service;
 
+import com.easyelectroshop.productmanagementservice.DTO.ProductDTO.ProductDTO;
 import com.easyelectroshop.productmanagementservice.Model.Product;
 import com.easyelectroshop.productmanagementservice.Repository.ProductManagementRepository;
 
@@ -10,10 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -53,15 +51,23 @@ public class ProductManagementService {
         }
     }
 
-    public List<Product> getAllProducts(int pageNumber, int pageSize, String sortBy) {
+    public List<ProductDTO> getAllProducts(int pageNumber, int pageSize, String sortBy) {
         log.info("GETTING ALL PRODUCTS");
         try{
             if(pageSize == -1){
                 pageSize = Integer.MAX_VALUE;
             }
-            List<Product> products = productManagementRepository.findAllWithOnlyCoverImage(sortBy,pageSize,pageNumber);
+            List<Product> products = productManagementRepository.findAllPaginated(sortBy,pageSize,pageNumber);
+            List<ProductDTO> productDTOS = new ArrayList<>();
+            for(Product product : products){
+                ProductDTO productDTO = new ProductDTO(product.getProductId(),product.getName(),product.getShortDescription(),product.getCompleteDescription(),product.getCoverImage(),
+                        product.getBrandName(),product.getPrice(),product.isDiscounted(),product.getDiscountPercentage(),product.getDiscountedPrice(),product.getQuantity(),
+                        product.getSize(),product.getColors(), product.getCategory(),product.getSubCategories(),product.get_3DModelFilename(),product.get_3DModelURL(),product.isAvailable(),
+                        product.getLastUpdated());
+                productDTOS.add(productDTO);
+            }
             log.info("SUCCESSFULLY RETRIEVED ALL PRODUCTS");
-            return products;
+            return productDTOS;
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE ALL PRODUCTS",ex);
             return null;
@@ -150,6 +156,62 @@ public class ProductManagementService {
             return ResponseEntity.ok(price);
         } catch (Exception ex){
             log.error("ERROR GETTING PRICE FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<Integer> getProductStock(UUID productId){
+        log.info("GETTING PRODUCT STOCK REMAINING FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            int stock = productManagementRepository.findStockByProductId(productId);
+            return ResponseEntity.ok(stock);
+        }catch (Exception ex){
+            log.error("ERROR GETTING PRODUCT STOCK REMAINING FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<HttpStatusCode> reduceStock(UUID productId,int quantity){
+        log.info("REDUCING STOCK BY QUANTITY OF "+quantity+" FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            Optional<Product> product = productManagementRepository.findById(productId);
+            if(product.isPresent()){
+                int currentStock = product.get().getQuantity();
+                if(currentStock - quantity < 0 ){
+                    log.error("CANNOT REDUCE PRODUCT QUANTITY FOR PRODUCT WITH PRODUCT_ID "+product+" NOT ENOUGH STOCK TO FULL FILL REQUEST.");
+                    return ResponseEntity.status(HttpStatusCode.valueOf(406)).build();
+                } else {
+                    currentStock = currentStock - quantity;
+                    product.get().setQuantity(currentStock);
+                    productManagementRepository.save(product.get());
+                    return ResponseEntity.ok().build();
+                }
+            } else {
+                log.error("CANNOT REDUCE PRODUCT QUANTITY FOR PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND.");
+                return ResponseEntity.notFound().build();
+            }
+        } catch  (Exception ex){
+            log.error("ERROR REDUCING STOCK BY QUANTITY OF "+quantity+" FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<HttpStatusCode> increaseStock(UUID productId,int quantity){
+        log.info("INCREASING STOCK BY QUANTITY OF "+quantity+" FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            Optional<Product> product = productManagementRepository.findById(productId);
+            if(product.isPresent()){
+                int currentStock = product.get().getQuantity();
+                currentStock = currentStock + quantity;
+                product.get().setQuantity(currentStock);
+                productManagementRepository.save(product.get());
+                return ResponseEntity.ok().build();
+            } else {
+                log.error("CANNOT INCREASE PRODUCT QUANTITY FOR PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND.");
+                return ResponseEntity.notFound().build();
+            }
+        } catch  (Exception ex){
+            log.error("ERROR INCREASING STOCK BY QUANTITY OF "+quantity+" FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
             return ResponseEntity.internalServerError().build();
         }
     }
