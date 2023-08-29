@@ -16,6 +16,6 @@ public record Customer(
         boolean blocked,
         boolean active,
         int totalOrders,
-        int totalOrderAmount
+        double totalOrderAmount
 ) {
 }

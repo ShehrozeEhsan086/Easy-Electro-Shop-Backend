@@ -1,14 +1,10 @@
 package com.easyelectroshop.customerservice.Service;
 
 import com.easyelectroshop.customerservice.DTO.Cart.Cart;
-import com.easyelectroshop.customerservice.DTO.Customer.PaymentMethod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
@@ -32,7 +28,11 @@ public class CartService {
                     .toBodilessEntity()
                     .flatMap(response -> Mono.just(response.getStatusCode()))
                     .block();
-        } catch (Exception ex){
+        }  catch (WebClientResponseException.NotAcceptable notAcceptable){
+            log.error("ERROR CALLING CART SERVICE TO ADD PRODUCT "+productId+" TO CART OF CUSTOMER NOT ENOUGH STOCK!"+customerId);
+            return HttpStatusCode.valueOf(406);
+        }
+        catch (Exception ex){
             log.error("ERROR CALLING CART SERVICE TO ADD PRODUCT "+productId+" TO CART OF CUSTOMER "+customerId,ex);
             return HttpStatusCode.valueOf(500);
         }

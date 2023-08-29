@@ -191,4 +191,46 @@ public class CustomerService {
         }
     }
 
+    public HttpStatusCode increaseOrderInfo(UUID customerId, double amount){
+        log.info("CALLING CUSTOMER MANAGEMENT SERVICE TO ADD ORDER INFO TO CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try {
+            return webClientBuilder.build()
+                    .put()
+                    .uri("http://customer-management-service/api/v1/customer-management/add-order-info/"+customerId+"/"+amount)
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } catch (WebClientResponseException.NotFound notFound){
+            log.error("CUSTOMER MANAGEMENT SERVICE RETURNED RETURNED 404 NOT FOUND FOR CUSTOMER WITH CUSTOMER_ID "+customerId);
+            return HttpStatusCode.valueOf(404);
+        } catch (Exception ex){
+            log.error("ERROR CALLING CUSTOMER MANAGEMENT SERVICE TO ADD ORDER INFO TO CUSTOMER WITH CUSTOMER_ID "+customerId);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+
+    public HttpStatusCode decreaseOrderInfo(UUID customerId, double amount){
+        log.info("CALLING CUSTOMER MANAGEMENT SERVICE TO REMOVE ORDER INFO TO CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try {
+            return webClientBuilder.build()
+                    .put()
+                    .uri("http://customer-management-service/api/v1/customer-management/remove-order-info/"+customerId+"/"+amount)
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } catch (WebClientResponseException.NotFound notFound){
+            log.error("CUSTOMER MANAGEMENT SERVICE RETURNED RETURNED 404 NOT FOUND FOR CUSTOMER WITH CUSTOMER_ID "+customerId);
+            return HttpStatusCode.valueOf(404);
+        } catch (WebClientResponseException.NotAcceptable notAcceptable){
+            log.error("REQUEST REJECTED BY CUSTOMER MANAGEMENT SERVICE ");
+            return HttpStatusCode.valueOf(406);
+        } catch (Exception ex){
+            log.error("ERROR CALLING CUSTOMER MANAGEMENT SERVICE TO REMOVE ORDER INFO TO CUSTOMER WITH CUSTOMER_ID "+customerId);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+
+
 }

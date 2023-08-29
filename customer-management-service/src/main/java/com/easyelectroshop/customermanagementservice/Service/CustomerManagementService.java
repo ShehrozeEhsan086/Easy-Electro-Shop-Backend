@@ -125,6 +125,56 @@ public class CustomerManagementService {
         }
     }
 
+    public HttpStatusCode increaseOrderCountAmountOfCustomer(UUID customerId,double amount){
+        log.info("ADDING 1 TO ORDER COUNT AND INCREASING TOTAL ORDERS AMOUNT BY RS."+amount+" OF CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            Optional<Customer> customer = customerManagementRepository.findById(customerId);
+            if(customer.isPresent()){
+                int totalOrders = customer.get().getTotalOrders();
+                totalOrders++;
+                customer.get().setTotalOrders(totalOrders);
+                double currentAmount = customer.get().getTotalOrdersAmount();
+                currentAmount += amount;
+                customer.get().setTotalOrdersAmount(currentAmount);
+                customerManagementRepository.save(customer.get());
+                customerManagementRepository.save(customer.get());
+                return HttpStatusCode.valueOf(200);
+            } else {
+                log.error("CUSTOMER WITH CUSTOMER_ID "+customer+" NOT FOUND!");
+                return HttpStatusCode.valueOf(404);
+            }
+        } catch (Exception ex){
+            log.error("ERROR WHILE ADDING 1 TO ORDER COUNT AND INCREASING TOTAL ORDERS AMOUNT BY RS."+amount+" OF CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+    public HttpStatusCode decreaseOrderCountAmountOfCustomer(UUID customerId,double amount){
+        log.info("REMOVING 1 TO ORDER COUNT AND REDUCING TOTAL ORDERS AMOUNT BY RS."+amount+" OF CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            Optional<Customer> customer = customerManagementRepository.findById(customerId);
+            if(customer.isPresent()){
+                int totalOrders = customer.get().getTotalOrders();
+                if(totalOrders - 1 >= 0){
+                    totalOrders--;
+                    customer.get().setTotalOrders(totalOrders);
+                    double currentAmount = customer.get().getTotalOrdersAmount();
+                    currentAmount -= amount;
+                    customer.get().setTotalOrdersAmount(currentAmount);
+                    customerManagementRepository.save(customer.get());
+                    return HttpStatusCode.valueOf(200);
+                } else {
+                    return HttpStatusCode.valueOf(406);
+                }
+            } else {
+                log.error("CUSTOMER WITH CUSTOMER_ID "+customer+" NOT FOUND!");
+                return HttpStatusCode.valueOf(404);
+            }
+        } catch (Exception ex){
+            log.error("ERROR WHILE REMOVING 1 TO ORDER COUNT AND REDUCING TOTAL ORDERS AMOUNT BY RS."+amount+" OF CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return HttpStatusCode.valueOf(500);
+        }
+    }
+
     public HttpStatusCode completeCustomerProfile(Customer customer){
         log.info("COMPLETING CUSTOMER PROFILE WITH CUSTOMER_ID "+customer.getCustomerId());
         try{
@@ -138,11 +188,11 @@ public class CustomerManagementService {
                         return HttpStatusCode.valueOf(200);
                     } else {
                         log.error("ERROR COMPLETING CUSTOMER PROFILE AS ATTRIBUTE REQUIREMENTS WERE NOT MET FOR CUSTOMER_ID "+customer.getCustomerId());
-                        return HttpStatusCode.valueOf(406);
+                        return HttpStatusCode.valueOf(204);
                     }
                 } else {
                     log.error("ERROR COMPLETING PROFILE FOR CUSTOMER WITH CUSTOMER_ID "+ customer.getCustomerId() +", EMAIL CANNOT BE CHANGED");
-                    return HttpStatusCode.valueOf(409);
+                    return HttpStatusCode.valueOf(204);
                 }
             } else {
                 log.error("ERROR COMPLETING CUSTOMER PROFILE AS CUSTOMER WAS NOT FOUND");
