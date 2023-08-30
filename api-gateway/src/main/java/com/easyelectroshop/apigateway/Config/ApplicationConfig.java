@@ -29,7 +29,7 @@ public class ApplicationConfig {
   public CorsConfigurationSource corsConfigurationSource() {
     final var source = new UrlBasedCorsConfigurationSource();
     final var config = new CorsConfiguration();
-    final var origins = List.of(adminOriginUrl,customerOriginUrl);
+    final var origins = List.of(customerOriginUrl,adminOriginUrl);
     final var headers = List.of(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE);
     final var methods = List.of(HttpMethod.GET.name(),HttpMethod.POST.name(),HttpMethod.PUT.name(),HttpMethod.DELETE.name());
     final var maxAge = Duration.ofSeconds(86400);
