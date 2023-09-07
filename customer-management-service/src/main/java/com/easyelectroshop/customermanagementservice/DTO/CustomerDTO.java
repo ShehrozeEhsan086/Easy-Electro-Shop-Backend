@@ -16,5 +16,5 @@ public record CustomerDTO(UUID customerId,
                           boolean blocked,
                           boolean active,
                           int totalOrders,
-                          int totalOrderAmount) {
+                          double totalOrderAmount) {
 }

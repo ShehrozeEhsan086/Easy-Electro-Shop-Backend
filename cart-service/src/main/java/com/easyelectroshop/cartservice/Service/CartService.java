@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
 
 
@@ -43,14 +44,14 @@ public class CartService {
                 List<CartContent> currentContent = cart.get().getCartContent();
 
                 boolean productWasAlreadyPresentInCart = false;
-                try{
+
                     webClientBuilder.build()
-                            .put()
-                            .uri("http://product-service/api/v1/product/reduce-product-stock/"+productId+"/"+quantity)
-                            .retrieve()
-                            .toBodilessEntity()
-                            .flatMap(response -> Mono.just(response.getStatusCode()))
-                            .block();
+                                .put()
+                                .uri("http://product-service/api/v1/product/reduce-product-stock/"+productId+"/"+quantity)
+                                .retrieve()
+                                .toBodilessEntity()
+                                .flatMap(response -> Mono.just(response.getStatusCode()))
+                                .block();
 
                     for (CartContent cartContent : currentContent) {
                         if (cartContent.getProductId().equals(productId)) {
@@ -79,11 +80,9 @@ public class CartService {
 
                     cartRepository.save(cart.get());
                     return HttpStatusCode.valueOf(200);
-
-                } catch (Exception ex){
-                    log.error("ERROR WHILE ADDING PRODUCT TO CART REJECTED BY PRODUCT SERVICE", ex);
-                    return HttpStatusCode.valueOf(500);
-                }
+            } catch (WebClientResponseException.NotAcceptable notAcceptable){
+                log.error("ERROR WHILE ADDING PRODUCT TO CART NOT ENOUGH STOCK!");
+                return HttpStatusCode.valueOf(406);
             } catch (Exception ex) {
                 log.error("ERROR WHILE ADDING PRODUCT TO CART ", ex);
                 return HttpStatusCode.valueOf(500);

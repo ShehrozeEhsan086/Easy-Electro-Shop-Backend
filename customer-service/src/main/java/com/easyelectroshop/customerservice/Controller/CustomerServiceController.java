@@ -4,8 +4,11 @@ package com.easyelectroshop.customerservice.Controller;
 import com.easyelectroshop.customerservice.DTO.Cart.Cart;
 import com.easyelectroshop.customerservice.DTO.Customer.Customer;
 import com.easyelectroshop.customerservice.DTO.Customer.PaymentMethod;
+import com.easyelectroshop.customerservice.DTO.Order.OrderEntity;
 import com.easyelectroshop.customerservice.Service.CartService;
 import com.easyelectroshop.customerservice.Service.CustomerService;
+import com.easyelectroshop.customerservice.Service.OrderService;
+import jakarta.ws.rs.PUT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,9 @@ public class CustomerServiceController {
 
     @Autowired
     CartService cartService;
+
+    @Autowired
+    OrderService orderService;
 
     // ----------------  APIS FOR CUSTOMER MANAGEMENT SERVICE [[START]] --------------------
 
@@ -43,7 +49,7 @@ public class CustomerServiceController {
         return customer != null ? ResponseEntity.ok(customer) : ResponseEntity.unprocessableEntity().build();
     }
 
-    @GetMapping("/management/get-all")
+    @GetMapping("/management/get-all-customers")
     public ResponseEntity<List<Customer>> getAllCustomers(
             @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
             @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
@@ -77,6 +83,18 @@ public class CustomerServiceController {
     public ResponseEntity<PaymentMethod> getCustomerPaymentMethod(@PathVariable UUID customerId){
         PaymentMethod paymentMethod = customerService.getCustomerPaymentMethod(customerId);
         return paymentMethod != null ? ResponseEntity.ok(paymentMethod) : ResponseEntity.internalServerError().build();
+    }
+
+    @PutMapping("/add-order-info/{customerId}/{amount}")
+    public ResponseEntity<HttpStatusCode> increaseCustomerInfo(@PathVariable UUID customerId,
+                                                               @PathVariable double amount){
+        return ResponseEntity.status(customerService.increaseOrderInfo(customerId,amount)).build();
+    }
+
+    @PutMapping("/remove-order-info/{customerId}/{amount}")
+    public ResponseEntity<HttpStatusCode> decreaseCustomerInfo(@PathVariable UUID customerId,
+                                                               @PathVariable double amount){
+        return ResponseEntity.status(customerService.decreaseOrderInfo(customerId,amount)).build();
     }
 
     // ----------------  APIS FOR CUSTOMER MANAGEMENT SERVICE [[END]] --------------------
@@ -120,4 +138,31 @@ public class CustomerServiceController {
     }
 
     // ----------------  APIS FOR CART SERVICE [[END]] --------------------
+
+    // ----------------  APIS FOR ORDER SERVICE [[START]] -------------------
+
+    @PostMapping("/add-order")
+    public ResponseEntity<HttpStatusCode> saveOrder(@RequestBody OrderEntity orderEntity){
+        return ResponseEntity.status(orderService.saveOrder(orderEntity)).build();
+    }
+
+    @GetMapping("/get-all-orders")
+    public ResponseEntity<List<OrderEntity>> getAll(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+                                                    @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
+                                                    @RequestParam(value="sort",defaultValue = "created_at",required = false) String sortBy){
+        return ResponseEntity.ok(orderService.getAllOrders(sortBy,pageSize,pageNumber));
+    }
+
+    @PutMapping("/change-order-status/{orderId}/{status}")
+    public ResponseEntity<HttpStatusCode> changeStatus(@PathVariable long orderId,
+                                                       @PathVariable String status){
+        return  ResponseEntity.status(orderService.changeOrderStatus(orderId,status)).build();
+    }
+
+    @DeleteMapping("/delete-order/{orderId}")
+    public ResponseEntity<HttpStatusCode> deleteOrder(@PathVariable long orderId){
+        return  ResponseEntity.status(orderService.deleteOrder(orderId)).build();
+    }
+
+    // ----------------  APIS FOR ORDER SERVICE [[END]] --------------------
 }

@@ -44,11 +44,23 @@ public class CustomerManagementController {
         return customerManagementService.getCustomerPaymentMethod(customerId);
     }
 
+    @PutMapping("/add-order-info/{customerId}/{amount}")
+    public ResponseEntity<HttpStatusCode> increaseOrderCountAmountOfCustomer(@PathVariable UUID customerId,
+                                                                             @PathVariable double amount){
+        return ResponseEntity.status(customerManagementService.increaseOrderCountAmountOfCustomer(customerId, amount)).build();
+    }
+
+    @PutMapping("/remove-order-info/{customerId}/{amount}")
+    public ResponseEntity<HttpStatusCode> reduceOrderCountAmountOfCustomer(@PathVariable UUID customerId,
+                                                                             @PathVariable double amount){
+        return ResponseEntity.status(customerManagementService.decreaseOrderCountAmountOfCustomer(customerId,amount)).build();
+    }
+
     @GetMapping("/get-all")
     public ResponseEntity<List<CustomerDTO>> getAllCustomers(
             @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
             @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
-            @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy)
+            @RequestParam(value="sort",defaultValue = "full_name",required = false) String sortBy)
     {
         int length = customerManagementService.getCustomersCount();
         if(length == 0){
