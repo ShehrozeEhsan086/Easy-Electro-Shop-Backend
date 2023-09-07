@@ -28,7 +28,7 @@ public class WebScrapperService {
     WebScrapperRepository webScrapperRepository;
 
     @Autowired
-    WebDriver chromeDriver;
+    WebDriver webDriver;
 
     @Autowired
     WebClient.Builder webClientBuilder;
@@ -89,11 +89,11 @@ public class WebScrapperService {
     public WebScrapper getPriceFromAmazon(String productName, UUID productId){
         WebScrapper webScrapper = new WebScrapper();
         try{
-            chromeDriver.get(amazonUrl);
-            WebElement searchField = chromeDriver.findElement(By.id("twotabsearchtextbox"));
+            webDriver.get(amazonUrl);
+            WebElement searchField = webDriver.findElement(By.id("twotabsearchtextbox"));
             searchField.sendKeys(productName);
 
-            WebElement searchButton = chromeDriver.findElement(By.cssSelector("input[value='Go']"));
+            WebElement searchButton = webDriver.findElement(By.cssSelector("input[value='Go']"));
             searchButton.click();
 
             int counter = 1;
@@ -103,7 +103,7 @@ public class WebScrapperService {
             do {
                 checkFlag = true;
                 try{
-                    firstProduct = chromeDriver.findElement(By.cssSelector("[cel_widget_id='MAIN-SEARCH_RESULTS-"+counter+"']"));
+                    firstProduct = webDriver.findElement(By.cssSelector("[cel_widget_id='MAIN-SEARCH_RESULTS-"+counter+"']"));
                 } catch (Exception ex){
                     checkFlag = false;
                 }
@@ -147,14 +147,14 @@ public class WebScrapperService {
     public WebScrapper getPriceFromDaraz(String productName, UUID productId){
         WebScrapper webScrapper = new WebScrapper();
         try{
-            chromeDriver.get(darazUrl);
-            WebElement searchFiled = chromeDriver.findElement(By.id("q"));
+            webDriver.get(darazUrl);
+            WebElement searchFiled = webDriver.findElement(By.id("q"));
             searchFiled.sendKeys(productName);
 
-            WebElement searchButton = chromeDriver.findElement(By.className("search-box__button--1oH7"));
+            WebElement searchButton = webDriver.findElement(By.className("search-box__button--1oH7"));
             searchButton.click();
 
-            WebElement products = chromeDriver.findElement(By.className("box--ujueT"));
+            WebElement products = webDriver.findElement(By.className("box--ujueT"));
 
             String regex = "Rs\\.\\s*(.*?)\\s*\n";
             Pattern pattern = Pattern.compile(regex);
