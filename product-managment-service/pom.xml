@@ -72,6 +72,11 @@
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.stripe</groupId>
+            <artifactId>stripe-java</artifactId>
+            <version>22.21.0-beta.1</version>
+        </dependency>
 
     </dependencies>
     <dependencyManagement>

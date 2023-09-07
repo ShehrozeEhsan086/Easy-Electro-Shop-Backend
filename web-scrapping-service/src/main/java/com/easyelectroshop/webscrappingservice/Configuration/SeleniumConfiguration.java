@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SeleniumConfiguration {
 
-//        Background Task No Chrome opening
+//        Background Task No Edge opening
 //        @Bean
 //        public WebDriver getEdgeDriver(){
 //              return WebDriverManager.edgedriver().capabilities(new EdgeOptions().addArguments("--headless",,"--remote-allow-origins=*")).create();
