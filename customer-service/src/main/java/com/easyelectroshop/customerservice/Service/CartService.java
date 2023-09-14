@@ -86,9 +86,6 @@ public class CartService {
                     .retrieve()
                     .bodyToMono(Cart.class)
                     .block();
-        } catch (WebClientResponseException.NotFound notFound){
-            log.error("CART FOR CUSTOMER NOT FOUND");
-            return null;
         }catch (Exception ex){
             log.error("ERROR CALLING CART SERVICE TO GET CART OF CUSTOMER "+customerId,ex);
             return null;

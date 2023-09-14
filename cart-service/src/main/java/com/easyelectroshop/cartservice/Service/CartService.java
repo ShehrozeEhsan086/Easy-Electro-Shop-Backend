@@ -248,7 +248,7 @@ public class CartService {
             if (cart.isPresent()){
                 return ResponseEntity.ok(cart.get());
             } else {
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.noContent().build();
             }
         } catch (Exception ex){
             return ResponseEntity.internalServerError().build();

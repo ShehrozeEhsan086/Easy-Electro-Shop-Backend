@@ -5,8 +5,9 @@ import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
+import com.easyelectroshop.productservice.DTO.ProductDTO.ProductImageWithColor;
+import com.easyelectroshop.productservice.DTO.ProductDTO.ProductWithColor;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
-import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -21,6 +22,7 @@ import org.springframework.web.reactive.function.client.WebClientException;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -348,6 +350,43 @@ public class ProductService {
     }
 
 
+    public ProductWithColor getProductByIdWithColorValue(UUID productId) {
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            Product product = webClientBuilder.build()
+                    .get()
+                    .uri("http://product-management-service/api/v1/product-management/get-product/"+productId)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Product.class)
+                    .block();
+            List<WebScrapper> webScrapper = getScrappedPrices(productId).getBody();
+            List<String> colorValues = new ArrayList<>();
+            List<ProductImageWithColor> productImageWithColors = new ArrayList<>();
+
+            for(int i=0;i<product.images().size();i++){
+                String colorValue = getColor(product.images().get(i).colors()).colorName();
+                ProductImageWithColor imageWithColor = new ProductImageWithColor(product.images().get(i).imageId(),
+                        product.images().get(i).imageData(),colorValue);
+                productImageWithColors.add(imageWithColor);
+            }
+
+            for(int i=0;i<product.colors().size();i++){
+                colorValues.add(getColor(product.colors().get(i)).colorName());
+            }
+            ProductWithColor completeProduct = new ProductWithColor(product.productId(),product.name(),productImageWithColors,product.shortDescription(),product.completeDescription(),product.coverImage(),
+                    product.brandName(),product.price(),product.isDiscounted(),product.discountPercentage(),product.discountedPrice(),product.quantity(),product.size(),colorValues,
+                    product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
+            return completeProduct;
+        } catch (WebClientException ex){
+            log.error("PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND");
+            return null;
+        } catch (Exception ex){
+            log.error("COULD NOT RETRIEVE PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return null;
+        }
+    }
+
     public Product getProductById(UUID productId) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET PRODUCT WITH PRODUCT_ID "+productId);
         try{
@@ -364,7 +403,7 @@ public class ProductService {
                     product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
             return completeProduct;
         } catch (WebClientException ex){
-            log.error("PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND",ex.getMessage());
+            log.error("PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND");
             return null;
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE PRODUCT WITH PRODUCT_ID "+productId,ex);
