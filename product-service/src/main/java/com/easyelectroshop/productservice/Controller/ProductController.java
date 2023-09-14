@@ -5,6 +5,7 @@ import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
+import com.easyelectroshop.productservice.DTO.ProductDTO.ProductWithColor;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
 import com.easyelectroshop.productservice.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,8 +152,8 @@ public class ProductController {
     }
 
     @GetMapping("get-product/{productId}")
-    public ResponseEntity<Product> getProductById(@PathVariable UUID productId){
-        Product product = productService.getProductById(productId);
+    public ResponseEntity<ProductWithColor> getProductById(@PathVariable UUID productId){
+        ProductWithColor product = productService.getProductByIdWithColorValue(productId);
         return(product!=null) ? ResponseEntity.ok(product) : ResponseEntity.notFound().build();
     }
 

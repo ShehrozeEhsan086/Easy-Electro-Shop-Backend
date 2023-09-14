@@ -5,10 +5,24 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../discovery-server/pom.xml" />
+        <option value="$PROJECT_DIR$/../config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/../api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/../amazon-s3-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../cart-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../customer-management-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../customer-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../order-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../order-tracking-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../product-category-management-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../product-color-management-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../product-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../stripe-payment-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../web-scrapping-service/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="19" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" default="true" project-jdk-name="openjdk-20" project-jdk-type="JavaSDK" />
   <component name="ProjectType">
     <option name="id" value="jpab" />
   </component>
