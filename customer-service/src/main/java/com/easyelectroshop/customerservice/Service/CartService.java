@@ -86,7 +86,7 @@ public class CartService {
                     .retrieve()
                     .bodyToMono(Cart.class)
                     .block();
-        }catch (Exception ex){
+        } catch (Exception ex){
             log.error("ERROR CALLING CART SERVICE TO GET CART OF CUSTOMER "+customerId,ex);
             return null;
         }
