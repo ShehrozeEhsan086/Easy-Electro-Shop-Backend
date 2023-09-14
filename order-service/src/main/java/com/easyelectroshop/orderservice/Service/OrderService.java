@@ -125,4 +125,23 @@ public class OrderService {
         }
     }
 
+    public ResponseEntity<HttpStatusCode> addShippingNumber(long orderId,String shippingNumber){
+        log.info("ADDING SHIPPING NUMBER "+shippingNumber+" TO ORDER WITH ORDER_ID");
+        try{
+            Optional<OrderEntity> order = orderRepository.findById(orderId);
+            if(order.isPresent()){
+                order.get().setShippingTrackingNumber(shippingNumber);
+                orderRepository.save(order.get());
+                log.info("SUCCESSFULLY ADDED SHIPPING NUMBER "+shippingNumber+" TO ORDER WITH ORDER_ID");
+                return ResponseEntity.ok().build();
+            } else {
+                log.error("ORDER WITH ORDER_ID "+orderId+" NOT FOUND");
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception ex){
+            log.error("ERROR ADDING SHIPPING NUMBER "+shippingNumber+" TO ORDER WITH ORDER_ID",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
 }

@@ -141,27 +141,33 @@ public class CustomerServiceController {
 
     // ----------------  APIS FOR ORDER SERVICE [[START]] -------------------
 
-    @PostMapping("/add-order")
+    @PostMapping("/management/add-order")
     public ResponseEntity<HttpStatusCode> saveOrder(@RequestBody OrderEntity orderEntity){
         return ResponseEntity.status(orderService.saveOrder(orderEntity)).build();
     }
 
-    @GetMapping("/get-all-orders")
+    @GetMapping("/management/get-all-orders")
     public ResponseEntity<List<OrderEntity>> getAll(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
                                                     @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
                                                     @RequestParam(value="sort",defaultValue = "created_at",required = false) String sortBy){
         return ResponseEntity.ok(orderService.getAllOrders(sortBy,pageSize,pageNumber));
     }
 
-    @PutMapping("/change-order-status/{orderId}/{status}")
+    @PutMapping("/management/change-order-status/{orderId}/{status}")
     public ResponseEntity<HttpStatusCode> changeStatus(@PathVariable long orderId,
                                                        @PathVariable String status){
         return  ResponseEntity.status(orderService.changeOrderStatus(orderId,status)).build();
     }
 
-    @DeleteMapping("/delete-order/{orderId}")
+    @DeleteMapping("/management/delete-order/{orderId}")
     public ResponseEntity<HttpStatusCode> deleteOrder(@PathVariable long orderId){
         return  ResponseEntity.status(orderService.deleteOrder(orderId)).build();
+    }
+
+    @PostMapping("/management/add-shipping-number/{orderId}/{shippingNumber}")
+    public ResponseEntity<HttpStatusCode> addShippingNumber(@PathVariable long orderId,
+                                                            @PathVariable String shippingNumber){
+        return ResponseEntity.status(orderService.addShippingNumber(orderId,shippingNumber)).build();
     }
 
     // ----------------  APIS FOR ORDER SERVICE [[END]] --------------------

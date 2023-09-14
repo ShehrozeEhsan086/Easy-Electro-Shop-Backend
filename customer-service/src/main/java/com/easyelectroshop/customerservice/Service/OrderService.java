@@ -2,6 +2,7 @@ package com.easyelectroshop.customerservice.Service;
 
 import com.easyelectroshop.customerservice.DTO.Customer.Customer;
 import com.easyelectroshop.customerservice.DTO.Order.OrderEntity;
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -95,6 +96,28 @@ public class OrderService {
         } catch (Exception ex){
             log.error("ERROR CALLING ORDER SERVICE TO GET ALL ORDERS",ex);
             return null;
+        }
+    }
+
+    public HttpStatusCode addShippingNumber(long orderId, String shippingNumber){
+        log.info("CALLING ORDER SERVICE TO ADD SHIPPING NUMBER "+shippingNumber+" TO ORDER WITH ORDER_ID "+orderId);
+        try{
+            return webClientBuilder.build()
+                    .post()
+                    .uri("http://order-service/api/v1/order-service/add-tracking-number/"+orderId+"/"+shippingNumber)
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+        } catch (WebClientResponseException.NotFound notFound){
+            log.error("ORDER WITH ORDER_ID "+orderId+" NOT FOUND");
+            return HttpStatusCode.valueOf(404);
+        } catch (WebClientResponseException.ServiceUnavailable unavailable){
+            log.error("ORDER SERVICE UNAVAILABLE");
+            return HttpStatusCode.valueOf(503);
+        } catch (Exception ex){
+            log.error("INTERNAL SERVER ERROR WHILE CALLING ORDER SERVICE TO ADD SHIPPING NUMBER FOR ORDER WITH ORDER_ID "+orderId);
+            return HttpStatusCode.valueOf(500);
         }
     }
 

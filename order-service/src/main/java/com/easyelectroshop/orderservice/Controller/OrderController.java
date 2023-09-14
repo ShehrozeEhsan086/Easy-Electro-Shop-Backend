@@ -39,4 +39,10 @@ public class OrderController {
         return orderService.deleteOrder(orderId);
     }
 
+    @PostMapping("/add-tracking-number/{orderId}/{shippingNumber}")
+    public ResponseEntity<HttpStatusCode> addShippingNumber(@PathVariable long orderId,
+                                                            @PathVariable String shippingNumber){
+        return orderService.addShippingNumber(orderId,shippingNumber);
+    }
+
 }
