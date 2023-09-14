@@ -40,6 +40,8 @@ public class SecurityConfig {
             .authenticated()
             .pathMatchers("/api/v1/customer/**")
             .permitAll()
+            .pathMatchers("/api/v1/stripe-service/**")
+            .authenticated()
             .pathMatchers("/actuator/**")
             .permitAll()
             .and()
