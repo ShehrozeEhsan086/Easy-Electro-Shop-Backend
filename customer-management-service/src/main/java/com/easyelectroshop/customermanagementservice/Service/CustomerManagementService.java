@@ -211,6 +211,7 @@ public class CustomerManagementService {
             if(tempCustomer.isPresent()){
                 if (customer.getEmail().equals(tempCustomer.get().getEmail())) {
                     if (validateCustomerProfileCompleteness(customer)) {
+                        customer.setProfileComplete(true);
                         customerManagementRepository.save(customer);
                         log.info("SUCCESSFULLY EDITED CUSTOMER WITH CUSTOMER_ID " + customer.getCustomerId());
                         return HttpStatusCode.valueOf(200);
