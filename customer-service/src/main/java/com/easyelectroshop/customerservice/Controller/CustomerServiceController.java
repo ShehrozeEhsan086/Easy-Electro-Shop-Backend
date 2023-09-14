@@ -124,7 +124,7 @@ public class CustomerServiceController {
     @GetMapping("/management/get-customer-cart/{customerId}")
     public ResponseEntity<Cart> getCustomerCart(@PathVariable UUID customerId){
         Cart cart = cartService.getCustomerCart(customerId);
-        return cart != null ? ResponseEntity.ok(cart) : ResponseEntity.internalServerError().build();
+        return cart != null ? ResponseEntity.ok(cart) : ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/management/cancel-customer-cart/{customerId}")
