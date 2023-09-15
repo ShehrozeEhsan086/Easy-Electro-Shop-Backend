@@ -7,4 +7,9 @@ public record OrderDetail(
         int quantity,
         double totalPrice
 ) {
+
+    @Override
+    public String toString() {
+        return productName+" Rs. "+price+" x "+quantity+"\t Rs. "+totalPrice;
+    }
 }

@@ -8,4 +8,9 @@ public record Address(
         String addressLine,
         String postCode
 ) {
+
+    @Override
+    public String toString() {
+        return "Address: "+addressLine+", "+area+", "+city+", "+province+", "+postCode;
+    }
 }
