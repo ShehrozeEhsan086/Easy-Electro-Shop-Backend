@@ -28,7 +28,7 @@ public class OrderService {
     public ResponseEntity<HttpStatusCode> saveOrder(OrderEntity orderEntity){
       try{
           log.info("ADDING ORDER FOR CUSTOMER WITH CUSTOMER_ID "+ orderEntity.getCustomerId());
-          if( orderEntity.getTotalOrderPrice() == 0.0 ){
+          if( orderEntity.getTotalOrderPrice() == 0.0){
               double totalContentPrice = orderEntity.getTotalContentPrice();
               double shippingCost = orderEntity.getShippingCost();
               orderEntity.setTotalOrderPrice(totalContentPrice+shippingCost);
