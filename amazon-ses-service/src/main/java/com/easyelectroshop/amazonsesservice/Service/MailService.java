@@ -93,13 +93,6 @@ public class MailService {
                 orderDetailList.add(orderDetail);
             }
 
-
-
-            /// ADD ORDER STATUS
-
-
-
-
             EmailData emailData = new EmailData(
                     customer.fullName(),
                     order.orderId(),
@@ -107,6 +100,7 @@ public class MailService {
                     order.totalContentPrice(),
                     order.shippingCost(),
                     order.totalOrderPrice(),
+                    order.orderStatus(),
                     customer.address());
 
             log.info("SENDING EMAIL TO CUSTOMER WITH CUSTOMER_EMAIL "+customer.email()+" OF ORDER WITH ORDER_ID "+order.orderId());
