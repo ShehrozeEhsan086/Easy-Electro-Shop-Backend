@@ -5,6 +5,8 @@ import com.easyelectroshop.customerservice.DTO.Cart.Cart;
 import com.easyelectroshop.customerservice.DTO.Customer.Customer;
 import com.easyelectroshop.customerservice.DTO.Customer.PaymentMethod;
 import com.easyelectroshop.customerservice.DTO.Order.OrderEntity;
+import com.easyelectroshop.customerservice.DTO.OrderGetAllResponse.OrderGetAllResponseEntity;
+import com.easyelectroshop.customerservice.DTO.OrderGetByIdResponse.OrderSingleResponseEntity;
 import com.easyelectroshop.customerservice.Service.CartService;
 import com.easyelectroshop.customerservice.Service.CustomerService;
 import com.easyelectroshop.customerservice.Service.OrderService;
@@ -147,10 +149,24 @@ public class CustomerServiceController {
     }
 
     @GetMapping("/management/get-all-orders")
-    public ResponseEntity<List<OrderEntity>> getAll(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
-                                                    @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
-                                                    @RequestParam(value="sort",defaultValue = "created_at",required = false) String sortBy){
+    public ResponseEntity<List<OrderGetAllResponseEntity>> getAll(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+                                                                  @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
+                                                                  @RequestParam(value="sort",defaultValue = "created_at",required = false) String sortBy){
         return ResponseEntity.ok(orderService.getAllOrders(sortBy,pageSize,pageNumber));
+    }
+
+    @GetMapping("/management/get-all-orders-by-customer-id/{customerId}")
+    public ResponseEntity<List<OrderGetAllResponseEntity>> getAllByCustomerId(@PathVariable UUID customerId,
+                                                                    @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+                                                                    @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
+                                                                    @RequestParam(value="sort",defaultValue = "created_at",required = false) String sortBy){
+        return ResponseEntity.ok(orderService.getAllOrdersByCustomerId(customerId,sortBy,pageSize,pageNumber));
+    }
+
+    @GetMapping("/management/get-order-by-id/{orderId}")
+    public ResponseEntity<OrderSingleResponseEntity> getOrderById(@PathVariable long orderId){
+        OrderSingleResponseEntity order = orderService.getOrderById(orderId);
+        return order != null ? ResponseEntity.ok(order) : ResponseEntity.internalServerError().build();
     }
 
     @PutMapping("/management/change-order-status/{orderId}/{status}")
@@ -168,6 +184,36 @@ public class CustomerServiceController {
     public ResponseEntity<HttpStatusCode> addShippingNumber(@PathVariable long orderId,
                                                             @PathVariable String shippingNumber){
         return ResponseEntity.status(orderService.addShippingNumber(orderId,shippingNumber)).build();
+    }
+
+    @GetMapping("/management/get-all-orders-count")
+    public ResponseEntity<Long> getAllCount(){
+        return orderService.getTotalOrdersCount();
+    }
+
+    @GetMapping("/management/get-pending-orders-count")
+    public ResponseEntity<Long> getPendingCount(){
+        return orderService.getPendingOrdersCount();
+    }
+
+    @GetMapping("/management/get-confirmed-orders-count")
+    public ResponseEntity<Long> getConfirmedCount(){
+        return orderService.getConfirmedOrdersCount();
+    }
+
+    @GetMapping("/management/get-readytoship-orders-count")
+    public ResponseEntity<Long> getReadyToShipCount(){
+        return orderService.getReadyToShipOrdersCount();
+    }
+
+    @GetMapping("/management/get-intransit-orders-count")
+    public ResponseEntity<Long> getInTransitCount(){
+        return orderService.getInTransitOrdersCount();
+    }
+
+    @GetMapping("/management/get-delivered-orders-count")
+    public ResponseEntity<Long> getDeliveredCount(){
+        return orderService.getDeliveredOrdersCount();
     }
 
     // ----------------  APIS FOR ORDER SERVICE [[END]] --------------------

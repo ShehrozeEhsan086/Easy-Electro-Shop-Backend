@@ -1,6 +1,6 @@
-package com.easyelectroshop.amazonsesservice.Model.EmailData;
+package com.easyelectroshop.orderservice.DTO.OrderGetByIdResponse;
 
-public record OrderDetail(
+public record OrderDetailResponse(
         String coverImage,
         String productName,
         double price,

@@ -215,4 +215,19 @@ public class ProductManagementService {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    public ResponseEntity<String> getProductNameById(UUID productId){
+        log.info("GETTING PRODUCT NAME FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            String productName = productManagementRepository.findById(productId).get().getName();
+            log.info("SUCCESSFULLY RETRIEVED PRODUCT NAME "+productName+" FOR PRODUCT WITH PRODUCT_ID "+productId);
+            return ResponseEntity.ok(productName);
+        } catch (NoSuchElementException noSuchElementException){
+            log.error("ERROR GETTING PRODUCT NAME FOR PRODUCT WITH PRODUCT_ID "+productId+" FIELD NOT FOUND!");
+            return ResponseEntity.notFound().build();
+        }catch (Exception ex){
+            log.error("ERROR GETTING PRODUCT NAME FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }

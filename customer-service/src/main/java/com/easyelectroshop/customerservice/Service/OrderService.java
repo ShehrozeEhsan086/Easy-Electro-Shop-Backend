@@ -2,6 +2,8 @@ package com.easyelectroshop.customerservice.Service;
 
 import com.easyelectroshop.customerservice.DTO.Customer.Customer;
 import com.easyelectroshop.customerservice.DTO.Order.OrderEntity;
+import com.easyelectroshop.customerservice.DTO.OrderGetAllResponse.OrderGetAllResponseEntity;
+import com.easyelectroshop.customerservice.DTO.OrderGetByIdResponse.OrderSingleResponseEntity;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -82,7 +85,7 @@ public class OrderService {
         }
     }
 
-    public List<OrderEntity> getAllOrders(String sortBy, int pageSize, int pageNumber) {
+    public List<OrderGetAllResponseEntity> getAllOrders(String sortBy, int pageSize, int pageNumber) {
         log.info("CALLING ORDER SERVICE TO GET ALL ORDERS");
         try{
             return webClientBuilder.build()
@@ -90,11 +93,48 @@ public class OrderService {
                     .uri("http://order-service/api/v1/order-service/get-all?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
                     .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
-                    .toEntityList(OrderEntity.class)
+                    .toEntityList(OrderGetAllResponseEntity.class)
                     .block()
                     .getBody();
         } catch (Exception ex){
             log.error("ERROR CALLING ORDER SERVICE TO GET ALL ORDERS",ex);
+            return null;
+        }
+    }
+
+    public List<OrderGetAllResponseEntity> getAllOrdersByCustomerId(UUID customerId, String sortBy, int pageSize, int pageNumber) {
+        log.info("CALLING ORDER SERVICE TO GET ALL ORDERS FOR CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://order-service/api/v1/order-service/get-all-by-customer-id/"+customerId+"?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(OrderGetAllResponseEntity.class)
+                    .block()
+                    .getBody();
+        } catch (Exception ex){
+            log.error("ERROR CALLING ORDER SERVICE TO GET ALL ORDERS FOR CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return null;
+        }
+    }
+
+    public OrderSingleResponseEntity getOrderById(long orderId){
+        log.info("CALLING ORDER SERVICE TO GET ORDER WITH ORDER_ID "+orderId);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://order-service/api/v1/order-service/get-order-by-id/"+orderId)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(OrderSingleResponseEntity.class)
+                    .block()
+                    .getBody();
+        } catch (WebClientResponseException.NotFound notFound){
+            log.error("ORDER WITH ORDER_ID "+orderId+" NOT FOUND!");
+            return null;
+        } catch (Exception ex){
+            log.error("ERROR CALLING ORDER SERVICE TO GET ORDER WITH ORDER_ID "+orderId,ex);
             return null;
         }
     }
@@ -121,4 +161,93 @@ public class OrderService {
         }
     }
 
+    public ResponseEntity<Long> getTotalOrdersCount() {
+        log.info("CALLING ORDER SERVICE TO GET ALL ORDERS COUNT");
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://order-service/api/v1/order-service/get-all-orders-count")
+                    .retrieve()
+                    .toEntity(Long.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR CALLING ORDER SERVICE TO GET ALL ORDERS COUNT",ex);
+            return ResponseEntity.internalServerError().build();
+        }
     }
+
+    public ResponseEntity<Long> getPendingOrdersCount() {
+        log.info("CALLING ORDER SERVICE TO GET ALL PENDING ORDERS COUNT");
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://order-service/api/v1/order-service/get-pending-orders-count")
+                    .retrieve()
+                    .toEntity(Long.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR CALLING ORDER SERVICE TO GET ALL PENDING ORDERS COUNT",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<Long> getConfirmedOrdersCount() {
+        log.info("CALLING ORDER SERVICE TO GET ALL CONFIRMED ORDERS COUNT");
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://order-service/api/v1/order-service/get-confirmed-orders-count")
+                    .retrieve()
+                    .toEntity(Long.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR CALLING ORDER SERVICE TO GET ALL CONFIRMED ORDERS COUNT",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<Long> getReadyToShipOrdersCount() {
+        log.info("CALLING ORDER SERVICE TO GET ALL READY TO SHIP ORDERS COUNT");
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://order-service/api/v1/order-service/get-readytoship-orders-count")
+                    .retrieve()
+                    .toEntity(Long.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR CALLING ORDER SERVICE TO GET ALL READY TO SHIP ORDERS COUNT",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<Long> getInTransitOrdersCount() {
+        log.info("CALLING ORDER SERVICE TO GET ALL IN TRANSIT ORDERS COUNT");
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://order-service/api/v1/order-service/get-intransit-orders-count")
+                    .retrieve()
+                    .toEntity(Long.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR CALLING ORDER SERVICE TO GET ALL IN TRANSIT ORDERS COUNT",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<Long> getDeliveredOrdersCount() {
+        log.info("CALLING ORDER SERVICE TO GET DELIVERED ORDERS COUNT");
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://order-service/api/v1/order-service/get-delivered-orders-count")
+                    .retrieve()
+                    .toEntity(Long.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR CALLING ORDER SERVICE TO GET ALL DELIVERED ORDERS COUNT",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+}
