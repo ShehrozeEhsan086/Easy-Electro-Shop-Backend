@@ -91,5 +91,10 @@ public class OrderController {
         return orderService.getOrderById(orderId);
     }
 
+    @GetMapping("/get-server-status")
+    public ResponseEntity<HttpStatusCode> getStatus(){
+        return ResponseEntity.ok(HttpStatusCode.valueOf(200));
+    }
+
 
 }
