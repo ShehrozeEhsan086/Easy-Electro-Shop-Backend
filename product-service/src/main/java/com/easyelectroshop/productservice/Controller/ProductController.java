@@ -151,9 +151,15 @@ public class ProductController {
         return (productCount!=0) ? ResponseEntity.ok(productCount) : ResponseEntity.unprocessableEntity().build();
     }
 
-    @GetMapping("get-product/{productId}")
-    public ResponseEntity<ProductWithColor> getProductById(@PathVariable UUID productId){
+    @GetMapping("get-product-for-customer/{productId}")
+    public ResponseEntity<ProductWithColor> getProductByIdForCustomer(@PathVariable UUID productId){
         ProductWithColor product = productService.getProductByIdWithColorValue(productId);
+        return(product!=null) ? ResponseEntity.ok(product) : ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("get-product/{productId}")
+    public ResponseEntity<Product> getProductById(@PathVariable UUID productId){
+        Product product = productService.getProductById(productId);
         return(product!=null) ? ResponseEntity.ok(product) : ResponseEntity.notFound().build();
     }
 
