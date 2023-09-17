@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatusCode;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.util.List;
 import java.util.UUID;
@@ -90,6 +92,33 @@ public class WebScrapperService {
         WebScrapper webScrapper = new WebScrapper();
         try{
             webDriver.get(amazonUrl);
+
+            WebElement location = webDriver.findElement(By.id("glow-ingress-line2"));
+            if(location.getText().equals("Pakistan")){
+                WebElement locationButton = webDriver.findElement(By.id("nav-global-location-popover-link"));
+                Thread.sleep(1000l);
+                locationButton.click();
+
+                Thread.sleep(1000l);
+                WebElement selectCountryPostalCode = webDriver.findElement(By.id("GLUXZipUpdateInput"));
+                Thread.sleep(1000l);
+                selectCountryPostalCode.click();
+                Thread.sleep(1000l);
+                selectCountryPostalCode.sendKeys("10001");
+
+                Thread.sleep(1000l);
+                WebElement applyButton = webDriver.findElement(By.cssSelector("[aria-labelledby=GLUXZipUpdate-announce]"));
+                Thread.sleep(1000l);
+                applyButton.click();
+
+                Thread.sleep(1000l);
+                WebElement closeButton = webDriver.findElement(By.cssSelector(".a-popover-footer #GLUXConfirmClose"));
+                Thread.sleep(1000l);
+                closeButton.click();
+
+                Thread.sleep(5000l);
+            }
+
             WebElement searchField = webDriver.findElement(By.id("twotabsearchtextbox"));
             searchField.sendKeys(productName);
 
@@ -204,7 +233,14 @@ public class WebScrapperService {
             Matcher matcher = pattern.matcher(response);
             if (matcher.find()) {
                 String amountStr = matcher.group(1);
-                return amountStr;
+
+                long value = Long.parseLong(amountStr);
+
+                // Create a DecimalFormat object to format the number with commas
+                DecimalFormat decimalFormat = new DecimalFormat("#,###");
+
+                // Format the number and store it as a string
+                return decimalFormat.format(value);
             } else {
                 log.error("Amount not found!");
                 throw new Exception();
