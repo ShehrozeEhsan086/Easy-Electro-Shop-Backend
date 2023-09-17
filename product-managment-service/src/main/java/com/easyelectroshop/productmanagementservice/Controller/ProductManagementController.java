@@ -101,4 +101,9 @@ public class ProductManagementController {
                                                       @PathVariable int quantity){
         return productManagementService.increaseStock(productId,quantity);
     }
+
+    @GetMapping("/get-product-name/{productId}")
+    public ResponseEntity<String> getProductName(@PathVariable UUID productId){
+        return productManagementService.getProductNameById(productId);
+    }
 }

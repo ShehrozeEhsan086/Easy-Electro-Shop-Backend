@@ -11,10 +11,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -272,4 +269,21 @@ public class CustomerManagementService {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    public ResponseEntity<String> getCustomerNameById(UUID customerId){
+        log.info("GETTING CUSTOMER NAME FOR CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            String fullName = customerManagementRepository.findById(customerId).get().getFullName();
+            log.info("SUCCESSFULLY RETRIEVED CUSTOMER_NAME "+fullName+" FOR CUSTOMER WITH CUSTOMER_ID "+customerId);
+            return ResponseEntity.ok(fullName);
+        } catch (NoSuchElementException noSuchElementException){
+            log.error("ERROR GETTING CUSTOMER NAME FOR CUSTOMER WITH CUSTOMER_ID "+customerId+" FIELD NOT FOUND!");
+            return ResponseEntity.notFound().build();
+        }
+        catch (Exception ex){
+            log.error("ERROR GETTING CUSTOMER NAME FOR CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
 }

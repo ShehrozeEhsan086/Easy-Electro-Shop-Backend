@@ -48,7 +48,6 @@ public class SecurityConfig {
       .cors(CorsSpec::and)
       .oauth2ResourceServer(oauth2ResourceServer ->
         oauth2ResourceServer
-//          .authenticationEntryPoint(errorHandler::handleAuthenticationError)
           .jwt(jwt -> jwt.jwtDecoder(this.makeJwtDecoder()))
       )
       .build();

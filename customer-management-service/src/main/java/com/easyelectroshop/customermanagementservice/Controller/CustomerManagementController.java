@@ -93,4 +93,9 @@ public class CustomerManagementController {
         return ResponseEntity.status(customerManagementService.deleteCustomer(customerId)).build();
     }
 
+    @GetMapping("/get-customer-name/{customerId}")
+    public ResponseEntity<String> getCustomerName(@PathVariable UUID customerId){
+        return customerManagementService.getCustomerNameById(customerId);
+    }
+
 }
