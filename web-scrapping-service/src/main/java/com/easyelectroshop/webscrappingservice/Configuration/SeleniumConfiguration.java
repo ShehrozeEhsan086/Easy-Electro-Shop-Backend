@@ -13,7 +13,7 @@ public class SeleniumConfiguration {
 //        Background Task No Edge opening
 //        @Bean
 //        public WebDriver getEdgeDriver(){
-//              return WebDriverManager.edgedriver().capabilities(new EdgeOptions().addArguments("--headless",,"--remote-allow-origins=*")).create();
+//              return WebDriverManager.edgedriver().capabilities(new EdgeOptions().addArguments("--headless","--remote-allow-origins=*")).create();
 //        }
 
     @Bean
