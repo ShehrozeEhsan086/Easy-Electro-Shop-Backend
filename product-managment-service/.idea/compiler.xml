@@ -21,6 +21,7 @@
         <module name="product-category-management-service" />
         <module name="product-management-service" />
         <module name="api-gateway" />
+        <module name="analytics-service" />
         <module name="customer-management-service" />
         <module name="product-color-management-service" />
       </profile>
@@ -30,6 +31,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="amazon-s3-service" options="-parameters" />
       <module name="amazon-ses-service" options="-parameters" />
+      <module name="analytics-service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="cart-service" options="-parameters" />
       <module name="config-server" options="-parameters" />
