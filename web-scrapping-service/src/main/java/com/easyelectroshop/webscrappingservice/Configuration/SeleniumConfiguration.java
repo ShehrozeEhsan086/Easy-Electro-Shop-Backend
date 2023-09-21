@@ -11,15 +11,15 @@ import org.springframework.context.annotation.Configuration;
 public class SeleniumConfiguration {
 
 //        Background Task No Edge opening
-//        @Bean
-//        public WebDriver getEdgeDriver(){
-//              return WebDriverManager.edgedriver().capabilities(new EdgeOptions().addArguments("--headless","--remote-allow-origins=*")).create();
-//        }
+        @Bean
+        public WebDriver getEdgeDriver(){
+              return WebDriverManager.edgedriver().capabilities(new EdgeOptions().addArguments("--headless","--remote-allow-origins=*")).create();
+        }
 
-    @Bean
-    public WebDriver getEdgeDriver(){
-        return WebDriverManager.edgedriver().capabilities(new EdgeOptions().addArguments("--remote-allow-origins=*")).create();
-    }
+//    @Bean
+//    public WebDriver getEdgeDriver(){
+//        return WebDriverManager.edgedriver().capabilities(new EdgeOptions().addArguments("--remote-allow-origins=*")).create();
+//    }
 
 
 }

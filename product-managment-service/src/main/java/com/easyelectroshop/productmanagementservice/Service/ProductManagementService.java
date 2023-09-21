@@ -55,7 +55,7 @@ public class ProductManagementService {
         log.info("GETTING ALL PRODUCTS");
         try{
             if(pageSize == -1){
-                pageSize = Integer.MAX_VALUE;
+                pageSize = (int) productManagementRepository.count();
             }
             List<Product> products = productManagementRepository.findAllPaginated(sortBy,pageSize,pageNumber);
             List<ProductDTO> productDTOS = new ArrayList<>();
