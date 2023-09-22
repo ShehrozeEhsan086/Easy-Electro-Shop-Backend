@@ -3,6 +3,7 @@ package com.easyelectroshop.ordertrackingservice.Controller;
 import com.easyelectroshop.ordertrackingservice.Service.OrderTrackingService;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ public class OrderTrackingController {
     OrderTrackingService orderTrackingService;
 
     @GetMapping("/get-tracking-info/{trackingNumber}")
-    public String getTrackingInfo(@PathVariable String trackingNumber){
+    public ResponseEntity<String> getTrackingInfo(@PathVariable String trackingNumber){
         return orderTrackingService.getTrackingInfo(trackingNumber);
     }
 

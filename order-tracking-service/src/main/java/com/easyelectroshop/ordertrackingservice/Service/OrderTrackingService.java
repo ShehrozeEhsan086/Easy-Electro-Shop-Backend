@@ -1,14 +1,12 @@
 package com.easyelectroshop.ordertrackingservice.Service;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
@@ -18,23 +16,33 @@ public class OrderTrackingService {
     WebDriver webDriver;
 
 
-    @Value("https://www.leopardscourier.com/leopards-tracking")
+    @Value("${leopard-url}")
     private String leopardCourier;
 
-    public String getTrackingInfo(String trackingNumber){
-        webDriver.get(leopardCourier);
+    public ResponseEntity<String> getTrackingInfo(String trackingNumber){
+        try{
+            webDriver.get(leopardCourier);
 
-        WebElement searchField = webDriver.findElement(By.className("track_field"));
-        searchField.sendKeys(trackingNumber);
+            log.info("SCRAPPING LEOPARD COURIER FOR SHIPMENT WITH TRACKING_NUMBER: "+trackingNumber);
 
+            WebElement searchField = webDriver.findElement(By.className("track_field"));
+            searchField.sendKeys(trackingNumber);
 
-        WebElement searchButton = webDriver.findElement(By.className("submit_button"));
-        searchButton.click();
+            WebElement searchButton = webDriver.findElement(By.className("submit_button"));
+            searchButton.click();
+            WebElement result;
 
-        WebElement result = webDriver.findElement(By.className("we_font_size"));
+            try{
+                result = webDriver.findElement(By.cssSelector("[class=\"table table-borderless\"]"));
+            } catch (Exception ex){
+                log.error("DATA NOT FOUND FOR SHIPMENT WITH TRACKING_NUMBER "+trackingNumber);
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(result.getScreenshotAs(OutputType.BASE64));
+        } catch (Exception ex){
+            log.info("ERROR SCRAPPING LEOPARD COURIER FOR TRACKING_NUMBER: "+trackingNumber);
+            return ResponseEntity.internalServerError().build();
+        }
 
-        return "";
     }
-
-
 }
