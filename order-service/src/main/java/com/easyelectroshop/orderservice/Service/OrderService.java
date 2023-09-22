@@ -201,6 +201,9 @@ public class OrderService {
     public ResponseEntity<List<OrderGetAllResponseEntity>> getAllOrders(String sortBy, int pageSize, int pageNumber){
         log.info("GETTING ALL ORDERS");
         try{
+            if(pageSize == -1){
+                pageSize = (int) orderRepository.count();
+            }
             List<OrderEntity> orders = orderRepository.findAllPaginated(sortBy,pageSize,pageNumber);
             List<OrderGetAllResponseEntity> responseOrders = new ArrayList<>();
             for(int i =0;i<orders.size();i++){
@@ -258,6 +261,9 @@ public class OrderService {
     public ResponseEntity<List<OrderGetAllResponseEntity>> getAllOrdersByCustomerId(UUID customerId, String sortBy, int pageSize, int pageNumber){
         log.info("GETTING ORDER INFO FOR CUSTOMER WITH CUSTOMER_ID "+customerId);
         try{
+            if(pageSize == -1){
+                pageSize = (int) orderRepository.count();
+            }
             List<OrderEntity> orders = orderRepository.findAllPaginatedByCustomerId(customerId,sortBy,pageSize,pageNumber);
             List<OrderGetAllResponseEntity> responseOrders = new ArrayList<>();
             for(int i =0;i<orders.size();i++){
