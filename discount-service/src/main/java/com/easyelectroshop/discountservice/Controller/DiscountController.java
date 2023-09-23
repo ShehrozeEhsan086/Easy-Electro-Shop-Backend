@@ -17,7 +17,6 @@ public class DiscountController {
     @Autowired
     DiscountService discountService;
 
-
     @PostMapping("/add-new-discount")
     public ResponseEntity<HttpStatusCode> addDiscount(@RequestBody Discount discount){
         return discountService.addDiscount(discount);
