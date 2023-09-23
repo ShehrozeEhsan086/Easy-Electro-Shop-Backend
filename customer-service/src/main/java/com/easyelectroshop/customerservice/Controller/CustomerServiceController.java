@@ -11,7 +11,6 @@ import com.easyelectroshop.customerservice.Service.CartService;
 import com.easyelectroshop.customerservice.Service.CustomerService;
 import com.easyelectroshop.customerservice.Service.OrderService;
 import com.easyelectroshop.customerservice.Service.OrderTrackingService;
-import jakarta.ws.rs.PUT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
