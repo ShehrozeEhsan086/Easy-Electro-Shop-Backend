@@ -65,11 +65,5 @@ public class ProductServiceApplication {
     }
 
     // Object sent as a fallback for failed API call to Product Management Service
-    @Bean
-    Product productFallbackObj(){
-        return new Product(UUID.fromString("00000000-0000-0000-0000-000000000000"),"Default Product", null,"Short Description","Complete Description",
-                " ","Default",0,false,0,0,1,"0",null,0,null," ",
-                " ",true,null,null);
-    }
 
 }

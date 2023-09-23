@@ -9,9 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -20,7 +18,6 @@ public class DiscountService {
 
     @Autowired
     DiscountRepository discountRepository;
-
 
     public ResponseEntity<HttpStatusCode> addDiscount(Discount discount){
         log.info("ADDING NEW DISCOUNT FOR PRODUCT WITH PRODUCT_ID "+discount.getProductId());
@@ -43,6 +40,54 @@ public class DiscountService {
         }
     }
 
+    public ResponseEntity<HttpStatusCode> activateDiscount(long discountId){
+        log.info("ACTIVATING DISCOUNT WITH DISCOUNT_ID "+discountId);
+        try{
+            Optional<Discount> discount = discountRepository.findById(discountId);
+            if (discount.isPresent()){
+                if (discount.get().getEndsAt().isAfter(LocalDate.now())){
+                    Optional<Discount> tempDiscount = discountRepository.getActiveByProductId(discount.get().getProductId());
+                    if(tempDiscount.isPresent()){
+                        log.error("CANNOT ACTIVATE DISCOUNT! PRODUCT ALREADY HAS A DISCOUNT ACTIVATED AGAINST IT");
+                        return ResponseEntity.status(HttpStatusCode.valueOf(409)).build();
+                    } else {
+                        discount.get().setActive(true);
+                        discountRepository.save(discount.get());
+                        log.info("SUCCESSFULLY ACTIVATED DISCOUNT WITH DISCOUNT_ID "+discountId);
+                        return ResponseEntity.ok().build();
+                    }
+                } else {
+                    log.error("CANNOT ACTIVATE A DISCOUNT THAT EXPIRES IN THE PAST");
+                    return ResponseEntity.status(HttpStatusCode.valueOf(406)).build();
+                }
+            } else {
+                log.error("DISCOUNT NOT FOUND FOR DISCOUNT_ID "+discountId);
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception ex){
+            log.error("ERROR ACTIVATING DISCOUNT WITH DISCOUNT_ID "+discountId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<HttpStatusCode> deactivateDiscount(long discountId){
+        log.info("DEACTIVATING DISCOUNT WITH DISCOUNT_ID "+discountId);
+        try{
+            Optional<Discount> discount = discountRepository.findById(discountId);
+            if (discount.isPresent()){
+                discount.get().setActive(false);
+                discountRepository.save(discount.get());
+                log.info("SUCCESSFULLY DEACTIVATED DISCOUNT WITH DISCOUNT_ID "+discountId);
+                return ResponseEntity.ok().build();
+            } else {
+                log.error("DISCOUNT NOT FOUND FOR DISCOUNT_ID "+discountId);
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception ex){
+            log.error("ERROR DEACTIVATING DISCOUNT WITH DISCOUNT_ID "+discountId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
     public ResponseEntity<HttpStatusCode> editDiscount(Discount discount){
         log.info("EDITING INFO FOR DISCOUNT WITH DISCOUNT_ID "+discount.getDiscountId());
         try{
@@ -137,10 +182,10 @@ public class DiscountService {
         }
     }
 
-    @Scheduled(fixedRate = 900000)
-//    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 900000) // 30 Min
+//    @Scheduled(fixedRate = 5000) // 5 Sec
     private void activationValidationScheduler(){
-        log.info("DISCOUNT ACTIVATION SCHEDULER IS BEING CALLED");
+        log.info("DISCOUNT VALIDATION SCHEDULER IS BEING CALLED");
         try{
             log.info("GETTING ALL ACTIVE DISCOUNTS");
             List<Discount> activeDiscounts = discountRepository.getAllActiveDiscounts();

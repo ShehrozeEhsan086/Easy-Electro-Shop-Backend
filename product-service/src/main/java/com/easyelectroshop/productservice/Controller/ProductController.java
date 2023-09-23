@@ -5,6 +5,7 @@ import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
+import com.easyelectroshop.productservice.DTO.ProductDTO.ProductResponse;
 import com.easyelectroshop.productservice.DTO.ProductDTO.ProductWithColor;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
 import com.easyelectroshop.productservice.Service.ProductService;
@@ -106,10 +107,10 @@ public class ProductController {
     }
 
     @GetMapping("/get-all-products")
-    public ResponseEntity<List<Product>> getAllProducts(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+    public ResponseEntity<List<ProductResponse>> getAllProducts(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
                                                         @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
                                                         @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy){
-        List<Product> products = productService.getAllProducts(pageNumber,pageSize,sortBy);
+        List<ProductResponse> products = productService.getAllProducts(pageNumber,pageSize,sortBy);
         return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
     }
 
@@ -135,14 +136,6 @@ public class ProductController {
     public ResponseEntity<HttpStatusCode> increaseStock(@PathVariable UUID productId,
                                                         @PathVariable int quantity){
         return ResponseEntity.status(productService.increaseStock(productId,quantity)).build();
-    }
-
-    @GetMapping("management/get-all-products")
-    public ResponseEntity<List<Product>> getAllProductsTest(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
-                                                        @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
-                                                        @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy){
-        List<Product> products = productService.getAllProducts(pageNumber,pageSize,sortBy);
-        return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
     }
 
     @GetMapping("get-all-products-count")

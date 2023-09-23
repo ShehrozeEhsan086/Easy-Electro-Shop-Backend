@@ -1,11 +1,13 @@
 package com.easyelectroshop.productservice.Service;
 
 import com.easyelectroshop.productservice.DTO.AmazonS3DTO.Model3D;
+import com.easyelectroshop.productservice.DTO.Discount.Discount;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import com.easyelectroshop.productservice.DTO.ProductDTO.ProductImageWithColor;
+import com.easyelectroshop.productservice.DTO.ProductDTO.ProductResponse;
 import com.easyelectroshop.productservice.DTO.ProductDTO.ProductWithColor;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
 import lombok.extern.slf4j.Slf4j;
@@ -35,9 +37,6 @@ public class ProductService {
 
     @Autowired
     MultipartBodyBuilder multipartBodyBuilder;
-
-    @Autowired
-    Product productFallbackObj;
 
 
     // ----------------  SERVICE FOR AMAZON SERVICE [[START]] --------------------
@@ -243,38 +242,65 @@ public class ProductService {
         }
     }
 
-//    @CircuitBreaker(name="productManagementServiceBreaker", fallbackMethod = "getAllProductsFallback")
-//    @Retry(name="productManagementServiceBreaker",fallbackMethod = "getAllProductsFallback")
-    public List<Product> getAllProducts(int pageNumber,int pageSize,String sortBy) {
-        try{
+    public List<ProductResponse> getAllProducts(int pageNumber, int pageSize, String sortBy) {
+        try {
             log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS");
-            return webClientBuilder.build()
+            List<Product> baseProducts = webClientBuilder.build()
                     .get()
-                    .uri("http://product-management-service/api/v1/product-management/get-all?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
+                    .uri("http://product-management-service/api/v1/product-management/get-all?pageNumber=" + pageNumber + "&pageSize=" + pageSize + "&sort=" + sortBy)
                     .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
                     .toEntityList(Product.class)
                     .block()
                     .getBody();
-        } catch (Exception ex){
+
+            List<ProductResponse> productResponseList = new ArrayList<>();
+
+            for (int i = 0; i < baseProducts.size(); i++) {
+
+                try {
+                    Discount discount = webClientBuilder.build()
+                            .get()
+                            .uri("http://discount-service/api/v1/discount/get-active-by-product-id/" + baseProducts.get(i).productId())
+                            .accept(MediaType.APPLICATION_JSON)
+                            .retrieve()
+                            .toEntity(Discount.class)
+                            .block()
+                            .getBody();
+
+                    double discountedPrice = baseProducts.get(i).price() - ( baseProducts.get(i).price() * ((double) discount.discountPercentage() / 100));
+
+                    ProductResponse productResponse = new ProductResponse(baseProducts.get(i).productId()
+                            , baseProducts.get(i).name(), baseProducts.get(i).images(), baseProducts.get(i).shortDescription()
+                            , baseProducts.get(i).completeDescription(), baseProducts.get(i).coverImage(), baseProducts.get(i).brandName()
+                            , baseProducts.get(i).price(), true, discount.discountPercentage(), discountedPrice, baseProducts.get(i).quantity()
+                            , baseProducts.get(i).size(), baseProducts.get(i).colors(), baseProducts.get(i).category(), baseProducts.get(i).subCategories()
+                            , baseProducts.get(i)._3DModelFilename(), baseProducts.get(i)._3DModelURL(), baseProducts.get(i).available(), baseProducts.get(i).lastUpdated()
+                            , baseProducts.get(i).scrappedPrices());
+
+                    productResponseList.add(productResponse);
+
+                } catch (WebClientResponseException.NotFound notFound) {
+                    ProductResponse productResponse = new ProductResponse(baseProducts.get(i).productId()
+                            , baseProducts.get(i).name(), baseProducts.get(i).images(), baseProducts.get(i).shortDescription()
+                            , baseProducts.get(i).completeDescription(), baseProducts.get(i).coverImage(), baseProducts.get(i).brandName()
+                            , baseProducts.get(i).price(), false, 0, 0, baseProducts.get(i).quantity()
+                            , baseProducts.get(i).size(), baseProducts.get(i).colors(), baseProducts.get(i).category(), baseProducts.get(i).subCategories()
+                            , baseProducts.get(i)._3DModelFilename(), baseProducts.get(i)._3DModelURL(), baseProducts.get(i).available(), baseProducts.get(i).lastUpdated()
+                            , baseProducts.get(i).scrappedPrices());
+
+                    productResponseList.add(productResponse);
+                }
+
+            }
+
+            return productResponseList;
+
+        } catch (Exception ex) {
             System.out.println(ex);
             return null;
         }
-//        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS");
-//        return webClientBuilder.build()
-//                .get()
-//                .uri("http://product-management-service/api/v1/product-management/get-all?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
-//                .accept(MediaType.APPLICATION_JSON)
-//                .retrieve()
-//                .toEntityList(Product.class)
-//                .block()
-//                .getBody();
-    }
 
-    //-------------------  FALL BACK METHODS FOR CIRCUIT BREAKER -------------------
-    public List<Product> getAllProductsFallback(int pageNumber,int pageSize,String sortBy,Exception ex){
-        log.info("EXECUTING FALLBACK FOR GET-ALL-PRODUCTS, DUE TO PRODUCT MANAGEMENT SERVICE BEING DOWN",ex);
-        return List.of(productFallbackObj);
     }
 
     public Double getPriceByProductId(UUID productId){
@@ -374,9 +400,41 @@ public class ProductService {
             for(int i=0;i<product.colors().size();i++){
                 colorValues.add(getColor(product.colors().get(i)).colorName());
             }
-            ProductWithColor completeProduct = new ProductWithColor(product.productId(),product.name(),productImageWithColors,product.shortDescription(),product.completeDescription(),product.coverImage(),
-                    product.brandName(),product.price(),product.isDiscounted(),product.discountPercentage(),product.discountedPrice(),product.quantity(),product.size(),colorValues,
-                    product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
+
+            Discount discount;
+
+            try{
+                discount = webClientBuilder.build()
+                        .get()
+                        .uri("http://discount-service/api/v1/discount/get-active-by-product-id/" + productId)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .retrieve()
+                        .toEntity(Discount.class)
+                        .block()
+                        .getBody();
+            } catch (WebClientResponseException.NotFound notFound){
+                discount = null;
+            } catch (Exception ex){
+                log.error("ERROR CALLING DISCOUNT SERVER, FALLING BACK TO DEFAULT VALUES");
+                discount = null;
+            }
+
+            ProductWithColor completeProduct;
+
+            if(discount!=null){
+                double discountedPrice = product.price() - ( product.price() * ((double) discount.discountPercentage() / 100));
+
+                completeProduct = new ProductWithColor(product.productId(),product.name(),productImageWithColors,product.shortDescription(),product.completeDescription(),product.coverImage(),
+                        product.brandName(),product.price(),true,discount.discountPercentage(),discountedPrice,product.quantity(),product.size(),colorValues,
+                        product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
+
+            } else {
+                completeProduct = new ProductWithColor(product.productId(),product.name(),productImageWithColors,product.shortDescription(),product.completeDescription(),product.coverImage(),
+                        product.brandName(),product.price(),false,0,0,product.quantity(),product.size(),colorValues,
+                        product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
+
+            }
+
             return completeProduct;
         } catch (WebClientException ex){
             log.error("PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND");
@@ -399,7 +457,7 @@ public class ProductService {
                     .block();
             List<WebScrapper> webScrapper = getScrappedPrices(productId).getBody();
             Product completeProduct = new Product(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
-                    product.brandName(),product.price(),product.isDiscounted(),product.discountPercentage(),product.discountedPrice(),product.quantity(),product.size(),product.colors(),
+                    product.brandName(),product.price(),product.quantity(),product.size(),product.colors(),
                     product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
             return completeProduct;
         } catch (WebClientException ex){
