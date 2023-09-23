@@ -27,6 +27,16 @@ public class DiscountController {
         return discountService.editDiscount(discount);
     }
 
+    @PutMapping("/activate-discount/{discountId}")
+    public ResponseEntity<HttpStatusCode> activateDiscount(@PathVariable long discountId){
+        return discountService.activateDiscount(discountId);
+    }
+
+    @PutMapping("/deactivate-discount/{discountId}")
+    public ResponseEntity<HttpStatusCode> deactivateDiscount(@PathVariable long discountId){
+        return discountService.deactivateDiscount(discountId);
+    }
+
     @GetMapping("/get-by-id/{discountId}")
     public ResponseEntity<Discount> getDiscountById(@PathVariable long discountId){
         return discountService.getById(discountId);
