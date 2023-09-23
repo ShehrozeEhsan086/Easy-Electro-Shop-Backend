@@ -28,7 +28,6 @@ public class SecurityConfig {
   @Bean
   public SecurityWebFilterChain securityWebFilterChain(final ServerHttpSecurity httpSecurity) {
     return httpSecurity
-            .cors().disable()
             .csrf().disable()
             .authorizeExchange()
             .pathMatchers("/api/v1/product/management/**")
@@ -65,7 +64,6 @@ public class SecurityConfig {
       decoder.setJwtValidator(tokenValidator);
       return decoder;
     }
-
     return genericDecoder;
   }
 

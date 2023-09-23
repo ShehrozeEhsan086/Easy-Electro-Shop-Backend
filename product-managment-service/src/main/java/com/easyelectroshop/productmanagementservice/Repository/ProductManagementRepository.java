@@ -1,6 +1,5 @@
 package com.easyelectroshop.productmanagementservice.Repository;
 
-import com.easyelectroshop.productmanagementservice.DTO.ProductDTO.ProductDTO;
 import com.easyelectroshop.productmanagementservice.Model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
