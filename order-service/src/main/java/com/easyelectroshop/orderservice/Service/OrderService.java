@@ -337,6 +337,18 @@ public class OrderService {
         }
     }
 
+    public ResponseEntity<Long> getOrderCountForCustomer(UUID customerId){
+        log.info("GETTING ALL ORDERS COUNT FOR CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            long count = orderRepository.countByCustomerId(customerId);
+            log.info("SUCCESSFULLY RETRIEVED ORDER COUNT VALUE: "+count);
+            return ResponseEntity.ok(count);
+        } catch (Exception ex){
+            log.error("ERROR GETTING ALL ORDERS COUNT FOR CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
     public ResponseEntity<Long> getTotalOrdersCount(){
         log.info("GETTING ALL ORDERS COUNT");
         try{
