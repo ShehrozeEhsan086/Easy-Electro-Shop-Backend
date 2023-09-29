@@ -89,7 +89,15 @@ public class MailService {
                     return ResponseEntity.internalServerError().build();
                 }
                 log.info("SUCCESSFULLY RETRIEVED INFORMATION FOR PRODUCT WITH PRODUCT_ID "+ product.productId());
-                OrderDetail orderDetail = new OrderDetail("", product.name(), product.price(), product.quantity(),(product.price() * product.quantity()));
+
+                OrderDetail orderDetail;
+
+                if(product.isDiscounted()){
+                    orderDetail = new OrderDetail("COVER IMAGE", product.name(), product.discountedPrice(), product.quantity(),(product.discountedPrice() * product.quantity()));
+
+                } else {
+                    orderDetail = new OrderDetail("COVER IMAGE", product.name(), product.price(), product.quantity(),(product.price() * product.quantity()));
+                }
                 orderDetailList.add(orderDetail);
             }
 
