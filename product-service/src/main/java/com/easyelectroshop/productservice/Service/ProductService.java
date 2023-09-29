@@ -306,13 +306,12 @@ public class ProductService {
     public Double getPriceByProductId(UUID productId){
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET PRICE OF PRODUCT WITH PRODUCT_ID "+productId);
         try{
-           return webClientBuilder.build()
-                    .get()
-                    .uri("http://product-management-service/api/v1/product-management/get-price-by-id/"+productId)
-                    .accept(MediaType.APPLICATION_JSON)
-                    .retrieve()
-                    .bodyToMono(Double.class)
-                    .block();
+           ProductWithColor product = getProductByIdWithColorValue(productId);
+           if (product.isDiscounted()){
+               return product.discountedPrice();
+           } else {
+               return product.price();
+           }
         } catch (Exception ex){
             log.error("ERROR CALLING PRODUCT MANAGEMENT SERVICE TO GET PRICE OF PRODUCT WITH PRODUCT_ID "+productId ,ex);
             return -1.0;
