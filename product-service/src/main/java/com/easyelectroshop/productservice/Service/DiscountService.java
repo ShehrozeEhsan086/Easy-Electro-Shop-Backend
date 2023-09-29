@@ -132,7 +132,7 @@ public class DiscountService {
         try{
             return webClientBuilder.build()
                     .get()
-                    .uri("http://discount-service/api/v1/discount//get-by-id/"+discountId)
+                    .uri("http://discount-service/api/v1/discount/get-by-id/"+discountId)
                     .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
                     .toEntity(Discount.class)
@@ -146,5 +146,56 @@ public class DiscountService {
         }
     }
 
+    public ResponseEntity<List<Discount>> getAllByProductId(UUID productId){
+        log.info("CALLING DISCOUNT SERVICE TO GET ALL DISCOUNTS FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://discount-service/api/v1/discount/get-all-by-product-id/"+productId)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(Discount.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR CALLING DISCOUNT SERVICE TO GET ALL DISCOUNTS FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<Discount> getActiveByProductId(UUID productId){
+        log.info("CALLING DISCOUNT SERVICE TO GET ACTIVE DISCOUNT FOR PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://discount-service/api/v1/discount/get-active-by-product-id/"+productId)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(Discount.class)
+                    .block();
+        } catch (WebClientResponseException.NotFound notFound){
+            log.error("COULD NOT FIND ANY ACTIVE DISCOUNT FOR PRODUCT WITH PRODUCT_ID "+productId);
+            return ResponseEntity.notFound().build();
+        } catch (Exception ex){
+            log.error("ERROR CALLING DISCOUNT SERVICE TO GET ACTIVE DISCOUNT FOR PRODUCT WITH PRODUCT_ID "+productId);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<HttpStatusCode> deleteById(long discountId){
+        log.info("CALLING DISCOUNT SERVICE TO DELETE DISCOUNT WITH DISCOUNT_ID "+discountId);
+        try{
+            webClientBuilder.build()
+                    .delete()
+                    .uri("http://discount-service/api/v1/discount/delete-by-id/"+discountId)
+                    .retrieve()
+                    .toBodilessEntity()
+                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .block();
+            return ResponseEntity.ok().build();
+        } catch (Exception ex){
+            log.error("ERROR CALLING DISCOUNT SERVICE TO DELETE DISCOUNT WITH DISCOUNT_ID "+discountId);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
     
 }
