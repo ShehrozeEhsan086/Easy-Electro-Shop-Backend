@@ -149,17 +149,6 @@ public class ProductManagementService {
         }
     }
 
-    public ResponseEntity<Double> getProductPrice(UUID productId){
-        log.info("GETTING PRODUCT PRICE FOR PRODUCT WITH PRODUCT_ID "+productId);
-        try{
-            double price = productManagementRepository.findPriceByProductId(productId);
-            return ResponseEntity.ok(price);
-        } catch (Exception ex){
-            log.error("ERROR GETTING PRICE FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
-            return ResponseEntity.internalServerError().build();
-        }
-    }
-
     public ResponseEntity<Integer> getProductStock(UUID productId){
         log.info("GETTING PRODUCT STOCK REMAINING FOR PRODUCT WITH PRODUCT_ID "+productId);
         try{

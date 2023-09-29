@@ -78,11 +78,6 @@ public class ProductManagementController {
         return productManagementService.findByName(productName,pageNumber,pageSize,sortBy);
     }
 
-    @GetMapping("/get-price-by-id/{productId}")
-    public ResponseEntity<Double> getPriceById(@PathVariable UUID productId){
-        return productManagementService.getProductPrice(productId);
-    }
-
     @GetMapping("/get-stock-by-id/{productId}")
     public ResponseEntity<Integer> getStockById(@PathVariable UUID productId){
         return productManagementService.getProductStock(productId);

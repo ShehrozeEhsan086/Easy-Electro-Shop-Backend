@@ -7,10 +7,7 @@ import com.easyelectroshop.customerservice.DTO.Customer.PaymentMethod;
 import com.easyelectroshop.customerservice.DTO.Order.OrderEntity;
 import com.easyelectroshop.customerservice.DTO.OrderGetAllResponse.OrderGetAllResponseEntity;
 import com.easyelectroshop.customerservice.DTO.OrderGetByIdResponse.OrderSingleResponseEntity;
-import com.easyelectroshop.customerservice.Service.CartService;
-import com.easyelectroshop.customerservice.Service.CustomerService;
-import com.easyelectroshop.customerservice.Service.OrderService;
-import com.easyelectroshop.customerservice.Service.OrderTrackingService;
+import com.easyelectroshop.customerservice.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +31,22 @@ public class CustomerServiceController {
 
     @Autowired
     OrderTrackingService orderTrackingService;
+
+    @Autowired
+    SES_Service sesService;
+
+
+    // ----------------  APIS FOR AMAZON SES SERVICE [[START]] --------------------
+
+
+    @PostMapping("/management/send-order-email")
+    public ResponseEntity<HttpStatusCode> sendOrderEmail(@RequestBody OrderEntity order){
+        return sesService.sendOrderEmail(order);
+    }
+
+
+    // ------------------  APIS FOR AMAZON SES SERVICE [[END]] ----------------------
+
 
     // ----------------  APIS FOR CUSTOMER MANAGEMENT SERVICE [[START]] --------------------
 
@@ -145,6 +158,11 @@ public class CustomerServiceController {
     // ----------------  APIS FOR CART SERVICE [[END]] --------------------
 
     // ----------------  APIS FOR ORDER SERVICE [[START]] -------------------
+
+    @GetMapping("/management/get-order-count-by-customer-id/{customerId}")
+    public ResponseEntity<Long> getOrderCountForCustomer(@PathVariable UUID customerId){
+        return orderService.getOrderCountForCustomer(customerId);
+    }
 
     @PostMapping("/management/add-order")
     public ResponseEntity<HttpStatusCode> saveOrder(@RequestBody OrderEntity orderEntity){

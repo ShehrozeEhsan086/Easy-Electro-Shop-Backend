@@ -96,5 +96,9 @@ public class OrderController {
         return ResponseEntity.ok(HttpStatusCode.valueOf(200));
     }
 
+    @GetMapping("/get-order-count-by-customer-id/{customerId}")
+    public ResponseEntity<Long> getOrderCountForCustomer(@PathVariable UUID customerId){
+        return orderService.getOrderCountForCustomer(customerId);
+    }
 
 }

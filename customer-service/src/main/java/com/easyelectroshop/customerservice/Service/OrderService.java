@@ -236,6 +236,21 @@ public class OrderService {
         }
     }
 
+    public ResponseEntity<Long> getOrderCountForCustomer(UUID customerId) {
+        log.info("CALLING ORDER SERVICE TO GET ALL ORDERS COUNT FOR CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://order-service/api/v1/order-service/get-order-count-by-customer-id/"+customerId)
+                    .retrieve()
+                    .toEntity(Long.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR CALLING ORDER SERVICE TO GET ALL ORDERS COUNT FOR CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
     public ResponseEntity<Long> getDeliveredOrdersCount() {
         log.info("CALLING ORDER SERVICE TO GET DELIVERED ORDERS COUNT");
         try{
