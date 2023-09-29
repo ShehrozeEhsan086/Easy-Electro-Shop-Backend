@@ -1,6 +1,5 @@
-package com.easyelectroshop.productservice.DTO.Discount;
+package com.easyelectroshop.productservice.DTO.DiscountDTO;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 public record Discount(

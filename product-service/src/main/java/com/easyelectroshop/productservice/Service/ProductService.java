@@ -1,7 +1,7 @@
 package com.easyelectroshop.productservice.Service;
 
 import com.easyelectroshop.productservice.DTO.AmazonS3DTO.Model3D;
-import com.easyelectroshop.productservice.DTO.Discount.Discount;
+import com.easyelectroshop.productservice.DTO.DiscountDTO.Discount;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
