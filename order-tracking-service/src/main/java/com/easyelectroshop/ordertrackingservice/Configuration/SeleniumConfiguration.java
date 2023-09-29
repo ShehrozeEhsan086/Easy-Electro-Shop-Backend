@@ -15,7 +15,7 @@ public class SeleniumConfiguration {
 //        public WebDriver getEdgeDriver(){
 //              return WebDriverManager
 //              .edgedriver()
-//              .capabilities(new EdgeOptions().addArguments("--headless",,"--remote-allow-origins=*"))
+//              .capabilities(new EdgeOptions().addArguments("--headless","--remote-allow-origins=*"))
 //              .create();
 //        }
 

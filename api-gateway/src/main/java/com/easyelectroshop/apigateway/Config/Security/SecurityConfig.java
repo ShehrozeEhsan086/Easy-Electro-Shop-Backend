@@ -20,7 +20,6 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-
   private final OAuth2ResourceServerProperties resourceServerProps;
 
   @Value("${application.audience}")
@@ -29,7 +28,6 @@ public class SecurityConfig {
   @Bean
   public SecurityWebFilterChain securityWebFilterChain(final ServerHttpSecurity httpSecurity) {
     return httpSecurity
-            .cors().disable()
             .csrf().disable()
             .authorizeExchange()
             .pathMatchers("/api/v1/product/management/**")
@@ -41,6 +39,8 @@ public class SecurityConfig {
             .pathMatchers("/api/v1/customer/**")
             .permitAll()
             .pathMatchers("/api/v1/stripe-service/**")
+            .authenticated()
+            .pathMatchers("/api/v1/analytics-service/**")
             .authenticated()
             .pathMatchers("/actuator/**")
             .permitAll()
@@ -64,7 +64,6 @@ public class SecurityConfig {
       decoder.setJwtValidator(tokenValidator);
       return decoder;
     }
-
     return genericDecoder;
   }
 

@@ -18,23 +18,31 @@
         <module name="config-server" />
         <module name="discovery-server" />
         <module name="orderEntity-service" />
+        <module name="discount-service" />
         <module name="product-category-management-service" />
         <module name="product-management-service" />
         <module name="api-gateway" />
+        <module name="analytics-service" />
         <module name="customer-management-service" />
         <module name="product-color-management-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="discount-coupon-service" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="amazon-s3-service" options="-parameters" />
       <module name="amazon-ses-service" options="-parameters" />
+      <module name="analytics-service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="cart-service" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="customer-management-service" options="-parameters" />
       <module name="customer-service" options="-parameters" />
+      <module name="discount-coupon-service" options="-parameters" />
+      <module name="discount-service" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="order-tracking-service" options="-parameters" />
       <module name="orderEntity-service" options="-parameters" />

@@ -1,6 +1,6 @@
 package com.easyelectroshop.productmanagementservice.Service;
 
-import com.easyelectroshop.productmanagementservice.DTO.ProductDTO.ProductDTO;
+import com.easyelectroshop.productmanagementservice.DTO.ProductWithoutImages.ProductWithoutImages;
 import com.easyelectroshop.productmanagementservice.Model.Product;
 import com.easyelectroshop.productmanagementservice.Repository.ProductManagementRepository;
 
@@ -51,23 +51,23 @@ public class ProductManagementService {
         }
     }
 
-    public List<ProductDTO> getAllProducts(int pageNumber, int pageSize, String sortBy) {
+    public List<ProductWithoutImages> getAllProducts(int pageNumber, int pageSize, String sortBy) {
         log.info("GETTING ALL PRODUCTS");
         try{
             if(pageSize == -1){
-                pageSize = Integer.MAX_VALUE;
+                pageSize = (int) productManagementRepository.count();
             }
             List<Product> products = productManagementRepository.findAllPaginated(sortBy,pageSize,pageNumber);
-            List<ProductDTO> productDTOS = new ArrayList<>();
+            List<ProductWithoutImages> productWithoutImages = new ArrayList<>();
             for(Product product : products){
-                ProductDTO productDTO = new ProductDTO(product.getProductId(),product.getName(),product.getShortDescription(),product.getCompleteDescription(),product.getCoverImage(),
-                        product.getBrandName(),product.getPrice(),product.isDiscounted(),product.getDiscountPercentage(),product.getDiscountedPrice(),product.getQuantity(),
+                ProductWithoutImages productWithoutImage = new ProductWithoutImages(product.getProductId(),product.getName(),product.getShortDescription(),product.getCompleteDescription(),product.getCoverImage(),
+                        product.getBrandName(),product.getPrice(),product.getQuantity(),
                         product.getSize(),product.getColors(), product.getCategory(),product.getSubCategories(),product.get_3DModelFilename(),product.get_3DModelURL(),product.isAvailable(),
                         product.getLastUpdated());
-                productDTOS.add(productDTO);
+                productWithoutImages.add(productWithoutImage);
             }
             log.info("SUCCESSFULLY RETRIEVED ALL PRODUCTS");
-            return productDTOS;
+            return productWithoutImages;
         } catch (Exception ex){
             log.error("COULD NOT RETRIEVE ALL PRODUCTS",ex);
             return null;

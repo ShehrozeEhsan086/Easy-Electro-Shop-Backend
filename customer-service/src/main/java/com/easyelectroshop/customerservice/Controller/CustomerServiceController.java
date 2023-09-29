@@ -10,7 +10,7 @@ import com.easyelectroshop.customerservice.DTO.OrderGetByIdResponse.OrderSingleR
 import com.easyelectroshop.customerservice.Service.CartService;
 import com.easyelectroshop.customerservice.Service.CustomerService;
 import com.easyelectroshop.customerservice.Service.OrderService;
-import jakarta.ws.rs.PUT;
+import com.easyelectroshop.customerservice.Service.OrderTrackingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +31,9 @@ public class CustomerServiceController {
 
     @Autowired
     OrderService orderService;
+
+    @Autowired
+    OrderTrackingService orderTrackingService;
 
     // ----------------  APIS FOR CUSTOMER MANAGEMENT SERVICE [[START]] --------------------
 
@@ -217,4 +220,16 @@ public class CustomerServiceController {
     }
 
     // ----------------  APIS FOR ORDER SERVICE [[END]] --------------------
+
+
+    // ----------------  APIS FOR ORDER TRACKING SERVICE [[START]] --------------------
+
+
+    @GetMapping("/get-order-tracking-info/{trackingNumber}")
+    public ResponseEntity<String> getTrackingInfo(@PathVariable String trackingNumber){
+        return orderTrackingService.getTrackingInfo(trackingNumber);
+    }
+
+    // ----------------  APIS FOR ORDER TRACKING SERVICE [[END]] --------------------
+
 }

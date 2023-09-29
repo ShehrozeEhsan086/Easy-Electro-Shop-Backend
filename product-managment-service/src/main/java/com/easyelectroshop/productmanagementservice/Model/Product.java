@@ -38,11 +38,6 @@ public class Product {
 
     private double price;
 
-    private boolean isDiscounted;
-
-    private double discountPercentage;
-
-    private double discountedPrice;
 
     private int quantity;
 
