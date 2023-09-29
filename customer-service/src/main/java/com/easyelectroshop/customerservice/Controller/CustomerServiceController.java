@@ -159,6 +159,11 @@ public class CustomerServiceController {
 
     // ----------------  APIS FOR ORDER SERVICE [[START]] -------------------
 
+    @GetMapping("/management/get-order-count-by-customer-id/{customerId}")
+    public ResponseEntity<Long> getOrderCountForCustomer(@PathVariable UUID customerId){
+        return orderService.getOrderCountForCustomer(customerId);
+    }
+
     @PostMapping("/management/add-order")
     public ResponseEntity<HttpStatusCode> saveOrder(@RequestBody OrderEntity orderEntity){
         return ResponseEntity.status(orderService.saveOrder(orderEntity)).build();
