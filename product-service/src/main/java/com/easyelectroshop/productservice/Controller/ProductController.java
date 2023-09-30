@@ -245,53 +245,50 @@ public class ProductController {
 
     // ---------------  APIS FOR DISCOUNT SERVICE [[START]] -----------------
 
-    @PostMapping("/add-new-discount")
+    @PostMapping("/management/add-new-discount")
     public ResponseEntity<HttpStatusCode> addDiscount(@RequestBody Discount discount){
         return discountService.addDiscount(discount);
     }
 
-    @PutMapping("/edit-discount")
+    @PutMapping("/management/edit-discount")
     public ResponseEntity<HttpStatusCode> editDiscount(@RequestBody Discount discount){
         return discountService.editDiscount(discount);
     }
 
-    @PutMapping("/activate-discount/{discountId}")
+    @PutMapping("/management/activate-discount/{discountId}")
     public ResponseEntity<HttpStatusCode> activateDiscount(@PathVariable long discountId){
         return discountService.activateDiscount(discountId);
     }
 
-    @PutMapping("/deactivate-discount/{discountId}")
+    @PutMapping("/management/deactivate-discount/{discountId}")
     public ResponseEntity<HttpStatusCode> deactivateDiscount(@PathVariable long discountId){
         return discountService.deactivateDiscount(discountId);
     }
 
-    @GetMapping("/get-by-id/{discountId}")
+    @GetMapping("/management/get-by-id/{discountId}")
     public ResponseEntity<Discount> getDiscountById(@PathVariable long discountId){
         return discountService.getById(discountId);
     }
 
-    @GetMapping("/get-all-by-product-id/{productId}")
+    @GetMapping("/management/get-all-discounts-by-product-id/{productId}")
     public ResponseEntity<List<Discount>> getAllByProductId(@PathVariable UUID productId){
         return discountService.getAllByProductId(productId);
     }
 
-    @GetMapping("/get-active-by-product-id/{productId}")
+    @GetMapping("/management/get-active-discount-by-product-id/{productId}")
     public ResponseEntity<Discount> getActiveByProductId(@PathVariable UUID productId){
         return discountService.getActiveByProductId(productId);
     }
 
-    @GetMapping("/get-all")
+    @GetMapping("/management/get-all-discounts")
     public ResponseEntity<List<Discount>> getAll(){
         return discountService.getAll();
     }
 
-    @DeleteMapping("/delete-by-id/{discountId}")
+    @DeleteMapping("/management/delete-by-id/{discountId}")
     public ResponseEntity<HttpStatusCode> deleteById(@PathVariable long discountId){
         return discountService.deleteById(discountId);
     }
-
-
-
 
     // ---------------  APIS FOR DISCOUNT SERVICE [[END]] -----------------
 }
