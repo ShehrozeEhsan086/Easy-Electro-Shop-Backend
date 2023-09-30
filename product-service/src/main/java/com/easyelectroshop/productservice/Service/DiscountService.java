@@ -26,7 +26,7 @@ public class DiscountService {
         try{
             webClientBuilder.build()
                     .post()
-                    .uri("http://discount-service/api/v1/discount/add-discount")
+                    .uri("http://discount-service/api/v1/discount/add-new-discount")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromValue(discount))
                     .retrieve()

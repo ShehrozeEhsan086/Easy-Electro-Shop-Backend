@@ -182,8 +182,9 @@ public class DiscountService {
         }
     }
 
-    @Scheduled(fixedRate = 900000) // 30 Min
+//    @Scheduled(fixedRate = 900000) // 30 Min
 //    @Scheduled(fixedRate = 5000) // 5 Sec
+    @Scheduled(fixedRate = 10000) // 10 Sec
     private void activationValidationScheduler(){
         log.info("DISCOUNT VALIDATION SCHEDULER IS BEING CALLED");
         try{
