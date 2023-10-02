@@ -2,6 +2,7 @@ package com.easyelectroshop.productservice.Controller;
 
 import com.easyelectroshop.productservice.DTO.AmazonS3DTO.Model3D;
 import com.easyelectroshop.productservice.DTO.DiscountDTO.Discount;
+import com.easyelectroshop.productservice.DTO.DiscountDTO.DiscountResponse;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
@@ -266,22 +267,22 @@ public class ProductController {
     }
 
     @GetMapping("/management/get-by-id/{discountId}")
-    public ResponseEntity<Discount> getDiscountById(@PathVariable long discountId){
+    public ResponseEntity<DiscountResponse> getDiscountById(@PathVariable long discountId){
         return discountService.getById(discountId);
     }
 
     @GetMapping("/management/get-all-discounts-by-product-id/{productId}")
-    public ResponseEntity<List<Discount>> getAllByProductId(@PathVariable UUID productId){
+    public ResponseEntity<List<DiscountResponse>> getAllByProductId(@PathVariable UUID productId){
         return discountService.getAllByProductId(productId);
     }
 
     @GetMapping("/management/get-active-discount-by-product-id/{productId}")
-    public ResponseEntity<Discount> getActiveByProductId(@PathVariable UUID productId){
+    public ResponseEntity<DiscountResponse> getActiveByProductId(@PathVariable UUID productId){
         return discountService.getActiveByProductId(productId);
     }
 
     @GetMapping("/management/get-all-discounts")
-    public ResponseEntity<List<Discount>> getAll(){
+    public ResponseEntity<List<DiscountResponse>> getAll(){
         return discountService.getAll();
     }
 
