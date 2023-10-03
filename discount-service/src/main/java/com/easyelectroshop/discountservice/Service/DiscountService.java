@@ -4,12 +4,15 @@ import com.easyelectroshop.discountservice.Model.Discount;
 import com.easyelectroshop.discountservice.Repository.DiscountRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.*;
 
 @Service
@@ -43,9 +46,16 @@ public class DiscountService {
     public ResponseEntity<HttpStatusCode> activateDiscount(long discountId){
         log.info("ACTIVATING DISCOUNT WITH DISCOUNT_ID "+discountId);
         try{
+            LocalDate currentDate = LocalDate.now();
             Optional<Discount> discount = discountRepository.findById(discountId);
             if (discount.isPresent()){
-                if (discount.get().getEndsAt().isAfter(LocalDate.now())){
+                log.warn("CURRENT DATE: " +LocalDate.now()+"\t DISCOUNT END DATE: " +discount.get().getEndsAt());
+                log.warn("CURRENT YEAR: "+currentDate.getYear() +"\t DISCOUNT END YEAR: "+discount.get().getEndsAt().getYear());
+                log.warn("CURRENT MONTH: "+currentDate.getMonth().getValue() +"\t DISCOUNT END MONTH: "+discount.get().getEndsAt().getMonth().getValue());
+                log.warn("CURRENT DAY: "+currentDate.getDayOfMonth() + "\t DISCOUNT END DAY: "+discount.get().getEndsAt().getDayOfMonth());
+                if ( discount.get().getEndsAt().getYear() >= currentDate.getYear()
+                        && discount.get().getEndsAt().getMonth().getValue() >= currentDate.getMonth().getValue()
+                        && discount.get().getEndsAt().getDayOfMonth() >= currentDate.getDayOfMonth() || discount.get().getEndsAt().getDayOfMonth() == currentDate.getDayOfMonth()){
                     Optional<Discount> tempDiscount = discountRepository.getActiveByProductId(discount.get().getProductId());
                     if(tempDiscount.isPresent()){
                         log.error("CANNOT ACTIVATE DISCOUNT! PRODUCT ALREADY HAS A DISCOUNT ACTIVATED AGAINST IT");
@@ -155,7 +165,7 @@ public class DiscountService {
     }
 
     public ResponseEntity<Discount> getActiveByProductId(UUID productId){
-        log.info("GETTING ACTIVE DISCOUNT FOR ePRODUCT WITH PRODUCT_ID "+productId);
+        log.info("GETTING ACTIVE DISCOUNT FOR PRODUCT WITH PRODUCT_ID "+productId);
         try{
             Optional<Discount> discount = discountRepository.getActiveByProductId(productId);
             if (discount.isPresent()){
@@ -184,7 +194,8 @@ public class DiscountService {
 
 //    @Scheduled(fixedRate = 900000) // 30 Min
 //    @Scheduled(fixedRate = 5000) // 5 Sec
-    @Scheduled(fixedRate = 10000) // 10 Sec
+//    @Scheduled(fixedRate = 15000) // 15 Sec
+    @Scheduled(fixedRate = 60000) // 60 Sec
     private void activationValidationScheduler(){
         log.info("DISCOUNT VALIDATION SCHEDULER IS BEING CALLED");
         try{
@@ -211,7 +222,9 @@ public class DiscountService {
         LocalDate currentDate = LocalDate.now();
         try{
             for(int i=0;i<activeDiscounts.size();i++){
-                if(activeDiscounts.get(i).getEndsAt().isBefore(currentDate)){
+                if(activeDiscounts.get(i).getEndsAt().getYear() <= currentDate.getYear()
+                && activeDiscounts.get(i).getEndsAt().getMonth().getValue() <= currentDate.getMonth().getValue()
+                && activeDiscounts.get(i).getEndsAt().getDayOfMonth() < currentDate.getDayOfMonth()){
                     log.info("FOUND EXPIRED DISCOUNT!");
                     log.info("DEACTIVATING DISCOUNT WITH DISCOUNT_ID "+activeDiscounts.get(i).getDiscountId());
                     activeDiscounts.get(i).setActive(false);
