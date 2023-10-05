@@ -1,10 +1,8 @@
 package com.easyelectroshop.customerservice.Service;
 
-import com.easyelectroshop.customerservice.DTO.Customer.Customer;
 import com.easyelectroshop.customerservice.DTO.Order.OrderEntity;
 import com.easyelectroshop.customerservice.DTO.OrderGetAllResponse.OrderGetAllResponseEntity;
 import com.easyelectroshop.customerservice.DTO.OrderGetByIdResponse.OrderSingleResponseEntity;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -26,7 +24,7 @@ public class OrderService {
     @Autowired
     WebClient.Builder webClientBuilder;
 
-    public HttpStatusCode saveOrder(OrderEntity orderEntity){
+    public ResponseEntity<OrderEntity> saveOrder(OrderEntity orderEntity){
         log.info("CALLING ORDER SERVICE TO SAVE ORDER FOR CUSTOMER WITH CUSTOMER_ID "+orderEntity.customerId());
         try{
             return webClientBuilder.build()
@@ -35,12 +33,11 @@ public class OrderService {
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromValue(orderEntity))
                     .retrieve()
-                    .toBodilessEntity()
-                    .flatMap(response -> Mono.just(response.getStatusCode()))
+                    .toEntity(OrderEntity.class)
                     .block();
         } catch (Exception ex){
             log.error("ERROR CALLING ORDER SERVICE TO SAVE ORDER FOR CUSTOMER WITH CUSTOMER_ID "+orderEntity.customerId(),ex);
-            return HttpStatusCode.valueOf(500);
+            return ResponseEntity.internalServerError().build();
         }
     }
 
