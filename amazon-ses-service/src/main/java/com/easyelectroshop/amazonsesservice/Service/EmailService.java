@@ -96,20 +96,10 @@ public class EmailService {
                 orderDetailList.add(orderDetail);
             }
 
-            log.info(orderDetailList.get(0).coverImage());
-
-            EmailData emailData = new EmailData(
-                    customer.fullName(),
-                    order.orderId(),
-                    orderDetailList,
-                    order.totalContentPrice(),
-                    order.shippingCost(),
-                    order.totalOrderPrice(),
-                    order.orderStatus(),
-                    customer.address());
 
             log.info("SENDING EMAIL TO CUSTOMER WITH CUSTOMER_EMAIL "+customer.email()+" OF ORDER WITH ORDER_ID "+order.orderId());
 
+            String address = customer.address().addressLine() +", "+ customer.address().area() +", "+ customer.address().city() +", "+ customer.address().province();
 
             MimeMessage message = javaMailSender.createMimeMessage();
 
@@ -123,12 +113,17 @@ public class EmailService {
             properties.put("customerName",customer.fullName());
             properties.put("orderId",order.orderId());
             properties.put("orderStatus",order.orderStatus());
-            properties.put("coverImage",orderDetailList.get(0).coverImage());
             properties.put("productName",orderDetailList.get(0).productName());
             properties.put("price",orderDetailList.get(0).price());
             properties.put("quantity",orderDetailList.get(0).quantity());
             properties.put("totalPrice",orderDetailList.get(0).totalPrice());
-
+            properties.put("orderDetailList",orderDetailList);
+            properties.put("createdAt",order.createdAt());
+            properties.put("totalContentPrice",order.totalContentPrice());
+            properties.put("shippingCost",order.shippingCost());
+            properties.put("totalOrderPrice",order.totalOrderPrice());
+            properties.put("address",address);
+            properties.put("customerPhoneNumber",customer.phoneNumber());
             context.setVariables(properties);
 
             String html = templateEngine.process("emails/OrderMail.html",context);
@@ -141,93 +136,4 @@ public class EmailService {
         }
     }
 
-//    public ResponseEntity<HttpStatusCode> sendOrderEmail(OrderEntity order){
-//        log.info("STARTING EMAIL SENDING PROCESS FOR ORDER WITH ORDER_ID "+order.orderId());
-//        try{
-//            UUID customerId = order.customerId();
-//
-//            log.info("CALLING CUSTOMER MANAGEMENT SERVICE TO GET CUSTOMER WITH CUSTOMER_ID "+customerId);
-//
-//            Customer customer;
-//
-//            try{
-//                customer = webClientBuilder.build()
-//                        .get()
-//                        .uri("http://customer-management-service/api/v1/customer-management/get-customer-by-id/"+customerId)
-//                        .header(headerName,headerValue)
-//                        .accept(MediaType.APPLICATION_JSON)
-//                        .retrieve()
-//                        .toEntity(Customer.class)
-//                        .block()
-//                        .getBody();
-//
-//            }catch (Exception ex){
-//                log.error("ERROR WHILE CALLING CUSTOMER MANAGEMENT SERVICE TO GET CUSTOMER WITH CUSTOMER_ID "+customerId, ex);
-//                return ResponseEntity.internalServerError().build();
-//            }
-//
-//            log.info("SUCCESSFULLY RETRIEVED CUSTOMER INFORMATION WITH EMAIL "+customer.email());
-//
-//            List<OrderDetail> orderDetailList = new ArrayList<>();
-//
-//            log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET PRODUCT DETAILS");
-//
-//            for (int i =0;i<order.orderContent().size();i++){
-//                log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET PRODUCT WITH PRODUCT_ID "+order.orderContent().get(i).productId());
-//                Product product;
-//                try{
-//                    product = webClientBuilder.build()
-//                            .get()
-//                            .uri("http://product-management-service/api/v1/product-management/get-product/"+order.orderContent().get(i).productId())
-//                            .header(headerName,headerValue)
-//                            .accept(MediaType.APPLICATION_JSON)
-//                            .retrieve()
-//                            .toEntity(Product.class)
-//                            .block()
-//                            .getBody();
-//                } catch (Exception ex){
-//                    log.error("ERROR CALLING PRODUCT MANAGEMENT SERVICE TO GET PRODUCT WITH PRODUCT_ID "+order.orderContent().get(i).productId(),ex);
-//                    return ResponseEntity.internalServerError().build();
-//                }
-//                log.info("SUCCESSFULLY RETRIEVED INFORMATION FOR PRODUCT WITH PRODUCT_ID "+ product.productId());
-//
-//                OrderDetail orderDetail;
-//
-//                if(product.isDiscounted()){
-//                    orderDetail = new OrderDetail("COVER IMAGE", product.name(), product.discountedPrice(), order.orderContent().get(i).quantity(),(product.discountedPrice() * order.orderContent().get(i).quantity()));
-//
-//                } else {
-//                    orderDetail = new OrderDetail("COVER IMAGE", product.name(), product.price(), order.orderContent().get(i).quantity(),(product.price() * order.orderContent().get(i).quantity()));
-//                }
-//                orderDetailList.add(orderDetail);
-//            }
-//
-//            EmailData emailData = new EmailData(
-//                    customer.fullName(),
-//                    order.orderId(),
-//                    orderDetailList,
-//                    order.totalContentPrice(),
-//                    order.shippingCost(),
-//                    order.totalOrderPrice(),
-//                    order.orderStatus(),
-//                    customer.address());
-//
-//            log.info("SENDING EMAIL TO CUSTOMER WITH CUSTOMER_EMAIL "+customer.email()+" OF ORDER WITH ORDER_ID "+order.orderId());
-//
-//            SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-//            simpleMailMessage.setFrom(senderEmail);
-//            simpleMailMessage.setTo(customer.email());
-//            simpleMailMessage.setSubject("Order Number "+order.orderId()+" Received.");
-//            simpleMailMessage.setText(emailData.toString());
-//            mailSender.send(simpleMailMessage);
-//
-//            log.info("SUCCESSFULLY SENT EMAIL TO CUSTOMER WITH CUSTOMER_EMAIL "+customer.email()+" OF ORDER WITH ORDER_ID "+order.orderId());
-//
-//            return ResponseEntity.ok().build();
-//
-//        } catch (Exception ex){
-//            log.error("ERROR SENDING EMAIL FOR ORDER WITH ORDER_ID "+order.orderId());
-//            return ResponseEntity.internalServerError().build();
-//        }
-//    }
 }
