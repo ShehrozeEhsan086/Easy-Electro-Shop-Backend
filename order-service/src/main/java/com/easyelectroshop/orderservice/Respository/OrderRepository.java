@@ -26,4 +26,7 @@ public interface OrderRepository extends JpaRepository<OrderEntity,Long> {
 
     Long countByCustomerId(UUID customerId);
 
+    @Query(value = "SELECT * FROM order_entity_seq",nativeQuery = true)
+    Long getOrderSequence();
+
 }

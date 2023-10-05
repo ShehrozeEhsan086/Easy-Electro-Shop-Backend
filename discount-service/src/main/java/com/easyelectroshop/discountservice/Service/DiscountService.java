@@ -4,15 +4,12 @@ import com.easyelectroshop.discountservice.Model.Discount;
 import com.easyelectroshop.discountservice.Repository.DiscountRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.*;
 
 @Service
@@ -240,8 +237,11 @@ public class DiscountService {
     private void validateNonActiveFutureDiscounts(List<Discount> nonActiveFutureDiscounts){
         log.info("PROCESSING NON-ACTIVE FUTURE DISCOUNTS");
         try{
+            LocalDate currentDate = LocalDate.now();
             for(int i=0;i<nonActiveFutureDiscounts.size();i++){
-                if(nonActiveFutureDiscounts.get(i).getStartsAt().isEqual(LocalDate.now()) || nonActiveFutureDiscounts.get(i).getStartsAt().isBefore(LocalDate.now())){
+                if(nonActiveFutureDiscounts.get(i).getStartsAt().getYear() <= currentDate.getYear()
+                        && nonActiveFutureDiscounts.get(i).getStartsAt().getMonth().getValue() <= currentDate.getMonth().getValue()
+                        && nonActiveFutureDiscounts.get(i).getStartsAt().getDayOfMonth() <= currentDate.getDayOfMonth()){
                     log.info("FOUND DORMANT DISCOUNT");
                     log.info("ACTIVATING DISCOUNT WITH DISCOUNT_ID "+nonActiveFutureDiscounts.get(i).getDiscountId());
                     nonActiveFutureDiscounts.get(i).setActive(true);

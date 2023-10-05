@@ -20,7 +20,7 @@ public class OrderController {
     OrderService orderService;
 
     @PostMapping("/add-order")
-    public ResponseEntity<HttpStatusCode> saveOrder(@RequestBody OrderEntity orderEntity){
+    public ResponseEntity<OrderEntity> saveOrder(@RequestBody OrderEntity orderEntity){
         return orderService.saveOrder(orderEntity);
     }
 
@@ -99,6 +99,11 @@ public class OrderController {
     @GetMapping("/get-order-count-by-customer-id/{customerId}")
     public ResponseEntity<Long> getOrderCountForCustomer(@PathVariable UUID customerId){
         return orderService.getOrderCountForCustomer(customerId);
+    }
+
+    @GetMapping("/get/{orderId}")
+    public OrderEntity get(@PathVariable long orderId){
+        return orderService.get(orderId);
     }
 
 }

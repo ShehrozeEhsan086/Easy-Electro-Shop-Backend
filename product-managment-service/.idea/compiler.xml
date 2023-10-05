@@ -28,6 +28,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="amazon-ses-service (1)" target="17" />
+      <module name="amazon-ses-service (2)" target="17" />
       <module name="discount-coupon-service" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -35,6 +37,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="amazon-s3-service" options="-parameters" />
       <module name="amazon-ses-service" options="-parameters" />
+      <module name="amazon-ses-service (1)" options="-parameters" />
+      <module name="amazon-ses-service (2)" options="-parameters" />
       <module name="analytics-service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="cart-service" options="-parameters" />

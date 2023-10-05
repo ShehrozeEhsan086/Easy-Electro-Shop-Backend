@@ -165,8 +165,8 @@ public class CustomerServiceController {
     }
 
     @PostMapping("/management/add-order")
-    public ResponseEntity<HttpStatusCode> saveOrder(@RequestBody OrderEntity orderEntity){
-        return ResponseEntity.status(orderService.saveOrder(orderEntity)).build();
+    public ResponseEntity<OrderEntity> saveOrder(@RequestBody OrderEntity orderEntity){
+        return orderService.saveOrder(orderEntity);
     }
 
     @GetMapping("/management/get-all-orders")

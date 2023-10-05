@@ -43,7 +43,7 @@ public class OrderService {
     @Autowired
     WebClient.Builder webClientBuilder;
 
-    public ResponseEntity<HttpStatusCode> saveOrder(OrderEntity orderEntity){
+    public ResponseEntity<OrderEntity> saveOrder(OrderEntity orderEntity){
       try{
           log.info("ADDING ORDER FOR CUSTOMER WITH CUSTOMER_ID "+ orderEntity.getCustomerId());
           if( orderEntity.getTotalOrderPrice() == 0.0){
@@ -57,7 +57,9 @@ public class OrderService {
           } else {
               orderEntity.setOrderStatus("pending");
           }
-          orderRepository.save(orderEntity);
+
+          OrderEntity order = orderRepository.save(orderEntity);
+
           webClientBuilder.build()
                   .put()
                   .uri("http://customer-service/api/v1/customer/add-order-info/"+ orderEntity.getCustomerId()+"/"+ orderEntity.getTotalOrderPrice())
@@ -67,7 +69,7 @@ public class OrderService {
                   .block();
 
           log.info("SUCCESSFULLY ADDED ORDER FOR CUSTOMER WITH CUSTOMER_ID "+ orderEntity.getCustomerId());
-          return ResponseEntity.ok().build();
+          return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(order);
       } catch (Exception ex){
           log.error("ERROR ADDING ORDER FOR CUSTOMER WITH CUSTOMER_ID "+ orderEntity.getCustomerId(),ex);
           return ResponseEntity.internalServerError().build();
@@ -133,6 +135,9 @@ public class OrderService {
         }
     }
 
+    public OrderEntity get(long orderId){
+        return orderRepository.findById(orderId).get();
+    }
     public ResponseEntity<OrderSingleResponseEntity> getOrderById(long orderId){
         log.info("GETTING ORDER WITH ORDER_ID "+orderId);
         try{
@@ -178,7 +183,7 @@ public class OrderService {
                         return ResponseEntity.internalServerError().build();
                     }
                     log.info("SUCCESSFULLY RETRIEVED INFORMATION FOR PRODUCT WITH PRODUCT_ID "+ product.productId());
-                    OrderDetailResponse orderDetail = new OrderDetailResponse(product.coverImage(), product.name(), product.price(), product.quantity(),(product.price() * product.quantity()));
+                    OrderDetailResponse orderDetail = new OrderDetailResponse(product.coverImage(), product.name(), product.price(), initialOrderObj.get().getOrderContent().get(i).getQuantity(),(product.price() *  initialOrderObj.get().getOrderContent().get(i).getQuantity()));
                     orderDetailList.add(orderDetail);
                 }
 
