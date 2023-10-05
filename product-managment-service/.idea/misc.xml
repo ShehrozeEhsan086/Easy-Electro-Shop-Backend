@@ -19,9 +19,9 @@
         <option value="$PROJECT_DIR$/../product-service/pom.xml" />
         <option value="$PROJECT_DIR$/../stripe-payment-service/pom.xml" />
         <option value="$PROJECT_DIR$/../web-scrapping-service/pom.xml" />
-        <option value="$PROJECT_DIR$/../amazon-ses-service/pom.xml" />
         <option value="$PROJECT_DIR$/../analytics-service/pom.xml" />
         <option value="$PROJECT_DIR$/../discount-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../amazon-ses-service/pom.xml" />
       </list>
     </option>
   </component>

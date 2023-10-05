@@ -133,6 +133,9 @@ public class OrderService {
         }
     }
 
+    public OrderEntity get(long orderId){
+        return orderRepository.findById(orderId).get();
+    }
     public ResponseEntity<OrderSingleResponseEntity> getOrderById(long orderId){
         log.info("GETTING ORDER WITH ORDER_ID "+orderId);
         try{
@@ -178,7 +181,7 @@ public class OrderService {
                         return ResponseEntity.internalServerError().build();
                     }
                     log.info("SUCCESSFULLY RETRIEVED INFORMATION FOR PRODUCT WITH PRODUCT_ID "+ product.productId());
-                    OrderDetailResponse orderDetail = new OrderDetailResponse(product.coverImage(), product.name(), product.price(), product.quantity(),(product.price() * product.quantity()));
+                    OrderDetailResponse orderDetail = new OrderDetailResponse(product.coverImage(), product.name(), product.price(), initialOrderObj.get().getOrderContent().get(i).getQuantity(),(product.price() *  initialOrderObj.get().getOrderContent().get(i).getQuantity()));
                     orderDetailList.add(orderDetail);
                 }
 

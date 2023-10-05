@@ -101,4 +101,9 @@ public class OrderController {
         return orderService.getOrderCountForCustomer(customerId);
     }
 
+    @GetMapping("/get/{orderId}")
+    public OrderEntity get(@PathVariable long orderId){
+        return orderService.get(orderId);
+    }
+
 }
