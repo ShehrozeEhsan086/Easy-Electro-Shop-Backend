@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/email-service")
+@RequestMapping("/api/v1/amazon-ses-service")
 public class EmailController {
 
     @Autowired

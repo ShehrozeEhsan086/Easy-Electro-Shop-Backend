@@ -43,7 +43,7 @@ public class OrderService {
     @Autowired
     WebClient.Builder webClientBuilder;
 
-    public ResponseEntity<HttpStatusCode> saveOrder(OrderEntity orderEntity){
+    public ResponseEntity<OrderEntity> saveOrder(OrderEntity orderEntity){
       try{
           log.info("ADDING ORDER FOR CUSTOMER WITH CUSTOMER_ID "+ orderEntity.getCustomerId());
           if( orderEntity.getTotalOrderPrice() == 0.0){
@@ -57,7 +57,9 @@ public class OrderService {
           } else {
               orderEntity.setOrderStatus("pending");
           }
-          orderRepository.save(orderEntity);
+
+          OrderEntity order = orderRepository.save(orderEntity);
+
           webClientBuilder.build()
                   .put()
                   .uri("http://customer-service/api/v1/customer/add-order-info/"+ orderEntity.getCustomerId()+"/"+ orderEntity.getTotalOrderPrice())
@@ -67,7 +69,7 @@ public class OrderService {
                   .block();
 
           log.info("SUCCESSFULLY ADDED ORDER FOR CUSTOMER WITH CUSTOMER_ID "+ orderEntity.getCustomerId());
-          return ResponseEntity.ok().build();
+          return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(order);
       } catch (Exception ex){
           log.error("ERROR ADDING ORDER FOR CUSTOMER WITH CUSTOMER_ID "+ orderEntity.getCustomerId(),ex);
           return ResponseEntity.internalServerError().build();

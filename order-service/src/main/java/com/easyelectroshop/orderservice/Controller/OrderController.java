@@ -20,7 +20,7 @@ public class OrderController {
     OrderService orderService;
 
     @PostMapping("/add-order")
-    public ResponseEntity<HttpStatusCode> saveOrder(@RequestBody OrderEntity orderEntity){
+    public ResponseEntity<OrderEntity> saveOrder(@RequestBody OrderEntity orderEntity){
         return orderService.saveOrder(orderEntity);
     }
 
