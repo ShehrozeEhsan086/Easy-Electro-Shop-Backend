@@ -22,4 +22,5 @@ public interface DiscountRepository extends JpaRepository<Discount,Long>{
     List<Discount> getAllFutureNonActiveDiscounts();
 
     List<Discount> findAllByProductId(UUID productId);
+
 }
