@@ -131,6 +131,7 @@ public class EmailService {
             helper.setText(html,true);
 
             javaMailSender.send(message);
+
         } catch (Exception ex){
             log.error("ERROR ",ex);
         }
