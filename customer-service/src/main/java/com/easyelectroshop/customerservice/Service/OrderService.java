@@ -174,7 +174,7 @@ public class OrderService {
     }
 
     public ResponseEntity<Long> getPendingOrdersCount() {
-        log.info("CALLING ORDER SERVICE TO GET ALL PENDING ORDERS COUNT");
+        log.info("CALLING ORDER SERVICE TO GET ALL PENDING ORDERs COUNT");
         try{
             return webClientBuilder.build()
                     .get()
