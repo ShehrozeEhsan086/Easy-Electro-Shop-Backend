@@ -52,7 +52,7 @@ public class Customer {
     @Column(nullable = false, columnDefinition = "INT DEFAULT 0")
     private int totalOrders;
 
-    @Column(nullable = false, columnDefinition = "INT DEFAULT 0")
+//    @Column(nullable = false, columnDefinition = "INT DEFAULT 0")
     private double totalOrdersAmount;
 
 

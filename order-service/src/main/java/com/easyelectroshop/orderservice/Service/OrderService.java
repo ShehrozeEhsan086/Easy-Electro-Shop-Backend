@@ -187,7 +187,7 @@ public class OrderService {
                     orderDetailList.add(orderDetail);
                 }
 
-                OrderSingleResponseEntity orderResponse = new OrderSingleResponseEntity(orderId,orderDetailList,initialOrderObj.get().getTotalContentPrice(),initialOrderObj.get().getShippingCost(),initialOrderObj.get().getTotalOrderPrice(),initialOrderObj.get().getOrderStatus(),customer);
+                OrderSingleResponseEntity orderResponse = new OrderSingleResponseEntity(orderId,orderDetailList,initialOrderObj.get().getTotalContentPrice(),initialOrderObj.get().getShippingCost(),initialOrderObj.get().getTotalOrderPrice(),initialOrderObj.get().getOrderStatus(),initialOrderObj.get().getShippingTrackingNumber(),customer);
 
                 log.info("SUCCESSFULLY RETRIEVED ORDER INFO FOR ORDER WITH ORDER_ID "+orderId);
 
