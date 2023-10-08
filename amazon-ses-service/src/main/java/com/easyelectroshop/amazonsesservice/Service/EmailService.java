@@ -126,7 +126,7 @@ public class EmailService {
             properties.put("customerPhoneNumber",customer.phoneNumber());
             context.setVariables(properties);
 
-            String html = templateEngine.process("emails/OrderMail.html",context);
+            String html = templateEngine.process("emails/Order/OrderMail.html",context);
 
             helper.setText(html,true);
 
