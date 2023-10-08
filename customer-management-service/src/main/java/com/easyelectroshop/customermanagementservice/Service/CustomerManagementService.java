@@ -131,9 +131,8 @@ public class CustomerManagementService {
                 totalOrders++;
                 customer.get().setTotalOrders(totalOrders);
                 double currentAmount = customer.get().getTotalOrdersAmount();
-                currentAmount += amount;
-                customer.get().setTotalOrdersAmount(currentAmount);
-                customerManagementRepository.save(customer.get());
+                double newAmount = currentAmount + amount;
+                customer.get().setTotalOrdersAmount(newAmount);
                 customerManagementRepository.save(customer.get());
                 return HttpStatusCode.valueOf(200);
             } else {

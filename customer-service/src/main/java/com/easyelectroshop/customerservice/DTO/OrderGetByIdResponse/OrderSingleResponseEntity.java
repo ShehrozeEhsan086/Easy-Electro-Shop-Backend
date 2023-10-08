@@ -10,6 +10,7 @@ public record OrderSingleResponseEntity(
         double shippingCost,
         double totalOrderPrice,
         String orderStatus,
+        String shippingNumber,
         CustomerResponse customer
 
 ) {
