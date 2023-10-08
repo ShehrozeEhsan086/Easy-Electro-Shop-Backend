@@ -7,6 +7,7 @@ public record OrderGetAllResponseEntity(
         String customerName,
         Double totalPrice,
         LocalDate createdAt,
-        String orderStatus
+        String orderStatus,
+        String shippingNumber
 ) {
 }
