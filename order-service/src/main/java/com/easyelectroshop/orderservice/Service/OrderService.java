@@ -252,7 +252,7 @@ public class OrderService {
                     productNames.add(productName);
                 }
 
-                OrderGetAllResponseEntity orderGetAllResponseEntity = new OrderGetAllResponseEntity(orders.get(i).getOrderId(),productNames,fullName,orders.get(i).getTotalOrderPrice(),orders.get(i).getCreatedAt(),orders.get(i).getOrderStatus());
+                OrderGetAllResponseEntity orderGetAllResponseEntity = new OrderGetAllResponseEntity(orders.get(i).getOrderId(),productNames,fullName,orders.get(i).getTotalOrderPrice(),orders.get(i).getCreatedAt(),orders.get(i).getOrderStatus(),orders.get(i).getShippingTrackingNumber());
                 responseOrders.add(orderGetAllResponseEntity);
             }
 
@@ -312,7 +312,7 @@ public class OrderService {
                     productNames.add(productName);
                 }
 
-                OrderGetAllResponseEntity orderGetAllResponseEntity = new OrderGetAllResponseEntity(orders.get(i).getOrderId(),productNames,fullName,orders.get(i).getTotalOrderPrice(),orders.get(i).getCreatedAt(),orders.get(i).getOrderStatus());
+                OrderGetAllResponseEntity orderGetAllResponseEntity = new OrderGetAllResponseEntity(orders.get(i).getOrderId(),productNames,fullName,orders.get(i).getTotalOrderPrice(),orders.get(i).getCreatedAt(),orders.get(i).getOrderStatus(),orders.get(i).getShippingTrackingNumber());
                 responseOrders.add(orderGetAllResponseEntity);
             }
 
