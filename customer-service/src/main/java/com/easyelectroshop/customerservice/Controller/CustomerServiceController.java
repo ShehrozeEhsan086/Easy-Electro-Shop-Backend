@@ -2,6 +2,7 @@ package com.easyelectroshop.customerservice.Controller;
 
 
 import com.easyelectroshop.customerservice.DTO.Cart.Cart;
+import com.easyelectroshop.customerservice.DTO.Coupon.Coupon;
 import com.easyelectroshop.customerservice.DTO.Customer.Customer;
 import com.easyelectroshop.customerservice.DTO.Customer.PaymentMethod;
 import com.easyelectroshop.customerservice.DTO.Order.OrderEntity;
@@ -34,6 +35,9 @@ public class CustomerServiceController {
 
     @Autowired
     SES_Service sesService;
+
+    @Autowired
+    CouponService couponService;
 
 
     // ----------------  APIS FOR AMAZON SES SERVICE [[START]] --------------------
@@ -250,4 +254,32 @@ public class CustomerServiceController {
 
     // ----------------  APIS FOR ORDER TRACKING SERVICE [[END]] --------------------
 
+    // -------------------  APIS FOR COUPON SERVICE [[START]] -----------------------
+
+    @PostMapping("/management/add-coupon")
+    public ResponseEntity<HttpStatusCode> addCoupon(@RequestBody Coupon coupon){
+        return couponService.addCoupon(coupon);
+    }
+
+    @GetMapping("/management/get-coupon-by-id/{couponId}")
+    public ResponseEntity<Coupon> getCouponById(@PathVariable long couponId){
+        return couponService.getCouponById(couponId);
+    }
+
+    @PutMapping("/management/edit-coupon")
+    public ResponseEntity<HttpStatusCode> editCoupon(@RequestBody Coupon coupon){
+        return couponService.editCoupon(coupon);
+    }
+
+    @GetMapping("/management/get-all-coupons")
+    public ResponseEntity<List<Coupon>> getAll(){
+        return couponService.getAllCoupons();
+    }
+
+    @DeleteMapping("/management/delete-coupon/{couponId}")
+    public ResponseEntity<HttpStatusCode> deleteCoupon(@PathVariable long couponId){
+        return couponService.deleteCoupon(couponId);
+    }
+
+    // -------------------  APIS FOR COUPON SERVICE [[END]] -----------------------
 }

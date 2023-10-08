@@ -1,7 +1,7 @@
 package com.easyelectroshop.amazonsesservice.Service;
 
+import com.easyelectroshop.amazonsesservice.Model.Coupon.Coupon;
 import com.easyelectroshop.amazonsesservice.Model.Customer.Customer;
-import com.easyelectroshop.amazonsesservice.Model.EmailData.EmailData;
 import com.easyelectroshop.amazonsesservice.Model.EmailData.OrderDetail;
 import com.easyelectroshop.amazonsesservice.Model.Order.OrderEntity;
 import com.easyelectroshop.amazonsesservice.Model.ProductDTO.Product;
@@ -46,7 +46,7 @@ public class EmailService {
     WebClient.Builder webClientBuilder;
 
     @Async
-    public void htmlSend(OrderEntity order) {
+    public void sendOrderEmail(OrderEntity order) {
         log.info("STARTING EMAIL SENDING PROCESS FOR ORDER WITH ORDER_ID "+order.orderId());
         try{
 
@@ -134,6 +134,46 @@ public class EmailService {
 
         } catch (Exception ex){
             log.error("ERROR ",ex);
+        }
+    }
+
+    @Async
+    public void sendCouponEmail(Coupon coupon) {
+        log.info("SENDING COUPON MAIL TO CUSTOMER WITH CUSTOMER_ID "+coupon.customerId());
+        try{
+            Customer customer = webClientBuilder.build()
+                    .get()
+                    .uri("http://customer-management-service/api/v1/customer-management/get-customer-by-id/"+coupon.customerId())
+                    .header(headerName,headerValue)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(Customer.class)
+                    .block()
+                    .getBody();
+
+            MimeMessage message = javaMailSender.createMimeMessage();
+
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            helper.setFrom(fromEmail,fromName);
+            helper.setTo(customer.email());
+            helper.setSubject("Special Discount");
+
+            Context context = new Context();
+            Map<String, Object> properties = new HashMap<String,Object>();
+            properties.put("customerName",customer.fullName());
+            properties.put("couponCode",coupon.couponCode());
+            properties.put("discountPercentage",coupon.discountPercentage());
+            properties.put("validUpto",coupon.validUpto());
+            context.setVariables(properties);
+
+            String html = templateEngine.process("emails/Coupon/CouponMail.html",context);
+
+            helper.setText(html,true);
+
+            javaMailSender.send(message);
+
+        } catch (Exception ex){
+            log.error("ERROR SENDING COUPON MAIL TO CUSTOMER WITH CUSTOMER_ID "+coupon.customerId(),ex);
         }
     }
 
