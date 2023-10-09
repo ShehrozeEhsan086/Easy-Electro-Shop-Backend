@@ -254,6 +254,68 @@ public class ProductService {
                     .block()
                     .getBody();
 
+
+            List<ProductResponse> productResponseList = new ArrayList<>();
+
+            for (int i = 0; i < baseProducts.size(); i++) {
+
+                try {
+                    Discount discount = webClientBuilder.build()
+                            .get()
+                            .uri("http://discount-service/api/v1/discount/get-active-by-product-id/" + baseProducts.get(i).productId())
+                            .accept(MediaType.APPLICATION_JSON)
+                            .retrieve()
+                            .toEntity(Discount.class)
+                            .block()
+                            .getBody();
+
+                    double discountedPrice = baseProducts.get(i).price() - ( baseProducts.get(i).price() * ((double) discount.discountPercentage() / 100));
+
+                    ProductResponse productResponse = new ProductResponse(baseProducts.get(i).productId()
+                            , baseProducts.get(i).name(), baseProducts.get(i).images(), baseProducts.get(i).shortDescription()
+                            , baseProducts.get(i).completeDescription(), baseProducts.get(i).coverImage(), baseProducts.get(i).brandName()
+                            , baseProducts.get(i).price(), true, discount.discountPercentage(), discountedPrice, baseProducts.get(i).quantity()
+                            , baseProducts.get(i).size(), baseProducts.get(i).colors(), baseProducts.get(i).category(), baseProducts.get(i).subCategories()
+                            , baseProducts.get(i)._3DModelFilename(), baseProducts.get(i)._3DModelURL(), baseProducts.get(i).available(), baseProducts.get(i).lastUpdated()
+                            , baseProducts.get(i).scrappedPrices());
+
+                    productResponseList.add(productResponse);
+
+                } catch (WebClientResponseException.NotFound notFound) {
+                    ProductResponse productResponse = new ProductResponse(baseProducts.get(i).productId()
+                            , baseProducts.get(i).name(), baseProducts.get(i).images(), baseProducts.get(i).shortDescription()
+                            , baseProducts.get(i).completeDescription(), baseProducts.get(i).coverImage(), baseProducts.get(i).brandName()
+                            , baseProducts.get(i).price(), false, 0, 0, baseProducts.get(i).quantity()
+                            , baseProducts.get(i).size(), baseProducts.get(i).colors(), baseProducts.get(i).category(), baseProducts.get(i).subCategories()
+                            , baseProducts.get(i)._3DModelFilename(), baseProducts.get(i)._3DModelURL(), baseProducts.get(i).available(), baseProducts.get(i).lastUpdated()
+                            , baseProducts.get(i).scrappedPrices());
+
+                    productResponseList.add(productResponse);
+                }
+
+            }
+
+            return productResponseList;
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return null;
+        }
+
+    }
+
+    public List<ProductResponse> getAllProductsByCategory(long categoryId,int pageNumber, int pageSize, String sortBy) {
+        try {
+            log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET ALL PRODUCTS");
+            List<Product> baseProducts = webClientBuilder.build()
+                    .get()
+                    .uri("http://product-management-service/api/v1/product-management/get-all-by-category/"+categoryId+"?pageNumber=" + pageNumber + "&pageSize=" + pageSize + "&sort=" + sortBy)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(Product.class)
+                    .block()
+                    .getBody();
+
             List<ProductResponse> productResponseList = new ArrayList<>();
 
             for (int i = 0; i < baseProducts.size(); i++) {

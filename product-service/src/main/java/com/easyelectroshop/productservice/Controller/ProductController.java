@@ -113,10 +113,21 @@ public class ProductController {
     }
 
     @GetMapping("/get-all-products")
-    public ResponseEntity<List<ProductResponse>> getAllProducts(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
-                                                        @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
-                                                        @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy){
+    public ResponseEntity<List<ProductResponse>> getAllProducts(
+            @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+            @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
+            @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy){
         List<ProductResponse> products = productService.getAllProducts(pageNumber,pageSize,sortBy);
+        return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
+    }
+
+    @GetMapping("/get-all-products-by-category/{categoryId}")
+    public ResponseEntity<List<ProductResponse>> getAllProducts(
+            @PathVariable long categoryId,
+            @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+            @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
+            @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy){
+        List<ProductResponse> products = productService.getAllProductsByCategory(categoryId,pageNumber,pageSize,sortBy);
         return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;
     }
 

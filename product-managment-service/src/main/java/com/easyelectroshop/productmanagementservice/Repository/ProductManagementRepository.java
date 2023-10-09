@@ -1,6 +1,9 @@
 package com.easyelectroshop.productmanagementservice.Repository;
 
 import com.easyelectroshop.productmanagementservice.Model.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -25,4 +28,7 @@ public interface ProductManagementRepository extends JpaRepository<Product, UUID
 
     @Query(value = "SELECT quantity FROM product WHERE product_id = ?1",nativeQuery = true)
     int findStockByProductId(UUID productId);
+
+    Page<Product> findAllByCategory(long category, Pageable pageable);
+
 }

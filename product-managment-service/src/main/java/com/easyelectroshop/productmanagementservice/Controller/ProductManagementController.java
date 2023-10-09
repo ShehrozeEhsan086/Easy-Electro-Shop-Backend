@@ -49,6 +49,23 @@ public class ProductManagementController {
         }
     }
 
+    @GetMapping("/get-all-by-category/{categoryId}")
+    public ResponseEntity<List<ProductWithoutImages>> getAllProductsByCategory(
+            @PathVariable long categoryId,
+            @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+            @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
+            @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy)
+    {
+        int length = productManagementService.getProductsCount();
+        if(length == 0){
+            log.info("NO PRODUCTS FOUND IN DATABASE");
+            return ResponseEntity.ok(null);
+        } else {
+            List<ProductWithoutImages> products = productManagementService.getAllByCategory(categoryId,pageNumber,pageSize,sortBy);
+            return (products != null) ? ResponseEntity.ok(products) : ResponseEntity.internalServerError().build();
+        }
+    }
+
     @GetMapping("/get-all-count")
     public ResponseEntity<Integer> getProductsCount(){
         int length = productManagementService.getProductsCount();
