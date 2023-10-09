@@ -1,0 +1,43 @@
+UPDATE FILE
+
+---------------------------------------------------------------
+8th AUGUST 2023
+
+1. Created customer_management-service 
+2. Make add-customer api
+  1. Need to fix payment option encryption in save product
+
+---------------------------------------------------------------
+
+9th AUGUST 2023
+
+1. Completed API (Methods) for customer
+  1. Get All Customer Count
+  2. Get Customer By Id
+  3. Get All Customers
+  4. Add Customer
+  5. Complete Customer Profile
+  6. Update Customer
+  7. Delete Customer
+  NOTE: As of now APIs are untested.
+2. Payment Option encryption still not fixed.
+
+---------------------------------------------------------------
+
+10th AUGUEST 2023
+
+1. Tested All Customer Management APIs
+2. Payment Option encryption still not fixed.
+3. S3 Service does not accept anything except .glb file.
+
+---------------------------------------------------------------
+
+11th Augst 2023 
+
+NO WORK DONE
+
+---------------------------------------------------------------
+
+WORKLOG DISCONTINUED, SHIFTED TO JIRA
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
