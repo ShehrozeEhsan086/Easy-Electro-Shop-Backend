@@ -1,5 +1,6 @@
 package com.easyelectroshop.amazonsesservice.Controller;
 
+import com.easyelectroshop.amazonsesservice.Model.Coupon.Coupon;
 import com.easyelectroshop.amazonsesservice.Model.Order.OrderEntity;
 import com.easyelectroshop.amazonsesservice.Service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,13 @@ public class EmailController {
 
     @PostMapping("/send-order-email")
     public ResponseEntity<HttpStatusCode> sendOrderEmail(@RequestBody OrderEntity order){
-        emailService.htmlSend(order);
+        emailService.sendOrderEmail(order);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/send-coupon-email")
+    public ResponseEntity<HttpStatusCode> sendCouponEmail(@RequestBody Coupon coupon){
+        emailService.sendCouponEmail(coupon);
         return ResponseEntity.ok().build();
     }
 
