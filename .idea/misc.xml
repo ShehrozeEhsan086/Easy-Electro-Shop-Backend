@@ -22,6 +22,7 @@
         <option value="$PROJECT_DIR$/analytics-service/pom.xml" />
         <option value="$PROJECT_DIR$/amazon-ses-service/pom.xml" />
         <option value="$PROJECT_DIR$/order-tracking-service/pom.xml" />
+        <option value="$PROJECT_DIR$/coupon-service/pom.xml" />
       </list>
     </option>
   </component>

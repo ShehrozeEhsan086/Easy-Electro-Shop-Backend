@@ -12,6 +12,7 @@
         <module name="cart-service" />
         <module name="order-tracking-service" />
         <module name="customer-service" />
+        <module name="coupon-service" />
         <module name="product-service" />
         <module name="amazon-ses-service" />
         <module name="amazon-s3-service" />
@@ -36,6 +37,7 @@
       <module name="api-gateway" options="-parameters" />
       <module name="cart-service" options="-parameters" />
       <module name="config-server" options="-parameters" />
+      <module name="coupon-service" options="-parameters" />
       <module name="customer-management-service" options="-parameters" />
       <module name="customer-service" options="-parameters" />
       <module name="discount-service" options="-parameters" />
