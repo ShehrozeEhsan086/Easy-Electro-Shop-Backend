@@ -60,9 +60,9 @@ public class ProductManagementService {
             if(pageSize == -1){
                 pageSize = (int) productManagementRepository.count();
             }
-            Page<Product> testProducts = productManagementRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy).descending()));
+            Page<Product> products = productManagementRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy).descending()));
             List<ProductWithoutImages> productWithoutImages = new ArrayList<>();
-            for(Product product : testProducts){
+            for(Product product : products){
                 ProductWithoutImages productWithoutImage = new ProductWithoutImages(product.getProductId(),product.getName(),product.getShortDescription(),product.getCompleteDescription(),product.getCoverImage(),
                         product.getBrandName(),product.getPrice(),product.getQuantity(),
                         product.getSize(),product.getColors(), product.getCategory(),product.getSubCategories(),product.get_3DModelFilename(),product.get_3DModelURL(),product.isAvailable(),
@@ -76,6 +76,30 @@ public class ProductManagementService {
             return null;
         }
     }
+
+    public List<ProductWithoutImages> getAllByCategory(long categoryId,int pageNumber, int pageSize, String sortBy){
+        log.info("GETTING ALL PRODUCTS WITH CATEGORY OF "+categoryId);
+        try{
+            if(pageSize == -1){
+                pageSize = (int) productManagementRepository.count();
+            }
+            Page<Product> products = productManagementRepository.findAllByCategory(categoryId,PageRequest.of(pageNumber,pageSize, Sort.by(sortBy).descending()));
+            List<ProductWithoutImages> productWithoutImages = new ArrayList<>();
+            for(Product product : products){
+                ProductWithoutImages productWithoutImage = new ProductWithoutImages(product.getProductId(),product.getName(),product.getShortDescription(),product.getCompleteDescription(),product.getCoverImage(),
+                        product.getBrandName(),product.getPrice(),product.getQuantity(),
+                        product.getSize(),product.getColors(), product.getCategory(),product.getSubCategories(),product.get_3DModelFilename(),product.get_3DModelURL(),product.isAvailable(),
+                        product.getLastUpdated());
+                productWithoutImages.add(productWithoutImage);
+            }
+            log.info("SUCCESSFULLY RETRIEVED ALL PRODUCTS");
+            return productWithoutImages;
+        } catch (Exception ex){
+            log.error("ERROR GETTING ALL PRODUCTS WITH CATEGORY OF "+categoryId);
+            return null;
+        }
+    }
+
 
     public int getProductsCount() {
         log.info("GETTING PRODUCTS COUNT");
