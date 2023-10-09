@@ -36,7 +36,7 @@ public class ProductManagementController {
     @GetMapping("/get-all")
     public ResponseEntity<List<ProductWithoutImages>> getAllProducts(
             @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
-            @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
+            @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
             @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy)
     {
         int length = productManagementService.getProductsCount();

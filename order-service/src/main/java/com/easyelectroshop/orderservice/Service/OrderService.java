@@ -12,8 +12,12 @@ import com.easyelectroshop.orderservice.Model.OrderContent;
 import com.easyelectroshop.orderservice.DTO.ResponseDTO.OrderGetAllResponseEntity;
 import com.easyelectroshop.orderservice.Respository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -209,7 +213,8 @@ public class OrderService {
             if(pageSize == -1){
                 pageSize = (int) orderRepository.count();
             }
-            List<OrderEntity> orders = orderRepository.findAllPaginated(sortBy,pageSize,pageNumber);
+            Page<OrderEntity> retrievedOrders = orderRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy).descending()));
+            List<OrderEntity> orders = retrievedOrders.getContent();
             List<OrderGetAllResponseEntity> responseOrders = new ArrayList<>();
             for(int i =0;i<orders.size();i++){
                 log.info("CALLING CUSTOMER MANAGEMENT SERVICE TO GET CUSTOMER WITH CUSTOMER_ID "+orders.get(i).getCustomerId());
@@ -269,9 +274,10 @@ public class OrderService {
             if(pageSize == -1){
                 pageSize = (int) orderRepository.count();
             }
-            List<OrderEntity> orders = orderRepository.findAllPaginatedByCustomerId(customerId,sortBy,pageSize,pageNumber);
+            Page<OrderEntity> retrievedOrders = orderRepository.findAllByCustomerId(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy).descending()),customerId);
+            List<OrderEntity> orders = retrievedOrders.getContent();
             List<OrderGetAllResponseEntity> responseOrders = new ArrayList<>();
-            for(int i =0;i<orders.size();i++){
+            for(int i =0;i< orders.size();i++){
                 log.info("CALLING CUSTOMER MANAGEMENT SERVICE TO GET CUSTOMER WITH CUSTOMER_ID "+orders.get(i).getCustomerId());
                 String fullName;
                 try{

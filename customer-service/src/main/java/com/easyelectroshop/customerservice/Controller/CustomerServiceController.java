@@ -75,7 +75,7 @@ public class CustomerServiceController {
     public ResponseEntity<List<Customer>> getAllCustomers(
             @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
             @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
-            @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy
+            @RequestParam(value="sort",defaultValue = "fullName",required = false) String sortBy
     ){
         List<Customer> customers = customerService.getAllCustomers(pageNumber,pageSize,sortBy);
         return customers != null ? ResponseEntity.ok(customers) : ResponseEntity.unprocessableEntity().build();
@@ -176,7 +176,7 @@ public class CustomerServiceController {
     @GetMapping("/management/get-all-orders")
     public ResponseEntity<List<OrderGetAllResponseEntity>> getAll(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
                                                                   @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
-                                                                  @RequestParam(value="sort",defaultValue = "created_at",required = false) String sortBy){
+                                                                  @RequestParam(value="sort",defaultValue = "createdAt",required = false) String sortBy){
         return ResponseEntity.ok(orderService.getAllOrders(sortBy,pageSize,pageNumber));
     }
 
@@ -184,7 +184,7 @@ public class CustomerServiceController {
     public ResponseEntity<List<OrderGetAllResponseEntity>> getAllByCustomerId(@PathVariable UUID customerId,
                                                                     @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
                                                                     @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
-                                                                    @RequestParam(value="sort",defaultValue = "created_at",required = false) String sortBy){
+                                                                    @RequestParam(value="sort",defaultValue = "createdAt",required = false) String sortBy){
         return ResponseEntity.ok(orderService.getAllOrdersByCustomerId(customerId,sortBy,pageSize,pageNumber));
     }
 

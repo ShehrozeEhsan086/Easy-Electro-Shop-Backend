@@ -27,7 +27,7 @@ public class OrderController {
     @GetMapping("/get-all")
     public ResponseEntity<List<OrderGetAllResponseEntity>> getAll(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
                                                                   @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
-                                                                  @RequestParam(value="sort",defaultValue = "created_at",required = false) String sortBy){
+                                                                  @RequestParam(value="sort",defaultValue = "createdAt",required = false) String sortBy){
         return orderService.getAllOrders(sortBy,pageSize,pageNumber);
     }
 
@@ -35,7 +35,7 @@ public class OrderController {
     public ResponseEntity<List<OrderGetAllResponseEntity>> getByCustomerId(@PathVariable UUID customerId,
                                                                             @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
                                                                             @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
-                                                                            @RequestParam(value="sort",defaultValue = "created_at",required = false) String sortBy){
+                                                                            @RequestParam(value="sort",defaultValue = "createdAt",required = false) String sortBy){
         return orderService.getAllOrdersByCustomerId(customerId,sortBy,pageSize,pageNumber);
     }
 
