@@ -289,4 +289,30 @@ public class CustomerManagementService {
         }
     }
 
+    public ResponseEntity<HttpStatusCode> blockCustomer(UUID customerId){
+        log.info("BLOCKING CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            Optional<Customer> customer = customerManagementRepository.findById(customerId);
+            customer.get().setBlocked(true);
+            customerManagementRepository.save(customer.get());
+            return ResponseEntity.ok().build();
+        } catch (Exception ex){
+            log.error("ERROR BLOCKING CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<HttpStatusCode> unBlockCustomer(UUID customerId){
+        log.info("UNBLOCKING CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            Optional<Customer> customer = customerManagementRepository.findById(customerId);
+            customer.get().setBlocked(false);
+            customerManagementRepository.save(customer.get());
+            return ResponseEntity.ok().build();
+        } catch (Exception ex){
+            log.error("ERROR UNBLOCKING CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
 }

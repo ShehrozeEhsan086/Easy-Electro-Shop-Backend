@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -233,4 +234,33 @@ public class CustomerService {
     }
 
 
+    public ResponseEntity<HttpStatusCode> blockCustomer(UUID customerId) {
+        log.info("CALLING CUSTOMER MANAGEMENT SERVICE TO BLOCK CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            return webClientBuilder.build()
+                    .put()
+                    .uri("http://customer-management-service/api/v1/customer-management/block-customer/"+customerId)
+                    .retrieve()
+                    .toEntity(HttpStatusCode.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR CALLING CUSTOMER MANAGEMENT SERVICE TO BLOCK CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<HttpStatusCode> unBlockCustomer(UUID customerId) {
+        log.info("CALLING CUSTOMER MANAGEMENT SERVICE TO UNBLOCK CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            return webClientBuilder.build()
+                    .put()
+                    .uri("http://customer-management-service/api/v1/customer-management/unblock-customer/"+customerId)
+                    .retrieve()
+                    .toEntity(HttpStatusCode.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("ERROR CALLING CUSTOMER MANAGEMENT SERVICE TO UNBLOCK CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
