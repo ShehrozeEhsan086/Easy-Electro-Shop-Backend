@@ -119,6 +119,16 @@ public class CustomerServiceController {
         return ResponseEntity.status(customerService.decreaseOrderInfo(customerId,amount)).build();
     }
 
+    @PutMapping("/management/block-customer/{customerId}")
+    public ResponseEntity<HttpStatusCode> blockCustomer(@PathVariable UUID customerId){
+        return customerService.blockCustomer(customerId);
+    }
+
+    @PutMapping("/management/unblock-customer/{customerId}")
+    public ResponseEntity<HttpStatusCode> unBlockCustomer(@PathVariable UUID customerId){
+        return customerService.unBlockCustomer(customerId);
+    }
+
     // ----------------  APIS FOR CUSTOMER MANAGEMENT SERVICE [[END]] --------------------
 
 

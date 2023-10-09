@@ -98,4 +98,14 @@ public class CustomerManagementController {
         return customerManagementService.getCustomerNameById(customerId);
     }
 
+    @PutMapping("/block-customer/{customerId}")
+    public ResponseEntity<HttpStatusCode> blockCustomer(@PathVariable UUID customerId){
+        return customerManagementService.blockCustomer(customerId);
+    }
+
+    @PutMapping("/unblock-customer/{customerId}")
+    public ResponseEntity<HttpStatusCode> unBlockCustomer(@PathVariable UUID customerId){
+        return customerManagementService.unBlockCustomer(customerId);
+    }
+
 }
