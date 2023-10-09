@@ -1,6 +1,8 @@
 package com.easyelectroshop.orderservice.Respository;
 
 import com.easyelectroshop.orderservice.Model.OrderEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -21,6 +23,8 @@ public interface OrderRepository extends JpaRepository<OrderEntity,Long> {
     List<OrderEntity> findAllByOrderStatus(String orderStatus);
 
     List<OrderEntity> findAllByCreatedAt(LocalDate createdAt);
+
+    Page<OrderEntity> findAllByCustomerId(Pageable pageable, UUID customerId);
 
     Long countByOrderStatus(String orderStatus);
 

@@ -114,7 +114,7 @@ public class ProductController {
 
     @GetMapping("/get-all-products")
     public ResponseEntity<List<ProductResponse>> getAllProducts(@RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
-                                                        @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
+                                                        @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
                                                         @RequestParam(value="sort",defaultValue = "lastUpdated",required = false) String sortBy){
         List<ProductResponse> products = productService.getAllProducts(pageNumber,pageSize,sortBy);
         return(products!=null) ? ResponseEntity.ok(products) : ResponseEntity.unprocessableEntity().build() ;

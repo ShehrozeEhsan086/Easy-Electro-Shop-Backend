@@ -60,7 +60,7 @@ public class CustomerManagementController {
     public ResponseEntity<List<CustomerDTO>> getAllCustomers(
             @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
             @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
-            @RequestParam(value="sort",defaultValue = "full_name",required = false) String sortBy)
+            @RequestParam(value="sort",defaultValue = "fullName",required = false) String sortBy)
     {
         int length = customerManagementService.getCustomersCount();
         if(length == 0){

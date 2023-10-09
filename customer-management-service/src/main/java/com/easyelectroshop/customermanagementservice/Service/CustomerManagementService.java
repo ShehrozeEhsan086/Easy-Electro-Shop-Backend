@@ -7,6 +7,9 @@ import com.easyelectroshop.customermanagementservice.Repository.CustomerManageme
 import com.easyelectroshop.customermanagementservice.Repository.PaymentMethodRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -36,7 +39,8 @@ public class CustomerManagementService {
             if(pageSize == -1){
                 pageSize = Integer.MAX_VALUE;
             }
-            List<Customer> customers = customerManagementRepository.findAllPaginated(sortBy,pageSize,pageNumber);
+            Page<Customer> retrievedCustomer = customerManagementRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy).descending()));
+            List<Customer> customers = retrievedCustomer.getContent();
             List<CustomerDTO> customerDTOS = new ArrayList<>();
             for(Customer customer : customers){
                 CustomerDTO customerDTO = new CustomerDTO(customer.getCustomerId(),customer.getFullName(),
