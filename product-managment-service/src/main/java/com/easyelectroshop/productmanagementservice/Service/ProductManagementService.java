@@ -6,6 +6,9 @@ import com.easyelectroshop.productmanagementservice.Repository.ProductManagement
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -57,9 +60,9 @@ public class ProductManagementService {
             if(pageSize == -1){
                 pageSize = (int) productManagementRepository.count();
             }
-            List<Product> products = productManagementRepository.findAllPaginated(sortBy,pageSize,pageNumber);
+            Page<Product> testProducts = productManagementRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy).descending()));
             List<ProductWithoutImages> productWithoutImages = new ArrayList<>();
-            for(Product product : products){
+            for(Product product : testProducts){
                 ProductWithoutImages productWithoutImage = new ProductWithoutImages(product.getProductId(),product.getName(),product.getShortDescription(),product.getCompleteDescription(),product.getCoverImage(),
                         product.getBrandName(),product.getPrice(),product.getQuantity(),
                         product.getSize(),product.getColors(), product.getCategory(),product.getSubCategories(),product.get_3DModelFilename(),product.get_3DModelURL(),product.isAvailable(),

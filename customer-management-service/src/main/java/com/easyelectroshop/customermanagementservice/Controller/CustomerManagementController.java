@@ -60,7 +60,7 @@ public class CustomerManagementController {
     public ResponseEntity<List<CustomerDTO>> getAllCustomers(
             @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
             @RequestParam(value="pageSize",defaultValue = "5",required = false) int pageSize,
-            @RequestParam(value="sort",defaultValue = "full_name",required = false) String sortBy)
+            @RequestParam(value="sort",defaultValue = "fullName",required = false) String sortBy)
     {
         int length = customerManagementService.getCustomersCount();
         if(length == 0){
@@ -96,6 +96,16 @@ public class CustomerManagementController {
     @GetMapping("/get-customer-name/{customerId}")
     public ResponseEntity<String> getCustomerName(@PathVariable UUID customerId){
         return customerManagementService.getCustomerNameById(customerId);
+    }
+
+    @PutMapping("/block-customer/{customerId}")
+    public ResponseEntity<HttpStatusCode> blockCustomer(@PathVariable UUID customerId){
+        return customerManagementService.blockCustomer(customerId);
+    }
+
+    @PutMapping("/unblock-customer/{customerId}")
+    public ResponseEntity<HttpStatusCode> unBlockCustomer(@PathVariable UUID customerId){
+        return customerManagementService.unBlockCustomer(customerId);
     }
 
 }

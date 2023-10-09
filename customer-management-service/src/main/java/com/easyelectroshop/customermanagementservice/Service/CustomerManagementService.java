@@ -7,6 +7,9 @@ import com.easyelectroshop.customermanagementservice.Repository.CustomerManageme
 import com.easyelectroshop.customermanagementservice.Repository.PaymentMethodRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -36,7 +39,8 @@ public class CustomerManagementService {
             if(pageSize == -1){
                 pageSize = Integer.MAX_VALUE;
             }
-            List<Customer> customers = customerManagementRepository.findAllPaginated(sortBy,pageSize,pageNumber);
+            Page<Customer> retrievedCustomer = customerManagementRepository.findAll(PageRequest.of(pageNumber,pageSize, Sort.by(sortBy).descending()));
+            List<Customer> customers = retrievedCustomer.getContent();
             List<CustomerDTO> customerDTOS = new ArrayList<>();
             for(Customer customer : customers){
                 CustomerDTO customerDTO = new CustomerDTO(customer.getCustomerId(),customer.getFullName(),
@@ -281,6 +285,32 @@ public class CustomerManagementService {
         }
         catch (Exception ex){
             log.error("ERROR GETTING CUSTOMER NAME FOR CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<HttpStatusCode> blockCustomer(UUID customerId){
+        log.info("BLOCKING CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            Optional<Customer> customer = customerManagementRepository.findById(customerId);
+            customer.get().setBlocked(true);
+            customerManagementRepository.save(customer.get());
+            return ResponseEntity.ok().build();
+        } catch (Exception ex){
+            log.error("ERROR BLOCKING CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<HttpStatusCode> unBlockCustomer(UUID customerId){
+        log.info("UNBLOCKING CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            Optional<Customer> customer = customerManagementRepository.findById(customerId);
+            customer.get().setBlocked(false);
+            customerManagementRepository.save(customer.get());
+            return ResponseEntity.ok().build();
+        } catch (Exception ex){
+            log.error("ERROR UNBLOCKING CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
             return ResponseEntity.internalServerError().build();
         }
     }
