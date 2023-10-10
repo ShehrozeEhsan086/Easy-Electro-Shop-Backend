@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -72,5 +73,18 @@ public class CouponService {
     }
 
 
-
+    public ResponseEntity<Coupon> getCouponByCodeAndCustomerId(String couponCode, UUID customerId) {
+        log.info("GETTING COUPON WITH COUPON CODE "+couponCode+" FOR CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            Coupon coupon = couponRepository.getCouponByCouponCodeAndCustomerId(couponCode,customerId);
+            if(coupon == null){
+                return ResponseEntity.noContent().build();
+            } else {
+                return ResponseEntity.ok(coupon);
+            }
+        } catch (Exception ex){
+            log.error("ERROR GETTING COUPON WITH COUPON CODE "+couponCode+" FOR CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }

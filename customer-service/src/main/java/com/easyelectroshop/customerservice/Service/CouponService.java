@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -108,6 +109,21 @@ public class CouponService {
                     .block();
         } catch (Exception ex){
             log.error("ERROR CALLING COUPON SERVICE TO DELETE COUPON WITH COUPON_ID "+couponId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<Coupon> getCouponByCodeAndCustomerId(String couponCode, UUID customerId){
+        log.info("CALLING COUPON SERVICE TO GET COUPON WITH COUPON_CODE "+couponCode+" FOR CUSTOMER WITH CUSTOMER_ID "+customerId);
+        try{
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://coupon-service/api/v1/coupon-service/get-coupon-for-checkout/"+couponCode+"/"+customerId)
+                    .retrieve()
+                    .toEntity(Coupon.class)
+                    .block();
+        } catch (Exception ex){
+            log.error("CALLING COUPON SERVICE TO GET COUPON WITH COUPON_CODE "+couponCode+" FOR CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
             return ResponseEntity.internalServerError().build();
         }
     }

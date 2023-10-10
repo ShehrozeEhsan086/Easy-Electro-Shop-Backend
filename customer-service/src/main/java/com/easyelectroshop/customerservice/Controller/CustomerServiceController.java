@@ -291,5 +291,11 @@ public class CustomerServiceController {
         return couponService.deleteCoupon(couponId);
     }
 
+    @GetMapping("/get-coupon-for-checkout/{couponCode}/{customerId}")
+    public ResponseEntity<Coupon> getCouponByCodeAndCustomerId(@PathVariable String couponCode,
+                                                               @PathVariable UUID customerId){
+        return couponService.getCouponByCodeAndCustomerId(couponCode,customerId);
+    }
+
     // -------------------  APIS FOR COUPON SERVICE [[END]] -----------------------
 }
