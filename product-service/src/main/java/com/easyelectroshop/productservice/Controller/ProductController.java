@@ -6,6 +6,7 @@ import com.easyelectroshop.productservice.DTO.DiscountDTO.DiscountResponse;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
+import com.easyelectroshop.productservice.DTO.ProductDTO.CompleteProductResponse;
 import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import com.easyelectroshop.productservice.DTO.ProductDTO.ProductResponse;
 import com.easyelectroshop.productservice.DTO.ProductDTO.ProductWithColor;
@@ -168,8 +169,8 @@ public class ProductController {
     }
 
     @GetMapping("get-product/{productId}")
-    public ResponseEntity<Product> getProductById(@PathVariable UUID productId){
-        Product product = productService.getProductById(productId);
+    public ResponseEntity<CompleteProductResponse> getProductById(@PathVariable UUID productId){
+        CompleteProductResponse product = productService.getProductById(productId);
         return(product!=null) ? ResponseEntity.ok(product) : ResponseEntity.notFound().build();
     }
 
