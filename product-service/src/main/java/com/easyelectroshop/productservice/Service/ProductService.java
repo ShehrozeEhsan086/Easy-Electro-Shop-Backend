@@ -5,10 +5,7 @@ import com.easyelectroshop.productservice.DTO.DiscountDTO.Discount;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
 import com.easyelectroshop.productservice.DTO.ProductColorDTO.Color;
-import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
-import com.easyelectroshop.productservice.DTO.ProductDTO.ProductImageWithColor;
-import com.easyelectroshop.productservice.DTO.ProductDTO.ProductResponse;
-import com.easyelectroshop.productservice.DTO.ProductDTO.ProductWithColor;
+import com.easyelectroshop.productservice.DTO.ProductDTO.*;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -506,7 +503,7 @@ public class ProductService {
         }
     }
 
-    public Product getProductById(UUID productId) {
+    public CompleteProductResponse getProductById(UUID productId) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET PRODUCT WITH PRODUCT_ID "+productId);
         try{
             Product product = webClientBuilder.build()
@@ -517,9 +514,41 @@ public class ProductService {
                     .bodyToMono(Product.class)
                     .block();
             List<WebScrapper> webScrapper = getScrappedPrices(productId).getBody();
-            Product completeProduct = new Product(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
-                    product.brandName(),product.price(),product.quantity(),product.size(),product.colors(),
-                    product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
+
+            Discount discount;
+
+            try{
+                discount = webClientBuilder.build()
+                        .get()
+                        .uri("http://discount-service/api/v1/discount/get-active-by-product-id/" + productId)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .retrieve()
+                        .toEntity(Discount.class)
+                        .block()
+                        .getBody();
+            } catch (WebClientResponseException.NotFound notFound){
+                discount = null;
+            } catch (Exception ex){
+                log.error("ERROR CALLING DISCOUNT SERVER, FALLING BACK TO DEFAULT VALUES");
+                discount = null;
+            }
+
+            CompleteProductResponse completeProduct;
+
+            if(discount!=null){
+                double discountedPrice = product.price() - ( product.price() * ((double) discount.discountPercentage() / 100));
+
+                completeProduct = new CompleteProductResponse(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
+                        product.brandName(),product.price(),true,discount.discountPercentage(),discountedPrice,product.quantity(),product.size(),product.colors(),
+                        product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
+
+            } else {
+                completeProduct = new CompleteProductResponse(product.productId(),product.name(),product.images(),product.shortDescription(),product.completeDescription(),product.coverImage(),
+                        product.brandName(),product.price(),false,0,0.0,product.quantity(),product.size(),product.colors(),
+                        product.category(),product.subCategories(),product._3DModelFilename(),product._3DModelURL(),product.available(),product.lastUpdated(),webScrapper);
+
+            }
+
             return completeProduct;
         } catch (WebClientException ex){
             log.error("PRODUCT WITH PRODUCT_ID "+productId+" NOT FOUND");
@@ -533,7 +562,7 @@ public class ProductService {
     public HttpStatusCode updateProduct(Product product) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO UPDATE PRODUCT WITH PRODUCT_NAME "+product.name());
         try{
-            Product tempProduct = getProductById(product.productId());
+            CompleteProductResponse tempProduct = getProductById(product.productId());
             if (tempProduct != null){
                 return webClientBuilder.build()
                         .put()
@@ -557,7 +586,7 @@ public class ProductService {
     public HttpStatusCode deleteProduct(UUID productId) {
         log.info("CALLING PRODUCT MANAGEMENT SERVICE TO DELETE PRODUCT WITH PRODUCT_ID "+productId);
         try{
-            Product tempProduct = getProductById(productId);
+            CompleteProductResponse tempProduct = getProductById(productId);
             if (tempProduct != null){
                 return webClientBuilder.build()
                         .delete()
