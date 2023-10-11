@@ -2,10 +2,14 @@ package com.easyelectroshop.chatbotdataretrievingservice.Model;
 
 import java.util.List;
 
-public record Intents(
-        String tag,
-        List<String> patterns,
-        List<String> responses
+public class Intents {
+    private List<IntentData> intents;
 
-) {
+    public List<IntentData> getIntents() {
+        return intents;
+    }
+
+    public void setIntents(List<IntentData> intents) {
+        this.intents = intents;
+    }
 }
