@@ -25,6 +25,7 @@
         <module name="product-management-service" />
         <module name="api-gateway" />
         <module name="analytics-service" />
+        <module name="Chat" />
         <module name="customer-management-service" />
         <module name="product-color-management-service" />
       </profile>
@@ -37,6 +38,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Chat" options="-parameters" />
       <module name="amazon-s3-service" options="-parameters" />
       <module name="amazon-ses-service" options="-parameters" />
       <module name="amazon-ses-service (1)" options="-parameters" />
