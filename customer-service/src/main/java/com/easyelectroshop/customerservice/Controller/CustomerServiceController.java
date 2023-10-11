@@ -3,6 +3,7 @@ package com.easyelectroshop.customerservice.Controller;
 
 import com.easyelectroshop.customerservice.DTO.Cart.Cart;
 import com.easyelectroshop.customerservice.DTO.Coupon.Coupon;
+import com.easyelectroshop.customerservice.DTO.Coupon.ResponseCoupon;
 import com.easyelectroshop.customerservice.DTO.Customer.Customer;
 import com.easyelectroshop.customerservice.DTO.Customer.PaymentMethod;
 import com.easyelectroshop.customerservice.DTO.Order.OrderEntity;
@@ -282,7 +283,7 @@ public class CustomerServiceController {
     }
 
     @GetMapping("/management/get-all-coupons")
-    public ResponseEntity<List<Coupon>> getAll(){
+    public ResponseEntity<List<ResponseCoupon>> getAll(){
         return couponService.getAllCoupons();
     }
 
