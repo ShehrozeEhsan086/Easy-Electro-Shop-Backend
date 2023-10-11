@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="stripe-payment-service" />
+        <module name="chatbot-data-retrieving-service" />
         <module name="cart-service" />
         <module name="order-tracking-service" />
         <module name="web-scrapping-service" />
@@ -43,6 +44,7 @@
       <module name="analytics-service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="cart-service" options="-parameters" />
+      <module name="chatbot-data-retrieving-service" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="coupon-service" options="-parameters" />
       <module name="customer-management-service" options="-parameters" />
