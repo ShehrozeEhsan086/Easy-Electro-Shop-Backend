@@ -23,6 +23,7 @@
         <option value="$PROJECT_DIR$/../discount-service/pom.xml" />
         <option value="$PROJECT_DIR$/../amazon-ses-service/pom.xml" />
         <option value="$PROJECT_DIR$/../coupon-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../chatbot-data-retrieving-service/pom.xml" />
       </list>
     </option>
   </component>

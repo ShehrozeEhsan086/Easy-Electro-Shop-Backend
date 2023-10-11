@@ -1,6 +1,8 @@
 package com.easyelectroshop.customerservice.Service;
 
 import com.easyelectroshop.customerservice.DTO.Coupon.Coupon;
+import com.easyelectroshop.customerservice.DTO.Coupon.ResponseCoupon;
+import com.easyelectroshop.customerservice.DTO.Customer.Customer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -83,15 +86,33 @@ public class CouponService {
         }
     }
 
-    public ResponseEntity<List<Coupon>> getAllCoupons(){
+    public ResponseEntity<List<ResponseCoupon>> getAllCoupons(){
         log.info("CALLING COUPON SERVICE TO GET ALL COUPONS");
         try{
-            return webClientBuilder.build()
+            List<Coupon> coupons = webClientBuilder.build()
                     .get()
                     .uri("http://coupon-service/api/v1/coupon-service/get-all-coupons")
                     .retrieve()
                     .toEntityList(Coupon.class)
-                    .block();
+                    .block()
+                    .getBody();
+
+            List<ResponseCoupon> responseCoupons = new ArrayList<>();
+            for(int i =0;i<coupons.size();i++){
+                Customer customer = webClientBuilder.build()
+                        .get()
+                        .uri("http://customer-management-service/api/v1/customer-management/get-customer-by-id/"+coupons.get(i).customerId())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .retrieve()
+                        .toEntity(Customer.class)
+                        .block()
+                        .getBody();
+                ResponseCoupon responseCoupon = new ResponseCoupon(coupons.get(i).couponId(),coupons.get(i).couponCode(),
+                        coupons.get(i).customerId(),customer.email(),customer.fullName(),
+                        coupons.get(i).discountPercentage(),coupons.get(i).validUpto());
+                responseCoupons.add(responseCoupon);
+            }
+            return ResponseEntity.ok(responseCoupons);
         } catch (Exception ex){
             log.error("ERROR CALLING COUPON SERVICE TO GET ALL COUPONS",ex);
             return ResponseEntity.internalServerError().build();
