@@ -1,6 +1,5 @@
 package com.easyelectroshop.chatbotdataretrievingservice.ProductDTO;
 
-import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
 
 import java.util.List;
 import java.util.UUID;

@@ -24,7 +24,8 @@ public class FileReadWriteService {
     @Autowired
     WebClient.Builder webClientBuilder;
 
-    @Scheduled(fixedRate = 600000)
+//    @Scheduled(fixedRate = 600000)
+    @Scheduled(fixedRate = 3600000)
     public void readWriteToFile(){
         try{
             ObjectMapper objectMapper = new ObjectMapper();
