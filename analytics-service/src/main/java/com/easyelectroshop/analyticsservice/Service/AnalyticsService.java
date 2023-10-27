@@ -4,6 +4,7 @@ import com.easyelectroshop.analyticsservice.DTO.ServiceStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -33,6 +34,25 @@ public class AnalyticsService {
             log.error("ERROR", ex);
             ServiceStatus status = new ServiceStatus("DOWN");
             return ResponseEntity.ok(status);
+        }
+    }
+
+    public ResponseEntity<String> getTotalInventoryPrice(){
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET TOTAL INVENTORY PRICE");
+        try{
+            String totalInventoryPrice = webClientBuilder.build()
+                    .get()
+                    .uri("http://product-management-service/api/v1/product-management/get-total-inventory-price")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(String.class)
+                    .block()
+                    .getBody();
+            log.info("SUCCESSFULLY RETRIEVED TOTAL INVENTORY PRICE VALUE: "+totalInventoryPrice);
+            return ResponseEntity.ok(totalInventoryPrice);
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
         }
     }
 

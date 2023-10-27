@@ -21,5 +21,14 @@ public class AnalyticsServiceController {
         return analyticsService.getServiceStatus(serviceName);
     }
 
+    @GetMapping("/get-total-inventory-price")
+    public ResponseEntity<String> getTotalInventoryPrice(){
+        return analyticsService.getTotalInventoryPrice();
+    }
+
+    @GetMapping("/get-total-sold-price")
+    public ResponseEntity<String> getTotalSalesPrice(){
+        return ResponseEntity.ok("UNDER PROGRESS");
+    }
 
 }

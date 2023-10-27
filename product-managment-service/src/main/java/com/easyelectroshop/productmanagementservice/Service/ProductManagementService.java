@@ -1,5 +1,6 @@
 package com.easyelectroshop.productmanagementservice.Service;
 
+import com.easyelectroshop.productmanagementservice.DTO.ProductPriceQuantity.ProductPriceQuantity;
 import com.easyelectroshop.productmanagementservice.DTO.ProductWithoutImages.ProductWithoutImages;
 import com.easyelectroshop.productmanagementservice.Model.Product;
 import com.easyelectroshop.productmanagementservice.Repository.ProductManagementRepository;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -28,6 +30,9 @@ public class ProductManagementService {
 
     @Autowired
     SimpleDateFormat simpleDateFormat;
+
+    @Autowired
+    DecimalFormat decimalFormat;
 
     public HttpStatusCode saveProduct(Product product){
         log.info("ADDING NEW PRODUCT WITH NAME "+product.getName());
@@ -243,6 +248,29 @@ public class ProductManagementService {
             return ResponseEntity.notFound().build();
         }catch (Exception ex){
             log.error("ERROR GETTING PRODUCT NAME FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<String> getTotalInventoryPrice(){
+        log.info("GETTING TOTAL INVENTORY PRICE");
+        try{
+            double totalInventoryPrice = 0;
+            List<ProductPriceQuantity> priceAndQuantityValues = productManagementRepository.getAllPriceQuantity();
+            if (priceAndQuantityValues.isEmpty()){
+                log.info("PRODUCT PRICE AND QUANTITY VALUES RETURNED EMPTY");
+                return ResponseEntity.ok("0.0");
+            } else {
+                for(int i=0;i<priceAndQuantityValues.size();i++){
+                    log.info("PRODUCT "+(i+1)+" PRICE "+priceAndQuantityValues.get(i).price()+ " QUANTITY "+priceAndQuantityValues.get(i).quantity());
+                    totalInventoryPrice = totalInventoryPrice + (priceAndQuantityValues.get(i).quantity() * priceAndQuantityValues.get(i).price());
+                }
+                log.info("RECEIVED INFO FOR TOTAL PRODUCTS COUNT "+priceAndQuantityValues.size()+" TOTAL INVENTORY PRICE "+totalInventoryPrice);
+                String formattedInventoryPrice = decimalFormat.format(totalInventoryPrice);
+                return ResponseEntity.ok(formattedInventoryPrice);
+            }
+        } catch (Exception ex){
+            log.error("ERROR GETTING TOTAL INVENTORY PRICE ",ex);
             return ResponseEntity.internalServerError().build();
         }
     }
