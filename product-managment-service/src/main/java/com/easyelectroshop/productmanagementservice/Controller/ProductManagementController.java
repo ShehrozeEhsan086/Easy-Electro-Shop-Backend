@@ -116,4 +116,9 @@ public class ProductManagementController {
     public ResponseEntity<String> getProductName(@PathVariable UUID productId){
         return productManagementService.getProductNameById(productId);
     }
+
+    @GetMapping("/get-total-inventory-price")
+    public ResponseEntity<String> getTotalInventoryPrice(){
+        return productManagementService.getTotalInventoryPrice();
+    }
 }

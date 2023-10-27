@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -46,6 +47,9 @@ public class OrderService {
 
     @Autowired
     WebClient.Builder webClientBuilder;
+
+    @Autowired
+    DecimalFormat decimalFormat;
 
     public ResponseEntity<OrderEntity> saveOrder(OrderEntity orderEntity){
       try{
@@ -429,6 +433,28 @@ public class OrderService {
         } catch (Exception ex){
             log.error("ERROR GETTING ALL DELIVERED(COMPLETED) ORDERS COUNT");
             return  ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<String> getTotalSalesPrice(){
+        log.info("GETTING TOTAL SALES AMOUNT");
+        try{
+            double totalSalesPrice = 0;
+            List<OrderEntity> allDeliveredOrders = orderRepository.findAllByOrderStatus("delivered");
+            if (allDeliveredOrders.isEmpty()){
+                log.info("ZERO DELIVERED ORDERS");
+                return ResponseEntity.ok("0.0");
+            } else {
+                for(int i=0; i<allDeliveredOrders.size();i++){
+                    totalSalesPrice = totalSalesPrice + (allDeliveredOrders.get(i).getTotalContentPrice());
+                }
+                log.info("SUCCESSFULLY RETRIEVED SALES AMOUNT "+totalSalesPrice);
+                String formattedSalesPrice = decimalFormat.format(totalSalesPrice);
+                return ResponseEntity.ok(formattedSalesPrice);
+            }
+        } catch (Exception ex){
+            log.error("ERROR GETTING TOTAL SALES AMOUNT");
+            return ResponseEntity.internalServerError().build();
         }
     }
 }

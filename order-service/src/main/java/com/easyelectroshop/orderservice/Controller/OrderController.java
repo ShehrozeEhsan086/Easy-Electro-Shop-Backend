@@ -106,4 +106,8 @@ public class OrderController {
         return orderService.get(orderId);
     }
 
+    @GetMapping("/get-total-sales-price")
+    public ResponseEntity<String> getTotalSalesPrice(){
+        return orderService.getTotalSalesPrice();
+    }
 }
