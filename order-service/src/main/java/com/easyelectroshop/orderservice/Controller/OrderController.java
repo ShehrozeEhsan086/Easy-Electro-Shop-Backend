@@ -110,4 +110,9 @@ public class OrderController {
     public ResponseEntity<String> getTotalSalesPrice(){
         return orderService.getTotalSalesPrice();
     }
+
+    @GetMapping("/get-total-amount-on-hold")
+    public ResponseEntity<String> getTotalOnHoldPrice(){
+        return orderService.getTotalOnHoldPrice();
+    }
 }
