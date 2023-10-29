@@ -28,7 +28,12 @@ public class AnalyticsServiceController {
 
     @GetMapping("/get-total-sold-price")
     public ResponseEntity<String> getTotalSalesPrice(){
-        return ResponseEntity.ok("UNDER PROGRESS");
+        return analyticsService.getTotalSoldPrice();
+    }
+
+    @GetMapping("/get-total-amount-on-hold")
+    public ResponseEntity<String> getTotalOnHoldPrice(){
+        return analyticsService.getTotalOnHoldAmount();
     }
 
 }

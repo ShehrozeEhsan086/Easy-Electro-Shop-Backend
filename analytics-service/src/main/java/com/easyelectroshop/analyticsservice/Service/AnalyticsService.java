@@ -56,4 +56,41 @@ public class AnalyticsService {
         }
     }
 
+    public ResponseEntity<String> getTotalSoldPrice() {
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET TOTAL SALES AMOUNT");
+        try{
+            String totalSalesPrice = webClientBuilder.build()
+                    .get()
+                    .uri("http://order-service/api/v1/order-service/get-total-sales-price")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(String.class)
+                    .block()
+                    .getBody();
+            log.info("SUCCESSFULLY RETRIEVED TOTAL SALES AMOUNT VALUE: "+totalSalesPrice);
+            return ResponseEntity.ok(totalSalesPrice);
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<String> getTotalOnHoldAmount() {
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET TOTAL ON HOLD AMOUNT");
+        try{
+            String totalOnHoldPrice = webClientBuilder.build()
+                    .get()
+                    .uri("http://order-service/api/v1/order-service/get-total-amount-on-hold")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(String.class)
+                    .block()
+                    .getBody();
+            log.info("SUCCESSFULLY RETRIEVED TOTAL ON HOLD AMOUNT VALUE: "+totalOnHoldPrice);
+            return ResponseEntity.ok(totalOnHoldPrice);
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
