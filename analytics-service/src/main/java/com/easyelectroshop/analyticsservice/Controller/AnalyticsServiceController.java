@@ -46,6 +46,10 @@ public class AnalyticsServiceController {
         return analyticsService.getTotalProductsCount();
     }
 
+    @GetMapping("/get-total-orders-count")
+    public ResponseEntity<Long> getTotalOrdersCount(){
+        return analyticsService.getTotalOrdersCount();
+    }
 
 
 }
