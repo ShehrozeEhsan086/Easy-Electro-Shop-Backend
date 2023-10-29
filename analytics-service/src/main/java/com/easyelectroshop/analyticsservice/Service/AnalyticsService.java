@@ -112,4 +112,23 @@ public class AnalyticsService {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    public ResponseEntity<Integer> getTotalProductsCount() {
+        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET TOTAL PRODUCTS COUNT");
+        try{
+            int totalProductsCount = webClientBuilder.build()
+                    .get()
+                    .uri("http://product-management-service/api/v1/product-management/get-all-count")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(Integer.class)
+                    .block()
+                    .getBody();
+            log.info("SUCCESSFULLY RETRIEVED TOTAL PRODUCTS COUNT VALUE: "+totalProductsCount);
+            return ResponseEntity.ok(totalProductsCount);
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
