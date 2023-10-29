@@ -131,4 +131,23 @@ public class AnalyticsService {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    public ResponseEntity<Long> getTotalOrdersCount() {
+        log.info("CALLING ORDER SERVICE TO GET TOTAL ORDERS COUNT");
+        try{
+            Long totalOrdersCount = webClientBuilder.build()
+                    .get()
+                    .uri("http://order-service/api/v1/order-service/get-all-orders-count")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(Long.class)
+                    .block()
+                    .getBody();
+            log.info("SUCCESSFULLY RETRIEVED TOTAL ORDERS COUNT VALUE: "+totalOrdersCount);
+            return ResponseEntity.ok(totalOrdersCount);
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
