@@ -57,7 +57,7 @@ public class AnalyticsService {
     }
 
     public ResponseEntity<String> getTotalSoldPrice() {
-        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET TOTAL SALES AMOUNT");
+        log.info("CALLING ORDER SERVICE TO GET TOTAL SALES AMOUNT");
         try{
             String totalSalesPrice = webClientBuilder.build()
                     .get()
@@ -76,7 +76,7 @@ public class AnalyticsService {
     }
 
     public ResponseEntity<String> getTotalOnHoldAmount() {
-        log.info("CALLING PRODUCT MANAGEMENT SERVICE TO GET TOTAL ON HOLD AMOUNT");
+        log.info("CALLING ORDER SERVICE TO GET TOTAL ON HOLD AMOUNT");
         try{
             String totalOnHoldPrice = webClientBuilder.build()
                     .get()
@@ -88,6 +88,25 @@ public class AnalyticsService {
                     .getBody();
             log.info("SUCCESSFULLY RETRIEVED TOTAL ON HOLD AMOUNT VALUE: "+totalOnHoldPrice);
             return ResponseEntity.ok(totalOnHoldPrice);
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<Integer> getTotalCustomersCount() {
+        log.info("CALLING CUSTOMER MANAGEMENT SERVICE TO GET TOTAL CUSTOMERS COUNT");
+        try{
+            int totalCustomersCount = webClientBuilder.build()
+                    .get()
+                    .uri("http://customer-management-service/api/v1/customer-management/get-all-count")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(Integer.class)
+                    .block()
+                    .getBody();
+            log.info("SUCCESSFULLY RETRIEVED TOTAL CUSTOMER COUNT VALUE: "+totalCustomersCount);
+            return ResponseEntity.ok(totalCustomersCount);
         } catch (Exception ex){
             log.error("ERROR ",ex);
             return ResponseEntity.internalServerError().build();

@@ -36,4 +36,11 @@ public class AnalyticsServiceController {
         return analyticsService.getTotalOnHoldAmount();
     }
 
+    @GetMapping("/get-total-customers-count")
+    public ResponseEntity<Integer> getTotalCustomersCount(){
+        return analyticsService.getTotalCustomersCount();
+    }
+
+
+
 }
