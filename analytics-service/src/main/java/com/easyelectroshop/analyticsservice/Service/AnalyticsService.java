@@ -1,8 +1,12 @@
 package com.easyelectroshop.analyticsservice.Service;
 
 import com.easyelectroshop.analyticsservice.DTO.Customer.Customer;
-import com.easyelectroshop.analyticsservice.DTO.Order.OrderContent;
 import com.easyelectroshop.analyticsservice.DTO.Order.OrderEntity;
+import com.easyelectroshop.analyticsservice.DTO.Product.ProductMinimalData;
+import com.easyelectroshop.analyticsservice.DTO.Product.ProductResponse;
+import com.easyelectroshop.analyticsservice.DTO.ProductCategory.Category;
+import com.easyelectroshop.analyticsservice.DTO.ProductCategory.CategoryResponse;
+import com.easyelectroshop.analyticsservice.DTO.Province.ProvinceResponse;
 import com.easyelectroshop.analyticsservice.DTO.ServiceStatus;
 import com.easyelectroshop.analyticsservice.Model.CategorySales;
 import com.easyelectroshop.analyticsservice.Model.CitySales;
@@ -21,6 +25,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -256,6 +261,125 @@ public class AnalyticsService {
 
             log.info("SUCCESSFULLY ADDED ANALYTICS FOR ORDER WITH ORDER_ID "+order.orderId());
             return ResponseEntity.status(HttpStatusCode.valueOf(200)).build();
+
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<List<CategoryResponse>> getTopCategorySales(){
+        log.info("GETTING TOP 5 CATEGORIES WITH MOST SALES");
+        try{
+            List<CategorySales> categorySales = categorySalesRepository.findTopCategorySales();
+            List<CategoryResponse> categoryResponses = new ArrayList<>();
+            if(categorySales.isEmpty()){
+               return ResponseEntity.noContent().build();
+            } else {
+                for(int i=0;i<categorySales.size();i++){
+                    Category category = webClientBuilder.build()
+                            .get()
+                            .uri("http://product-category-management-service/api/v1/category/get-category/"+categorySales.get(i).getCategoryId())
+                            .accept(MediaType.APPLICATION_JSON)
+                            .retrieve()
+                            .toEntity(Category.class)
+                            .block()
+                            .getBody();
+                    CategoryResponse categoryResponse = new CategoryResponse(category.categoryName(),categorySales.get(i).getSalesCount());
+                    categoryResponses.add(categoryResponse);
+                }
+                return ResponseEntity.ok(categoryResponses);
+            }
+
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<List<CitySales>> getTopCitySales(){
+        log.info("GETTING TOP 5 CITIES WITH MOST SALES");
+        try{
+            List<CitySales> citySales = citySalesRepository.findTopCitySales();
+            if(citySales.isEmpty()){
+                return ResponseEntity.noContent().build();
+            } else {
+                return ResponseEntity.ok(citySales);
+            }
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<List<ProductResponse>> getTopProductSales(){
+        log.info("GETTING TOP 5 PRODUCTS WITH MOST SALES");
+        try{
+            List<ProductSales> productSales = productSalesRepository.findTopProductSales();
+            List<ProductResponse> productResponses = new ArrayList<>();
+            if (productSales.isEmpty()){
+                return ResponseEntity.noContent().build();
+            } else {
+                for(int i=0;i<productSales.size();i++){
+                    ProductMinimalData productMinimalData = webClientBuilder.build()
+                            .get()
+                            .uri("http://product-management-service/api/v1/product-management/get-product-limited-data-by-id/"+productSales.get(i).getProductId())
+                            .accept(MediaType.APPLICATION_JSON)
+                            .retrieve()
+                            .bodyToMono(ProductMinimalData.class)
+                            .block();
+                    ProductResponse productResponse = new ProductResponse(productSales.get(i).getProductId(),productMinimalData.productName(),productMinimalData.coverImage(),productSales.get(i).getSalesCount());
+                    productResponses.add(productResponse);
+                }
+                return ResponseEntity.ok(productResponses);
+            }
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<List<ProvinceResponse>> getProvinceSales(){
+        log.info("GETTING PROVINCE SALES DATA");
+        try {
+            List<ProvinceSales> provinceSales = provinceSalesRepository.findAll();
+            List<ProvinceResponse> provinceResponses = new ArrayList<>();
+            if(provinceSales.isEmpty()){
+                return ResponseEntity.noContent().build();
+            } else {
+                long totalSales = 0;
+                for(int i=0;i<provinceSales.size();i++){
+                    totalSales = totalSales + provinceSales.get(i).getSalesCount();
+                }
+                if(totalSales == 0){
+                    return ResponseEntity.noContent().build();
+                } else {
+                    for(int i=0;i<provinceSales.size();i++){
+                        double percentageOfSales = ((double) provinceSales.get(i).getSalesCount() / totalSales) * 100;
+                        ProvinceResponse provinceResponse = new ProvinceResponse(provinceSales.get(i).getProvince(),provinceSales.get(i).getSalesCount(),percentageOfSales);
+                        provinceResponses.add(provinceResponse);
+                    }
+                }
+                return ResponseEntity.ok(provinceResponses);
+            }
+
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<List<Customer>> getTop5CustomersWithMostOrders(){
+        log.info("CALLING CUSTOMER MANAGEMENT SERVICE TO GET TOP 5 CUSTOMERS WITH MOST ORDERS");
+        try{
+
+            return webClientBuilder.build()
+                    .get()
+                    .uri("http://customer-management-service/api/v1/customer-management/get-top-customer-by-sales")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(Customer.class)
+                    .block();
 
         } catch (Exception ex){
             log.error("ERROR ",ex);

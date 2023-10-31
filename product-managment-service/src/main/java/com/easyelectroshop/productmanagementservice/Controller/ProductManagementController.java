@@ -1,5 +1,6 @@
 package com.easyelectroshop.productmanagementservice.Controller;
 
+import com.easyelectroshop.productmanagementservice.DTO.ProductNameImagePrice.ProductMinimalData;
 import com.easyelectroshop.productmanagementservice.DTO.ProductWithoutImages.ProductWithoutImages;
 import com.easyelectroshop.productmanagementservice.Model.Product;
 import com.easyelectroshop.productmanagementservice.Service.ProductManagementService;
@@ -125,5 +126,10 @@ public class ProductManagementController {
     @GetMapping("/get-category-by-product-id/{productId}")
     public ResponseEntity<Long> getCategoryByProductId(@PathVariable UUID productId){
         return productManagementService.getCategoryByProductId(productId);
+    }
+
+    @GetMapping("/get-product-limited-data-by-id/{productId}")
+    public ResponseEntity<ProductMinimalData> getProductNameImagePriceById(@PathVariable UUID productId){
+        return productManagementService.getProductNameImagePriceById(productId);
     }
 }

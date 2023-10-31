@@ -108,4 +108,9 @@ public class CustomerManagementController {
         return customerManagementService.unBlockCustomer(customerId);
     }
 
+    @GetMapping("/get-top-customer-by-sales")
+    public ResponseEntity<List<Customer>> getTop5CustomersWithMostOrders(){
+        return customerManagementService.getTop5CustomersWithMostOrders();
+    }
+
 }

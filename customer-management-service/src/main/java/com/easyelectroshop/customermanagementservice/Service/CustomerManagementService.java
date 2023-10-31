@@ -6,6 +6,7 @@ import com.easyelectroshop.customermanagementservice.Model.PaymentMethod;
 import com.easyelectroshop.customermanagementservice.Repository.CustomerManagementRepository;
 import com.easyelectroshop.customermanagementservice.Repository.PaymentMethodRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.query.spi.Limit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -311,6 +312,16 @@ public class CustomerManagementService {
             return ResponseEntity.ok().build();
         } catch (Exception ex){
             log.error("ERROR UNBLOCKING CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<List<Customer>> getTop5CustomersWithMostOrders(){
+        log.info("GETTING TOP 5 CUSTOMERS WITH MOST ORDERS");
+        try{
+            return ResponseEntity.ok(customerManagementRepository.findByOrderByTotalOrdersDesc(PageRequest.of(0,5))) ;
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
             return ResponseEntity.internalServerError().build();
         }
     }
