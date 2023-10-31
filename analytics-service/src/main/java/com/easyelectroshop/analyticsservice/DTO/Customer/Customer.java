@@ -9,7 +9,7 @@ public record Customer(
         String email,
         String phoneNumber,
         String gender,
-        LocalDate dateOfBirth,
+        String dateOfBirth,
         Address address,
         boolean profileComplete,
         boolean blocked,

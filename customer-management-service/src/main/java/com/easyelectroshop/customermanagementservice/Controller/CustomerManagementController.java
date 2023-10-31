@@ -6,6 +6,7 @@ import com.easyelectroshop.customermanagementservice.Model.PaymentMethod;
 import com.easyelectroshop.customermanagementservice.Service.CustomerManagementService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
