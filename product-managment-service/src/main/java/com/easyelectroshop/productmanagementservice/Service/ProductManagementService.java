@@ -1,5 +1,6 @@
 package com.easyelectroshop.productmanagementservice.Service;
 
+import com.easyelectroshop.productmanagementservice.DTO.ProductNameImagePrice.ProductMinimalData;
 import com.easyelectroshop.productmanagementservice.DTO.ProductPriceQuantity.ProductPriceQuantity;
 import com.easyelectroshop.productmanagementservice.DTO.ProductWithoutImages.ProductWithoutImages;
 import com.easyelectroshop.productmanagementservice.Model.Product;
@@ -281,6 +282,22 @@ public class ProductManagementService {
             Optional<Product> product = productManagementRepository.findById(productId);
             if(product.isPresent()){
                 return ResponseEntity.ok(product.get().getCategory());
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<ProductMinimalData> getProductNameImagePriceById(UUID productId){
+        log.info("GETTING PRODUCT NAME, PRICE AND COVER IMAGE FOR PRODUCT_ID "+productId);
+        try{
+            Optional<Product> product = productManagementRepository.findById(productId);
+            if (product.isPresent()){
+                ProductMinimalData productResponse = new ProductMinimalData(productId,product.get().getName(),product.get().getCoverImage());
+                return ResponseEntity.ok(productResponse);
             } else {
                 return ResponseEntity.notFound().build();
             }
