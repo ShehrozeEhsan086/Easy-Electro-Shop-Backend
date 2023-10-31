@@ -373,13 +373,18 @@ public class AnalyticsService {
         log.info("CALLING CUSTOMER MANAGEMENT SERVICE TO GET TOP 5 CUSTOMERS WITH MOST ORDERS");
         try{
 
-            return webClientBuilder.build()
+            List<Customer> customers= webClientBuilder.build()
                     .get()
                     .uri("http://customer-management-service/api/v1/customer-management/get-top-customer-by-sales")
                     .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
                     .toEntityList(Customer.class)
-                    .block();
+                    .block()
+                    .getBody();
+
+            log.info("I RECIEVED "+customers.size());
+
+            return ResponseEntity.ok(customers);
 
         } catch (Exception ex){
             log.error("ERROR ",ex);

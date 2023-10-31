@@ -319,7 +319,9 @@ public class CustomerManagementService {
     public ResponseEntity<List<Customer>> getTop5CustomersWithMostOrders(){
         log.info("GETTING TOP 5 CUSTOMERS WITH MOST ORDERS");
         try{
-            return ResponseEntity.ok(customerManagementRepository.findByOrderByTotalOrdersDesc(PageRequest.of(0,5))) ;
+            Page<Customer> customers = customerManagementRepository.findAll(PageRequest.of(0,5, Sort.by("totalOrders").descending()));
+            List<Customer> customerList = customers.stream().toList();
+            return ResponseEntity.ok(customerList);
         } catch (Exception ex){
             log.error("ERROR ",ex);
             return ResponseEntity.internalServerError().build();

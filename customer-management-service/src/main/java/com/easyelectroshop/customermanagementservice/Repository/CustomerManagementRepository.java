@@ -23,6 +23,5 @@ public interface CustomerManagementRepository extends JpaRepository<Customer, UU
 
     Optional<Customer> findByEmail(String email);
 
-    List<Customer> findByOrderByTotalOrdersDesc(Pageable pageable);
 
 }

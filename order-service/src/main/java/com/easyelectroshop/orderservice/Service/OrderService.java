@@ -81,7 +81,7 @@ public class OrderService {
 
           webClientBuilder.build()
                   .post()
-                  .uri("http://order-service/api/v1/order-service/add-order-analytics")
+                  .uri("http://analytics-service/api/v1/analytics-service/add-order-analytics")
                   .contentType(MediaType.APPLICATION_JSON)
                   .body(BodyInserters.fromValue(orderEntity))
                   .retrieve()
