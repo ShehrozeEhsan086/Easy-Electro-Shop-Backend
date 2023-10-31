@@ -27,7 +27,7 @@ public class ProductManagementController {
         return ResponseEntity.status(productManagementService.saveProduct(product)).build();
     }
 
-    @GetMapping("get-product/{productId}")
+    @GetMapping("/get-product/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable UUID productId){
         Optional<Product> product = productManagementService.getProductById(productId);
         return(product.isPresent()) ? ResponseEntity.ok(product.get()) : ResponseEntity.notFound().build();
@@ -120,5 +120,10 @@ public class ProductManagementController {
     @GetMapping("/get-total-inventory-price")
     public ResponseEntity<String> getTotalInventoryPrice(){
         return productManagementService.getTotalInventoryPrice();
+    }
+
+    @GetMapping("/get-category-by-product-id/{productId}")
+    public ResponseEntity<Long> getCategoryByProductId(@PathVariable UUID productId){
+        return productManagementService.getCategoryByProductId(productId);
     }
 }

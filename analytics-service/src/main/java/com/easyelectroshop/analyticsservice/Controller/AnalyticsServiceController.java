@@ -1,13 +1,12 @@
 package com.easyelectroshop.analyticsservice.Controller;
 
+import com.easyelectroshop.analyticsservice.DTO.Order.OrderEntity;
 import com.easyelectroshop.analyticsservice.DTO.ServiceStatus;
 import com.easyelectroshop.analyticsservice.Service.AnalyticsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/analytics-service")
@@ -51,5 +50,9 @@ public class AnalyticsServiceController {
         return analyticsService.getTotalOrdersCount();
     }
 
+    @PostMapping("/add-order-analytics")
+    public ResponseEntity<HttpStatusCode> addOrderAnalytics(@RequestBody OrderEntity order){
+        return analyticsService.calculateAnalyticsForSoldProduct(order);
+    }
 
 }

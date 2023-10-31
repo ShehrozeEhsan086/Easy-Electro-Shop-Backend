@@ -274,4 +274,20 @@ public class ProductManagementService {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    public ResponseEntity<Long> getCategoryByProductId(UUID productId){
+        log.info("GETTING CATEGORY OF PRODUCT WITH PRODUCT_ID "+productId);
+        try{
+            Optional<Product> product = productManagementRepository.findById(productId);
+            if(product.isPresent()){
+                return ResponseEntity.ok(product.get().getCategory());
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception ex){
+            log.error("ERROR ",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
 }

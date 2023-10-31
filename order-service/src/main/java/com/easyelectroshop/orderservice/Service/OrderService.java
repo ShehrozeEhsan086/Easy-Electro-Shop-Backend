@@ -22,6 +22,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -77,6 +78,17 @@ public class OrderService {
                   .block();
 
           log.info("SUCCESSFULLY ADDED ORDER FOR CUSTOMER WITH CUSTOMER_ID "+ orderEntity.getCustomerId());
+
+          webClientBuilder.build()
+                  .post()
+                  .uri("http://order-service/api/v1/order-service/add-order-analytics")
+                  .contentType(MediaType.APPLICATION_JSON)
+                  .body(BodyInserters.fromValue(orderEntity))
+                  .retrieve()
+                  .toBodilessEntity()
+                  .flatMap(response -> Mono.just(response.getStatusCode()))
+                  .block();
+
           return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(order);
       } catch (Exception ex){
           log.error("ERROR ADDING ORDER FOR CUSTOMER WITH CUSTOMER_ID "+ orderEntity.getCustomerId(),ex);
