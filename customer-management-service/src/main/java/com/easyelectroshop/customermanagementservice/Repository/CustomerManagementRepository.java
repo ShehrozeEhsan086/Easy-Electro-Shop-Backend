@@ -1,6 +1,9 @@
 package com.easyelectroshop.customermanagementservice.Repository;
 
 import com.easyelectroshop.customermanagementservice.Model.Customer;
+
+import org.hibernate.query.spi.Limit;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -19,5 +22,6 @@ public interface CustomerManagementRepository extends JpaRepository<Customer, UU
     Boolean checkUserNameAvailability(String userName);
 
     Optional<Customer> findByEmail(String email);
+
 
 }

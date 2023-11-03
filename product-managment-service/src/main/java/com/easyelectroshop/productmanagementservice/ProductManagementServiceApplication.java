@@ -6,6 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,5 +28,12 @@ public class ProductManagementServiceApplication {
     public SimpleDateFormat simpleDateFormat(){
         return new SimpleDateFormat("dd-MM-yyy");
     }
+
+
+    @Bean
+    public DecimalFormat decimalFormat() {
+        return new DecimalFormat("####");
+    }
+
 
 }

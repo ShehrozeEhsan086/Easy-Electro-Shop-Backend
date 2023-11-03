@@ -10,6 +10,7 @@ import org.springframework.web.reactive.function.client.ClientRequest;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 @SpringBootApplication
@@ -52,6 +53,11 @@ public class OrderServiceApplication {
                         return next.exchange(internallyAuthorizedRequest);
                     }
                 });
+    }
+
+    @Bean
+    public DecimalFormat decimalFormat() {
+        return new DecimalFormat("####");
     }
 
 }

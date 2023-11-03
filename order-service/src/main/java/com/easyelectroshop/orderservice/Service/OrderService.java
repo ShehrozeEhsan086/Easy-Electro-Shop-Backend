@@ -22,9 +22,11 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -46,6 +48,9 @@ public class OrderService {
 
     @Autowired
     WebClient.Builder webClientBuilder;
+
+    @Autowired
+    DecimalFormat decimalFormat;
 
     public ResponseEntity<OrderEntity> saveOrder(OrderEntity orderEntity){
       try{
@@ -73,6 +78,17 @@ public class OrderService {
                   .block();
 
           log.info("SUCCESSFULLY ADDED ORDER FOR CUSTOMER WITH CUSTOMER_ID "+ orderEntity.getCustomerId());
+
+          webClientBuilder.build()
+                  .post()
+                  .uri("http://analytics-service/api/v1/analytics-service/add-order-analytics")
+                  .contentType(MediaType.APPLICATION_JSON)
+                  .body(BodyInserters.fromValue(orderEntity))
+                  .retrieve()
+                  .toBodilessEntity()
+                  .flatMap(response -> Mono.just(response.getStatusCode()))
+                  .block();
+
           return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(order);
       } catch (Exception ex){
           log.error("ERROR ADDING ORDER FOR CUSTOMER WITH CUSTOMER_ID "+ orderEntity.getCustomerId(),ex);
@@ -429,6 +445,50 @@ public class OrderService {
         } catch (Exception ex){
             log.error("ERROR GETTING ALL DELIVERED(COMPLETED) ORDERS COUNT");
             return  ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<String> getTotalSalesPrice(){
+        log.info("GETTING TOTAL SALES AMOUNT");
+        try{
+            double totalSalesPrice = 0;
+            List<OrderEntity> allDeliveredOrders = orderRepository.findAllByOrderStatus("delivered");
+            if (allDeliveredOrders.isEmpty()){
+                log.info("ZERO DELIVERED ORDERS");
+                return ResponseEntity.ok("0");
+            } else {
+                for (OrderEntity allDeliveredOrder : allDeliveredOrders) {
+                    totalSalesPrice = totalSalesPrice + (allDeliveredOrder.getTotalContentPrice());
+                }
+                log.info("SUCCESSFULLY RETRIEVED SALES AMOUNT "+totalSalesPrice);
+                String formattedSalesPrice = decimalFormat.format(totalSalesPrice);
+                return ResponseEntity.ok(formattedSalesPrice);
+            }
+        } catch (Exception ex){
+            log.error("ERROR GETTING TOTAL SALES AMOUNT");
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public ResponseEntity<String> getTotalOnHoldPrice() {
+        log.info("GETTING TOTAL ON HOLD AMOUNT");
+        try{
+            double totalOnHoldPrice = 0;
+            List<OrderEntity> allNotDeliveredOrders = orderRepository.findAllByOrderStatusIsNot("delivered");
+            if (allNotDeliveredOrders.isEmpty()){
+                log.info("NO ORDERS FOUND");
+                return ResponseEntity.ok("0");
+            } else {
+                for(OrderEntity notDeliveredOrder : allNotDeliveredOrders){
+                    totalOnHoldPrice = totalOnHoldPrice + notDeliveredOrder.getTotalContentPrice();
+                }
+                log.info("SUCCESSFULLY RETRIEVED ON HOLD AMOUNT "+totalOnHoldPrice);
+                String formattedOnHoldAmount = decimalFormat.format(totalOnHoldPrice);
+                return ResponseEntity.ok(formattedOnHoldAmount);
+            }
+        } catch (Exception ex){
+            log.error("ERROR GETTING TOTAL ON HOLD AMOUNT",ex);
+            return ResponseEntity.internalServerError().build();
         }
     }
 }

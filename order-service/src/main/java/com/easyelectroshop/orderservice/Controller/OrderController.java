@@ -106,4 +106,13 @@ public class OrderController {
         return orderService.get(orderId);
     }
 
+    @GetMapping("/get-total-sales-price")
+    public ResponseEntity<String> getTotalSalesPrice(){
+        return orderService.getTotalSalesPrice();
+    }
+
+    @GetMapping("/get-total-amount-on-hold")
+    public ResponseEntity<String> getTotalOnHoldPrice(){
+        return orderService.getTotalOnHoldPrice();
+    }
 }

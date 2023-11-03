@@ -1,5 +1,6 @@
 package com.easyelectroshop.productmanagementservice.Controller;
 
+import com.easyelectroshop.productmanagementservice.DTO.ProductNameImagePrice.ProductMinimalData;
 import com.easyelectroshop.productmanagementservice.DTO.ProductWithoutImages.ProductWithoutImages;
 import com.easyelectroshop.productmanagementservice.Model.Product;
 import com.easyelectroshop.productmanagementservice.Service.ProductManagementService;
@@ -27,7 +28,7 @@ public class ProductManagementController {
         return ResponseEntity.status(productManagementService.saveProduct(product)).build();
     }
 
-    @GetMapping("get-product/{productId}")
+    @GetMapping("/get-product/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable UUID productId){
         Optional<Product> product = productManagementService.getProductById(productId);
         return(product.isPresent()) ? ResponseEntity.ok(product.get()) : ResponseEntity.notFound().build();
@@ -115,5 +116,20 @@ public class ProductManagementController {
     @GetMapping("/get-product-name/{productId}")
     public ResponseEntity<String> getProductName(@PathVariable UUID productId){
         return productManagementService.getProductNameById(productId);
+    }
+
+    @GetMapping("/get-total-inventory-price")
+    public ResponseEntity<String> getTotalInventoryPrice(){
+        return productManagementService.getTotalInventoryPrice();
+    }
+
+    @GetMapping("/get-category-by-product-id/{productId}")
+    public ResponseEntity<Long> getCategoryByProductId(@PathVariable UUID productId){
+        return productManagementService.getCategoryByProductId(productId);
+    }
+
+    @GetMapping("/get-product-limited-data-by-id/{productId}")
+    public ResponseEntity<ProductMinimalData> getProductNameImagePriceById(@PathVariable UUID productId){
+        return productManagementService.getProductNameImagePriceById(productId);
     }
 }
