@@ -34,6 +34,8 @@ public class SecurityConfig {
             .authenticated()
             .pathMatchers("/api/v1/product/**")
             .permitAll()
+            .pathMatchers("/api/v1/stock-recommendation-service/**")
+            .permitAll()
             .pathMatchers("/api/v1/customer/management/**")
             .authenticated()
             .pathMatchers("/api/v1/customer/**")
