@@ -23,12 +23,14 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -204,6 +206,8 @@ public class AnalyticsService {
                     productSalesRepository.save(newProductSalesData);
                 }
 
+                sendStockRecommendationServiceProductSoldData(order.orderContent().get(i).productId(),order.orderContent().get(i).quantity());
+
                 long productCategory = webClientBuilder.build()
                         .get()
                         .uri("http://product-management-service/api/v1/product-management/get-category-by-product-id/"+order.orderContent().get(i).productId())
@@ -268,6 +272,22 @@ public class AnalyticsService {
         } catch (Exception ex){
             log.error("ERROR ",ex);
             return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    public void sendStockRecommendationServiceProductSoldData(UUID productId, int soldCount){
+        try{
+            log.info("CALLING STOCK RECOMMENDATION SERVICE");
+            webClientBuilder.build()
+                    .post()
+                    .uri("http://stock-recommendation-service/api/v1/stock-recommendation-service/save-product-sales-data/"+productId+"/"+soldCount)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(Customer.class)
+                    .block();
+            log.info("SUCCESSFULLY CALLED STOCK RECOMMENDATION SERVICE");
+        } catch (Exception ex){
+            log.error("ERROR CALLING STOCK RECOMMENDATION SERVICE");
         }
     }
 

@@ -34,4 +34,9 @@ public class StockRecommendationController {
         return stockRecommendationService.getRecommendation(productId);
     }
 
+    @PostMapping("/save-product-sales-data/{productId}/{soldCount}")
+    public ResponseEntity<HttpStatusCode> saveProductSalesData(@PathVariable UUID productId, @PathVariable int soldCount){
+        return stockRecommendationService.addSalesDataToProduct(productId,soldCount);
+    }
+
 }

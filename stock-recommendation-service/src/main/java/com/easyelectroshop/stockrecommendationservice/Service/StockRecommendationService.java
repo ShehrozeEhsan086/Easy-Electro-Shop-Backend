@@ -27,12 +27,12 @@ import java.util.UUID;
 @Slf4j
 public class StockRecommendationService {
 
-    private final  WebClient.Builder webClientBuilder;
+
+    private final String[] monthValues = {"","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 
     private final StockRecommendationRepository stockRecommendationRepository;
 
-    public StockRecommendationService(WebClient.Builder webClientBuilder, StockRecommendationRepository stockRecommendationRepository) {
-        this.webClientBuilder = webClientBuilder;
+    public StockRecommendationService(StockRecommendationRepository stockRecommendationRepository) {
         this.stockRecommendationRepository = stockRecommendationRepository;
     }
 
@@ -102,12 +102,66 @@ public class StockRecommendationService {
 
                 return ResponseEntity.ok(recommendationResponseDTO);
             }
-            // getData for db
         } catch (Exception ex){
             log.error("ERROR CALLING MACHINE LEARNING MODULE TO GET STOCK RECOMMENDATION FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
             return ResponseEntity.internalServerError().build();
         }
     }
 
+    public ResponseEntity<HttpStatusCode> addSalesDataToProduct(UUID productId,int soldCount){
+        log.info("ADDING SALES DATA TO DATABASE FOR PRODUCT WITH PRODUCT_ID "+productId+" ADDING COUNT "+soldCount);
+        try{
+            LocalDate currentDate = LocalDate.now();
+            DataEntity productDataFromDatabase = stockRecommendationRepository.findByProductId(productId);
+
+            if(productDataFromDatabase == null){
+
+                log.warn("NO PRIOR STOCK DATA IS SAVED FOR PRODUCT WITH PRODUCT_ID "+productId);
+                log.info("CREATING NEW RECORD");
+
+                DataValues dataValues = new DataValues();
+                dataValues.setMonth(monthValues[currentDate.getMonthValue()]);
+                dataValues.setYear(currentDate.getYear());
+                dataValues.setSales(soldCount);
+
+                DataEntity dataEntity = new DataEntity();
+                dataEntity.setData(List.of(dataValues));
+                dataEntity.setProductId(productId);
+
+                stockRecommendationRepository.save(dataEntity);
+
+                return ResponseEntity.ok().build();
+            } else {
+                boolean doesRecordExist = false;
+                for (int i = 0; i<productDataFromDatabase.getData().size(); i++){
+                    if (productDataFromDatabase.getData().get(i).getYear() == currentDate.getYear()
+                    && productDataFromDatabase.getData().get(i).getMonth().equals(monthValues[currentDate.getMonthValue()])){
+                        int currentSaleCount = productDataFromDatabase.getData().get(i).getSales();
+                        int newSalesCount = currentSaleCount + soldCount;
+                        productDataFromDatabase.getData().get(i).setSales(newSalesCount);
+                        doesRecordExist = true;
+                    }
+                }
+
+                if (!doesRecordExist){
+                    DataValues dataValues = new DataValues();
+                    dataValues.setDataValueId(productDataFromDatabase.getData().get(productDataFromDatabase.getData().size() - 1).getDataValueId() + 1);
+                    dataValues.setSales(soldCount);
+                    dataValues.setYear(currentDate.getYear());
+                    dataValues.setMonth(monthValues[currentDate.getMonthValue()]);
+                    List<DataValues> currentDataValues = productDataFromDatabase.getData();
+                    currentDataValues.add(dataValues);
+                    productDataFromDatabase.setData(currentDataValues);
+                }
+
+                stockRecommendationRepository.save(productDataFromDatabase);
+
+                return ResponseEntity.ok().build();
+            }
+        } catch (Exception ex){
+            log.error("ERROR ADDING SALES DATA TO DATABASE FOR PRODUCT WITH PRODUCT_ID "+productId,ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 
 }
