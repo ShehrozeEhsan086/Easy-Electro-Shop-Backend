@@ -23,10 +23,14 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -55,6 +59,7 @@ public class AnalyticsService {
                     .uri("http://"+serviceName+"/actuator/health")
                     .retrieve()
                     .toEntity(Object.class)
+                    .timeout(Duration.ofSeconds(3))
                     .block()
                     .getBody();
 
@@ -201,6 +206,8 @@ public class AnalyticsService {
                     productSalesRepository.save(newProductSalesData);
                 }
 
+                sendStockRecommendationServiceProductSoldData(order.orderContent().get(i).productId(),order.orderContent().get(i).quantity());
+
                 long productCategory = webClientBuilder.build()
                         .get()
                         .uri("http://product-management-service/api/v1/product-management/get-category-by-product-id/"+order.orderContent().get(i).productId())
@@ -268,6 +275,22 @@ public class AnalyticsService {
         }
     }
 
+    public void sendStockRecommendationServiceProductSoldData(UUID productId, int soldCount){
+        try{
+            log.info("CALLING STOCK RECOMMENDATION SERVICE");
+            webClientBuilder.build()
+                    .post()
+                    .uri("http://stock-recommendation-service/api/v1/stock-recommendation-service/save-product-sales-data/"+productId+"/"+soldCount)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntity(Customer.class)
+                    .block();
+            log.info("SUCCESSFULLY CALLED STOCK RECOMMENDATION SERVICE");
+        } catch (Exception ex){
+            log.error("ERROR CALLING STOCK RECOMMENDATION SERVICE");
+        }
+    }
+
     public ResponseEntity<List<CategoryResponse>> getTopCategorySales(){
         log.info("GETTING TOP 5 CATEGORIES WITH MOST SALES");
         try{
@@ -304,6 +327,7 @@ public class AnalyticsService {
             if(citySales.isEmpty()){
                 return ResponseEntity.noContent().build();
             } else {
+                citySales.sort(Comparator.comparingLong(CitySales::getSalesCount).reversed());
                 return ResponseEntity.ok(citySales);
             }
         } catch (Exception ex){
@@ -331,6 +355,9 @@ public class AnalyticsService {
                     ProductResponse productResponse = new ProductResponse(productSales.get(i).getProductId(),productMinimalData.productName(),productMinimalData.coverImage(),productSales.get(i).getSalesCount());
                     productResponses.add(productResponse);
                 }
+
+                productResponses.sort(Comparator.comparingLong(ProductResponse::soldCount).reversed());
+
                 return ResponseEntity.ok(productResponses);
             }
         } catch (Exception ex){
@@ -382,7 +409,7 @@ public class AnalyticsService {
                     .block()
                     .getBody();
 
-            log.info("I RECIEVED "+customers.size());
+            log.info("I RECEIVED "+customers.size());
 
             return ResponseEntity.ok(customers);
 
