@@ -91,6 +91,11 @@ public class OrderController {
         return orderService.getOrderById(orderId);
     }
 
+    @GetMapping("/get-order-by-id-original-object/{orderId}")
+    public ResponseEntity<OrderEntity> getOrderByIdOGObject(@PathVariable long orderId){
+        return orderService.getOrderByIdOGObject(orderId);
+    }
+
     @GetMapping("/get-server-status")
     public ResponseEntity<HttpStatusCode> getStatus(){
         return ResponseEntity.ok(HttpStatusCode.valueOf(200));
