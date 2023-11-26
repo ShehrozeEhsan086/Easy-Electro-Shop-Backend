@@ -1,6 +1,5 @@
-package com.easyelectroshop.productservice;
+package com.easyeletroshop.ratingservice;
 
-import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,28 +7,23 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.web.reactive.function.client.ClientRequest;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.UUID;
-
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ProductServiceApplication {
+public class RatingServiceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(RatingServiceApplication.class, args);
+    }
 
     @Value("${internal.communication.header.name}")
     private String headerName;
 
     @Value("${internal.communication.header.value}")
     private String headerValue;
-
-
-    public static void main(String[] args) {
-        SpringApplication.run(ProductServiceApplication.class, args);
-    }
-
 
     @Bean
     @LoadBalanced
@@ -58,10 +52,6 @@ public class ProductServiceApplication {
                         return next.exchange(internallyAuthorizedRequest);
                     }
                 });
-    }
-    @Bean
-    MultipartBodyBuilder multipartBodyBuilder(){
-        return new MultipartBodyBuilder();
     }
 
 }
