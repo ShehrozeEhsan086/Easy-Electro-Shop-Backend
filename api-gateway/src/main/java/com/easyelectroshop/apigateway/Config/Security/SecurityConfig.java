@@ -44,6 +44,8 @@ public class SecurityConfig {
             .authenticated()
             .pathMatchers("/api/v1/analytics-service/**")
             .authenticated()
+            .pathMatchers("/api/v1/rating-service/**")
+            .authenticated()
             .pathMatchers("/actuator/**")
             .permitAll()
             .and()

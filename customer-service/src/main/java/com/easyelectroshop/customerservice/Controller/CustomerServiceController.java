@@ -9,6 +9,7 @@ import com.easyelectroshop.customerservice.DTO.Customer.PaymentMethod;
 import com.easyelectroshop.customerservice.DTO.Order.OrderEntity;
 import com.easyelectroshop.customerservice.DTO.OrderGetAllResponse.OrderGetAllResponseEntity;
 import com.easyelectroshop.customerservice.DTO.OrderGetByIdResponse.OrderSingleResponseEntity;
+import com.easyelectroshop.customerservice.DTO.RatedOrdersResponse.RatedOrderResponseDTO;
 import com.easyelectroshop.customerservice.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -192,10 +193,10 @@ public class CustomerServiceController {
     }
 
     @GetMapping("/management/get-all-orders-by-customer-id/{customerId}")
-    public ResponseEntity<List<OrderGetAllResponseEntity>> getAllByCustomerId(@PathVariable UUID customerId,
-                                                                    @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
-                                                                    @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
-                                                                    @RequestParam(value="sort",defaultValue = "createdAt",required = false) String sortBy){
+    public ResponseEntity<List<RatedOrderResponseDTO>> getAllByCustomerId(@PathVariable UUID customerId,
+                                                                          @RequestParam(value="pageNumber",defaultValue = "0",required = false) int pageNumber,
+                                                                          @RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize,
+                                                                          @RequestParam(value="sort",defaultValue = "createdAt",required = false) String sortBy){
         return ResponseEntity.ok(orderService.getAllOrdersByCustomerId(customerId,sortBy,pageSize,pageNumber));
     }
 
