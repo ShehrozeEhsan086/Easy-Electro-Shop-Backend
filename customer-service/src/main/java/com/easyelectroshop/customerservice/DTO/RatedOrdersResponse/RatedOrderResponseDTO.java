@@ -1,12 +1,16 @@
 package com.easyelectroshop.customerservice.DTO.RatedOrdersResponse;
 
-import com.easyelectroshop.customerservice.DTO.OrderGetAllResponse.OrderGetAllResponseEntity;
-
 import java.time.LocalDate;
 import java.util.List;
 
 public record RatedOrderResponseDTO(
-        OrderGetAllResponseEntity orderGetAllResponseEntity,
+        long orderId,
+        List<String> productNames,
+        String customerName,
+        Double totalPrice,
+        LocalDate createdAt,
+        String orderStatus,
+        String shippingNumber,
         int ratingValue
 ) {
 }
