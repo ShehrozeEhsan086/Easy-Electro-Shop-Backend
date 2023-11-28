@@ -491,4 +491,12 @@ public class OrderService {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    public ResponseEntity<OrderEntity> getOrderByIdOGObject(long orderId) {
+        try{
+            return ResponseEntity.ok(orderRepository.findById(orderId).get());
+        } catch (Exception ex){
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
