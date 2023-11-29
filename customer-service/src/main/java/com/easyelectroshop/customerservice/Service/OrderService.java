@@ -129,10 +129,26 @@ public class OrderService {
 
                 if (ratedOrder == null){
                     // Current Order has not been rated yet!
-                    RatedOrderResponseDTO ratedOrderResponseDTO = new RatedOrderResponseDTO(orderGetAllResponseEntity.get(i),-1);
+                    RatedOrderResponseDTO ratedOrderResponseDTO = new RatedOrderResponseDTO(
+                            orderGetAllResponseEntity.get(i).orderId(),
+                            orderGetAllResponseEntity.get(i).productNames(),
+                            orderGetAllResponseEntity.get(i).customerName(),
+                            orderGetAllResponseEntity.get(i).totalPrice(),
+                            orderGetAllResponseEntity.get(i).createdAt(),
+                            orderGetAllResponseEntity.get(i).orderStatus(),
+                            orderGetAllResponseEntity.get(i).shippingNumber(),
+                            -1);
                     ratedOrdersResponse.add(ratedOrderResponseDTO);
                 } else {
-                    RatedOrderResponseDTO ratedOrderResponseDTO = new RatedOrderResponseDTO(orderGetAllResponseEntity.get(i), ratedOrder.ratingValue());
+                    RatedOrderResponseDTO ratedOrderResponseDTO = new RatedOrderResponseDTO(
+                            orderGetAllResponseEntity.get(i).orderId(),
+                            orderGetAllResponseEntity.get(i).productNames(),
+                            orderGetAllResponseEntity.get(i).customerName(),
+                            orderGetAllResponseEntity.get(i).totalPrice(),
+                            orderGetAllResponseEntity.get(i).createdAt(),
+                            orderGetAllResponseEntity.get(i).orderStatus(),
+                            orderGetAllResponseEntity.get(i).shippingNumber(),
+                            ratedOrder.ratingValue());
                     ratedOrdersResponse.add(ratedOrderResponseDTO);
                 }
             }
