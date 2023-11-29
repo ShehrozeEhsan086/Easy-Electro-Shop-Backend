@@ -6,12 +6,16 @@ import com.easyelectroshop.orderservice.DTO.OrderGetByIdResponse.AddressResponse
 import com.easyelectroshop.orderservice.DTO.OrderGetByIdResponse.CustomerResponse;
 import com.easyelectroshop.orderservice.DTO.OrderGetByIdResponse.OrderDetailResponse;
 import com.easyelectroshop.orderservice.DTO.OrderGetByIdResponse.OrderSingleResponseEntity;
+import com.easyelectroshop.orderservice.DTO.OrdersInExcelSheet.ExcelSheetDTO;
 import com.easyelectroshop.orderservice.DTO.ProductDTO.Product;
 import com.easyelectroshop.orderservice.Model.OrderEntity;
 import com.easyelectroshop.orderservice.Model.OrderContent;
 import com.easyelectroshop.orderservice.DTO.ResponseDTO.OrderGetAllResponseEntity;
 import com.easyelectroshop.orderservice.Respository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,11 +25,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -499,4 +507,63 @@ public class OrderService {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+
+    @Scheduled(fixedRate = 100_000)
+//    @Scheduled(fixedRate = 100_000,initialDelay = 5000)
+    public void updateOrderDataInExcelSheet(){
+        try{
+            log.info("UPDATING ORDER DATA IN EXCEL SHEET");
+
+            List<OrderEntity> allOrders = orderRepository.findAll();
+
+            List<ExcelSheetDTO> excelSheetDTOs = new ArrayList<>();
+
+            for(int i = 0; i < allOrders.size() ; i++){
+                if (allOrders.get(i).getOrderContent().size() <= 1){
+                    ExcelSheetDTO excelSheetDTO = new ExcelSheetDTO(allOrders.get(i).getOrderId(),allOrders.get(i).getOrderContent().get(0).getProductId(),allOrders.get(i).getOrderContent().get(0).getQuantity());
+                    excelSheetDTOs.add(excelSheetDTO);
+                } else {
+                    for(int j=0;j<allOrders.get(i).getOrderContent().size();j++){
+                        ExcelSheetDTO excelSheetDTO = new ExcelSheetDTO(allOrders.get(i).getOrderId(),allOrders.get(i).getOrderContent().get(j).getProductId(),allOrders.get(i).getOrderContent().get(j).getQuantity());
+                        excelSheetDTOs.add(excelSheetDTO);
+                    }
+                }
+            }
+
+//            String filePath = "C:\\Users\\shehr\\OneDrive\\Desktop\\Easy-Electro-Shop\\Recommendation Models\\orders_data.xlsx";
+//
+//            try (Workbook workbook = getWorkbook(filePath)) {
+//                // Get the first sheet (assuming it already exists)
+//                Sheet sheet = workbook.getSheetAt(0);
+//
+//                for ( int i = 0; i < excelSheetDTOs.size();i++){
+//                    sheet.getRow((i+1)).getCell(0).setCellValue(excelSheetDTOs.get(i).orderId());
+//                    sheet.getRow((i+1)).getCell(1).setCellValue(String.valueOf(excelSheetDTOs.get(i).productId()));
+//                    sheet.getRow((i+1)).getCell(2).setCellValue(excelSheetDTOs.get(i).quantity());
+//                }
+//
+//                // Save the changes
+//                try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+//                    workbook.write(fileOut);
+//                }
+//
+//                log.info("ORDER DATA ADDED TO EXCEL FILE SUCCESSFULLY");
+//
+//            } catch (IOException e) {
+//                log.error("ERROR ADDING ORDER DATA TO EXCEL FILE");
+//            }
+//
+        } catch (Exception ex){
+            log.error("THERE WAS AN UNEXPECTED ERROR ",ex);
+        }
+    }
+
+//    private Workbook getWorkbook(String filePath) throws IOException {
+//        return WorkbookFactory.create(getClass().getClassLoader().getResourceAsStream(filePath));
+//    }
+
+
+
+
 }
