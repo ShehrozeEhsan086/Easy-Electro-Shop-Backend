@@ -24,7 +24,7 @@ public class OrderEntity {
     @Column(name = "customerId", nullable = false)
     private UUID customerId;
 
-    @OneToMany(targetEntity = OrderContent.class,  cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,targetEntity = OrderContent.class,  cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_order_id",referencedColumnName = "orderId")
     private List<OrderContent> orderContent;
 
