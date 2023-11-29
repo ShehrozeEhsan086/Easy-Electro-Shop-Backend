@@ -3,6 +3,8 @@ package com.easyelectroshop.customerservice.Service;
 import com.easyelectroshop.customerservice.DTO.Order.OrderEntity;
 import com.easyelectroshop.customerservice.DTO.OrderGetAllResponse.OrderGetAllResponseEntity;
 import com.easyelectroshop.customerservice.DTO.OrderGetByIdResponse.OrderSingleResponseEntity;
+import com.easyelectroshop.customerservice.DTO.RatedOrderDTO.RatedOrder;
+import com.easyelectroshop.customerservice.DTO.RatedOrdersResponse.RatedOrderResponseDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -14,6 +16,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -99,10 +102,10 @@ public class OrderService {
         }
     }
 
-    public List<OrderGetAllResponseEntity> getAllOrdersByCustomerId(UUID customerId, String sortBy, int pageSize, int pageNumber) {
+    public List<RatedOrderResponseDTO> getAllOrdersByCustomerId(UUID customerId, String sortBy, int pageSize, int pageNumber) {
         log.info("CALLING ORDER SERVICE TO GET ALL ORDERS FOR CUSTOMER WITH CUSTOMER_ID "+customerId);
         try{
-            return webClientBuilder.build()
+            List<OrderGetAllResponseEntity> orderGetAllResponseEntity = webClientBuilder.build()
                     .get()
                     .uri("http://order-service/api/v1/order-service/get-all-by-customer-id/"+customerId+"?pageNumber="+pageNumber+"&pageSize="+pageSize+"&sort="+sortBy)
                     .accept(MediaType.APPLICATION_JSON)
@@ -110,6 +113,32 @@ public class OrderService {
                     .toEntityList(OrderGetAllResponseEntity.class)
                     .block()
                     .getBody();
+
+            List<RatedOrderResponseDTO> ratedOrdersResponse = new ArrayList<>();
+
+            for(int i=0;i<orderGetAllResponseEntity.size();i++){
+
+                RatedOrder ratedOrder = webClientBuilder.build()
+                        .get()
+                        .uri("http://rating-service/api/v1/rating-service/get-rating-by-orderid-customerid/"+orderGetAllResponseEntity.get(i).orderId()+"/"+customerId)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .retrieve()
+                        .toEntity(RatedOrder.class)
+                        .block()
+                        .getBody();
+
+                if (ratedOrder == null){
+                    // Current Order has not been rated yet!
+                    RatedOrderResponseDTO ratedOrderResponseDTO = new RatedOrderResponseDTO(orderGetAllResponseEntity.get(i),-1);
+                    ratedOrdersResponse.add(ratedOrderResponseDTO);
+                } else {
+                    RatedOrderResponseDTO ratedOrderResponseDTO = new RatedOrderResponseDTO(orderGetAllResponseEntity.get(i), ratedOrder.ratingValue());
+                    ratedOrdersResponse.add(ratedOrderResponseDTO);
+                }
+            }
+
+            return ratedOrdersResponse;
+
         } catch (Exception ex){
             log.error("ERROR CALLING ORDER SERVICE TO GET ALL ORDERS FOR CUSTOMER WITH CUSTOMER_ID "+customerId,ex);
             return null;
