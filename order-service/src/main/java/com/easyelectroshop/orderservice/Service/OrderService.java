@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +33,8 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -509,8 +512,8 @@ public class OrderService {
     }
 
 
-    @Scheduled(fixedRate = 100_000)
-//    @Scheduled(fixedRate = 100_000,initialDelay = 5000)
+//    @Scheduled(fixedRate = 100_000)
+    @Scheduled(fixedRate = 100_000,initialDelay = 5000) // Initial 5 secs Delay and ran after every 100 secs
     public void updateOrderDataInExcelSheet(){
         try{
             log.info("UPDATING ORDER DATA IN EXCEL SHEET");
@@ -531,37 +534,55 @@ public class OrderService {
                 }
             }
 
-//            String filePath = "C:\\Users\\shehr\\OneDrive\\Desktop\\Easy-Electro-Shop\\Recommendation Models\\orders_data.xlsx";
-//
-//            try (Workbook workbook = getWorkbook(filePath)) {
-//                // Get the first sheet (assuming it already exists)
-//                Sheet sheet = workbook.getSheetAt(0);
-//
-//                for ( int i = 0; i < excelSheetDTOs.size();i++){
-//                    sheet.getRow((i+1)).getCell(0).setCellValue(excelSheetDTOs.get(i).orderId());
-//                    sheet.getRow((i+1)).getCell(1).setCellValue(String.valueOf(excelSheetDTOs.get(i).productId()));
-//                    sheet.getRow((i+1)).getCell(2).setCellValue(excelSheetDTOs.get(i).quantity());
-//                }
-//
-//                // Save the changes
-//                try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
-//                    workbook.write(fileOut);
-//                }
-//
-//                log.info("ORDER DATA ADDED TO EXCEL FILE SUCCESSFULLY");
-//
-//            } catch (IOException e) {
-//                log.error("ERROR ADDING ORDER DATA TO EXCEL FILE");
-//            }
-//
+
+            try{
+
+            File file = new File("C:\\Users\\shehr\\OneDrive\\Desktop\\Easy-Electro-Shop\\Recommendation Models\\orders_data.xlsx");
+
+            // Create a FileInputStream object
+            // for getting the information of the file
+            FileInputStream fip = new FileInputStream(file);
+
+            // Getting the workbook instance for XLSX file
+            XSSFWorkbook workbook = new XSSFWorkbook(fip);
+
+                Sheet sheet = workbook.getSheetAt(0);
+
+
+                for ( int i = 0; i < excelSheetDTOs.size();i++){
+                    try{
+                        sheet.getRow((i+1)).getCell(0).setCellValue(excelSheetDTOs.get(i).orderId());
+                        sheet.getRow((i+1)).getCell(1).setCellValue(String.valueOf(excelSheetDTOs.get(i).productId()));
+                        sheet.getRow((i+1)).getCell(2).setCellValue(excelSheetDTOs.get(i).quantity());
+                    } catch (NullPointerException ex){
+                        sheet.createRow((i+1)).createCell(0).setCellValue(1);
+                        sheet.createRow((i+1)).createCell(1).setCellValue(String.valueOf(excelSheetDTOs.get(i).productId()));
+                        sheet.createRow((i+1)).createCell(2).setCellValue(excelSheetDTOs.get(i).quantity());
+                    }
+
+                }
+
+                // Save the changes
+                try (FileOutputStream fileOut = new FileOutputStream(file)) {
+                    workbook.write(fileOut);
+                }
+                workbook.close();
+
+                log.info("ORDER DATA ADDED TO EXCEL FILE SUCCESSFULLY");
+
+            } catch (IOException e) {
+                log.error("ERROR ADDING ORDER DATA TO EXCEL FILE");
+            }
+
         } catch (Exception ex){
             log.error("THERE WAS AN UNEXPECTED ERROR ",ex);
         }
     }
 
-//    private Workbook getWorkbook(String filePath) throws IOException {
-//        return WorkbookFactory.create(getClass().getClassLoader().getResourceAsStream(filePath));
-//    }
+    private Workbook getWorkbook(String filePath) throws IOException {
+        return WorkbookFactory.create(getClass().getClassLoader().getResourceAsStream(filePath));
+    }
+
 
 
 
