@@ -25,10 +25,10 @@ public class OrderTrackingService {
 
             log.info("SCRAPPING LEOPARD COURIER FOR SHIPMENT WITH TRACKING_NUMBER: "+trackingNumber);
 
-            WebElement searchField = webDriver.findElement(By.className("track_field"));
+            WebElement searchField = webDriver.findElement(By.className("banner-field"));
             searchField.sendKeys(trackingNumber);
 
-            WebElement searchButton = webDriver.findElement(By.className("submit_button"));
+            WebElement searchButton = webDriver.findElement(By.className("btn-success"));
             searchButton.click();
             WebElement result;
 
