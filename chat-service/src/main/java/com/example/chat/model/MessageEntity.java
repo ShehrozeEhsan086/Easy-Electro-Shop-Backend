@@ -1,14 +1,24 @@
 package com.example.chat.model;
 
-import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@Setter
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
 @Getter
-public class Message {
-    private String senderName;
+@Setter
+public class MessageEntity {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getSenderName() {
         return senderName;
@@ -50,8 +60,22 @@ public class Message {
         this.status = status;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    private String senderName;
     private String receiverName;
     private String message;
     private String date;
     private Status status;
+
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
