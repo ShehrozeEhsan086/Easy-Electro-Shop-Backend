@@ -173,6 +173,9 @@ public class ProductManagementService {
     public ResponseEntity<List<Product>> findByName(String name,int pageNumber,int pageSize,String sortBy){
         log.info("GETTING PRODUCTS SEARCHED BY NAME");
         try{
+            if(pageSize == -1){
+                pageSize = (int) productManagementRepository.count();
+            }
             List<Product> products = productManagementRepository.findByName(name,sortBy,pageSize,pageNumber);
             log.info("SUCCESSFULLY RETRIEVED PRODUCTS SEARCHED BY NAME");
             return ResponseEntity.ok(products);
