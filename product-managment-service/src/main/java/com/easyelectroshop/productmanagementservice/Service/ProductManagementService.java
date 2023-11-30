@@ -176,9 +176,9 @@ public class ProductManagementService {
             if(pageSize == -1){
                 pageSize = (int) productManagementRepository.count();
             }
-            List<Product> products = productManagementRepository.findByName(name,sortBy,pageSize,pageNumber);
+            Page<Product> products = productManagementRepository.findAllByNameContains(name,PageRequest.of(pageNumber,pageSize, Sort.by(sortBy).descending()));
             log.info("SUCCESSFULLY RETRIEVED PRODUCTS SEARCHED BY NAME");
-            return ResponseEntity.ok(products);
+            return ResponseEntity.ok(products.stream().toList());
         } catch (Exception ex){
             log.error("ERROR RETRIEVING PRODUCTS SEARCHED BY NAME ", ex);
             return ResponseEntity.status(HttpStatusCode.valueOf(500)).build();
