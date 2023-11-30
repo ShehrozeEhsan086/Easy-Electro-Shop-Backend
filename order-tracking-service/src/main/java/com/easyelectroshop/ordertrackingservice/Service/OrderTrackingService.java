@@ -40,7 +40,7 @@ public class OrderTrackingService {
             }
             return ResponseEntity.ok(result.getScreenshotAs(OutputType.BASE64));
         } catch (Exception ex){
-            log.info("ERROR SCRAPPING LEOPARD COURIER FOR TRACKING_NUMBER: "+trackingNumber);
+            log.error("ERROR SCRAPPING LEOPARD COURIER FOR TRACKING_NUMBER: "+trackingNumber,ex);
             return ResponseEntity.internalServerError().build();
         }
 
