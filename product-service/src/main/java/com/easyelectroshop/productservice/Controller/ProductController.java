@@ -11,6 +11,7 @@ import com.easyelectroshop.productservice.DTO.ProductDTO.Product;
 import com.easyelectroshop.productservice.DTO.ProductDTO.ProductResponse;
 import com.easyelectroshop.productservice.DTO.ProductDTO.ProductWithColor;
 import com.easyelectroshop.productservice.DTO.WebScrapperDTO.WebScrapper;
+import com.easyelectroshop.productservice.Service.BundleRecommendationService;
 import com.easyelectroshop.productservice.Service.DiscountService;
 import com.easyelectroshop.productservice.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,15 @@ public class ProductController {
 
     @Autowired
     DiscountService discountService;
+
+    @Autowired
+    BundleRecommendationService bundleRecommendationService;
+
+
+    @GetMapping("/get-product-bundle-recommendation/{productId}")
+    public ResponseEntity<CompleteProductResponse> getBundleRecommendation(@PathVariable UUID productId){
+        return bundleRecommendationService.getRecommendedProduct(productId);
+    }
 
     // ----------------  APIS FOR AMAZON SERVICE [[START]] --------------------
 
