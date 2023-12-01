@@ -3,13 +3,22 @@ package com.example.chat.controller;
 import com.example.chat.Repo.MessageRepo;
 import com.example.chat.model.Message;
 import com.example.chat.model.MessageEntity;
+import com.example.chat.model.SpecificMessageRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -54,5 +63,27 @@ public class ChatController {
         msg.setDate(message.getDate());
         messageRepo.save(msg);
         return message;
+    }
+
+    @PostMapping("/search")
+    ResponseEntity<List<MessageEntity>> findBySenderNameAndReceiverName(@RequestBody SpecificMessageRequest specificMessageRequest) {
+        List<MessageEntity> messageEntityList = messageRepo.findBySenderNameAndReceiverName(
+                specificMessageRequest.getSenderName(),
+                specificMessageRequest.getReceiverName(),
+                specificMessageRequest.getReceiverName(),
+                specificMessageRequest.getSenderName()
+        );
+
+        return ResponseEntity.status(HttpStatus.FOUND).body(messageEntityList);
+    }
+
+
+    @GetMapping("/search/{senderName}")
+    ResponseEntity<List<MessageEntity>> findBySenderName(@PathVariable("senderName") String senderName) {
+
+        List<MessageEntity> messageEntityList = messageRepo.findBySenderName(senderName);
+
+        return ResponseEntity.status(HttpStatus.FOUND).body(messageEntityList);
+
     }
 }
