@@ -43,8 +43,8 @@ public class BundleRecommendationService {
                     return ResponseEntity.ok(productService.getProductById( UUID.fromString(responseObject.recommended_bundles().get(i))));
                 }
             }
-            log.warn("SOMETHING WENT WRONG");
-            return ResponseEntity.unprocessableEntity().build();
+            log.warn("NO RECOMMENDATION RECIEVEVED");
+            return ResponseEntity.noContent().build();
         } catch (Exception ex){
             log.error("ERROR ",ex);
             return ResponseEntity.internalServerError().build();
