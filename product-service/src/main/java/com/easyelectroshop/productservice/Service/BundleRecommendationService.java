@@ -47,7 +47,7 @@ public class BundleRecommendationService {
             return ResponseEntity.noContent().build();
         } catch (Exception ex){
             log.error("ERROR ",ex);
-            return ResponseEntity.internalServerError().build();
+            return ResponseEntity.noContent().build();
         }
     }
 
