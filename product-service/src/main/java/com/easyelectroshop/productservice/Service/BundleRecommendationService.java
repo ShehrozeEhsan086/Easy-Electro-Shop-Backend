@@ -40,7 +40,7 @@ public class BundleRecommendationService {
 
             for (int i=0; i< responseObject.recommended_bundles().size(); i++){
                 if (!responseObject.recommended_bundles().get(i).equals("0")){
-                    return ResponseEntity.ok(productService.getProductById( UUID.fromString(responseObject.recommended_bundles().get(0))));
+                    return ResponseEntity.ok(productService.getProductById( UUID.fromString(responseObject.recommended_bundles().get(i))));
                 }
             }
             log.warn("SOMETHING WENT WRONG");
