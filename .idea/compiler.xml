@@ -8,6 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="stripe-payment-service" />
+        <module name="chatbot-data-retrieving-service" />
+        <module name="rating-service" />
         <module name="web-scrapping-service" />
         <module name="cart-service" />
         <module name="order-tracking-service" />
@@ -16,6 +18,7 @@
         <module name="product-service" />
         <module name="amazon-ses-service" />
         <module name="amazon-s3-service" />
+        <module name="stock-recommendation-service" />
         <module name="config-server" />
         <module name="discovery-server" />
         <module name="orderEntity-service" />
@@ -24,6 +27,7 @@
         <module name="product-management-service" />
         <module name="api-gateway" />
         <module name="analytics-service" />
+        <module name="Chat" />
         <module name="customer-management-service" />
         <module name="product-color-management-service" />
       </profile>
@@ -31,11 +35,13 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Chat" options="-parameters" />
       <module name="amazon-s3-service" options="-parameters" />
       <module name="amazon-ses-service" options="-parameters" />
       <module name="analytics-service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="cart-service" options="-parameters" />
+      <module name="chatbot-data-retrieving-service" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="coupon-service" options="-parameters" />
       <module name="customer-management-service" options="-parameters" />
@@ -48,6 +54,8 @@
       <module name="product-color-management-service" options="-parameters" />
       <module name="product-management-service" options="-parameters" />
       <module name="product-service" options="-parameters" />
+      <module name="rating-service" options="-parameters" />
+      <module name="stock-recommendation-service" options="-parameters" />
       <module name="stripe-payment-service" options="-parameters" />
       <module name="web-scrapping-service" options="-parameters" />
     </option>
