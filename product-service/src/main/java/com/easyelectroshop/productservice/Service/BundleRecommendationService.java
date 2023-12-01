@@ -40,11 +40,11 @@ public class BundleRecommendationService {
 
             for (int i=0; i< responseObject.recommended_bundles().size(); i++){
                 if (!responseObject.recommended_bundles().get(i).equals("0")){
-                    return ResponseEntity.ok(productService.getProductById( UUID.fromString(responseObject.recommended_bundles().get(0))));
+                    return ResponseEntity.ok(productService.getProductById( UUID.fromString(responseObject.recommended_bundles().get(i))));
                 }
             }
-            log.warn("SOMETHING WENT WRONG");
-            return ResponseEntity.unprocessableEntity().build();
+            log.warn("NO RECOMMENDATION RECIEVEVED");
+            return ResponseEntity.noContent().build();
         } catch (Exception ex){
             log.error("ERROR ",ex);
             return ResponseEntity.internalServerError().build();
