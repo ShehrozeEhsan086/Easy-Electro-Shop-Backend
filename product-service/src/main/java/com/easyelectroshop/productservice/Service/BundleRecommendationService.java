@@ -5,6 +5,7 @@ import com.easyelectroshop.productservice.DTO.BundleRecommendation.ProductIdDTO;
 import com.easyelectroshop.productservice.DTO.ProductDTO.CompleteProductResponse;
 import com.easyelectroshop.productservice.DTO.ProductDTO.ProductResponse;
 import com.netflix.servo.monitor.StepCounter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class BundleRecommendationService {
 
     @Autowired
@@ -23,6 +25,7 @@ public class BundleRecommendationService {
 
     public ResponseEntity<CompleteProductResponse> getRecommendedProduct(UUID productId){
         try{
+            log.info("GETTING BUNDLE RECOMMENDATION FOR PRODUCT WITH PRODUCT_ID "+productId);
             ProductIdDTO productIdDTO = new ProductIdDTO(productId);
 
             BundleRecommendationResponse responseObject = WebClient.builder()
@@ -40,13 +43,10 @@ public class BundleRecommendationService {
                     return ResponseEntity.ok(productService.getProductById( UUID.fromString(responseObject.recommended_bundles().get(0))));
                 }
             }
-
-            System.out.println(responseObject.recommended_bundles().get(0).toString());
-
-
-
-            return null;
+            log.warn("SOMETHING WENT WRONG");
+            return ResponseEntity.unprocessableEntity().build();
         } catch (Exception ex){
+            log.error("ERROR ",ex);
             return ResponseEntity.internalServerError().build();
         }
     }
