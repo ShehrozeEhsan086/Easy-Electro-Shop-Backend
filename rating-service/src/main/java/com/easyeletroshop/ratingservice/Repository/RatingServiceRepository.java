@@ -13,4 +13,6 @@ public interface RatingServiceRepository extends JpaRepository<Rating,Long> {
     @Query(value = "SELECT * FROM rating WHERE customer_id = ?1 AND order_id = ?2 LIMIT 1",nativeQuery = true)
     Rating findByCustomerIdAndOrderIdLimitOne(UUID customerId, long orderId);
 
+    Rating findByCustomerIdAndProductId(UUID customerId, UUID productId);
+
 }
