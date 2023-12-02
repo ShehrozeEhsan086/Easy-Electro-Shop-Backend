@@ -551,17 +551,14 @@ public class OrderService {
 
                 for ( int i = 0; i < excelSheetDTOs.size();i++){
                     try{
-                        sheet.getRow((i+1)).getCell(0).setCellValue(excelSheetDTOs.get(i).orderId());
-                        sheet.getRow((i+1)).getCell(1).setCellValue(String.valueOf(excelSheetDTOs.get(i).productId()));
-                        sheet.getRow((i+1)).getCell(2).setCellValue(excelSheetDTOs.get(i).quantity());
-                    } catch (NullPointerException ex){
-                        sheet.createRow((i+1)).createCell(0).setCellValue(1);
-                        sheet.createRow((i+1)).createCell(1).setCellValue(String.valueOf(excelSheetDTOs.get(i).productId()));
-                        sheet.createRow((i+1)).createCell(2).setCellValue(excelSheetDTOs.get(i).quantity());
+                        sheet.createRow((i+1)).createCell(0).setCellValue(excelSheetDTOs.get(i).orderId());
+                        sheet.getRow((i+1)).createCell(1).setCellValue(String.valueOf(excelSheetDTOs.get(i).productId()));
+                        sheet.getRow((i+1)).createCell(2).setCellValue(excelSheetDTOs.get(i).quantity());
+                    } catch (Exception exception){
+                        log.error("ERROR WRITING DATA TO EXCEL FILE");
+                        workbook.close();
                     }
-
                 }
-
                 // Save the changes
                 try (FileOutputStream fileOut = new FileOutputStream(file)) {
                     workbook.write(fileOut);
