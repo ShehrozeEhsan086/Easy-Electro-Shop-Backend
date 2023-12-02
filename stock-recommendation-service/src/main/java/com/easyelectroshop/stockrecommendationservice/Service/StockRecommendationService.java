@@ -76,7 +76,7 @@ public class StockRecommendationService {
                 DataEntityDTO dataEntityDTO = new DataEntityDTO(dataValuesDTOS);
 
                 Object forecastResponse = WebClient.builder()
-                        .baseUrl("http://127.0.0.1:5000/train_and_forecast")
+                        .baseUrl("http://127.0.0.1:5001/train_and_forecast")
                         .build()
                         .post()
                         .contentType(MediaType.APPLICATION_JSON)

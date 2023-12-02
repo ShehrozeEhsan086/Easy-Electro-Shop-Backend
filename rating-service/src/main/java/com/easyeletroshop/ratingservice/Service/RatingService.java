@@ -109,13 +109,12 @@ public class RatingService {
 
                 for ( int i = 0; i < ratings.size();i++){
                     try{
-
-                        sheet.getRow((i+1)).getCell(0).setCellValue(String.valueOf(ratings.get(i).getCustomerId())) ;
-                        sheet.getRow((i+1)).getCell(1).setCellValue(String.valueOf(ratings.get(i).getProductId()));
-                        sheet.getRow((i+1)).getCell(2).setCellValue(ratings.get(i).getRatingValue());
-                    } catch (NullPointerException ex){
+                        sheet.createRow((i+1)).createCell(0).setCellValue(String.valueOf(ratings.get(i).getCustomerId()));
+                        sheet.getRow((i+1)).createCell(1).setCellValue(String.valueOf(ratings.get(i).getProductId()));
+                        sheet.getRow((i+1)).createCell(2).setCellValue(ratings.get(i).getRatingValue());
+                    } catch (Exception ex){
                         workbook.close();
-                        log.error("ERROR WHILE WRITING DATA");
+                        log.error("ERROR WHILE WRITING DATA",ex);
                     }
                 }
 
@@ -128,7 +127,7 @@ public class RatingService {
                 log.info("ORDER DATA ADDED TO EXCEL FILE SUCCESSFULLY");
 
             } catch (IOException e) {
-                log.error("ERROR ADDING ORDER DATA TO EXCEL FILE");
+                log.error("ERROR ADDING ORDER DATA TO EXCEL FILE",e);
             }
 
 
