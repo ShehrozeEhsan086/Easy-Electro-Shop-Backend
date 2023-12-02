@@ -7,21 +7,20 @@ import com.example.chat.model.SpecificMessageRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @Slf4j
+@CrossOrigin("*")
 public class ChatController {
 
     @Autowired
@@ -74,16 +73,43 @@ public class ChatController {
                 specificMessageRequest.getSenderName()
         );
 
-        return ResponseEntity.status(HttpStatus.FOUND).body(messageEntityList);
+        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(messageEntityList);
     }
 
 
-    @GetMapping("/search/{senderName}")
-    ResponseEntity<List<MessageEntity>> findBySenderName(@PathVariable("senderName") String senderName) {
+    @GetMapping("/search/{name}")
+    ResponseEntity<List<String>> findAllConversations(@PathVariable("name") String name) {
 
-        List<MessageEntity> messageEntityList = messageRepo.findBySenderName(senderName);
+        List<String> messageEntityList = messageRepo.findAllConversations(name);
 
-        return ResponseEntity.status(HttpStatus.FOUND).body(messageEntityList);
+        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(messageEntityList);
 
     }
+
+    @PostMapping("/offline-message-to-admin")
+    public ResponseEntity<MessageEntity> sendOfflineMessageToAdmin(@RequestBody Message message) {
+        MessageEntity msg = new MessageEntity();
+        msg.setType("private");
+        msg.setMessage(message.getMessage());
+        msg.setReceiverName("Admin");
+        msg.setSenderName(message.getSenderName());
+        msg.setStatus(message.getStatus());
+        msg.setDate(message.getDate());
+        messageRepo.save(msg);
+        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(msg);
+    }
+
+    @PostMapping("/offline-message-from-admin")
+    public ResponseEntity<MessageEntity> sendOfflineMessageFromAdmin(@RequestBody Message message) {
+        MessageEntity msg = new MessageEntity();
+        msg.setType("private");
+        msg.setMessage(message.getMessage());
+        msg.setReceiverName(message.getReceiverName());
+        msg.setSenderName(message.getSenderName());
+        msg.setStatus(message.getStatus());
+        msg.setDate(message.getDate());
+        messageRepo.save(msg);
+        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(msg);
+    }
+
 }
