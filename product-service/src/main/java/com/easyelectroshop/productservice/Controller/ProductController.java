@@ -52,6 +52,11 @@ public class ProductController {
         return productService.getFourMostSoldProducts();
     }
 
+    @GetMapping("/get-four-random-products")
+    public ResponseEntity<List<CompleteProductResponse>> get4RandomProducts(){
+        return productService.getFourRandomProducts();
+    }
+
 
     // ----------------  APIS FOR AMAZON SERVICE [[START]] --------------------
 

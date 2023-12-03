@@ -41,4 +41,6 @@ public interface ProductManagementRepository extends JpaRepository<Product, UUID
 
     Page<Product> findAllByCategory(long category, Pageable pageable);
 
+//    @Query(value = "SELECT product_id FROM product",nativeQuery = true)
+//    List<String> findAllProductIds();
 }
