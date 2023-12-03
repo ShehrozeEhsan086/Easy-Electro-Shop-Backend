@@ -635,10 +635,7 @@ public class ProductService {
 
             List<CompleteProductResponse> products = new ArrayList<>();
 
-            log.error("COUNT OF ANAYLITCS RECEOEVED "+productIdsRetrievedFromAnalyticsService.size());
-
             for (int i = 0; i<productIdsRetrievedFromAnalyticsService.size() ; i++){
-                log.error("I RAN "+(i+1)+" TIMES");
                 if ( i == 4){
                     break;
                 } else {
