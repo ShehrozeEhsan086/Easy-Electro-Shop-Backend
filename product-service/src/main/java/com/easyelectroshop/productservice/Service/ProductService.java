@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.MultipartBodyBuilder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -24,6 +25,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -652,6 +654,43 @@ public class ProductService {
         }
     }
 
+    public ResponseEntity<List<CompleteProductResponse>> getFourRandomProducts(){
+        log.info("GETTING 4 RANDOM PRODUCTS");
+        try{
+            List<Integer> values = new ArrayList<>();
+            Random random = new Random();
+
+            while (values.size() < 4) {
+                int randomValue = random.nextInt(getProductsCount() - 1);
+                if (!values.contains(randomValue)) {
+                    values.add(randomValue);
+                }
+            }
+
+            List<Product> allProduct = webClientBuilder.build()
+                    .get()
+                    .uri("http://product-management-service/api/v1/product-management/get-all-products")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(Product.class)
+                    .block()
+                    .getBody();
+
+
+            List<CompleteProductResponse> completeProductResponses = new ArrayList<>();
+
+            for (int i = 0; i<4;i++){
+                CompleteProductResponse completeProductResponse = getProductById(allProduct.get(values.get(i)).productId());
+                completeProductResponses.add(completeProductResponse);
+            }
+
+            return ResponseEntity.ok(completeProductResponses);
+
+        } catch (Exception ex){
+            log.error("ERROR GETTING 4 RANDOM PRODUCTS",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 
     // -------------  SERVICE FOR PRODUCT MANAGEMENT SERVICE [[END]] ---------------
 

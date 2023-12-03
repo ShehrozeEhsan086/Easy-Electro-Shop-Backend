@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
@@ -310,4 +311,12 @@ public class ProductManagementService {
         }
     }
 
+    public ResponseEntity<List<Product>> getAllProduct(){
+        try{
+            return ResponseEntity.ok(productManagementRepository.findAll());
+        } catch (Exception ex){
+            log.error("ERROR GETTING ALL PRODUCTS",ex);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }

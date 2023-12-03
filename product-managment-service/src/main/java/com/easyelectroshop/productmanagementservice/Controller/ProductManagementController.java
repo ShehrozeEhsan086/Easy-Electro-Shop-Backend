@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -132,4 +133,10 @@ public class ProductManagementController {
     public ResponseEntity<ProductMinimalData> getProductNameImagePriceById(@PathVariable UUID productId){
         return productManagementService.getProductNameImagePriceById(productId);
     }
+
+    @GetMapping("/get-all-products")
+    public ResponseEntity<List<Product>> getAllProductIds(){
+        return productManagementService.getAllProduct();
+    }
+
 }
