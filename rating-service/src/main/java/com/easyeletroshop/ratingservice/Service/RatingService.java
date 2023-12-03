@@ -95,7 +95,7 @@ public class RatingService {
 
             try{
 
-                File file = new File("C:\\Users\\shehr\\OneDrive\\Desktop\\Easy-Electro-Shop\\Recommendation Models\\product_ratings.xlsx");
+                File file = new File("D:\\University Work\\FYP\\Easy Electro Shop\\Recommendation Models\\product_ratings.xlsx");
 
                 // Create a FileInputStream object
                 // for getting the information of the file
