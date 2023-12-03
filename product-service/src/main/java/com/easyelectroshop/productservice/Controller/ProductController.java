@@ -47,6 +47,11 @@ public class ProductController {
         return recommendationService.getProductForCustomerRecommendation(customerId);
     }
 
+    @GetMapping("/get-top-four-most-sold-products")
+    public ResponseEntity<List<CompleteProductResponse>> getTop4SoldProducts(){
+        return productService.getFourMostSoldProducts();
+    }
+
 
     // ----------------  APIS FOR AMAZON SERVICE [[START]] --------------------
 

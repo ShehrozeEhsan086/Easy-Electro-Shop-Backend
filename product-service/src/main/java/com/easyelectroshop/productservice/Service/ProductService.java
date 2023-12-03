@@ -1,6 +1,7 @@
 package com.easyelectroshop.productservice.Service;
 
 import com.easyelectroshop.productservice.DTO.AmazonS3DTO.Model3D;
+import com.easyelectroshop.productservice.DTO.AnalyticsResponseProductDTO.ProductResponseDTO;
 import com.easyelectroshop.productservice.DTO.DiscountDTO.Discount;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.Category;
 import com.easyelectroshop.productservice.DTO.ProductCategoryDTO.SubCategory;
@@ -619,6 +620,38 @@ public class ProductService {
             return 0;
         }
     }
+
+    public ResponseEntity<List<CompleteProductResponse>> getFourMostSoldProducts(){
+        log.info("CALLING ANALYTICS SERVICE TO GET TOP 5 PRODUCTS WITH MOST SALES");
+        try {
+            List<ProductResponseDTO> productIdsRetrievedFromAnalyticsService = webClientBuilder.build()
+                    .get()
+                    .uri("http://analytics-service/api/v1/analytics-service/get-products-sales-data")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .toEntityList(ProductResponseDTO.class)
+                    .block()
+                    .getBody();
+
+            List<CompleteProductResponse> products = new ArrayList<>();
+
+            for (int i = 0; i<productIdsRetrievedFromAnalyticsService.size() ; i++){
+                if ( i == 4){
+                    break;
+                } else {
+                    CompleteProductResponse completeProductResponse = getProductById(productIdsRetrievedFromAnalyticsService.get(i).productId());
+                    products.add(completeProductResponse);
+                }
+            }
+
+            return ResponseEntity.ok(products);
+
+        } catch (Exception ex){
+            log.error("ERROR GETTING TOP 4 SOLD PRODUCTS");
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
 
     // -------------  SERVICE FOR PRODUCT MANAGEMENT SERVICE [[END]] ---------------
 
